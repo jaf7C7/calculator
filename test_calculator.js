@@ -4,12 +4,11 @@ const Calculator = require("./calculator.js");
 
 // https://mochajs.org/#assertions
 describe("Calculator", () => {
-  it("should require primary and secondary displays as constructor parameters", () => {
-    const primaryDisplay = "foo";
-    const secondaryDisplay = "bar";
-    const calc = new Calculator(primaryDisplay, secondaryDisplay);
+  it("should have primary and secondary displays", () => {
+    const calc = new Calculator();
     assert.equal(
-      calc.primaryDisplay === "foo" && calc.secondaryDisplay === "bar",
+      Object.hasOwn(calc, "primaryDisplay") &&
+        Object.hasOwn(calc, "secondaryDisplay"),
       true,
     );
   });

@@ -1,7 +1,7 @@
 class Calculator {
-  constructor(primaryDisplay, secondaryDisplay) {
-    this.primaryDisplay = primaryDisplay;
-    this.secondaryDisplay = secondaryDisplay;
+  constructor() {
+    this.primaryDisplay = "";
+    this.secondaryDisplay = "";
   }
 }
 
