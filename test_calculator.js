@@ -27,4 +27,11 @@ describe("Calculator", () => {
     calc.appendChar("a");
     assert.equal(calc.primaryDisplay === "a", true);
   });
+
+  it("can delete the last char from the primary display", () => {
+    const calc = new Calculator();
+    calc.primaryDisplay = "a";
+    calc.deleteChar();
+    assert.equal(calc.primaryDisplay === "", true);
+  });
 });
