@@ -11,6 +11,11 @@ class Calculator {
   deleteChar() {
     this.primaryDisplay = this.primaryDisplay.slice(0, -1);
   }
+
+  clearAll() {
+    this.primaryDisplay = "";
+    this.secondaryDisplay = "";
+  }
 }
 
 module.exports = Calculator;

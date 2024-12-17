@@ -30,4 +30,12 @@ describe("Calculator", () => {
     calc.deleteChar();
     assert(calc.primaryDisplay === "");
   });
+
+  it("can clear both displays", () => {
+    const calc = new Calculator();
+    calc.primaryDisplay = "foo";
+    calc.secondaryDisplay = "bar";
+    calc.clearAll();
+    assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
+  });
 });
