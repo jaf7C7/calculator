@@ -16,6 +16,11 @@ class Calculator {
     this.primaryDisplay = "";
     this.secondaryDisplay = "";
   }
+
+  acceptOperand() {
+    this.secondaryDisplay = this.primaryDisplay;
+    this.primaryDisplay = "";
+  }
 }
 
 module.exports = Calculator;

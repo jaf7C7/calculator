@@ -38,4 +38,11 @@ describe("Calculator", () => {
     calc.clearAll();
     assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
   });
+
+  it("can push an operand from the primary to secondary display", () => {
+    const calc = new Calculator();
+    calc.primaryDisplay = "156";
+    calc.acceptOperand();
+    assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "156");
+  });
 });
