@@ -18,9 +18,9 @@ describe("Calculator", () => {
     assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
   });
 
-  it("can append characters to the primary display", () => {
+  it("can input characters to the primary display", () => {
     const calc = new Calculator();
-    calc.appendChar("a");
+    calc.inputChar("a");
     assert(calc.primaryDisplay === "a");
   });
 
@@ -29,5 +29,13 @@ describe("Calculator", () => {
     calc.primaryDisplay = "a";
     calc.deleteChar();
     assert(calc.primaryDisplay === "");
+  });
+
+  it("can clear both displays", () => {
+    const calc = new Calculator();
+    calc.primaryDisplay = "foo";
+    calc.secondaryDisplay = "bar";
+    calc.clearAll();
+    assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
   });
 });
