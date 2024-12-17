@@ -3,6 +3,10 @@ class Calculator {
     this.primaryDisplay = "";
     this.secondaryDisplay = "";
   }
+
+  appendChar(char) {
+    this.primaryDisplay += char;
+  }
 }
 
 module.exports = Calculator;
