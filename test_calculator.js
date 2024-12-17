@@ -21,4 +21,10 @@ describe("Calculator", () => {
       true,
     );
   });
+
+  it("can append characters to the primary display", () => {
+    const calc = new Calculator();
+    calc.appendChar("a");
+    assert.equal(calc.primaryDisplay === "a", true);
+  });
 });
