@@ -4,7 +4,7 @@ class Calculator {
     this.secondaryDisplay = "";
   }
 
-  appendChar(char) {
+  inputChar(char) {
     this.primaryDisplay += char;
   }
 
