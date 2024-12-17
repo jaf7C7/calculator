@@ -1,15 +1,23 @@
 // https://nodejs.org/api/assert.html
 const assert = require("node:assert/strict");
-const Calculator = require("./calculator.js");
 
 // https://mochajs.org/#assertions
 describe("Calculator", () => {
-  it("should require primary and secondary displays as constructor parameters", () => {
-    const primaryDisplay = "foo";
-    const secondaryDisplay = "bar";
-    const calc = new Calculator(primaryDisplay, secondaryDisplay);
+  const Calculator = require("./calculator.js");
+
+  it("should have primary and secondary displays", () => {
+    const calc = new Calculator();
     assert.equal(
-      calc.primaryDisplay === "foo" && calc.secondaryDisplay === "bar",
+      Object.hasOwn(calc, "primaryDisplay") &&
+        Object.hasOwn(calc, "secondaryDisplay"),
+      true,
+    );
+  });
+
+  it("should have displays which are initially blank", () => {
+    const calc = new Calculator();
+    assert.equal(
+      calc.primaryDisplay === "" && calc.secondaryDisplay === "",
       true,
     );
   });
