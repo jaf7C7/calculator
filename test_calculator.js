@@ -7,24 +7,27 @@ describe("Calculator", () => {
 
   it("should have primary and secondary displays", () => {
     const calc = new Calculator();
-    assert.equal(
+    assert(
       Object.hasOwn(calc, "primaryDisplay") &&
         Object.hasOwn(calc, "secondaryDisplay"),
-      true,
     );
   });
 
   it("should have displays which are initially blank", () => {
     const calc = new Calculator();
-    assert.equal(
-      calc.primaryDisplay === "" && calc.secondaryDisplay === "",
-      true,
-    );
+    assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
   });
 
   it("can append characters to the primary display", () => {
     const calc = new Calculator();
     calc.appendChar("a");
-    assert.equal(calc.primaryDisplay === "a", true);
+    assert(calc.primaryDisplay === "a");
+  });
+
+  it("can delete the last char from the primary display", () => {
+    const calc = new Calculator();
+    calc.primaryDisplay = "a";
+    calc.deleteChar();
+    assert(calc.primaryDisplay === "");
   });
 });
