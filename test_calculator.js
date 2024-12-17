@@ -13,4 +13,12 @@ describe("Calculator", () => {
       true,
     );
   });
+
+  it("should have displays which are initially blank", () => {
+    const calc = new Calculator();
+    assert.equal(
+      calc.primaryDisplay === "" && calc.secondaryDisplay === "",
+      true,
+    );
+  });
 });
