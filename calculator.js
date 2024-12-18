@@ -20,13 +20,9 @@ class Calculator {
     this.secondaryDisplay = "";
   }
 
-  acceptOperand() {
+  selectOperation(operator) {
     this.secondaryDisplay = this.primaryDisplay;
     this.primaryDisplay = "";
-  }
-
-  selectOperation(operator) {
-    this.acceptOperand();
     this.secondaryDisplay += operator;
   }
 }
