@@ -4,12 +4,14 @@ class Calculator {
     this.secondaryDisplay = "";
     this.currentOperand = "";
     this.previousOperand = "";
+    this.previousCalculation = "";
     this.operator = "";
   }
 
   updateDisplay() {
     this.primaryDisplay = this.currentOperand;
-    this.secondaryDisplay = this.previousOperand.concat(this.operator);
+    this.secondaryDisplay =
+      this.previousCalculation || this.previousOperand.concat(this.operator);
   }
 
   inputChar(char) {
@@ -29,6 +31,7 @@ class Calculator {
     this.currentOperand = "";
     this.previousOperand = "";
     this.operator = "";
+    this.previousCalculation = "";
     this.primaryDisplay = "";
     this.secondaryDisplay = "";
   }
@@ -48,10 +51,11 @@ class Calculator {
 
   calculate() {
     const result = Number(this.previousOperand) + Number(this.currentOperand);
-    const tmp = this.currentOperand;
+    this.previousCalculation = this.previousOperand
+      .concat(this.operator)
+      .concat(this.currentOperand);
     this.currentOperand = String(result);
     this.updateDisplay();
-    this.secondaryDisplay += tmp;
   }
 }
 
