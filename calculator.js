@@ -24,9 +24,8 @@ class Calculator {
     if (RegExp(/[^-+*/]/).test(operator)) {
       throw new TypeError(`Illegal operator: '${operator}'`);
     }
-    this.secondaryDisplay = this.primaryDisplay;
+    this.secondaryDisplay = this.primaryDisplay + operator;
     this.primaryDisplay = "";
-    this.secondaryDisplay += operator;
   }
 }
 
