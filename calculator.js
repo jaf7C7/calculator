@@ -21,9 +21,14 @@ class Calculator {
   }
 
   selectOperation(operator) {
-    this.secondaryDisplay = this.primaryDisplay;
+    if (RegExp(/[^-+*/]/).test(operator)) {
+      throw new TypeError(`Illegal operator: '${operator}'`);
+    }
+    if (this.primaryDisplay === "") {
+      return;
+    }
+    this.secondaryDisplay = this.primaryDisplay + operator;
     this.primaryDisplay = "";
-    this.secondaryDisplay += operator;
   }
 }
 
