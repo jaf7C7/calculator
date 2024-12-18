@@ -10,20 +10,23 @@ describe("Calculator", () => {
     assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
   });
 
-  it("can input characters to the primary display", () => {
+  // ., 0, 1, ..., 9  (input keys)
+  it("should display the correct characters when input keys are pressed", () => {
     const calc = new Calculator();
     calc.inputChar("a");
     assert(calc.primaryDisplay === "a");
   });
 
-  it("can delete the last char from the primary display", () => {
+  // Del
+  it("should delete the last character of the current operand when the Del key is pressed", () => {
     const calc = new Calculator();
     calc.primaryDisplay = "a";
     calc.deleteChar();
     assert(calc.primaryDisplay === "");
   });
 
-  it("can clear both displays", () => {
+  // AC
+  it("should clear both displays when the AC key is pressed", () => {
     const calc = new Calculator();
     calc.primaryDisplay = "foo";
     calc.secondaryDisplay = "bar";
