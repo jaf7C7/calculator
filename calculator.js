@@ -4,14 +4,13 @@ class Calculator {
     this.secondaryDisplay = "";
     this.currentOperand = "";
     this.previousOperand = "";
-    this.previousCalculation = "";
+    this.currentCalculation = "";
     this.operator = "";
   }
 
   updateDisplay() {
     this.primaryDisplay = this.currentOperand;
-    this.secondaryDisplay =
-      this.previousCalculation || this.previousOperand.concat(this.operator);
+    this.secondaryDisplay = this.currentCalculation;
   }
 
   inputChar(char) {
@@ -31,7 +30,7 @@ class Calculator {
     this.currentOperand = "";
     this.previousOperand = "";
     this.operator = "";
-    this.previousCalculation = "";
+    this.currentCalculation = "";
     this.primaryDisplay = "";
     this.secondaryDisplay = "";
   }
@@ -40,22 +39,26 @@ class Calculator {
     if (RegExp(/[^-+*/]/).test(operator)) {
       throw new TypeError(`Illegal operator: '${operator}'`);
     }
-    if (this.primaryDisplay === "") {
-      return;
+    if (this.currentOperand) {
+      this.operator = operator;
+      this.currentCalculation = this.currentOperand.concat(this.operator);
+      this.previousOperand = this.currentOperand;
+      this.currentOperand = "";
     }
-    this.operator = operator;
-    this.previousOperand = this.currentOperand;
-    this.currentOperand = "";
     this.updateDisplay();
   }
 
   calculate() {
     const result = Number(this.previousOperand) + Number(this.currentOperand);
-    this.previousCalculation = this.previousOperand
+    this.currentCalculation = this.previousOperand
       .concat(this.operator)
       .concat(this.currentOperand);
     this.currentOperand = String(result);
     this.updateDisplay();
+    // Get ready for a new calculation:
+    this.previousOperand = this.currentOperand;
+    this.currentCalculation = this.previousOperand;
+    this.currentOperand = "";
   }
 }
 

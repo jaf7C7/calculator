@@ -29,6 +29,16 @@ describe("Calculator", () => {
         { name: "TypeError", message: "Illegal input: 'a'" },
       );
     });
+
+    it("should correctly update the display after consecutive calculations", () => {
+      calc.inputChar("1");
+      calc.selectOperation("+");
+      calc.inputChar("1");
+      calc.calculate();
+      calc.inputChar("1");
+      assert.equal(calc.primaryDisplay, "1");
+      assert.equal(calc.secondaryDisplay, "2");
+    });
   });
 
   describe("deleteChar()", () => {
@@ -41,6 +51,16 @@ describe("Calculator", () => {
     it("should do nothing if the current operand is empty", () => {
       calc.deleteChar();
       assert.equal(calc.primaryDisplay, "");
+    });
+
+    it("should correctly update the display after consecutive calculations", () => {
+      calc.inputChar("1");
+      calc.selectOperation("+");
+      calc.inputChar("1");
+      calc.calculate();
+      calc.deleteChar();
+      assert.equal(calc.primaryDisplay, "");
+      assert.equal(calc.secondaryDisplay, "2");
     });
   });
 
@@ -66,6 +86,16 @@ describe("Calculator", () => {
       assert.equal(calc.primaryDisplay, "");
       assert.equal(calc.secondaryDisplay, "");
     });
+
+    it("should correctly update the display after consecutive calculations", () => {
+      calc.inputChar("1");
+      calc.selectOperation("+");
+      calc.inputChar("1");
+      calc.calculate();
+      calc.selectOperation("+");
+      assert.equal(calc.primaryDisplay, "");
+      assert.equal(calc.secondaryDisplay, "2");
+    });
   });
 
   describe("clearAll()", () => {
@@ -81,6 +111,16 @@ describe("Calculator", () => {
       calc.selectOperation("+");
       assert.notEqual(calc.secondaryDisplay, "");
       calc.clearAll();
+      assert.equal(calc.secondaryDisplay, "");
+    });
+
+    it("should correctly update the display after consecutive calculations", () => {
+      calc.inputChar("1");
+      calc.selectOperation("+");
+      calc.inputChar("1");
+      calc.calculate();
+      calc.clearAll();
+      assert.equal(calc.primaryDisplay, "");
       assert.equal(calc.secondaryDisplay, "");
     });
   });
