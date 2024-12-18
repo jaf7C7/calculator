@@ -37,6 +37,11 @@ describe("Calculator", () => {
       calc.deleteChar();
       assert.equal(calc.primaryDisplay, "");
     });
+
+    it("should do nothing if the current operand is empty", () => {
+      calc.deleteChar();
+      assert.equal(calc.primaryDisplay, "");
+    });
   });
 
   describe("selectOperation()", () => {
