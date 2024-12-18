@@ -5,33 +5,28 @@ const assert = require("node:assert/strict");
 describe("Calculator", () => {
   const Calculator = require("./calculator.js");
 
-  it("should have primary and secondary displays", () => {
-    const calc = new Calculator();
-    assert(
-      Object.hasOwn(calc, "primaryDisplay") &&
-        Object.hasOwn(calc, "secondaryDisplay"),
-    );
-  });
-
   it("should have displays which are initially blank", () => {
     const calc = new Calculator();
     assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
   });
 
-  it("can input characters to the primary display", () => {
+  // ., 0, 1, ..., 9  (input keys)
+  it("should display the correct characters when input keys are pressed", () => {
     const calc = new Calculator();
     calc.inputChar("a");
     assert(calc.primaryDisplay === "a");
   });
 
-  it("can delete the last char from the primary display", () => {
+  // Del
+  it("should delete the last character of the current operand when the Del key is pressed", () => {
     const calc = new Calculator();
     calc.primaryDisplay = "a";
     calc.deleteChar();
     assert(calc.primaryDisplay === "");
   });
 
-  it("can clear both displays", () => {
+  // AC
+  it("should clear both displays when the AC key is pressed", () => {
     const calc = new Calculator();
     calc.primaryDisplay = "foo";
     calc.secondaryDisplay = "bar";
@@ -39,16 +34,11 @@ describe("Calculator", () => {
     assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
   });
 
-  it("can push an operand from the primary to secondary display", () => {
+  // -, +, *, /  (operator keys)
+  it("should display the selected operand and operator when an operation is selected", () => {
     const calc = new Calculator();
-    calc.primaryDisplay = "156";
-    calc.acceptOperand();
-    assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "156");
-  });
-
-  it("can append an operator to the secondary display", () => {
-    const calc = new Calculator();
-    calc.secondaryDisplay = "10";
+    calc.primaryDisplay = "10";
+    calc.secondaryDisplay = "";
     calc.selectOperation("+");
     assert(calc.secondaryDisplay === "10+" && calc.primaryDisplay === "");
   });
