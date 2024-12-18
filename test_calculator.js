@@ -29,6 +29,16 @@ describe("Calculator", () => {
         { name: "TypeError", message: "Illegal input: 'a'" },
       );
     });
+
+    it("should correctly update the display after consecutive calculations", () => {
+      calc.inputChar("1");
+      calc.selectOperation("+");
+      calc.inputChar("1");
+      calc.calculate();
+      calc.inputChar("1");
+      assert.equal(calc.primaryDisplay, "1");
+      assert.equal(calc.secondaryDisplay, "2");
+    });
   });
 
   describe("deleteChar()", () => {

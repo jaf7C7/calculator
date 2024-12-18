@@ -56,6 +56,10 @@ class Calculator {
       .concat(this.currentOperand);
     this.currentOperand = String(result);
     this.updateDisplay();
+    // Get ready for a new calculation:
+    this.previousOperand = this.currentOperand;
+    this.currentCalculation = this.previousOperand;
+    this.currentOperand = "";
   }
 }
 
