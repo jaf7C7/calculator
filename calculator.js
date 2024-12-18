@@ -8,7 +8,7 @@ class Calculator {
     this.operator = "";
   }
 
-  updateDisplay() {
+  #updateDisplay() {
     this.primaryDisplay = this.currentOperand;
     this.secondaryDisplay = this.currentCalculation;
   }
@@ -18,12 +18,12 @@ class Calculator {
       throw new TypeError(`Illegal input: '${char}'`);
     }
     this.currentOperand += char;
-    this.updateDisplay();
+    this.#updateDisplay();
   }
 
   deleteChar() {
     this.currentOperand = this.currentOperand.slice(0, -1);
-    this.updateDisplay();
+    this.#updateDisplay();
   }
 
   clearAll() {
@@ -35,7 +35,7 @@ class Calculator {
     this.secondaryDisplay = "";
   }
 
-  newOperand() {
+  #newOperand() {
     this.previousOperand = this.currentOperand;
     this.currentOperand = "";
     this.currentCalculation = this.previousOperand;
@@ -50,18 +50,18 @@ class Calculator {
     }
     if (this.currentOperand) {
       this.operator = operator;
-      this.newOperand();
+      this.#newOperand();
     }
-    this.updateDisplay();
+    this.#updateDisplay();
   }
 
   calculate() {
     const result = Number(this.previousOperand) + Number(this.currentOperand);
     this.currentCalculation += this.currentOperand;
     this.currentOperand = String(result);
-    this.updateDisplay();
+    this.#updateDisplay();
     this.operator = "";
-    this.newOperand();
+    this.#newOperand();
   }
 }
 
