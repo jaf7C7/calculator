@@ -33,28 +33,17 @@ describe("Calculator", () => {
 
   describe("deleteChar()", () => {
     it("should delete the last character of the current operand", () => {
-      calc.primaryDisplay = "a";
+      calc.inputChar("1");
       calc.deleteChar();
       assert.equal(calc.primaryDisplay, "");
     });
   });
 
-  describe("clearAll()", () => {
-    it("should clear both displays", () => {
-      calc.primaryDisplay = "foo";
-      calc.secondaryDisplay = "bar";
-      calc.clearAll();
-      assert.equal(calc.primaryDisplay, "");
-      assert.equal(calc.secondaryDisplay, "");
-    });
-  });
-
   describe("selectOperation()", () => {
     it("should append the selected operand and operator to the secondary display", () => {
-      calc.primaryDisplay = "10";
-      calc.secondaryDisplay = "";
+      calc.inputChar("1");
       calc.selectOperation("+");
-      assert.equal(calc.secondaryDisplay, "10+");
+      assert.equal(calc.secondaryDisplay, "1+");
       assert.equal(calc.primaryDisplay, "");
     });
 
@@ -68,20 +57,43 @@ describe("Calculator", () => {
     });
 
     it("should do nothing if it is called without an initial operand", () => {
-      calc.primaryDisplay = "";
-      calc.secondaryDisplay = "";
       calc.selectOperation("+");
+      assert.equal(calc.primaryDisplay, "");
+      assert.equal(calc.secondaryDisplay, "");
+    });
+  });
+
+  describe("clearAll()", () => {
+    it("should clear the primary display", () => {
+      calc.inputChar("1");
+      assert.notEqual(calc.primaryDisplay, "");
+      calc.clearAll();
+      assert.equal(calc.primaryDisplay, "");
+    });
+
+    it("should clear the secondary display", () => {
+      calc.inputChar("1");
+      calc.selectOperation("+");
+      assert.notEqual(calc.secondaryDisplay, "");
+      calc.clearAll();
       assert.equal(calc.secondaryDisplay, "");
     });
   });
 
   describe("calculate()", () => {
-    it("should display the result of the operation on the primary display", () => {
-      calc.primaryDisplay = "10";
-      calc.secondaryDisplay = "10+";
+    beforeEach(() => {
+      calc.inputChar("1");
+      calc.selectOperation("+");
+      calc.inputChar("1");
       calc.calculate();
-      assert.equal(calc.primaryDisplay, "20");
-      assert.equal(calc.secondaryDisplay, "10+10");
+    });
+
+    it("should display the result of the operation on the primary display", () => {
+      assert.equal(calc.primaryDisplay, "2");
+    });
+
+    it("should display the most recent operation on the secondary display", () => {
+      assert.equal(calc.secondaryDisplay, "1+1");
     });
   });
 });
