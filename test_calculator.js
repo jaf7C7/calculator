@@ -71,4 +71,14 @@ describe("Calculator", () => {
       assert(calc.secondaryDisplay == "");
     });
   });
+
+  describe("calculate()", () => {
+    it("should display the result of the operation on the primary display", () => {
+      calc.primaryDisplay = "10";
+      calc.secondaryDisplay = "10+";
+      calc.calculate();
+      assert.equal(calc.primaryDisplay, "20");
+      assert.equal(calc.secondaryDisplay, "10+10");
+    });
+  });
 });

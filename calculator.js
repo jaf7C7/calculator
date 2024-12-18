@@ -30,6 +30,20 @@ class Calculator {
     this.secondaryDisplay = this.primaryDisplay + operator;
     this.primaryDisplay = "";
   }
+
+  calculate() {
+    const firstOperand = Number(this.secondaryDisplay.slice(0, -1));
+    const secondOperand = Number(this.primaryDisplay);
+    const operator = this.secondaryDisplay.at(-1);
+    let result;
+    switch (operator) {
+      case "+":
+        result = firstOperand + secondOperand;
+        break;
+    }
+    this.secondaryDisplay += this.primaryDisplay;
+    this.primaryDisplay = String(result);
+  }
 }
 
 module.exports = Calculator;
