@@ -13,8 +13,19 @@ describe("Calculator", () => {
   // ., 0, 1, ..., 9  (input keys)
   it("should display the correct characters when input keys are pressed", () => {
     const calc = new Calculator();
-    calc.inputChar("a");
-    assert(calc.primaryDisplay === "a");
+    calc.inputChar("1");
+    assert(calc.primaryDisplay === "1");
+  });
+
+  // `inputChar` should fail if `char` is not matched by `[.0-9]`
+  it("should throw an error if inputChar is called with an invalid character", () => {
+    const calc = new Calculator();
+    assert.throws(
+      () => {
+        calc.inputChar("a");
+      },
+      { name: "TypeError", message: "Illegal input: 'a'" },
+    );
   });
 
   // Del

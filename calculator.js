@@ -5,6 +5,9 @@ class Calculator {
   }
 
   inputChar(char) {
+    if (RegExp(/[^.0-9]/).test(char)) {
+      throw new TypeError(`Illegal input: '${char}'`);
+    }
     this.primaryDisplay += char;
   }
 
