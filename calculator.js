@@ -23,6 +23,7 @@ class Calculator {
   }
 
   selectOperation(operator) {
+    this.acceptOperand();
     this.secondaryDisplay += operator;
   }
 }

@@ -34,16 +34,11 @@ describe("Calculator", () => {
     assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
   });
 
-  it("can push an operand from the primary to secondary display", () => {
+  // -, +, *, /  (operator keys)
+  it("should display the selected operand and operator when an operation is selected", () => {
     const calc = new Calculator();
-    calc.primaryDisplay = "156";
-    calc.acceptOperand();
-    assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "156");
-  });
-
-  it("can append an operator to the secondary display", () => {
-    const calc = new Calculator();
-    calc.secondaryDisplay = "10";
+    calc.primaryDisplay = "10";
+    calc.secondaryDisplay = "";
     calc.selectOperation("+");
     assert(calc.secondaryDisplay === "10+" && calc.primaryDisplay === "");
   });
