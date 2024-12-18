@@ -21,6 +21,10 @@ class Calculator {
     this.secondaryDisplay = this.primaryDisplay;
     this.primaryDisplay = "";
   }
+
+  selectOperation(operator) {
+    this.secondaryDisplay += operator;
+  }
 }
 
 module.exports = Calculator;

@@ -45,4 +45,11 @@ describe("Calculator", () => {
     calc.acceptOperand();
     assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "156");
   });
+
+  it("can append an operator to the secondary display", () => {
+    const calc = new Calculator();
+    calc.secondaryDisplay = "10";
+    calc.selectOperation("+");
+    assert(calc.secondaryDisplay === "10+" && calc.primaryDisplay === "");
+  });
 });
