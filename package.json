@@ -4,7 +4,7 @@
   "description": "A simple calculator capable of four incredible operations.",
   "main": "calculator.js",
   "scripts": {
-    "test": "mocha --reporter=list test_calculator.js",
+    "test": "mocha test_calculator.js",
     "test-quickfail": "mocha --bail --reporter=dot test_calculator.js"
   },
   "author": "",
