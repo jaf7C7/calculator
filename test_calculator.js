@@ -53,4 +53,15 @@ describe("Calculator", () => {
     calc.selectOperation("+");
     assert(calc.secondaryDisplay === "10+" && calc.primaryDisplay === "");
   });
+
+  // `selectOperation` should fail if `operator` is not matched by `[-+*/]`
+  it("should throw an error if selectOperation is called with an invalid operator", () => {
+    const calc = new Calculator();
+    assert.throws(
+      () => {
+        calc.selectOperation("x");
+      },
+      { name: "TypeError", message: "Illegal operator: 'x'" },
+    );
+  });
 });
