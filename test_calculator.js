@@ -52,6 +52,16 @@ describe("Calculator", () => {
       calc.deleteChar();
       assert.equal(calc.primaryDisplay, "");
     });
+
+    it("should correctly update the display after consecutive calculations", () => {
+      calc.inputChar("1");
+      calc.selectOperation("+");
+      calc.inputChar("1");
+      calc.calculate();
+      calc.deleteChar();
+      assert.equal(calc.primaryDisplay, "");
+      assert.equal(calc.secondaryDisplay, "2");
+    });
   });
 
   describe("selectOperation()", () => {
@@ -76,6 +86,16 @@ describe("Calculator", () => {
       assert.equal(calc.primaryDisplay, "");
       assert.equal(calc.secondaryDisplay, "");
     });
+
+    it("should correctly update the display after consecutive calculations", () => {
+      calc.inputChar("1");
+      calc.selectOperation("+");
+      calc.inputChar("1");
+      calc.calculate();
+      calc.selectOperation("+");
+      assert.equal(calc.primaryDisplay, "");
+      assert.equal(calc.secondaryDisplay, "2");
+    });
   });
 
   describe("clearAll()", () => {
@@ -91,6 +111,16 @@ describe("Calculator", () => {
       calc.selectOperation("+");
       assert.notEqual(calc.secondaryDisplay, "");
       calc.clearAll();
+      assert.equal(calc.secondaryDisplay, "");
+    });
+
+    it("should correctly update the display after consecutive calculations", () => {
+      calc.inputChar("1");
+      calc.selectOperation("+");
+      calc.inputChar("1");
+      calc.calculate();
+      calc.clearAll();
+      assert.equal(calc.primaryDisplay, "");
       assert.equal(calc.secondaryDisplay, "");
     });
   });

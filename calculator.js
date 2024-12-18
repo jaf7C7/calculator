@@ -39,13 +39,12 @@ class Calculator {
     if (RegExp(/[^-+*/]/).test(operator)) {
       throw new TypeError(`Illegal operator: '${operator}'`);
     }
-    if (!this.currentOperand) {
-      return;
+    if (this.currentOperand) {
+      this.operator = operator;
+      this.currentCalculation = this.currentOperand.concat(this.operator);
+      this.previousOperand = this.currentOperand;
+      this.currentOperand = "";
     }
-    this.operator = operator;
-    this.currentCalculation = this.currentOperand.concat(this.operator);
-    this.previousOperand = this.currentOperand;
-    this.currentOperand = "";
     this.updateDisplay();
   }
 
