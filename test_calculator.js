@@ -5,14 +5,6 @@ const assert = require("node:assert/strict");
 describe("Calculator", () => {
   const Calculator = require("./calculator.js");
 
-  it("should have primary and secondary displays", () => {
-    const calc = new Calculator();
-    assert(
-      Object.hasOwn(calc, "primaryDisplay") &&
-        Object.hasOwn(calc, "secondaryDisplay"),
-    );
-  });
-
   it("should have displays which are initially blank", () => {
     const calc = new Calculator();
     assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
