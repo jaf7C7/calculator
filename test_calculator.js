@@ -14,60 +14,61 @@ describe("Calculator", () => {
     assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
   });
 
-  // ., 0, 1, ..., 9  (input keys)
-  it("should display the correct characters when input keys are pressed", () => {
-    calc.inputChar("1");
-    assert(calc.primaryDisplay === "1");
+  describe("inputChar()", () => {
+    it("should append the input character to the display", () => {
+      calc.inputChar("1");
+      assert(calc.primaryDisplay === "1");
+    });
+
+    it("should throw an error if the input character is not matched by '[.0-9]'", () => {
+      assert.throws(
+        () => {
+          calc.inputChar("a");
+        },
+        { name: "TypeError", message: "Illegal input: 'a'" },
+      );
+    });
   });
 
-  // `inputChar` should fail if `char` is not matched by `[.0-9]`
-  it("should throw an error if inputChar is called with an invalid character", () => {
-    assert.throws(
-      () => {
-        calc.inputChar("a");
-      },
-      { name: "TypeError", message: "Illegal input: 'a'" },
-    );
+  describe("deleteChar()", () => {
+    it("should delete the last character of the current operand", () => {
+      calc.primaryDisplay = "a";
+      calc.deleteChar();
+      assert(calc.primaryDisplay === "");
+    });
   });
 
-  // Del
-  it("should delete the last character of the current operand when the Del key is pressed", () => {
-    calc.primaryDisplay = "a";
-    calc.deleteChar();
-    assert(calc.primaryDisplay === "");
+  describe("clearAll()", () => {
+    it("should clear both displays", () => {
+      calc.primaryDisplay = "foo";
+      calc.secondaryDisplay = "bar";
+      calc.clearAll();
+      assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
+    });
   });
 
-  // AC
-  it("should clear both displays when the AC key is pressed", () => {
-    calc.primaryDisplay = "foo";
-    calc.secondaryDisplay = "bar";
-    calc.clearAll();
-    assert(calc.primaryDisplay === "" && calc.secondaryDisplay === "");
-  });
+  describe("selectOperation()", () => {
+    it("should append the selected operand and operator to the secondary display", () => {
+      calc.primaryDisplay = "10";
+      calc.secondaryDisplay = "";
+      calc.selectOperation("+");
+      assert(calc.secondaryDisplay === "10+" && calc.primaryDisplay === "");
+    });
 
-  // -, +, *, /  (operator keys)
-  it("should display the selected operand and operator when an operation is selected", () => {
-    calc.primaryDisplay = "10";
-    calc.secondaryDisplay = "";
-    calc.selectOperation("+");
-    assert(calc.secondaryDisplay === "10+" && calc.primaryDisplay === "");
-  });
+    it("should throw an error if the selected operator is not matched by '[-+*/]'", () => {
+      assert.throws(
+        () => {
+          calc.selectOperation("x");
+        },
+        { name: "TypeError", message: "Illegal operator: 'x'" },
+      );
+    });
 
-  // `selectOperation` should fail if `operator` is not matched by `[-+*/]`
-  it("should throw an error if selectOperation is called with an invalid operator", () => {
-    assert.throws(
-      () => {
-        calc.selectOperation("x");
-      },
-      { name: "TypeError", message: "Illegal operator: 'x'" },
-    );
-  });
-
-  // `selectOperation` does nothing if there is no initial operand.
-  it("should do nothing if selectOperation is called without an initial operand", () => {
-    calc.primaryDisplay = "";
-    calc.secondaryDisplay = "";
-    calc.selectOperation("+");
-    assert(calc.secondaryDisplay == "");
+    it("should do nothing if it is called without an initial operand", () => {
+      calc.primaryDisplay = "";
+      calc.secondaryDisplay = "";
+      calc.selectOperation("+");
+      assert(calc.secondaryDisplay == "");
+    });
   });
 });
