@@ -62,4 +62,12 @@ describe("Calculator", () => {
       { name: "TypeError", message: "Illegal operator: 'x'" },
     );
   });
+
+  // `selectOperation` does nothing if there is no initial operand.
+  it("should do nothing if selectOperation is called without an initial operand", () => {
+    calc.primaryDisplay = "";
+    calc.secondaryDisplay = "";
+    calc.selectOperation("+");
+    assert(calc.secondaryDisplay == "");
+  });
 });
