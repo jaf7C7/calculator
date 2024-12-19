@@ -57,18 +57,19 @@ class Calculator {
 
   calculate() {
     let result;
+    const [a, b] = [Number(this.previousOperand), Number(this.currentOperand)];
     switch (this.operator) {
       case "+":
-        result = Number(this.previousOperand) + Number(this.currentOperand);
+        result = a + b;
         break;
       case "*":
-        result = Number(this.previousOperand) * Number(this.currentOperand);
+        result = a * b;
         break;
       case "/":
-        result = Number(this.previousOperand) / Number(this.currentOperand);
+        result = a / b;
         break;
       case "-":
-        result = Number(this.previousOperand) - Number(this.currentOperand);
+        result = a - b;
         break;
     }
     this.currentCalculation += this.currentOperand;
