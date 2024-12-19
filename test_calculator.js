@@ -126,19 +126,40 @@ describe("Calculator", () => {
   });
 
   describe("calculate()", () => {
-    beforeEach(() => {
+    it("should display the calculation and its result", () => {
       calc.inputChar("1");
       calc.selectOperation("+");
       calc.inputChar("1");
       calc.calculate();
-    });
-
-    it("should display the result of the operation on the primary display", () => {
       assert.equal(calc.primaryDisplay, "2");
+      assert.equal(calc.secondaryDisplay, "1+1");
     });
 
-    it("should display the most recent operation on the secondary display", () => {
-      assert.equal(calc.secondaryDisplay, "1+1");
+    it("should handle multiplication", () => {
+      calc.inputChar("3");
+      calc.selectOperation("*");
+      calc.inputChar("3");
+      calc.calculate();
+      assert.equal(calc.primaryDisplay, "9");
+      assert.equal(calc.secondaryDisplay, "3*3");
+    });
+
+    it("should handle division", () => {
+      calc.inputChar("3");
+      calc.selectOperation("/");
+      calc.inputChar("3");
+      calc.calculate();
+      assert.equal(calc.primaryDisplay, "1");
+      assert.equal(calc.secondaryDisplay, "3/3");
+    });
+
+    it("should handle subtraction", () => {
+      calc.inputChar("3");
+      calc.selectOperation("-");
+      calc.inputChar("3");
+      calc.calculate();
+      assert.equal(calc.primaryDisplay, "0");
+      assert.equal(calc.secondaryDisplay, "3-3");
     });
   });
 });
