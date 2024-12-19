@@ -64,6 +64,9 @@ class Calculator {
       case "*":
         result = Number(this.previousOperand) * Number(this.currentOperand);
         break;
+      case "/":
+        result = Number(this.previousOperand) / Number(this.currentOperand);
+        break;
     }
     this.currentCalculation += this.currentOperand;
     this.currentOperand = String(result);

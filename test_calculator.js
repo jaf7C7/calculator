@@ -143,5 +143,14 @@ describe("Calculator", () => {
       assert.equal(calc.primaryDisplay, "9");
       assert.equal(calc.secondaryDisplay, "3*3");
     });
+
+    it("should handle division", () => {
+      calc.inputChar("3");
+      calc.selectOperation("/");
+      calc.inputChar("3");
+      calc.calculate();
+      assert.equal(calc.primaryDisplay, "1");
+      assert.equal(calc.secondaryDisplay, "3/3");
+    });
   });
 });
