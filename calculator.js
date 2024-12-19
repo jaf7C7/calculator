@@ -38,7 +38,10 @@ class Calculator {
   newOperand() {
     this.previousOperand = this.currentOperand;
     this.currentOperand = "";
-    this.currentCalculation = this.previousOperand.concat(this.operator);
+    this.currentCalculation = this.previousOperand;
+    if (this.operator) {
+      this.currentCalculation += this.operator;
+    }
   }
 
   selectOperation(operator) {
