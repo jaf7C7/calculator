@@ -96,6 +96,15 @@ describe("Calculator", () => {
       assert.equal(calc.primaryDisplay, "");
       assert.equal(calc.secondaryDisplay, "2");
     });
+
+    it("should correctly handle calculation chaining", () => {
+      calc.inputChar("1");
+      calc.selectOperation("+");
+      calc.inputChar("1");
+      calc.selectOperation("*");
+      assert.equal(calc.primaryDisplay, "");
+      assert.equal(calc.secondaryDisplay, "2*");
+    });
   });
 
   describe("clearAll()", () => {
