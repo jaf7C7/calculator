@@ -56,7 +56,15 @@ class Calculator {
   }
 
   calculate() {
-    const result = Number(this.previousOperand) + Number(this.currentOperand);
+    let result;
+    switch (this.operator) {
+      case "+":
+        result = Number(this.previousOperand) + Number(this.currentOperand);
+        break;
+      case "*":
+        result = Number(this.previousOperand) * Number(this.currentOperand);
+        break;
+    }
     this.currentCalculation += this.currentOperand;
     this.currentOperand = String(result);
     this.#updateDisplay();

@@ -135,6 +135,13 @@ describe("Calculator", () => {
       assert.equal(calc.secondaryDisplay, "1+1");
     });
 
+    it("should handle multiplication", () => {
+      calc.inputChar("3");
+      calc.selectOperation("*");
+      calc.inputChar("3");
+      calc.calculate();
+      assert.equal(calc.primaryDisplay, "9");
+      assert.equal(calc.secondaryDisplay, "3*3");
     });
   });
 });
