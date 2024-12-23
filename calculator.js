@@ -1,15 +1,18 @@
 class Calculator {
+
+  #currentOperand;
+
   constructor() {
     this.primaryDisplay = "";
     this.secondaryDisplay = "";
-    this.currentOperand = "";
+    this.#currentOperand = "";
     this.previousOperand = "";
     this.currentCalculation = "";
     this.operator = "";
   }
 
   #updateDisplay() {
-    this.primaryDisplay = this.currentOperand;
+    this.primaryDisplay = this.#currentOperand;
     this.secondaryDisplay = this.currentCalculation;
   }
 
@@ -17,17 +20,17 @@ class Calculator {
     if (RegExp(/[^.0-9]/).test(char)) {
       throw new TypeError(`Illegal input: '${char}'`);
     }
-    this.currentOperand += char;
+    this.#currentOperand += char;
     this.#updateDisplay();
   }
 
   deleteChar() {
-    this.currentOperand = this.currentOperand.slice(0, -1);
+    this.#currentOperand = this.#currentOperand.slice(0, -1);
     this.#updateDisplay();
   }
 
   clearAll() {
-    this.currentOperand = "";
+    this.#currentOperand = "";
     this.previousOperand = "";
     this.operator = "";
     this.currentCalculation = "";
@@ -36,8 +39,8 @@ class Calculator {
   }
 
   #newOperand() {
-    this.previousOperand = this.currentOperand;
-    this.currentOperand = "";
+    this.previousOperand = this.#currentOperand;
+    this.#currentOperand = "";
     this.currentCalculation = this.previousOperand;
     if (this.operator) {
       this.currentCalculation += this.operator;
@@ -51,9 +54,9 @@ class Calculator {
     // Test for calculation chaining.
     if (this.operator) {
       this.calculate();
-      this.currentOperand = this.previousOperand;
+      this.#currentOperand = this.previousOperand;
     }
-    if (this.currentOperand) {
+    if (this.#currentOperand) {
       this.operator = operator;
       this.#newOperand();
     }
@@ -62,7 +65,7 @@ class Calculator {
 
   calculate() {
     let result;
-    const [a, b] = [Number(this.previousOperand), Number(this.currentOperand)];
+    const [a, b] = [Number(this.previousOperand), Number(this.#currentOperand)];
     switch (this.operator) {
       case "+":
         result = a + b;
@@ -77,8 +80,8 @@ class Calculator {
         result = a - b;
         break;
     }
-    this.currentCalculation += this.currentOperand;
-    this.currentOperand = String(result);
+    this.currentCalculation += this.#currentOperand;
+    this.#currentOperand = String(result);
     this.#updateDisplay();
     this.operator = "";
     this.#newOperand();
