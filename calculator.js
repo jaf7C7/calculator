@@ -3,6 +3,7 @@ class Calculator {
   #currentOperand;
   #previousOperand;
   #currentCalculation;
+  #operator;
 
   constructor() {
     this.primaryDisplay = "";
@@ -10,7 +11,7 @@ class Calculator {
     this.#currentOperand = "";
     this.#previousOperand = "";
     this.#currentCalculation = "";
-    this.operator = "";
+    this.#operator = "";
   }
 
   #updateDisplay() {
@@ -34,7 +35,7 @@ class Calculator {
   clearAll() {
     this.#currentOperand = "";
     this.#previousOperand = "";
-    this.operator = "";
+    this.#operator = "";
     this.#currentCalculation = "";
     this.primaryDisplay = "";
     this.secondaryDisplay = "";
@@ -44,8 +45,8 @@ class Calculator {
     this.#previousOperand = this.#currentOperand;
     this.#currentOperand = "";
     this.#currentCalculation = this.#previousOperand;
-    if (this.operator) {
-      this.#currentCalculation += this.operator;
+    if (this.#operator) {
+      this.#currentCalculation += this.#operator;
     }
   }
 
@@ -54,12 +55,12 @@ class Calculator {
       throw new TypeError(`Illegal operator: '${operator}'`);
     }
     // Test for calculation chaining.
-    if (this.operator) {
+    if (this.#operator) {
       this.calculate();
       this.#currentOperand = this.#previousOperand;
     }
     if (this.#currentOperand) {
-      this.operator = operator;
+      this.#operator = operator;
       this.#newOperand();
     }
     this.#updateDisplay();
@@ -68,7 +69,7 @@ class Calculator {
   calculate() {
     let result;
     const [a, b] = [Number(this.#previousOperand), Number(this.#currentOperand)];
-    switch (this.operator) {
+    switch (this.#operator) {
       case "+":
         result = a + b;
         break;
@@ -85,7 +86,7 @@ class Calculator {
     this.#currentCalculation += this.#currentOperand;
     this.#currentOperand = String(result);
     this.#updateDisplay();
-    this.operator = "";
+    this.#operator = "";
     this.#newOperand();
   }
 }
