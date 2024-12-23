@@ -1,60 +1,74 @@
 class Calculator {
+
+  #currentOperand;
+  #previousOperand;
+  #calculationString;
+  #operator;
+
   constructor() {
     this.primaryDisplay = "";
     this.secondaryDisplay = "";
-    this.currentOperand = "";
-    this.previousOperand = "";
-    this.currentCalculation = "";
-    this.operator = "";
+    this.#currentOperand = "";
+    this.#previousOperand = "";
+    this.#calculationString = "";
+    this.#operator = "";
   }
 
   #updateDisplay() {
-    this.primaryDisplay = this.currentOperand;
-    this.secondaryDisplay = this.currentCalculation;
+    this.primaryDisplay = this.#currentOperand;
+    this.secondaryDisplay = this.#calculationString;
   }
 
-  inputChar(char) {
+  #validateInputChar(char) {
     if (RegExp(/[^.0-9]/).test(char)) {
       throw new TypeError(`Illegal input: '${char}'`);
     }
-    this.currentOperand += char;
+  }
+
+  inputChar(char) {
+    this.#validateInputChar(char);
+    this.#currentOperand += char;
     this.#updateDisplay();
   }
 
   deleteChar() {
-    this.currentOperand = this.currentOperand.slice(0, -1);
+    this.#currentOperand = this.#currentOperand.slice(0, -1);
     this.#updateDisplay();
   }
 
   clearAll() {
-    this.currentOperand = "";
-    this.previousOperand = "";
-    this.operator = "";
-    this.currentCalculation = "";
+    this.#currentOperand = "";
+    this.#previousOperand = "";
+    this.#operator = "";
+    this.#calculationString = "";
     this.primaryDisplay = "";
     this.secondaryDisplay = "";
   }
 
   #newOperand() {
-    this.previousOperand = this.currentOperand;
-    this.currentOperand = "";
-    this.currentCalculation = this.previousOperand;
-    if (this.operator) {
-      this.currentCalculation += this.operator;
+    this.#previousOperand = this.#currentOperand;
+    this.#currentOperand = "";
+    this.#calculationString = this.#previousOperand;
+    if (this.#operator) {
+      this.#calculationString += this.#operator;
+    }
+  }
+
+  #validateOperator(operator) {
+    if (RegExp(/[^-+*/]/).test(operator)) {
+      throw new TypeError(`Illegal operator: '${operator}'`);
     }
   }
 
   selectOperation(operator) {
-    if (RegExp(/[^-+*/]/).test(operator)) {
-      throw new TypeError(`Illegal operator: '${operator}'`);
-    }
+    this.#validateOperator(operator);
     // Test for calculation chaining.
-    if (this.operator) {
+    if (this.#operator) {
       this.calculate();
-      this.currentOperand = this.previousOperand;
+      this.#currentOperand = this.#previousOperand;
     }
-    if (this.currentOperand) {
-      this.operator = operator;
+    if (this.#currentOperand) {
+      this.#operator = operator;
       this.#newOperand();
     }
     this.#updateDisplay();
@@ -62,8 +76,8 @@ class Calculator {
 
   calculate() {
     let result;
-    const [a, b] = [Number(this.previousOperand), Number(this.currentOperand)];
-    switch (this.operator) {
+    const [a, b] = [Number(this.#previousOperand), Number(this.#currentOperand)];
+    switch (this.#operator) {
       case "+":
         result = a + b;
         break;
@@ -77,10 +91,10 @@ class Calculator {
         result = a - b;
         break;
     }
-    this.currentCalculation += this.currentOperand;
-    this.currentOperand = String(result);
+    this.#calculationString += this.#currentOperand;
+    this.#currentOperand = String(result);
     this.#updateDisplay();
-    this.operator = "";
+    this.#operator = "";
     this.#newOperand();
   }
 }
