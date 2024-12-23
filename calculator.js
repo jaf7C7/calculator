@@ -19,10 +19,14 @@ class Calculator {
     this.secondaryDisplay = this.#calculationString;
   }
 
-  inputChar(char) {
+  #validateInputChar(char) {
     if (RegExp(/[^.0-9]/).test(char)) {
       throw new TypeError(`Illegal input: '${char}'`);
     }
+  }
+
+  inputChar(char) {
+    this.#validateInputChar(char);
     this.#currentOperand += char;
     this.#updateDisplay();
   }
