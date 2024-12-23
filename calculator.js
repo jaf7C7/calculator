@@ -1,13 +1,14 @@
 class Calculator {
-
+  #primaryDisplay;
+  #secondaryDisplay;
   #currentOperand;
   #previousOperand;
   #calculationString;
   #operator;
 
-  constructor() {
-    this.primaryDisplay = "";
-    this.secondaryDisplay = "";
+  constructor(primaryDisplay, secondaryDisplay) {
+    this.#primaryDisplay = primaryDisplay;
+    this.#secondaryDisplay = secondaryDisplay;
     this.#currentOperand = "";
     this.#previousOperand = "";
     this.#calculationString = "";
@@ -15,8 +16,8 @@ class Calculator {
   }
 
   #updateDisplay() {
-    this.primaryDisplay = this.#currentOperand;
-    this.secondaryDisplay = this.#calculationString;
+    this.#primaryDisplay.update(this.#currentOperand);
+    this.#secondaryDisplay.update(this.#calculationString);
   }
 
   #validateInputChar(char) {
@@ -41,8 +42,8 @@ class Calculator {
     this.#previousOperand = "";
     this.#operator = "";
     this.#calculationString = "";
-    this.primaryDisplay = "";
-    this.secondaryDisplay = "";
+    this.#primaryDisplay.update("");
+    this.#secondaryDisplay.update("");
   }
 
   #newOperand() {
@@ -76,7 +77,10 @@ class Calculator {
 
   calculate() {
     let result;
-    const [a, b] = [Number(this.#previousOperand), Number(this.#currentOperand)];
+    const [a, b] = [
+      Number(this.#previousOperand),
+      Number(this.#currentOperand),
+    ];
     switch (this.#operator) {
       case "+":
         result = a + b;

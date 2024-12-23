@@ -1,24 +1,45 @@
 // https://nodejs.org/api/assert.html
 const assert = require("node:assert/strict");
+const Calculator = require("./calculator");
 
 // https://mochajs.org/#assertions
 describe("Calculator", () => {
   const Calculator = require("./calculator.js");
   let calc;
+  let primaryDisplay;
+  let secondaryDisplay;
+
+  class Display {
+    #content;
+
+    constructor() {
+      this.#content = "";
+    }
+
+    update(str) {
+      this.#content = str;
+    }
+
+    read() {
+      return this.#content;
+    }
+  }
 
   beforeEach(() => {
-    calc = new Calculator();
+    primaryDisplay = new Display();
+    secondaryDisplay = new Display();
+    calc = new Calculator(primaryDisplay, secondaryDisplay);
   });
 
   it("should have displays which are initially blank", () => {
-    assert.equal(calc.primaryDisplay, "");
-    assert.equal(calc.secondaryDisplay, "");
+    assert.equal(primaryDisplay.read(), "");
+    assert.equal(secondaryDisplay.read(), "");
   });
 
   describe("inputChar()", () => {
     it("should append the input character to the display", () => {
       calc.inputChar("1");
-      assert.equal(calc.primaryDisplay, "1");
+      assert.equal(primaryDisplay.read(), "1");
     });
 
     it("should throw an error if the input character is not matched by '[.0-9]'", () => {
@@ -36,8 +57,8 @@ describe("Calculator", () => {
       calc.inputChar("1");
       calc.calculate();
       calc.inputChar("1");
-      assert.equal(calc.primaryDisplay, "1");
-      assert.equal(calc.secondaryDisplay, "2");
+      assert.equal(primaryDisplay.read(), "1");
+      assert.equal(secondaryDisplay.read(), "2");
     });
   });
 
@@ -45,12 +66,12 @@ describe("Calculator", () => {
     it("should delete the last character of the current operand", () => {
       calc.inputChar("1");
       calc.deleteChar();
-      assert.equal(calc.primaryDisplay, "");
+      assert.equal(primaryDisplay.read(), "");
     });
 
     it("should do nothing if the current operand is empty", () => {
       calc.deleteChar();
-      assert.equal(calc.primaryDisplay, "");
+      assert.equal(primaryDisplay.read(), "");
     });
 
     it("should correctly update the display after consecutive calculations", () => {
@@ -59,8 +80,8 @@ describe("Calculator", () => {
       calc.inputChar("1");
       calc.calculate();
       calc.deleteChar();
-      assert.equal(calc.primaryDisplay, "");
-      assert.equal(calc.secondaryDisplay, "2");
+      assert.equal(primaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "2");
     });
   });
 
@@ -68,8 +89,8 @@ describe("Calculator", () => {
     it("should append the selected operand and operator to the secondary display", () => {
       calc.inputChar("1");
       calc.selectOperation("+");
-      assert.equal(calc.secondaryDisplay, "1+");
-      assert.equal(calc.primaryDisplay, "");
+      assert.equal(secondaryDisplay.read(), "1+");
+      assert.equal(primaryDisplay.read(), "");
     });
 
     it("should throw an error if the selected operator is not matched by '[-+*/]'", () => {
@@ -83,8 +104,8 @@ describe("Calculator", () => {
 
     it("should do nothing if it is called without an initial operand", () => {
       calc.selectOperation("+");
-      assert.equal(calc.primaryDisplay, "");
-      assert.equal(calc.secondaryDisplay, "");
+      assert.equal(primaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "");
     });
 
     it("should correctly update the display after consecutive calculations", () => {
@@ -93,8 +114,8 @@ describe("Calculator", () => {
       calc.inputChar("1");
       calc.calculate();
       calc.selectOperation("+");
-      assert.equal(calc.primaryDisplay, "");
-      assert.equal(calc.secondaryDisplay, "2");
+      assert.equal(primaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "2");
     });
 
     it("should correctly handle calculation chaining", () => {
@@ -102,25 +123,25 @@ describe("Calculator", () => {
       calc.selectOperation("+");
       calc.inputChar("1");
       calc.selectOperation("*");
-      assert.equal(calc.primaryDisplay, "");
-      assert.equal(calc.secondaryDisplay, "2*");
+      assert.equal(primaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "2*");
     });
   });
 
   describe("clearAll()", () => {
     it("should clear the primary display", () => {
       calc.inputChar("1");
-      assert.notEqual(calc.primaryDisplay, "");
+      assert.notEqual(primaryDisplay.read(), "");
       calc.clearAll();
-      assert.equal(calc.primaryDisplay, "");
+      assert.equal(primaryDisplay.read(), "");
     });
 
     it("should clear the secondary display", () => {
       calc.inputChar("1");
       calc.selectOperation("+");
-      assert.notEqual(calc.secondaryDisplay, "");
+      assert.notEqual(secondaryDisplay.read(), "");
       calc.clearAll();
-      assert.equal(calc.secondaryDisplay, "");
+      assert.equal(secondaryDisplay.read(), "");
     });
 
     it("should correctly update the display after consecutive calculations", () => {
@@ -129,8 +150,8 @@ describe("Calculator", () => {
       calc.inputChar("1");
       calc.calculate();
       calc.clearAll();
-      assert.equal(calc.primaryDisplay, "");
-      assert.equal(calc.secondaryDisplay, "");
+      assert.equal(primaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "");
     });
   });
 
@@ -140,8 +161,8 @@ describe("Calculator", () => {
       calc.selectOperation("+");
       calc.inputChar("1");
       calc.calculate();
-      assert.equal(calc.primaryDisplay, "2");
-      assert.equal(calc.secondaryDisplay, "1+1");
+      assert.equal(primaryDisplay.read(), "2");
+      assert.equal(secondaryDisplay.read(), "1+1");
     });
 
     it("should handle multiplication", () => {
@@ -149,8 +170,8 @@ describe("Calculator", () => {
       calc.selectOperation("*");
       calc.inputChar("3");
       calc.calculate();
-      assert.equal(calc.primaryDisplay, "9");
-      assert.equal(calc.secondaryDisplay, "3*3");
+      assert.equal(primaryDisplay.read(), "9");
+      assert.equal(secondaryDisplay.read(), "3*3");
     });
 
     it("should handle division", () => {
@@ -158,8 +179,8 @@ describe("Calculator", () => {
       calc.selectOperation("/");
       calc.inputChar("3");
       calc.calculate();
-      assert.equal(calc.primaryDisplay, "1");
-      assert.equal(calc.secondaryDisplay, "3/3");
+      assert.equal(primaryDisplay.read(), "1");
+      assert.equal(secondaryDisplay.read(), "3/3");
     });
 
     it("should handle subtraction", () => {
@@ -167,8 +188,8 @@ describe("Calculator", () => {
       calc.selectOperation("-");
       calc.inputChar("3");
       calc.calculate();
-      assert.equal(calc.primaryDisplay, "0");
-      assert.equal(calc.secondaryDisplay, "3-3");
+      assert.equal(primaryDisplay.read(), "0");
+      assert.equal(secondaryDisplay.read(), "3-3");
     });
   });
 });
