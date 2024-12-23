@@ -2,7 +2,7 @@ class Calculator {
 
   #currentOperand;
   #previousOperand;
-  #currentCalculation;
+  #calculationString;
   #operator;
 
   constructor() {
@@ -10,13 +10,13 @@ class Calculator {
     this.secondaryDisplay = "";
     this.#currentOperand = "";
     this.#previousOperand = "";
-    this.#currentCalculation = "";
+    this.#calculationString = "";
     this.#operator = "";
   }
 
   #updateDisplay() {
     this.primaryDisplay = this.#currentOperand;
-    this.secondaryDisplay = this.#currentCalculation;
+    this.secondaryDisplay = this.#calculationString;
   }
 
   inputChar(char) {
@@ -36,7 +36,7 @@ class Calculator {
     this.#currentOperand = "";
     this.#previousOperand = "";
     this.#operator = "";
-    this.#currentCalculation = "";
+    this.#calculationString = "";
     this.primaryDisplay = "";
     this.secondaryDisplay = "";
   }
@@ -44,9 +44,9 @@ class Calculator {
   #newOperand() {
     this.#previousOperand = this.#currentOperand;
     this.#currentOperand = "";
-    this.#currentCalculation = this.#previousOperand;
+    this.#calculationString = this.#previousOperand;
     if (this.#operator) {
-      this.#currentCalculation += this.#operator;
+      this.#calculationString += this.#operator;
     }
   }
 
@@ -83,7 +83,7 @@ class Calculator {
         result = a - b;
         break;
     }
-    this.#currentCalculation += this.#currentOperand;
+    this.#calculationString += this.#currentOperand;
     this.#currentOperand = String(result);
     this.#updateDisplay();
     this.#operator = "";
