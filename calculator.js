@@ -54,10 +54,14 @@ class Calculator {
     }
   }
 
-  selectOperation(operator) {
+  #validateOperator(operator) {
     if (RegExp(/[^-+*/]/).test(operator)) {
       throw new TypeError(`Illegal operator: '${operator}'`);
     }
+  }
+
+  selectOperation(operator) {
+    this.#validateOperator(operator);
     // Test for calculation chaining.
     if (this.#operator) {
       this.calculate();
