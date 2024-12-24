@@ -9,7 +9,7 @@ describe("Calculator", () => {
   let primaryDisplay;
   let secondaryDisplay;
 
-  class Display {
+  class mockDisplay {
     #content;
 
     constructor() {
@@ -26,8 +26,8 @@ describe("Calculator", () => {
   }
 
   beforeEach(() => {
-    primaryDisplay = new Display();
-    secondaryDisplay = new Display();
+    primaryDisplay = new mockDisplay();
+    secondaryDisplay = new mockDisplay();
     calc = new Calculator(primaryDisplay, secondaryDisplay);
   });
 
