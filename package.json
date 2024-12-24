@@ -4,14 +4,11 @@
   "description": "A simple calculator capable of four incredible operations.",
   "main": "calculator.js",
   "scripts": {
-    "test": "mocha test_calculator.js",
-    "test-quickfail": "mocha --bail --reporter=dot test_calculator.js",
-    "test-on-save": "clear; nodemon --exec mocha test_calculator.js"
+    "test": "node test_calculator.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^11.0.1",
     "nodemon": "^3.1.9"
   }
 }
