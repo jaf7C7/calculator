@@ -1,6 +1,5 @@
 // https://nodejs.org/api/assert.html
 const assert = require("node:assert/strict");
-const Calculator = require("./calculator");
 
 // https://mochajs.org/#assertions
 describe("Calculator", () => {
