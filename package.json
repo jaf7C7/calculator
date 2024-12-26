@@ -4,7 +4,7 @@
   "description": "A simple calculator capable of four incredible operations.",
   "main": "calculator.js",
   "scripts": {
-    "test": "node test_calculator.js"
+    "test": "node --test"
   },
   "author": "",
   "license": "ISC",
