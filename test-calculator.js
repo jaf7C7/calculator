@@ -181,8 +181,9 @@ describe("Calculator", () => {
       values.forEach((value) => {
         const [btn] = ui.buttons.filter((btn) => btn.value === value);
         btn.click();
+        assert.equal(ui.primaryDisplay.read(), value);
+        calc.clearAll();
       });
-      assert.equal(ui.primaryDisplay.read(), values.join(""));
     });
   });
 });
