@@ -17,8 +17,8 @@ class MockUI {
     this.buttons = [];
   }
 
-  createButton(value, onClick) {
-    const btn = { value: value, click: onClick };
+  createButton(label, onClick) {
+    const btn = { label: label, click: onClick };
     this.buttons.push(btn);
   }
 }

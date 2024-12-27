@@ -179,7 +179,7 @@ describe("Calculator", () => {
       it(`should create an input button for input value ${value}`, (t) => {
         const mockInputChar = t.mock.method(calc, "inputChar");
         calc.draw();
-        const [btn] = ui.buttons.filter((btn) => btn.value === value);
+        const [btn] = ui.buttons.filter((btn) => btn.label === value);
         btn.click();
         assert.equal(mockInputChar.mock.calls[0].arguments[0], value);
         mockInputChar.mock.resetCalls();
@@ -189,7 +189,7 @@ describe("Calculator", () => {
     it("should create an AC button to clear the memory", (t) => {
       const mockClearAll = t.mock.method(calc, "clearAll");
       calc.draw();
-      const [btn] = ui.buttons.filter((btn) => btn.value === "AC");
+      const [btn] = ui.buttons.filter((btn) => btn.label === "AC");
       btn.click();
       assert.equal(mockClearAll.mock.callCount(), 1);
     });
@@ -197,7 +197,7 @@ describe("Calculator", () => {
     it("should create a Del button to delete a char", (t) => {
       const mockDeleteChar = t.mock.method(calc, "deleteChar");
       calc.draw();
-      const [btn] = ui.buttons.filter((btn) => btn.value === "Del");
+      const [btn] = ui.buttons.filter((btn) => btn.label === "Del");
       btn.click();
       assert.equal(mockDeleteChar.mock.callCount(), 1);
     });
@@ -205,7 +205,7 @@ describe("Calculator", () => {
     it("should create an equals button to calculate the result", (t) => {
       const mockCalculate = t.mock.method(calc, "calculate");
       calc.draw();
-      const [btn] = ui.buttons.filter((btn) => btn.value === "=");
+      const [btn] = ui.buttons.filter((btn) => btn.label === "=");
       btn.click();
       assert.equal(mockCalculate.mock.callCount(), 1);
     });
@@ -214,7 +214,7 @@ describe("Calculator", () => {
       it(`should create a button for operator ${operator}`, (t) => {
         const mockSelectOperation = t.mock.method(calc, "selectOperation");
         calc.draw();
-        const [btn] = ui.buttons.filter((btn) => btn.value === operator);
+        const [btn] = ui.buttons.filter((btn) => btn.label === operator);
         btn.click();
         assert.equal(mockSelectOperation.mock.callCount(), 1);
       });
