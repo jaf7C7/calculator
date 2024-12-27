@@ -181,5 +181,12 @@ describe("Calculator", () => {
       btn.click();
       assert.equal(ui.primaryDisplay.read(), "1");
     });
+
+    it("should create an input button for the number 2", () => {
+      calc.draw();
+      const [btn] = ui.buttons.filter((btn) => btn.value === "2");
+      btn.click();
+      assert.equal(ui.primaryDisplay.read(), "2");
+    });
   });
 });

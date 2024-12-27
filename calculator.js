@@ -103,6 +103,10 @@ class Calculator {
     this.#ui.createButton("1", () => {
       this.inputChar("1");
     });
+
+    this.#ui.createButton("2", () => {
+      this.inputChar("2");
+    });
   }
 }
 
