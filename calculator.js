@@ -58,13 +58,13 @@ class Calculator {
     }
   }
 
-  #calculationComplete() {
+  #chainingCalculations() {
     return this.#operator && this.#previousOperand && this.#currentOperand;
   }
 
   selectOperation(operator) {
     this.#validateOperator(operator);
-    if (this.#calculationComplete()) {
+    if (this.#chainingCalculations()) {
       this.calculate();
       this.#currentOperand = this.#previousOperand;
     }
