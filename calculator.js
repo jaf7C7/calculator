@@ -100,12 +100,10 @@ class Calculator {
   }
 
   draw() {
-    this.#ui.createButton("1", () => {
-      this.inputChar("1");
-    });
-
-    this.#ui.createButton("2", () => {
-      this.inputChar("2");
+    ["1", "2"].forEach((value) => {
+      this.#ui.createButton(value, () => {
+        this.inputChar(value);
+      });
     });
   }
 }
