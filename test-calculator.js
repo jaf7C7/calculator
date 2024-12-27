@@ -177,8 +177,8 @@ describe("Calculator", () => {
   describe("draw()", () => {
     it("should create an input button for all input chars", () => {
       const values = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
+      calc.draw();
       values.forEach((value) => {
-        calc.draw();
         const [btn] = ui.buttons.filter((btn) => btn.value === value);
         btn.click();
       });
