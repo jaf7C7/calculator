@@ -109,6 +109,10 @@ class Calculator {
     this.#ui.createButton("AC", () => {
       this.clearAll();
     });
+
+    this.#ui.createButton("Del", () => {
+      this.deleteChar();
+    });
   }
 }
 

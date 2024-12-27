@@ -194,5 +194,13 @@ describe("Calculator", () => {
       btn.click();
       assert.equal(mockClearAll.mock.callCount(), 1);
     });
+
+    it("should create a Del button to delete a char", (t) => {
+      const mockDeleteChar = t.mock.method(calc, "deleteChar");
+      calc.draw();
+      const [btn] = ui.buttons.filter((btn) => btn.value === "Del");
+      btn.click();
+      assert.equal(mockDeleteChar.mock.callCount(), 1);
+    });
   });
 });
