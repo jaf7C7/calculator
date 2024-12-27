@@ -1,14 +1,12 @@
 class Calculator {
-  #primaryDisplay;
-  #secondaryDisplay;
+  #ui;
   #currentOperand;
   #previousOperand;
   #calculationString;
   #operator;
 
-  constructor(primaryDisplay, secondaryDisplay) {
-    this.#primaryDisplay = primaryDisplay;
-    this.#secondaryDisplay = secondaryDisplay;
+  constructor(ui) {
+    this.#ui = ui;
     this.#currentOperand = "";
     this.#previousOperand = "";
     this.#calculationString = "";
@@ -16,8 +14,8 @@ class Calculator {
   }
 
   #updateDisplay() {
-    this.#primaryDisplay.update(this.#currentOperand);
-    this.#secondaryDisplay.update(this.#calculationString);
+    this.#ui.primaryDisplay.update(this.#currentOperand);
+    this.#ui.secondaryDisplay.update(this.#calculationString);
   }
 
   #validateInputChar(char) {
@@ -42,8 +40,7 @@ class Calculator {
     this.#previousOperand = "";
     this.#operator = "";
     this.#calculationString = "";
-    this.#primaryDisplay.update("");
-    this.#secondaryDisplay.update("");
+    this.#ui.clearDisplay();
   }
 
   #newOperand() {
