@@ -187,14 +187,12 @@ describe("Calculator", () => {
       });
     });
 
-    it("should create an AC button to clear the memory", () => {
+    it("should create an AC button to clear the memory", (t) => {
+      const mockClearAll = t.mock.method(calc, "clearAll");
       calc.draw();
       const [btn] = ui.buttons.filter((btn) => btn.value === "AC");
-      ui.primaryDisplay.update("foo");
-      ui.secondaryDisplay.update("bar");
       btn.click();
-      assert.equal(ui.primaryDisplay.read(), "");
-      assert.equal(ui.secondaryDisplay.read(), "");
+      assert.equal(mockClearAll.mock.callCount(), 1);
     });
   });
 });
