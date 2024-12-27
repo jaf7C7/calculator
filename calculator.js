@@ -40,7 +40,7 @@ class Calculator {
     this.#previousOperand = "";
     this.#operator = "";
     this.#calculationString = "";
-    this.#ui.clearDisplay();
+    this.#updateDisplay();
   }
 
   #newOperand() {

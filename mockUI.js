@@ -28,11 +28,6 @@ class MockUI {
     this.buttons = [];
   }
 
-  clearDisplay() {
-    this.primaryDisplay.update("");
-    this.secondaryDisplay.update("");
-  }
-
   createButton(value, callback) {
     const btn = new Button(value, callback);
     this.buttons.push(btn);
