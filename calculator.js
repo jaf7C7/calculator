@@ -3,6 +3,7 @@ class Calculator {
   #currentOperand;
   #previousOperand;
   #calculationString;
+  #inputButtons;
   #operator;
 
   constructor(ui) {
@@ -11,6 +12,7 @@ class Calculator {
     this.#previousOperand = "";
     this.#calculationString = "";
     this.#operator = "";
+    this.#inputButtons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]; // prettier-ignore
   }
 
   #updateDisplay() {
@@ -103,7 +105,7 @@ class Calculator {
   }
 
   draw() {
-    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."].forEach((value) => {
+    this.#inputButtons.forEach((value) => {
       this.#ui.createButton(value, () => {
         this.inputChar(value);
       });
