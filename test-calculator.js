@@ -175,14 +175,15 @@ describe("Calculator", () => {
   });
 
   describe("draw()", () => {
-    it("should create an input button for all input chars", () => {
+    it("should create an input button for all input chars", (t) => {
+      const mockInputChar = t.mock.method(calc, "inputChar");
       const values = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
       calc.draw();
       values.forEach((value) => {
         const [btn] = ui.buttons.filter((btn) => btn.value === value);
         btn.click();
-        assert.equal(ui.primaryDisplay.read(), value);
-        calc.clearAll();
+        assert.equal(mockInputChar.mock.calls[0].arguments[0], value);
+        mockInputChar.mock.resetCalls();
       });
     });
 
