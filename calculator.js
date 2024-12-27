@@ -117,6 +117,12 @@ class Calculator {
     this.#ui.createButton("=", () => {
       this.calculate();
     });
+
+    ["+", "-", "/", "*"].forEach((operator) => {
+      this.#ui.createButton(operator, () => {
+        this.selectOperation(operator);
+      });
+    });
   }
 }
 

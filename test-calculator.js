@@ -209,5 +209,15 @@ describe("Calculator", () => {
       btn.click();
       assert.equal(mockCalculate.mock.callCount(), 1);
     });
+
+    ["+", "-", "/", "*"].forEach((operator) => {
+      it(`should create a button for operator ${operator}`, (t) => {
+        const mockSelectOperation = t.mock.method(calc, "selectOperation");
+        calc.draw();
+        const [btn] = ui.buttons.filter((btn) => btn.value === operator);
+        btn.click();
+        assert.equal(mockSelectOperation.mock.callCount(), 1);
+      });
+    });
   });
 });
