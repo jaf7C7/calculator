@@ -4,6 +4,7 @@ class Calculator {
   #previousOperand;
   #calculationString;
   #inputButtons;
+  #functionButtons;
   #operator;
 
   constructor(ui) {
@@ -13,6 +14,26 @@ class Calculator {
     this.#calculationString = "";
     this.#operator = "";
     this.#inputButtons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]; // prettier-ignore
+    this.#functionButtons = [
+      {
+        label: "AC",
+        onClick: () => {
+          this.clearAll();
+        },
+      },
+      {
+        label: "Del",
+        onClick: () => {
+          this.deleteChar();
+        },
+      },
+      {
+        label: "=",
+        onClick: () => {
+          this.calculate();
+        },
+      },
+    ];
   }
 
   #updateDisplay() {
@@ -111,16 +132,8 @@ class Calculator {
       });
     });
 
-    this.#ui.createButton("AC", () => {
-      this.clearAll();
-    });
-
-    this.#ui.createButton("Del", () => {
-      this.deleteChar();
-    });
-
-    this.#ui.createButton("=", () => {
-      this.calculate();
+    this.#functionButtons.forEach((btn) => {
+      this.#ui.createButton(btn.label, btn.onClick);
     });
 
     ["+", "-", "/", "*"].forEach((operator) => {
