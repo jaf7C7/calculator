@@ -173,4 +173,13 @@ describe("Calculator", () => {
       assert.equal(ui.secondaryDisplay.read(), "3-3");
     });
   });
+
+  describe("draw()", () => {
+    it("should create an input button for the number 1", () => {
+      calc.draw();
+      const [btn] = ui.buttons.filter((btn) => btn.value === "1");
+      btn.click();
+      assert.equal(ui.primaryDisplay.read(), "1");
+    });
+  });
 });

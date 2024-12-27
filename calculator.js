@@ -98,6 +98,12 @@ class Calculator {
     this.#operator = "";
     this.#newOperand();
   }
+
+  draw() {
+    this.#ui.createButton("1", () => {
+      this.inputChar("1");
+    });
+  }
 }
 
 module.exports = Calculator;

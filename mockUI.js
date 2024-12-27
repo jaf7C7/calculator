@@ -10,15 +10,32 @@ class Display {
   }
 }
 
+class Button {
+  constructor(value, callback) {
+    this.value = value;
+    this.callback = callback;
+  }
+
+  click() {
+    this.callback();
+  }
+}
+
 class MockUI {
   constructor() {
     this.primaryDisplay = new Display();
     this.secondaryDisplay = new Display();
+    this.buttons = [];
   }
 
   clearDisplay() {
     this.primaryDisplay.update("");
     this.secondaryDisplay.update("");
+  }
+
+  createButton(value, callback) {
+    const btn = new Button(value, callback);
+    this.buttons.push(btn);
   }
 }
 
