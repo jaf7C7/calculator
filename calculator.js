@@ -3,7 +3,7 @@ class Calculator {
   #currentOperand;
   #previousOperand;
   #calculationString;
-  #inputButtons;
+  #inputValues;
   #functionButtons;
   #operator;
 
@@ -13,7 +13,7 @@ class Calculator {
     this.#previousOperand = "";
     this.#calculationString = "";
     this.#operator = "";
-    this.#inputButtons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]; // prettier-ignore
+    this.#inputValues = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]; // prettier-ignore
     this.#functionButtons = [
       {
         label: "AC",
@@ -126,7 +126,7 @@ class Calculator {
   }
 
   draw() {
-    this.#inputButtons.forEach((value) => {
+    this.#inputValues.forEach((value) => {
       this.#ui.createButton(value, () => {
         this.inputChar(value);
       });
