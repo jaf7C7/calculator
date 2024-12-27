@@ -5,6 +5,7 @@ class Calculator {
   #calculationString;
   #inputValues;
   #functionButtons;
+  #operators;
   #operator;
 
   constructor(ui) {
@@ -14,6 +15,7 @@ class Calculator {
     this.#calculationString = "";
     this.#operator = "";
     this.#inputValues = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]; // prettier-ignore
+    this.#operators = ["+", "-", "/", "*"];
     this.#functionButtons = [
       {
         label: "AC",
@@ -136,7 +138,7 @@ class Calculator {
       this.#ui.createButton(btn.label, btn.onClick);
     });
 
-    ["+", "-", "/", "*"].forEach((operator) => {
+    this.#operators.forEach((operator) => {
       this.#ui.createButton(operator, () => {
         this.selectOperation(operator);
       });
