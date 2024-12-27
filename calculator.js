@@ -113,6 +113,10 @@ class Calculator {
     this.#ui.createButton("Del", () => {
       this.deleteChar();
     });
+
+    this.#ui.createButton("=", () => {
+      this.calculate();
+    });
   }
 }
 

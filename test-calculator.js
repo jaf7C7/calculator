@@ -201,5 +201,13 @@ describe("Calculator", () => {
       btn.click();
       assert.equal(mockDeleteChar.mock.callCount(), 1);
     });
+
+    it("should create an equals button to calculate the result", (t) => {
+      const mockCalculate = t.mock.method(calc, "calculate");
+      calc.draw();
+      const [btn] = ui.buttons.filter((btn) => btn.value === "=");
+      btn.click();
+      assert.equal(mockCalculate.mock.callCount(), 1);
+    });
   });
 });
