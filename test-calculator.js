@@ -1,8 +1,6 @@
-// https://nodejs.org/api/assert.html
 const assert = require("node:assert/strict");
 const { describe, it, beforeEach } = require("node:test");
 
-// https://mochajs.org/#assertions
 describe("Calculator", () => {
   const Calculator = require("./calculator.js");
   let calc;
