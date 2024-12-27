@@ -13,11 +13,7 @@ class Display {
 class Button {
   constructor(value, callback) {
     this.value = value;
-    this.callback = callback;
-  }
-
-  click() {
-    this.callback();
+    this.click = callback;
   }
 }
 
