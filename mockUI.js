@@ -11,9 +11,9 @@ class Display {
 }
 
 class Button {
-  constructor(value, callback) {
+  constructor(value, onClick) {
     this.value = value;
-    this.click = callback;
+    this.click = onClick;
   }
 }
 
@@ -24,8 +24,8 @@ class MockUI {
     this.buttons = [];
   }
 
-  createButton(value, callback) {
-    const btn = new Button(value, callback);
+  createButton(value, onClick) {
+    const btn = new Button(value, onClick);
     this.buttons.push(btn);
   }
 }
