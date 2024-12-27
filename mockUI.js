@@ -10,13 +10,6 @@ class Display {
   }
 }
 
-class Button {
-  constructor(value, onClick) {
-    this.value = value;
-    this.click = onClick;
-  }
-}
-
 class MockUI {
   constructor() {
     this.primaryDisplay = new Display();
@@ -25,7 +18,7 @@ class MockUI {
   }
 
   createButton(value, onClick) {
-    const btn = new Button(value, onClick);
+    const btn = { value: value, click: onClick };
     this.buttons.push(btn);
   }
 }
