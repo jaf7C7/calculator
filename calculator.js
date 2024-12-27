@@ -100,7 +100,7 @@ class Calculator {
   }
 
   draw() {
-    ["1", "2"].forEach((value) => {
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."].forEach((value) => {
       this.#ui.createButton(value, () => {
         this.inputChar(value);
       });

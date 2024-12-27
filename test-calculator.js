@@ -175,18 +175,14 @@ describe("Calculator", () => {
   });
 
   describe("draw()", () => {
-    it("should create an input button for the number 1", () => {
-      calc.draw();
-      const [btn] = ui.buttons.filter((btn) => btn.value === "1");
-      btn.click();
-      assert.equal(ui.primaryDisplay.read(), "1");
-    });
-
-    it("should create an input button for the number 2", () => {
-      calc.draw();
-      const [btn] = ui.buttons.filter((btn) => btn.value === "2");
-      btn.click();
-      assert.equal(ui.primaryDisplay.read(), "2");
+    it("should create an input button for all input chars", () => {
+      const values = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
+      values.forEach((value) => {
+        calc.draw();
+        const [btn] = ui.buttons.filter((btn) => btn.value === value);
+        btn.click();
+      });
+      assert.equal(ui.primaryDisplay.read(), values.join(""));
     });
   });
 });
