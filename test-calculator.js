@@ -185,5 +185,15 @@ describe("Calculator", () => {
         calc.clearAll();
       });
     });
+
+    it("should create an AC button to clear the memory", () => {
+      calc.draw();
+      const [btn] = ui.buttons.filter((btn) => btn.value === "AC");
+      ui.primaryDisplay.update("foo");
+      ui.secondaryDisplay.update("bar");
+      btn.click();
+      assert.equal(ui.primaryDisplay.read(), "");
+      assert.equal(ui.secondaryDisplay.read(), "");
+    });
   });
 });

@@ -105,6 +105,10 @@ class Calculator {
         this.inputChar(value);
       });
     });
+
+    this.#ui.createButton("AC", () => {
+      this.clearAll();
+    });
   }
 }
 
