@@ -1,46 +1,24 @@
 class Calculator {
-  #ui;
+  #primaryDisplay;
+  #secondaryDisplay;
   #currentOperand;
   #previousOperand;
   #calculationString;
-  #inputValues;
-  #functionButtons;
   #operators;
   #operator;
 
-  constructor(ui) {
-    this.#ui = ui;
+  constructor(primaryDisplay, secondaryDisplay) {
+    this.#primaryDisplay = primaryDisplay;
+    this.#secondaryDisplay = secondaryDisplay;
     this.#currentOperand = "";
     this.#previousOperand = "";
     this.#calculationString = "";
     this.#operator = "";
-    this.#inputValues = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]; // prettier-ignore
-    this.#operators = ["+", "-", "/", "*"];
-    this.#functionButtons = [
-      {
-        label: "AC",
-        onClick: () => {
-          this.clearAll();
-        },
-      },
-      {
-        label: "Del",
-        onClick: () => {
-          this.deleteChar();
-        },
-      },
-      {
-        label: "=",
-        onClick: () => {
-          this.calculate();
-        },
-      },
-    ];
   }
 
   #updateDisplay() {
-    this.#ui.primaryDisplay.update(this.#currentOperand);
-    this.#ui.secondaryDisplay.update(this.#calculationString);
+    this.#primaryDisplay.update(this.#currentOperand);
+    this.#secondaryDisplay.update(this.#calculationString);
   }
 
   #validateInputChar(char) {
@@ -66,6 +44,8 @@ class Calculator {
     this.#operator = "";
     this.#calculationString = "";
     this.#updateDisplay();
+    this.#primaryDisplay.update("");
+    this.#secondaryDisplay.update("");
   }
 
   #newOperand() {
@@ -125,24 +105,6 @@ class Calculator {
     this.#updateDisplay();
     this.#operator = "";
     this.#newOperand();
-  }
-
-  draw() {
-    this.#inputValues.forEach((value) => {
-      this.#ui.createButton(value, () => {
-        this.inputChar(value);
-      });
-    });
-
-    this.#functionButtons.forEach((btn) => {
-      this.#ui.createButton(btn.label, btn.onClick);
-    });
-
-    this.#operators.forEach((operator) => {
-      this.#ui.createButton(operator, () => {
-        this.selectOperation(operator);
-      });
-    });
   }
 }
 
