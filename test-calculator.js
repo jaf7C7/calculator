@@ -3,24 +3,41 @@ const { describe, it, beforeEach } = require("node:test");
 
 describe("Calculator", () => {
   const Calculator = require("./calculator.js");
-  const MockUI = require("./mockUI.js");
-  let ui;
   let calc;
+  let primaryDisplay;
+  let secondaryDisplay;
+
+  class mockDisplay {
+    #content;
+
+    constructor() {
+      this.#content = "";
+    }
+
+    update(str) {
+      this.#content = str;
+    }
+
+    read() {
+      return this.#content;
+    }
+  }
 
   beforeEach(() => {
-    ui = new MockUI();
-    calc = new Calculator(ui);
+    primaryDisplay = new mockDisplay();
+    secondaryDisplay = new mockDisplay();
+    calc = new Calculator(primaryDisplay, secondaryDisplay);
   });
 
   it("should have displays which are initially blank", () => {
-    assert.equal(ui.primaryDisplay.read(), "");
-    assert.equal(ui.secondaryDisplay.read(), "");
+    assert.equal(primaryDisplay.read(), "");
+    assert.equal(secondaryDisplay.read(), "");
   });
 
   describe("inputChar()", () => {
     it("should append the input character to the display", () => {
       calc.inputChar("1");
-      assert.equal(ui.primaryDisplay.read(), "1");
+      assert.equal(primaryDisplay.read(), "1");
     });
 
     it("should throw an error if the input character is not matched by '[.0-9]'", () => {
@@ -38,8 +55,8 @@ describe("Calculator", () => {
       calc.inputChar("1");
       calc.calculate();
       calc.inputChar("1");
-      assert.equal(ui.primaryDisplay.read(), "1");
-      assert.equal(ui.secondaryDisplay.read(), "2");
+      assert.equal(primaryDisplay.read(), "1");
+      assert.equal(secondaryDisplay.read(), "2");
     });
   });
 
@@ -47,12 +64,12 @@ describe("Calculator", () => {
     it("should delete the last character of the current operand", () => {
       calc.inputChar("1");
       calc.deleteChar();
-      assert.equal(ui.primaryDisplay.read(), "");
+      assert.equal(primaryDisplay.read(), "");
     });
 
     it("should do nothing if the current operand is empty", () => {
       calc.deleteChar();
-      assert.equal(ui.primaryDisplay.read(), "");
+      assert.equal(primaryDisplay.read(), "");
     });
 
     it("should correctly update the display after consecutive calculations", () => {
@@ -61,8 +78,8 @@ describe("Calculator", () => {
       calc.inputChar("1");
       calc.calculate();
       calc.deleteChar();
-      assert.equal(ui.primaryDisplay.read(), "");
-      assert.equal(ui.secondaryDisplay.read(), "2");
+      assert.equal(primaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "2");
     });
   });
 
@@ -70,8 +87,8 @@ describe("Calculator", () => {
     it("should append the selected operand and operator to the secondary display", () => {
       calc.inputChar("1");
       calc.selectOperation("+");
-      assert.equal(ui.secondaryDisplay.read(), "1+");
-      assert.equal(ui.primaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "1+");
+      assert.equal(primaryDisplay.read(), "");
     });
 
     it("should throw an error if the selected operator is not matched by '[-+*/]'", () => {
@@ -85,8 +102,8 @@ describe("Calculator", () => {
 
     it("should do nothing if it is called without an initial operand", () => {
       calc.selectOperation("+");
-      assert.equal(ui.primaryDisplay.read(), "");
-      assert.equal(ui.secondaryDisplay.read(), "");
+      assert.equal(primaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "");
     });
 
     it("should correctly update the display after consecutive calculations", () => {
@@ -95,8 +112,8 @@ describe("Calculator", () => {
       calc.inputChar("1");
       calc.calculate();
       calc.selectOperation("+");
-      assert.equal(ui.primaryDisplay.read(), "");
-      assert.equal(ui.secondaryDisplay.read(), "2");
+      assert.equal(primaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "2");
     });
 
     it("should correctly handle calculation chaining", () => {
@@ -104,25 +121,25 @@ describe("Calculator", () => {
       calc.selectOperation("+");
       calc.inputChar("1");
       calc.selectOperation("*");
-      assert.equal(ui.primaryDisplay.read(), "");
-      assert.equal(ui.secondaryDisplay.read(), "2*");
+      assert.equal(primaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "2*");
     });
   });
 
   describe("clearAll()", () => {
     it("should clear the primary display", () => {
       calc.inputChar("1");
-      assert.notEqual(ui.primaryDisplay.read(), "");
+      assert.notEqual(primaryDisplay.read(), "");
       calc.clearAll();
-      assert.equal(ui.primaryDisplay.read(), "");
+      assert.equal(primaryDisplay.read(), "");
     });
 
     it("should clear the secondary display", () => {
       calc.inputChar("1");
       calc.selectOperation("+");
-      assert.notEqual(ui.secondaryDisplay.read(), "");
+      assert.notEqual(secondaryDisplay.read(), "");
       calc.clearAll();
-      assert.equal(ui.secondaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "");
     });
 
     it("should correctly update the display after consecutive calculations", () => {
@@ -131,8 +148,8 @@ describe("Calculator", () => {
       calc.inputChar("1");
       calc.calculate();
       calc.clearAll();
-      assert.equal(ui.primaryDisplay.read(), "");
-      assert.equal(ui.secondaryDisplay.read(), "");
+      assert.equal(primaryDisplay.read(), "");
+      assert.equal(secondaryDisplay.read(), "");
     });
   });
 
@@ -142,8 +159,8 @@ describe("Calculator", () => {
       calc.selectOperation("+");
       calc.inputChar("1");
       calc.calculate();
-      assert.equal(ui.primaryDisplay.read(), "2");
-      assert.equal(ui.secondaryDisplay.read(), "1+1");
+      assert.equal(primaryDisplay.read(), "2");
+      assert.equal(secondaryDisplay.read(), "1+1");
     });
 
     it("should handle multiplication", () => {
@@ -151,8 +168,8 @@ describe("Calculator", () => {
       calc.selectOperation("*");
       calc.inputChar("3");
       calc.calculate();
-      assert.equal(ui.primaryDisplay.read(), "9");
-      assert.equal(ui.secondaryDisplay.read(), "3*3");
+      assert.equal(primaryDisplay.read(), "9");
+      assert.equal(secondaryDisplay.read(), "3*3");
     });
 
     it("should handle division", () => {
@@ -160,8 +177,8 @@ describe("Calculator", () => {
       calc.selectOperation("/");
       calc.inputChar("3");
       calc.calculate();
-      assert.equal(ui.primaryDisplay.read(), "1");
-      assert.equal(ui.secondaryDisplay.read(), "3/3");
+      assert.equal(primaryDisplay.read(), "1");
+      assert.equal(secondaryDisplay.read(), "3/3");
     });
 
     it("should handle subtraction", () => {
@@ -169,55 +186,8 @@ describe("Calculator", () => {
       calc.selectOperation("-");
       calc.inputChar("3");
       calc.calculate();
-      assert.equal(ui.primaryDisplay.read(), "0");
-      assert.equal(ui.secondaryDisplay.read(), "3-3");
-    });
-  });
-
-  describe("draw()", () => {
-    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."].forEach((value) => {
-      it(`should create an input button for input value ${value}`, (t) => {
-        const mockInputChar = t.mock.method(calc, "inputChar");
-        calc.draw();
-        const [btn] = ui.buttons.filter((btn) => btn.label === value);
-        btn.click();
-        assert.equal(mockInputChar.mock.calls[0].arguments[0], value);
-        mockInputChar.mock.resetCalls();
-      });
-    });
-
-    it("should create an AC button to clear the memory", (t) => {
-      const mockClearAll = t.mock.method(calc, "clearAll");
-      calc.draw();
-      const [btn] = ui.buttons.filter((btn) => btn.label === "AC");
-      btn.click();
-      assert.equal(mockClearAll.mock.callCount(), 1);
-    });
-
-    it("should create a Del button to delete a char", (t) => {
-      const mockDeleteChar = t.mock.method(calc, "deleteChar");
-      calc.draw();
-      const [btn] = ui.buttons.filter((btn) => btn.label === "Del");
-      btn.click();
-      assert.equal(mockDeleteChar.mock.callCount(), 1);
-    });
-
-    it("should create an equals button to calculate the result", (t) => {
-      const mockCalculate = t.mock.method(calc, "calculate");
-      calc.draw();
-      const [btn] = ui.buttons.filter((btn) => btn.label === "=");
-      btn.click();
-      assert.equal(mockCalculate.mock.callCount(), 1);
-    });
-
-    ["+", "-", "/", "*"].forEach((operator) => {
-      it(`should create a button for operator ${operator}`, (t) => {
-        const mockSelectOperation = t.mock.method(calc, "selectOperation");
-        calc.draw();
-        const [btn] = ui.buttons.filter((btn) => btn.label === operator);
-        btn.click();
-        assert.equal(mockSelectOperation.mock.callCount(), 1);
-      });
+      assert.equal(primaryDisplay.read(), "0");
+      assert.equal(secondaryDisplay.read(), "3-3");
     });
   });
 });
