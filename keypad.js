@@ -3,8 +3,8 @@ class Keypad {
 		this.keys = [];
 	}
 
-	addKey(value) {
-		this.keys.push({ value });
+	addKey(value, onPress) {
+		this.keys.push({ value: value, press: onPress });
 	}
 }
 
