@@ -9,9 +9,11 @@ describe("Keypad()", () => {
 		kp = new Keypad();
 	});
 
-	it("Should have an equals key", () => {
-		kp.addKey("=");
-		const [equalsKey] = kp.keys.filter((k) => k.value === "=");
-		assert.notEqual(equalsKey, undefined);
+	describe("Equals key", () => {
+		it("Should have value `=`", () => {
+			kp.addKey("=");
+			const [equalsKey] = kp.keys.filter((k) => k.value === "=");
+			assert.notEqual(equalsKey, undefined);
+		});
 	});
 });
