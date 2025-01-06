@@ -27,4 +27,14 @@ describe("Keypad()", () => {
 			assert.equal(fakeCalc.calculate.mock.callCount(), 1);
 		});
 	});
+
+	describe("Delete key", () => {
+		it("Should have value `Del`", () => {
+			const fakeCalc = {};
+			const kp = new Keypad(fakeCalc);
+			kp.addKey("Del", "deleteChar");
+			const [deleteKey] = kp.keys.filter((k) => k.value === "Del");
+			assert.notEqual(deleteKey, undefined);
+		});
+	});
 });
