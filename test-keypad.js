@@ -6,6 +6,7 @@ describe("Keypad()", () => {
 	const functionKeys = [
 		{ value: "=", onPress: "calculate" },
 		{ value: "Del", onPress: "deleteChar" },
+		{ value: "AC", onPress: "allClear" },
 	];
 
 	functionKeys.forEach((functionKey) => {
