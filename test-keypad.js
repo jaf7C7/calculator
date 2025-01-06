@@ -36,5 +36,16 @@ describe("Keypad()", () => {
 			const [deleteKey] = kp.keys.filter((k) => k.value === "Del");
 			assert.notEqual(deleteKey, undefined);
 		});
+
+		it("Should call `deleteChar()` on the wrapped `Calculator` instance", () => {
+			const fakeCalc = {
+				deleteChar: mock.fn(),
+			};
+			const kp = new Keypad(fakeCalc);
+			kp.addKey("Del", "deleteChar");
+			const [deleteKey] = kp.keys.filter((k) => k.value === "Del");
+			deleteKey.press();
+			assert.equal(fakeCalc.deleteChar.mock.callCount(), 1);
+		});
 	});
 });
