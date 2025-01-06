@@ -3,10 +3,10 @@ const { describe, it, mock, beforeEach } = require("node:test");
 
 describe("Keypad()", () => {
 	const Keypad = require("./keypad.js");
-	let kp;
-	let fakeCalc;
 
 	describe("Equals key", () => {
+		let kp;
+		let fakeCalc;
 		let equalsKey;
 
 		beforeEach(() => {
