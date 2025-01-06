@@ -4,7 +4,6 @@ class Calculator {
 	#currentOperand;
 	#previousOperand;
 	#calculationString;
-	#operators;
 	#operator;
 
 	constructor(primaryDisplay, secondaryDisplay) {
