@@ -3,10 +3,10 @@ const { describe, it, mock, beforeEach } = require("node:test");
 
 describe("Keypad()", () => {
 	const Keypad = require("./keypad.js");
-	const functionKey = { value: "=", onPress: "calculate" };
 
 	describe("addKey()", () => {
 		it(`"Should call the correct method on the wrapped 'Calculator' instance`, () => {
+			const functionKey = { value: "=", onPress: "calculate" };
 			let kp;
 			let fakeCalc;
 			let key;
