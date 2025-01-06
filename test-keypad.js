@@ -1,5 +1,5 @@
 const assert = require("node:assert/strict");
-const { describe, it, mock } = require("node:test");
+const { describe, it, mock, beforeEach } = require("node:test");
 
 describe("Keypad()", () => {
 	const Keypad = require("./keypad.js");
@@ -7,10 +7,13 @@ describe("Keypad()", () => {
 	let fakeCalc;
 
 	describe("Equals key", () => {
-		it("Should have value `=`", () => {
+		beforeEach(() => {
 			fakeCalc = {
 				calculate: mock.fn(),
 			};
+		});
+
+		it("Should have value `=`", () => {
 			kp = new Keypad(fakeCalc);
 			kp.addKey("=", "calculate");
 			const [equalsKey] = kp.keys.filter((k) => k.value === "=");
@@ -18,9 +21,6 @@ describe("Keypad()", () => {
 		});
 
 		it("Should call `calculate()` on the wrapped `Calculator` instance", () => {
-			fakeCalc = {
-				calculate: mock.fn(),
-			};
 			kp = new Keypad(fakeCalc);
 			kp.addKey("=", "calculate");
 			const [equalsKey] = kp.keys.filter((k) => k.value === "=");
