@@ -4,10 +4,11 @@ const { describe, it } = require("node:test");
 describe("Keypad()", () => {
 	const Keypad = require("./keypad.js");
 	let kp;
+	let fakeCalc;
 
 	describe("Equals key", () => {
 		it("Should have value `=`", (t) => {
-			const fakeCalc = {
+			fakeCalc = {
 				calculate: t.mock.fn(),
 			};
 			kp = new Keypad(fakeCalc);
@@ -17,7 +18,7 @@ describe("Keypad()", () => {
 		});
 
 		it("Should call `calculate()` on the wrapped `Calculator` instance", (t) => {
-			const fakeCalc = {
+			fakeCalc = {
 				calculate: t.mock.fn(),
 			};
 			kp = new Keypad(fakeCalc);
