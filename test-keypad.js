@@ -18,7 +18,7 @@ describe("Keypad()", () => {
 				fakeCalc = {};
 				fakeCalc[functionKey.deviceFunction] = mock.fn();
 				kp = new Keypad(fakeCalc);
-				kp.addKey(functionKey.value, functionKey.deviceFunction);
+				kp.addKey(functionKey);
 				[key] = kp.keys.filter((k) => k.value === functionKey.value);
 			});
 
