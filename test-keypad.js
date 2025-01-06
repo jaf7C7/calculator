@@ -6,14 +6,13 @@ describe("Keypad()", () => {
 
 	describe("addKey()", () => {
 		it(`"Should call the correct method on the wrapped 'Calculator' instance`, () => {
-			const functionKey = { value: "=", onPress: "calculate" };
-			const fakeCalc = {};
-			fakeCalc[functionKey.onPress] = mock.fn();
+			const fakeCalc = { calculate: mock.fn() };
+			const equalsKeys = { value: "=", onPress: "calculate" };
 			const kp = new Keypad(fakeCalc);
-			kp.addKey(functionKey);
-			const [key] = kp.keys.filter((k) => k.value === functionKey.value);
+			kp.addKey(equalsKeys);
+			const [key] = kp.keys.filter((k) => k.value === equalsKeys.value);
 			key.press();
-			assert.equal(fakeCalc[functionKey.onPress].mock.callCount(), 1);
+			assert.equal(fakeCalc[equalsKeys.onPress].mock.callCount(), 1);
 		});
 	});
 });
