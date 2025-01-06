@@ -29,21 +29,24 @@ describe("Keypad()", () => {
 	});
 
 	describe("Delete key", () => {
-		it("Should have value `Del`", () => {
-			const fakeCalc = {};
-			const kp = new Keypad(fakeCalc);
+		let kp;
+		let fakeCalc;
+		let deleteKey;
+
+		beforeEach(() => {
+			fakeCalc = {
+				deleteChar: mock.fn(),
+			};
+			kp = new Keypad(fakeCalc);
 			kp.addKey("Del", "deleteChar");
-			const [deleteKey] = kp.keys.filter((k) => k.value === "Del");
+			[deleteKey] = kp.keys.filter((k) => k.value === "Del");
+		});
+
+		it("Should have value `Del`", () => {
 			assert.notEqual(deleteKey, undefined);
 		});
 
 		it("Should call `deleteChar()` on the wrapped `Calculator` instance", () => {
-			const fakeCalc = {
-				deleteChar: mock.fn(),
-			};
-			const kp = new Keypad(fakeCalc);
-			kp.addKey("Del", "deleteChar");
-			const [deleteKey] = kp.keys.filter((k) => k.value === "Del");
 			deleteKey.press();
 			assert.equal(fakeCalc.deleteChar.mock.callCount(), 1);
 		});
