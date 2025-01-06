@@ -4,8 +4,8 @@ const { describe, it, mock, beforeEach } = require("node:test");
 describe("Keypad()", () => {
 	const Keypad = require("./keypad.js");
 	const functionKeys = [
-		{ value: "=", deviceFunction: "calculate" },
-		{ value: "Del", deviceFunction: "deleteChar" },
+		{ value: "=", onPress: "calculate" },
+		{ value: "Del", onPress: "deleteChar" },
 	];
 
 	functionKeys.forEach((functionKey) => {
@@ -16,7 +16,7 @@ describe("Keypad()", () => {
 
 			beforeEach(() => {
 				fakeCalc = {};
-				fakeCalc[functionKey.deviceFunction] = mock.fn();
+				fakeCalc[functionKey.onPress] = mock.fn();
 				kp = new Keypad(fakeCalc);
 				kp.addKey(functionKey);
 				[key] = kp.keys.filter((k) => k.value === functionKey.value);
@@ -26,9 +26,9 @@ describe("Keypad()", () => {
 				assert.notEqual(key, undefined);
 			});
 
-			it(`Should call '${functionKey.deviceFunction}()' on the wrapped 'Calculator' instance`, () => {
+			it(`Should call '${functionKey.onPress}()' on the wrapped 'Calculator' instance`, () => {
 				key.press();
-				assert.equal(fakeCalc[functionKey.deviceFunction].mock.callCount(), 1);
+				assert.equal(fakeCalc[functionKey.onPress].mock.callCount(), 1);
 			});
 		});
 	});

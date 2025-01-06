@@ -4,8 +4,8 @@ class Keypad {
 		this.keys = [];
 	}
 
-	addKey({ value, deviceFunction }) {
-		this.keys.push({ value: value, press: this.device[deviceFunction] });
+	addKey({ value, onPress }) {
+		this.keys.push({ value: value, press: this.device[onPress] });
 	}
 }
 
