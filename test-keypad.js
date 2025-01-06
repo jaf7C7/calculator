@@ -3,52 +3,33 @@ const { describe, it, mock, beforeEach } = require("node:test");
 
 describe("Keypad()", () => {
 	const Keypad = require("./keypad.js");
+	const functionKeys = [
+		{ value: "=", onPress: "calculate" },
+		{ value: "Del", onPress: "deleteChar" },
+	];
 
-	describe("Equals key", () => {
-		let kp;
-		let fakeCalc;
-		let equalsKey;
+	functionKeys.forEach((functionKey) => {
+		describe(`Function key '${functionKey.value}'`, () => {
+			let kp;
+			let fakeCalc;
+			let key;
 
-		beforeEach(() => {
-			fakeCalc = {
-				calculate: mock.fn(),
-			};
-			kp = new Keypad(fakeCalc);
-			kp.addKey("=", "calculate");
-			[equalsKey] = kp.keys.filter((k) => k.value === "=");
-		});
+			beforeEach(() => {
+				fakeCalc = {};
+				fakeCalc[functionKey.onPress] = mock.fn();
+				kp = new Keypad(fakeCalc);
+				kp.addKey(functionKey.value, functionKey.onPress);
+				[key] = kp.keys.filter((k) => k.value === functionKey.value);
+			});
 
-		it("Should have value `=`", () => {
-			assert.notEqual(equalsKey, undefined);
-		});
+			it(`Should have value '${functionKey.value}'`, () => {
+				assert.notEqual(key, undefined);
+			});
 
-		it("Should call `calculate()` on the wrapped `Calculator` instance", () => {
-			equalsKey.press();
-			assert.equal(fakeCalc.calculate.mock.callCount(), 1);
-		});
-	});
-
-	describe("Delete key", () => {
-		let kp;
-		let fakeCalc;
-		let deleteKey;
-
-		beforeEach(() => {
-			fakeCalc = {
-				deleteChar: mock.fn(),
-			};
-			kp = new Keypad(fakeCalc);
-			kp.addKey("Del", "deleteChar");
-			[deleteKey] = kp.keys.filter((k) => k.value === "Del");
-		});
-
-		it("Should have value `Del`", () => {
-			assert.notEqual(deleteKey, undefined);
-		});
-
-		it("Should call `deleteChar()` on the wrapped `Calculator` instance", () => {
-			deleteKey.press();
-			assert.equal(fakeCalc.deleteChar.mock.callCount(), 1);
+			it(`Should call '${functionKey.onPress}()' on the wrapped 'Calculator' instance`, () => {
+				key.press();
+				assert.equal(fakeCalc[functionKey.onPress].mock.callCount(), 1);
+			});
 		});
 	});
 });
