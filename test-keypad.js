@@ -5,7 +5,7 @@ describe("Keypad()", () => {
 	const Keypad = require("./keypad.js");
 
 	describe("addFunctionKey()", () => {
-		it(`"Should call the correct method on the wrapped object`, () => {
+		it("Should call the correct method on the wrapped object", () => {
 			const fakeCalc = { calculate: mock.fn() };
 			const equalsKey = { value: "=", onPress: "calculate" };
 			const kp = new Keypad(fakeCalc);
