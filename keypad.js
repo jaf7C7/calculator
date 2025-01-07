@@ -7,6 +7,15 @@ class Keypad {
 	addFunctionKey({ value, onPress }) {
 		this.keys.push({ value: value, press: this.device[onPress] });
 	}
+
+	addInputKey({ value, onPress }) {
+		this.keys.push({
+			value: value,
+			press: () => {
+				this.device[onPress](value);
+			},
+		});
+	}
 }
 
 module.exports = Keypad;
