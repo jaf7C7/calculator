@@ -9,7 +9,7 @@ describe("Keypad()", () => {
 			const fakeCalc = { calculate: mock.fn() };
 			const equalsKey = { value: "=", onPress: "calculate" };
 			const kp = new Keypad(fakeCalc);
-			kp.addKey(equalsKey);
+			kp.addFunctionKey(equalsKey);
 			const [key] = kp.keys.filter((k) => k.value === equalsKey.value);
 			key.press();
 			assert.equal(fakeCalc[equalsKey.onPress].mock.callCount(), 1);
