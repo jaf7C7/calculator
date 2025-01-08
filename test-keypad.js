@@ -23,10 +23,8 @@ describe("Keypad()", () => {
 			key.press();
 			assert.equal(fakeCalc[onPress].mock.callCount(), 1);
 		});
-	});
 
-	describe("addKey()", () => {
-		it("Should call the correct method with the correct argument on the wrapped object", () => {
+		it("Should call the bound method with optional arguments", () => {
 			const value = "0";
 			const onPress = "inputChar";
 			const onPressArgs = ["0"];
