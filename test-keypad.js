@@ -3,12 +3,20 @@ const { describe, it, mock, beforeEach } = require("node:test");
 
 describe("Keypad()", () => {
 	const Keypad = require("./keypad.js");
+	let fakeCalc;
+	let kp;
+
+	beforeEach(() => {
+		fakeCalc = {
+			calculate: mock.fn(),
+			inputChar: mock.fn(),
+		};
+		kp = new Keypad(fakeCalc);
+	});
 
 	describe("addFunctionKey()", () => {
 		it("Should call the correct method on the wrapped object", () => {
-			const fakeCalc = { calculate: mock.fn() };
 			const equalsKey = { value: "=", onPress: "calculate" };
-			const kp = new Keypad(fakeCalc);
 			kp.addFunctionKey(equalsKey);
 			const [key] = kp.keys.filter((k) => k.value === equalsKey.value);
 			key.press();
@@ -18,9 +26,7 @@ describe("Keypad()", () => {
 
 	describe("addInputKey()", () => {
 		it("Should call the correct method with the correct argument on the wrapped object", () => {
-			const fakeCalc = { inputChar: mock.fn() };
 			const zeroKey = { value: "0", onPress: "inputChar" };
-			const kp = new Keypad(fakeCalc);
 			kp.addInputKey(zeroKey);
 			const [key] = kp.keys.filter((k) => k.value === zeroKey.value);
 			key.press();
