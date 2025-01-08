@@ -30,7 +30,10 @@ describe("Keypad()", () => {
 			kp.addInputKey(zeroKey);
 			const [key] = kp.keys.filter((k) => k.value === zeroKey.value);
 			key.press();
-			assert.equal(fakeCalc.inputChar.mock.calls[0].arguments[0], "0");
+			assert.equal(
+				fakeCalc[zeroKey.onPress].mock.calls[0].arguments[0],
+				zeroKey.value,
+			);
 		});
 	});
 });
