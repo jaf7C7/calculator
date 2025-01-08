@@ -1,0 +1,8 @@
+include "/usr/share/nano/*.nanorc"
+set autoindent
+set casesensitive
+set regexp
+set tabsize 4
+bind ^Z suspend all
+extendsyntax javascript linter "npx eslint --config='/home/jfox/Data/Projects/calculator/eslint.config.mjs'"
+extendsyntax javascript formatter "npx prettier --config='/home/jfox/Data/Projects/calculator/.prettierrc.json'"
