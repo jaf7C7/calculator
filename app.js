@@ -1,5 +1,5 @@
 function initApp(ui) {
-	ui.createPrimaryDisplay();
+	ui.createDisplay("primaryDisplay");
 }
 
 module.exports = initApp;

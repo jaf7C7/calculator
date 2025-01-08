@@ -5,8 +5,12 @@ describe("initApp()", () => {
 	const initApp = require("./app.js");
 
 	it("Should create a primary display", () => {
-		const fakeUI = { createPrimaryDisplay: mock.fn() };
+		const fakeUI = { createDisplay: mock.fn() };
 		initApp(fakeUI);
-		assert.equal(fakeUI.createPrimaryDisplay.mock.callCount(), 1);
+		assert.equal(fakeUI.createDisplay.mock.callCount(), 1);
+		assert.equal(
+			fakeUI.createDisplay.mock.calls[0].arguments[0],
+			"primaryDisplay",
+		);
 	});
 });
