@@ -1,0 +1,6 @@
+# Source me from your project root
+alias e="nano --rcfile='$PWD/.nanorc'"
+t () {
+	npm run lint &&
+	npm run test -- "$@"
+}
