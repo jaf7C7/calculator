@@ -16,7 +16,7 @@ describe("Keypad()", () => {
 
 	describe("addKey()", () => {
 		it("Should call the correct method on the wrapped object", () => {
-			const equalsKey = { value: "=", onPress: "calculate" };
+			const equalsKey = { value: "=", onPress: "calculate", onPressArgs: [] };
 			kp.addKey(equalsKey);
 			const [key] = kp.keys.filter((k) => k.value === equalsKey.value);
 			key.press();
@@ -24,10 +24,10 @@ describe("Keypad()", () => {
 		});
 	});
 
-	describe("addInputKey()", () => {
+	describe("addKey()", () => {
 		it("Should call the correct method with the correct argument on the wrapped object", () => {
-			const zeroKey = { value: "0", onPress: "inputChar" };
-			kp.addInputKey(zeroKey);
+			const zeroKey = { value: "0", onPress: "inputChar", onPressArgs: ["0"] };
+			kp.addKey(zeroKey);
 			const [key] = kp.keys.filter((k) => k.value === zeroKey.value);
 			key.press();
 			assert.equal(

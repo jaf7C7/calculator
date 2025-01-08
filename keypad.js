@@ -4,16 +4,10 @@ class Keypad {
 		this.keys = [];
 	}
 
-	addKey({ value, onPress }) {
-		this.keys.push({ value: value, press: this.device[onPress] });
-	}
-
-	addInputKey({ value, onPress }) {
+	addKey({ value, onPress, onPressArgs }) {
 		this.keys.push({
 			value: value,
-			press: () => {
-				this.device[onPress](value);
-			},
+			press: this.device[onPress].bind(this.device, ...onPressArgs),
 		});
 	}
 }
