@@ -16,24 +16,24 @@ describe("Keypad()", () => {
 
 	describe("addKey()", () => {
 		it("Should call the correct method on the wrapped object", () => {
-			const equalsKey = { value: "=", onPress: "calculate", onPressArgs: [] };
-			kp.addKey(equalsKey);
-			const [key] = kp.keys.filter((k) => k.value === equalsKey.value);
+			const value = "=";
+			const onPress = "calculate";
+			kp.addKey(value, onPress);
+			const [key] = kp.keys.filter((k) => k.value === value);
 			key.press();
-			assert.equal(fakeCalc[equalsKey.onPress].mock.callCount(), 1);
+			assert.equal(fakeCalc[onPress].mock.callCount(), 1);
 		});
 	});
 
 	describe("addKey()", () => {
 		it("Should call the correct method with the correct argument on the wrapped object", () => {
-			const zeroKey = { value: "0", onPress: "inputChar", onPressArgs: ["0"] };
-			kp.addKey(zeroKey);
-			const [key] = kp.keys.filter((k) => k.value === zeroKey.value);
+			const value = "0";
+			const onPress = "inputChar";
+			const onPressArgs = ["0"];
+			kp.addKey(value, onPress, onPressArgs);
+			const [key] = kp.keys.filter((k) => k.value === value);
 			key.press();
-			assert.equal(
-				fakeCalc[zeroKey.onPress].mock.calls[0].arguments[0],
-				zeroKey.value,
-			);
+			assert.equal(fakeCalc[onPress].mock.calls[0].arguments[0], value);
 		});
 	});
 });
