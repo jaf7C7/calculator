@@ -14,10 +14,10 @@ describe("Keypad()", () => {
 		kp = new Keypad(fakeCalc);
 	});
 
-	describe("addFunctionKey()", () => {
+	describe("addKey()", () => {
 		it("Should call the correct method on the wrapped object", () => {
 			const equalsKey = { value: "=", onPress: "calculate" };
-			kp.addFunctionKey(equalsKey);
+			kp.addKey(equalsKey);
 			const [key] = kp.keys.filter((k) => k.value === equalsKey.value);
 			key.press();
 			assert.equal(fakeCalc[equalsKey.onPress].mock.callCount(), 1);
