@@ -16,9 +16,11 @@ class FakeDisplay {
 
 class FakeUI {
 	#displays;
+	#buttons;
 
 	constructor() {
 		this.#displays = [];
+		this.#buttons = [];
 	}
 
 	createDisplay(id) {
@@ -27,6 +29,14 @@ class FakeUI {
 
 	getDisplay(id) {
 		return this.#displays.find((display) => display.id === id);
+	}
+
+	createButton(id, value) {
+		this.#buttons.push({ id: id, value: value });
+	}
+
+	getButton(id) {
+		return this.#buttons.find((button) => button.id === id);
 	}
 }
 

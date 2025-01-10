@@ -21,4 +21,12 @@ describe("FakeUI", () => {
 		fakeUI.createDisplay("someID");
 		assert.equal(fakeUI.getDisplay("someID").id, "someID");
 	});
+
+	it("Should be able to create and fetch button elements", () => {
+		const fakeUI = new FakeUI();
+		fakeUI.createButton("zeroButton", "0");
+		const zeroButton = fakeUI.getButton("zeroButton");
+		assert.equal(zeroButton.id, "zeroButton");
+		assert.equal(zeroButton.value, "0");
+	});
 });
