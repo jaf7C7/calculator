@@ -20,25 +20,39 @@ describe("initApp()", () => {
 		assert.equal(secondaryDisplay.id, "secondaryDisplay");
 	});
 
-	describe("Should create an input button for number 0", () => {
-		let zeroButton;
+	[
+		{ id: "btn0", value: "0" },
+		{ id: "btn1", value: "1" },
+		{ id: "btn2", value: "2" },
+		{ id: "btn3", value: "3" },
+		{ id: "btn4", value: "4" },
+		{ id: "btn5", value: "5" },
+		{ id: "btn6", value: "6" },
+		{ id: "btn7", value: "7" },
+		{ id: "btn8", value: "8" },
+		{ id: "btn9", value: "9" },
+		{ id: "btnDecPt", value: "." },
+	].forEach(({ id, value }) => {
+		describe(`Should create an input button for number ${value}`, () => {
+			let button;
 
-		beforeEach(() => {
-			zeroButton = fakeUI.getButton("zeroButton");
-		});
+			beforeEach(() => {
+				button = fakeUI.getButton(id);
+			});
 
-		it("Should have the correct id", () => {
-			assert.equal(zeroButton.id, "zeroButton");
-		});
+			it("Should have the correct id", () => {
+				assert.equal(button.id, id);
+			});
 
-		it("Should have the correct value", () => {
-			assert.equal(zeroButton.value, "0");
-		});
+			it("Should have the correct value", () => {
+				assert.equal(button.value, value);
+			});
 
-		it("Should have the correct callback", () => {
-			zeroButton.onClick();
-			assert.equal(mockCalc.inputChar.mock.callCount(), 1);
-			assert.equal(mockCalc.inputChar.mock.calls[0].arguments[0], "0");
+			it("Should have the correct callback", () => {
+				button.onClick();
+				assert.equal(mockCalc.inputChar.mock.callCount(), 1);
+				assert.equal(mockCalc.inputChar.mock.calls[0].arguments[0], value);
+			});
 		});
 	});
 });
