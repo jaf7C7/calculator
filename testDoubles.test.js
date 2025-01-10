@@ -28,12 +28,12 @@ describe("FakeUI", () => {
 
 	it("Should be able to create and fetch display elements", () => {
 		fakeUI.createDisplay("someID");
-		assert.equal(fakeUI.getDisplay("someID").id, "someID");
+		assert.equal(fakeUI.getElement("someID").id, "someID");
 	});
 
 	it("Should be able to create and fetch button elements", () => {
 		fakeUI.createButton("zeroButton", "0", () => "Click!");
-		const zeroButton = fakeUI.getButton("zeroButton");
+		const zeroButton = fakeUI.getElement("zeroButton");
 		assert.equal(zeroButton.id, "zeroButton");
 		assert.equal(zeroButton.value, "0");
 		assert.equal(zeroButton.onClick(), "Click!");

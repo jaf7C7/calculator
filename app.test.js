@@ -14,8 +14,8 @@ describe("initApp()", () => {
 	});
 
 	it("Should create primary and secondary displays", () => {
-		const primaryDisplay = fakeUI.getDisplay("primaryDisplay");
-		const secondaryDisplay = fakeUI.getDisplay("secondaryDisplay");
+		const primaryDisplay = fakeUI.getElement("primaryDisplay");
+		const secondaryDisplay = fakeUI.getElement("secondaryDisplay");
 		assert.equal(primaryDisplay.id, "primaryDisplay");
 		assert.equal(secondaryDisplay.id, "secondaryDisplay");
 	});
@@ -37,7 +37,7 @@ describe("initApp()", () => {
 			let button;
 
 			beforeEach(() => {
-				button = fakeUI.getButton(id);
+				button = fakeUI.getElement(id);
 			});
 
 			it("Should have the correct id", () => {

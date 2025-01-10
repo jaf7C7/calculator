@@ -17,28 +17,22 @@ class FakeDisplay {
 }
 
 class FakeUI {
-	#displays;
-	#buttons;
+	#elements;
 
 	constructor() {
-		this.#displays = [];
-		this.#buttons = [];
+		this.#elements = [];
 	}
 
 	createDisplay(id) {
-		this.#displays.push({ id: id });
-	}
-
-	getDisplay(id) {
-		return this.#displays.find((display) => display.id === id);
+		this.#elements.push({ id: id });
 	}
 
 	createButton(id, value, onClick) {
-		this.#buttons.push({ id: id, value: value, onClick: onClick });
+		this.#elements.push({ id: id, value: value, onClick: onClick });
 	}
 
-	getButton(id) {
-		return this.#buttons.find((button) => button.id === id);
+	getElement(id) {
+		return this.#elements.find((element) => element.id === id);
 	}
 }
 
