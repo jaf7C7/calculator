@@ -20,6 +20,7 @@ describe("initApp()", () => {
 
 	it("Should create an input button for number 0", () => {
 		const zeroButton = fakeUI.getButton("zeroButton");
+		assert.equal(zeroButton.id, "zeroButton");
 		assert.equal(zeroButton.value, "0");
 	});
 });
