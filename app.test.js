@@ -3,14 +3,17 @@ const { describe, it, mock, beforeEach } = require("node:test");
 
 describe("initApp()", () => {
 	const initApp = require("./app.js");
+	const { FakeUI } = require("./testDoubles.js");
 	let mockUI;
+	let fakeUI;
 
 	beforeEach(() => {
 		mockUI = {
 			createButton: mock.fn(),
 			createDisplay: mock.fn(),
 		};
-		initApp(mockUI);
+		fakeUI = new FakeUI();
+		initApp(mockUI, fakeUI);
 	});
 
 	it("Should create primary and secondary displays", () => {
@@ -23,6 +26,11 @@ describe("initApp()", () => {
 			mockUI.createDisplay.mock.calls[1].arguments[0],
 			"secondaryDisplay",
 		);
+	});
+
+	it("Should create a primary display using the new fakeUI", () => {
+		const primaryDisplay = fakeUI.getDisplay("primaryDisplay");
+		assert.equal(primaryDisplay.id, "primaryDisplay");
 	});
 
 	it("Should create an input button for number 0", () => {
