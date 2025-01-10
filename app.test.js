@@ -3,12 +3,14 @@ const { describe, it, beforeEach } = require("node:test");
 
 describe("initApp()", () => {
 	const initApp = require("./app.js");
-	const { FakeUI } = require("./testDoubles.js");
+	const { FakeUI, MockCalculator } = require("./testDoubles.js");
 	let fakeUI;
+	let mockCalc;
 
 	beforeEach(() => {
 		fakeUI = new FakeUI();
-		initApp(fakeUI);
+		mockCalc = new MockCalculator();
+		initApp(fakeUI, mockCalc);
 	});
 
 	it("Should create primary and secondary displays", () => {
@@ -20,7 +22,10 @@ describe("initApp()", () => {
 
 	it("Should create an input button for number 0", () => {
 		const zeroButton = fakeUI.getButton("zeroButton");
+		zeroButton.onClick();
 		assert.equal(zeroButton.id, "zeroButton");
 		assert.equal(zeroButton.value, "0");
+		assert.equal(mockCalc.inputChar.mock.callCount(), 1);
+		assert.equal(mockCalc.inputChar.mock.calls[0].arguments[0], "0");
 	});
 });
