@@ -11,14 +11,14 @@ describe("initApp()", () => {
 		initApp(fakeUI);
 	});
 
-	it("Should create primary and secondary displays using the new fakeUI", () => {
+	it("Should create primary and secondary displays", () => {
 		const primaryDisplay = fakeUI.getDisplay("primaryDisplay");
 		const secondaryDisplay = fakeUI.getDisplay("secondaryDisplay");
 		assert.equal(primaryDisplay.id, "primaryDisplay");
 		assert.equal(secondaryDisplay.id, "secondaryDisplay");
 	});
 
-	it("Should create an input button for number 0 using the new fakeUI", () => {
+	it("Should create an input button for number 0", () => {
 		const zeroButton = fakeUI.getButton("zeroButton");
 		assert.equal(zeroButton.value, "0");
 	});
