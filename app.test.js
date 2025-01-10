@@ -3,30 +3,30 @@ const { describe, it, mock, beforeEach } = require("node:test");
 
 describe("initApp()", () => {
 	const initApp = require("./app.js");
-	let fakeUI;
+	let mockUI;
 
 	beforeEach(() => {
-		fakeUI = {
+		mockUI = {
 			createButton: mock.fn(),
 			createDisplay: mock.fn(),
 		};
-		initApp(fakeUI);
+		initApp(mockUI);
 	});
 
 	it("Should create primary and secondary displays", () => {
-		assert.equal(fakeUI.createDisplay.mock.callCount(), 2);
+		assert.equal(mockUI.createDisplay.mock.callCount(), 2);
 		assert.equal(
-			fakeUI.createDisplay.mock.calls[0].arguments[0],
+			mockUI.createDisplay.mock.calls[0].arguments[0],
 			"primaryDisplay",
 		);
 		assert.equal(
-			fakeUI.createDisplay.mock.calls[1].arguments[0],
+			mockUI.createDisplay.mock.calls[1].arguments[0],
 			"secondaryDisplay",
 		);
 	});
 
 	it("Should create an input button for number 0", () => {
-		assert.equal(fakeUI.createButton.mock.callCount(), 1);
-		assert.equal(fakeUI.createButton.mock.calls[0].arguments[0], "0");
+		assert.equal(mockUI.createButton.mock.callCount(), 1);
+		assert.equal(mockUI.createButton.mock.calls[0].arguments[0], "0");
 	});
 });
