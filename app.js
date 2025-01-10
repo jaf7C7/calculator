@@ -21,6 +21,9 @@ function initApp(calculator, ui) {
 	ui.createButton("btnDel", "Del", () => {
 		calculator.deleteChar();
 	});
+	ui.createButton("btnAC", "AC", () => {
+		calculator.clearAll();
+	});
 }
 
 module.exports = initApp;
