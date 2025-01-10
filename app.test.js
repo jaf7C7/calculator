@@ -56,8 +56,15 @@ describe("initApp()", () => {
 		});
 	});
 
-	it("Should create a 'Del' button to delete characters from the input", () => {
-		const button = fakeUI.getElement("btnDel");
-		assert.equal(button.id, "btnDel");
+	describe("Should create a 'Del' button to delete characters from the input", () => {
+		let button;
+
+		beforeEach(() => {
+			button = fakeUI.getElement("btnDel");
+		});
+
+		it("Should have the correct id", () => {
+			assert.equal(button.id, "btnDel");
+		});
 	});
 });
