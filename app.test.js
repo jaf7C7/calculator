@@ -7,7 +7,7 @@ describe("initApp()", () => {
 
 	beforeEach(() => {
 		fakeUI = {
-			createKey: mock.fn(),
+			createButton: mock.fn(),
 			createDisplay: mock.fn(),
 		};
 		initApp(fakeUI);
@@ -25,8 +25,8 @@ describe("initApp()", () => {
 		);
 	});
 
-	it("Should create an input key for number 0", () => {
-		assert.equal(fakeUI.createKey.mock.callCount(), 1);
-		assert.equal(fakeUI.createKey.mock.calls[0].arguments[0], "0");
+	it("Should create an input button for number 0", () => {
+		assert.equal(fakeUI.createButton.mock.callCount(), 1);
+		assert.equal(fakeUI.createButton.mock.calls[0].arguments[0], "0");
 	});
 });
