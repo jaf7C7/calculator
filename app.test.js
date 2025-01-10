@@ -66,5 +66,9 @@ describe("initApp()", () => {
 		it("Should have the correct id", () => {
 			assert.equal(button.id, "btnDel");
 		});
+
+		it("Should have the correct value", () => {
+			assert.equal(button.value, "Del");
+		});
 	});
 });
