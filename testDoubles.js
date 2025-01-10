@@ -39,6 +39,7 @@ class FakeUI {
 class MockCalculator {
 	constructor() {
 		this.inputChar = mock.fn();
+		this.deleteChar = mock.fn();
 	}
 }
 
