@@ -10,7 +10,7 @@ describe("initApp()", () => {
 	beforeEach(() => {
 		fakeUI = new FakeUI();
 		mockCalc = new MockCalculator();
-		initApp(fakeUI, mockCalc);
+		initApp(mockCalc, fakeUI);
 	});
 
 	it("Should create primary and secondary displays", () => {
