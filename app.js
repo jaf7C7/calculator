@@ -1,7 +1,7 @@
-function initApp(new_ui) {
-	new_ui.createDisplay("primaryDisplay");
-	new_ui.createDisplay("secondaryDisplay");
-	new_ui.createButton("zeroButton", "0");
+function initApp(ui) {
+	ui.createDisplay("primaryDisplay");
+	ui.createDisplay("secondaryDisplay");
+	ui.createButton("zeroButton", "0");
 }
 
 module.exports = initApp;
