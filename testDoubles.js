@@ -31,8 +31,8 @@ class FakeUI {
 		return this.#displays.find((display) => display.id === id);
 	}
 
-	createButton(id, value) {
-		this.#buttons.push({ id: id, value: value });
+	createButton(id, value, onClick) {
+		this.#buttons.push({ id: id, value: value, onClick: onClick });
 	}
 
 	getButton(id) {

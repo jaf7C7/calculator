@@ -24,9 +24,10 @@ describe("FakeUI", () => {
 
 	it("Should be able to create and fetch button elements", () => {
 		const fakeUI = new FakeUI();
-		fakeUI.createButton("zeroButton", "0");
+		fakeUI.createButton("zeroButton", "0", () => "Click!");
 		const zeroButton = fakeUI.getButton("zeroButton");
 		assert.equal(zeroButton.id, "zeroButton");
 		assert.equal(zeroButton.value, "0");
+		assert.equal(zeroButton.onClick(), "Click!");
 	});
 });
