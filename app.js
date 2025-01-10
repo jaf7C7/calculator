@@ -18,7 +18,9 @@ function initApp(calculator, ui) {
 			calculator.inputChar(value);
 		});
 	});
-	ui.createButton("btnDel", "Del", () => null);
+	ui.createButton("btnDel", "Del", () => {
+		calculator.deleteChar();
+	});
 }
 
 module.exports = initApp;

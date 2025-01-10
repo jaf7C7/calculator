@@ -70,5 +70,11 @@ describe("initApp()", () => {
 		it("Should have the correct value", () => {
 			assert.equal(button.value, "Del");
 		});
+
+		it("Should have the correct callback", () => {
+			button.onClick();
+			assert.equal(mockCalc.deleteChar.mock.callCount(), 1);
+			assert.equal(mockCalc.deleteChar.mock.calls[0].arguments[0], undefined);
+		});
 	});
 });
