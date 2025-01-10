@@ -1,6 +1,7 @@
 function initApp(calculator, ui) {
 	ui.createDisplay("primaryDisplay");
 	ui.createDisplay("secondaryDisplay");
+
 	[
 		{ id: "btn0", value: "0" },
 		{ id: "btn1", value: "1" },
@@ -18,11 +19,14 @@ function initApp(calculator, ui) {
 			calculator.inputChar(value);
 		});
 	});
-	ui.createButton("btnDel", "Del", () => {
-		calculator.deleteChar();
-	});
-	ui.createButton("btnAC", "AC", () => {
-		calculator.clearAll();
+
+	[
+		{ id: "btnDel", value: "Del", onClick: "deleteChar" },
+		{ id: "btnAC", value: "AC", onClick: "clearAll" },
+	].forEach(({ id, value, onClick }) => {
+		ui.createButton(id, value, () => {
+			calculator[onClick]();
+		});
 	});
 }
 
