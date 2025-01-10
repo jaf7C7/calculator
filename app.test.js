@@ -20,12 +20,25 @@ describe("initApp()", () => {
 		assert.equal(secondaryDisplay.id, "secondaryDisplay");
 	});
 
-	it("Should create an input button for number 0", () => {
-		const zeroButton = fakeUI.getButton("zeroButton");
-		zeroButton.onClick();
-		assert.equal(zeroButton.id, "zeroButton");
-		assert.equal(zeroButton.value, "0");
-		assert.equal(mockCalc.inputChar.mock.callCount(), 1);
-		assert.equal(mockCalc.inputChar.mock.calls[0].arguments[0], "0");
+	describe("Should create an input button for number 0", () => {
+		let zeroButton;
+
+		beforeEach(() => {
+			zeroButton = fakeUI.getButton("zeroButton");
+		});
+
+		it("Should have the correct id", () => {
+			assert.equal(zeroButton.id, "zeroButton");
+		});
+
+		it("Should have the correct value", () => {
+			assert.equal(zeroButton.value, "0");
+		});
+
+		it("Should have the correct callback", () => {
+			zeroButton.onClick();
+			assert.equal(mockCalc.inputChar.mock.callCount(), 1);
+			assert.equal(mockCalc.inputChar.mock.calls[0].arguments[0], "0");
+		});
 	});
 });
