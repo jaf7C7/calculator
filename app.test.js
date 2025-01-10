@@ -35,6 +35,11 @@ describe("initApp()", () => {
 		assert.equal(secondaryDisplay.id, "secondaryDisplay");
 	});
 
+	it("Should create an input button for number 0 using the new fakeUI", () => {
+		const zeroButton = fakeUI.getButton("zeroButton");
+		assert.equal(zeroButton.value, "0");
+	});
+
 	it("Should create an input button for number 0", () => {
 		assert.equal(mockUI.createButton.mock.callCount(), 1);
 		assert.equal(mockUI.createButton.mock.calls[0].arguments[0], "0");
