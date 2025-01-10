@@ -43,8 +43,6 @@ class Calculator {
 		this.#operator = "";
 		this.#calculationString = "";
 		this.#updateDisplay();
-		this.#primaryDisplay.update("");
-		this.#secondaryDisplay.update("");
 	}
 
 	#newOperand() {
