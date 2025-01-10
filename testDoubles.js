@@ -1,3 +1,5 @@
+const { mock } = require("node:test");
+
 class FakeDisplay {
 	#content;
 
@@ -40,4 +42,10 @@ class FakeUI {
 	}
 }
 
-module.exports = { FakeDisplay, FakeUI };
+class MockCalculator {
+	constructor() {
+		this.inputChar = mock.fn();
+	}
+}
+
+module.exports = { FakeDisplay, FakeUI, MockCalculator };
