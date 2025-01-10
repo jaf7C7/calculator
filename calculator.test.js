@@ -3,29 +3,14 @@ const { describe, it, beforeEach } = require("node:test");
 
 describe("Calculator", () => {
 	const Calculator = require("./calculator.js");
+	const { FakeDisplay } = require("./testDoubles.js");
 	let calc;
 	let primaryDisplay;
 	let secondaryDisplay;
 
-	class mockDisplay {
-		#content;
-
-		constructor() {
-			this.#content = "";
-		}
-
-		update(str) {
-			this.#content = str;
-		}
-
-		read() {
-			return this.#content;
-		}
-	}
-
 	beforeEach(() => {
-		primaryDisplay = new mockDisplay();
-		secondaryDisplay = new mockDisplay();
+		primaryDisplay = new FakeDisplay();
+		secondaryDisplay = new FakeDisplay();
 		calc = new Calculator(primaryDisplay, secondaryDisplay);
 	});
 
