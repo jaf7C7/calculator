@@ -8,6 +8,11 @@ describe("FakeDisplay", () => {
 		fakeDisplay.update("hello");
 		assert.equal(fakeDisplay.read(), "hello");
 	});
+
+	it("Should return an empty string if it has not been updated", () => {
+		const fakeDisplay = new FakeDisplay();
+		assert.equal(fakeDisplay.read(), "");
+	});
 });
 
 describe("FakeUI", () => {

@@ -1,6 +1,10 @@
 class FakeDisplay {
 	#content;
 
+	constructor() {
+		this.#content = "";
+	}
+
 	update(text) {
 		this.#content = text;
 	}
