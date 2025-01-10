@@ -1,5 +1,5 @@
 # Source me from your project root
-alias e='nano --tabsize=4'
+alias e='nano --tabsize=4 --autoindent'
 t () {
 	npm run lint &&
 	npm run test -- "$@"
