@@ -1,5 +1,5 @@
 # Source me from your project root
-alias e="nano --rcfile='$PWD/.nanorc'"
+alias e='nano --tabsize=4'
 t () {
 	npm run lint &&
 	npm run test -- "$@"
