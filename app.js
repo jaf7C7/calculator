@@ -30,4 +30,4 @@ function initApp(calculator, ui) {
 	});
 }
 
-module.exports = initApp;
+export default initApp;

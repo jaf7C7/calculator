@@ -1,4 +1,4 @@
-const { mock } = require("node:test");
+import { mock } from "node:test";
 
 class FakeDisplay {
 	#content;
@@ -44,4 +44,4 @@ class MockCalculator {
 	}
 }
 
-module.exports = { FakeDisplay, FakeUI, MockCalculator };
+export { FakeDisplay, FakeUI, MockCalculator };

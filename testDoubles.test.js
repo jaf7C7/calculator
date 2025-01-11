@@ -1,6 +1,6 @@
-const assert = require("node:assert");
-const { describe, it, beforeEach } = require("node:test");
-const { FakeDisplay, FakeUI } = require("./testDoubles.js");
+import assert from "node:assert";
+import { describe, it, beforeEach } from "node:test";
+import { FakeDisplay, FakeUI } from "./testDoubles.js";
 
 describe("FakeDisplay", () => {
 	let fakeDisplay;

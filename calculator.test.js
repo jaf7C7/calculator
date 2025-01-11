@@ -1,11 +1,11 @@
-const assert = require("node:assert/strict");
-const { describe, it, beforeEach } = require("node:test");
+import assert from "node:assert/strict";
+import { describe, it, beforeEach } from "node:test";
+import Calculator from "./calculator.js";
+import { FakeDisplay } from "./testDoubles.js";
 
+let primaryDisplay;
 describe("Calculator", () => {
-	const Calculator = require("./calculator.js");
-	const { FakeDisplay } = require("./testDoubles.js");
 	let calc;
-	let primaryDisplay;
 	let secondaryDisplay;
 
 	beforeEach(() => {

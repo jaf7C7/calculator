@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "A simple calculator capable of four incredible operations.",
 	"main": "calculator.js",
+	"type": "module",
 	"scripts": {
 		"test": "node --test",
 		"test-only": "node --test --test-name-pattern",

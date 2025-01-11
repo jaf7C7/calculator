@@ -1,9 +1,9 @@
-const assert = require("node:assert/strict");
-const { describe, it, beforeEach } = require("node:test");
+import assert from "node:assert/strict";
+import { describe, it, beforeEach } from "node:test";
+import initApp from "./app.js";
+import { FakeUI, MockCalculator } from "./testDoubles.js";
 
 describe("initApp()", () => {
-	const initApp = require("./app.js");
-	const { FakeUI, MockCalculator } = require("./testDoubles.js");
 	let fakeUI;
 	let mockCalc;
 
