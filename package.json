@@ -5,11 +5,9 @@
 	"main": "calculator.js",
 	"type": "module",
 	"scripts": {
-		"test": "node --test",
-		"test-only": "node --test --test-name-pattern",
-		"test-cov": "node --test --experimental-test-coverage",
-		"lint": "npx eslint",
-		"format": "npx prettier --write ."
+		"test": ". ./.env && node --test",
+		"lint": ". ./.env && npx eslint",
+		"format": ". ./.env && npx prettier --write ."
 	},
 	"author": "",
 	"license": "ISC",
