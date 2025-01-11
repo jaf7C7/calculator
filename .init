@@ -1,5 +1,12 @@
-# Source me from your project root
-alias e='nano --tabsize=4 --autoindent'
+e () {
+	for _
+	do
+		set -- "$@" "*$_*"
+		shift
+	done
+	nano --tabsize=4 $(git ls-files "$@")
+}
+
 t () {
 	npm run lint &&
 	npm run test -- "$@"
