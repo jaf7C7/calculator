@@ -33,6 +33,7 @@ function initApp(calculator, ui) {
 	[
 		{ id: "btnAdd", value: "+" },
 		{ id: "btnSubtract", value: "-" },
+		{ id: "btnMultiply", value: "*" },
 	].forEach(({ id, value }) => {
 		ui.createButton(id, value, () => {
 			calculator.selectOperation(value);
