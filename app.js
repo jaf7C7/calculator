@@ -29,6 +29,10 @@ function initApp(calculator, ui) {
 			calculator[onClick]();
 		});
 	});
+
+	ui.createButton("btnAdd", "+", () => {
+		calculator.selectOperation("+");
+	});
 }
 
 export default initApp;

@@ -42,6 +42,7 @@ class MockCalculator {
 		this.deleteChar = mock.fn();
 		this.clearAll = mock.fn();
 		this.calculate = mock.fn();
+		this.selectOperation = mock.fn();
 	}
 }
 
