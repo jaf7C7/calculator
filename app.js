@@ -23,6 +23,7 @@ function initApp(calculator, ui) {
 	[
 		{ id: "btnDel", value: "Del", onClick: "deleteChar" },
 		{ id: "btnAC", value: "AC", onClick: "clearAll" },
+		{ id: "btnEquals", value: "=", onClick: "calculate" },
 	].forEach(({ id, value, onClick }) => {
 		ui.createButton(id, value, () => {
 			calculator[onClick]();

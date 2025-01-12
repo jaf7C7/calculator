@@ -34,6 +34,7 @@ describe("initApp()", () => {
 		{ id: "btnDecPt", value: ".", onClick: "inputChar", arg: "." },
 		{ id: "btnDel", value: "Del", onClick: "deleteChar", arg: undefined },
 		{ id: "btnAC", value: "AC", onClick: "clearAll", arg: undefined },
+		{ id: "btnEquals", value: "=", onClick: "calculate", arg: undefined },
 	].forEach(({ id, value, onClick, arg }) => {
 		describe(`Should create a button for value ${value}`, () => {
 			let button;
