@@ -30,8 +30,13 @@ function initApp(calculator, ui) {
 		});
 	});
 
-	ui.createButton("btnAdd", "+", () => {
-		calculator.selectOperation("+");
+	[
+		{ id: "btnAdd", value: "+" },
+		{ id: "btnSubtract", value: "-" },
+	].forEach(({ id, value }) => {
+		ui.createButton(id, value, () => {
+			calculator.selectOperation(value);
+		});
 	});
 }
 
