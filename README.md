@@ -5,6 +5,9 @@ multiplication and division.
 
 [Try it out](https://jaf7c7.github.io/calculator)
 
+Please note the live version is an old prototype, and the code in this
+repo is a rewrite, currently without a front-end.
+
 ## Tech stack:
 
 - HTML5
