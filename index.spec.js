@@ -25,6 +25,20 @@ describe("User Interface", () => {
 		assert.notEqual(0, results.length);
 	});
 
+	it("Should create buttons for user input", async () => {
+		const one = await driver.findElement(By.id("one"));
+		const oneLabel = await one.getAttribute("textContent");
+		assert.equal("1", oneLabel);
+
+		const plus = await driver.findElement(By.id("plus"));
+		const plusLabel = await plus.getAttribute("textContent");
+		assert.equal("+", plusLabel);
+
+		const equals = await driver.findElement(By.id("equals"));
+		const equalsLabel = await equals.getAttribute("textContent");
+		assert.equal("=", equalsLabel);
+	});
+
 	it("Should echo input numbers to the display", async () => {
 		const one = await driver.findElement(By.id("one"));
 		const display = await driver.findElement(By.id("display"));
