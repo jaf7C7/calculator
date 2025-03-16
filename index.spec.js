@@ -1,7 +1,7 @@
 import { Builder, Browser, By } from "selenium-webdriver";
 import { assert } from "chai";
 
-const url = "http://localhost:3000";
+const url = "http://localhost:8080";
 
 describe("User Interface", () => {
 	let driver;
