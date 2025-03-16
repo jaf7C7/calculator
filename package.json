@@ -1,0 +1,19 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "A calculator web app with FOUR operations!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaf7C7/calculator.git"
+  },
+  "author": "jaf7C7",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaf7C7/calculator/issues"
+  },
+  "homepage": "https://github.com/jaf7C7/calculator#readme"
+}
