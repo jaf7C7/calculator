@@ -1,23 +1,23 @@
-function createElement(tagName, id) {
+function createElement(tagName, id, onClick = null) {
 	const element = document.createElement(tagName);
 	element.id = id;
+	if (onClick) {
+		element.addEventListener("click", onClick);
+	}
 	document.body.appendChild(element);
 	return element;
 }
 
 const display = createElement("div", "display");
 
-const one = createElement("button", "one");
-one.addEventListener("click", () => {
+const one = createElement("button", "one", () => {
 	display.textContent += "1";
 });
 
-const plus = createElement("button", "plus");
-plus.addEventListener("click", () => {
+const plus = createElement("button", "plus", () => {
 	display.textContent += "+";
 });
 
-const equals = createElement("button", "equals");
-equals.addEventListener("click", () => {
+const equals = createElement("button", "equals", () => {
 	display.textContent = "2";
 });
