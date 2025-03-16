@@ -8,16 +8,25 @@ function createElement(tagName, id, onClick = null) {
 	return element;
 }
 
+let firstOperand;
+let secondOperand;
+let operation;
 const display = createElement("div", "display");
 
-const one = createElement("button", "one", () => {
+createElement("button", "one", () => {
+	if (!firstOperand) {
+		firstOperand = 1;
+	} else {
+		secondOperand = 1;
+	}
 	display.textContent += "1";
 });
 
-const plus = createElement("button", "plus", () => {
+createElement("button", "plus", () => {
+	operation = (a, b) => a + b;
 	display.textContent += "+";
 });
 
-const equals = createElement("button", "equals", () => {
-	display.textContent = "2";
+createElement("button", "equals", () => {
+	display.textContent = operation(firstOperand, secondOperand);
 });
