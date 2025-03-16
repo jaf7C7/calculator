@@ -32,4 +32,23 @@ describe("User Interface", () => {
 		const displayedText = await display.getAttribute("textContent");
 		assert.equal("1", displayedText);
 	});
+
+	it("Should calculate '1 + 1 = 2' correctly", async () => {
+		const one = await driver.findElement(By.id("one"));
+		const plus = await driver.findElement(By.id("plus"));
+		const equals = await driver.findElement(By.id("equals"));
+		const display = await driver.findElement(By.id("display"));
+
+		one.click();
+		plus.click();
+		one.click();
+		const calculation = await display.getAttribute("textContent");
+
+		assert.equal("1+1", calculation);
+
+		equals.click();
+		const result = await display.getAttribute("textContent");
+
+		assert.equal("2", result);
+	});
 });
