@@ -39,15 +39,15 @@ buttons.forEach(([id, value]) => {
 	createInputButton(id, value);
 });
 
-createElement("button", "plus", "+", () => {
-	operation = (a, b) => a + b;
-	display.textContent += "+";
-});
+function createOperationButton(id, value, _operation) {
+	createElement("button", id, value, () => {
+		operation = _operation;
+		display.textContent += value;
+	});
+}
 
-createElement("button", "times", "*", () => {
-	operation = (a, b) => a * b;
-	display.textContent += "*";
-});
+createOperationButton("plus", "+", (a, b) => a + b);
+createOperationButton("times", "*", (a, b) => a * b);
 
 createElement("button", "equals", "=", () => {
 	display.textContent = operation(firstOperand, secondOperand);
