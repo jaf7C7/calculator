@@ -21,12 +21,15 @@ describe("User Interface", () => {
 	});
 
 	it("Should have a container element with id 'calculator'", async () => {
-		const container = await driver.findElement(By.id("calculator"));
-		assert.notEqual(null, container);
+		const results = await driver.findElements(By.id("calculator"));
+		assert.notEqual(0, results.length);
 	});
 
-	it("Should create a button for the number '1' with id 'one'", async () => {
+	it("Should echo input numbers to the display", async () => {
 		const one = await driver.findElement(By.id("one"));
-		assert.notEqual(null, one);
+		const display = await driver.findElement(By.id("display"));
+		one.click();
+		const displayedText = await display.getAttribute("textContent");
+		assert.equal("1", displayedText);
 	});
 });
