@@ -29,8 +29,14 @@ function createInputButton(id, value) {
 	});
 }
 
-createInputButton("one", 1);
-createInputButton("two", 2);
+const buttons = [
+	["one", 1],
+	["two", 2],
+];
+
+buttons.forEach(([id, value]) => {
+	createInputButton(id, value);
+});
 
 createElement("button", "plus", "+", () => {
 	operation = (a, b) => a + b;
