@@ -1,5 +1,6 @@
-import { Builder, Browser, By } from "selenium-webdriver";
 import { assert } from "chai";
+import { Builder, Browser, By } from "selenium-webdriver";
+import chrome from "selenium-webdriver/chrome.js"; // XXX: Breaks without '.js' extension
 
 const url = "http://localhost:8080";
 
@@ -7,7 +8,10 @@ describe("User Interface", () => {
 	let driver;
 
 	beforeEach(async () => {
-		driver = await new Builder().forBrowser(Browser.CHROME).build();
+		driver = await new Builder()
+			.forBrowser(Browser.CHROME)
+			.setChromeOptions(new chrome.Options().addArguments("--headless=new"))
+			.build();
 		await driver.get(url);
 	});
 
