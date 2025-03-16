@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/jaf7C7/calculator/issues"
   },
-  "homepage": "https://github.com/jaf7C7/calculator#readme"
+  "homepage": "https://github.com/jaf7C7/calculator#readme",
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "http-server": "^14.1.1",
+    "mocha": "^11.1.0",
+    "selenium-webdriver": "^4.29.0"
+  }
 }
