@@ -29,13 +29,13 @@ function createInputButton(id, value) {
 	});
 }
 
-const buttons = [
+const inputButtons = [
 	["one", 1],
 	["two", 2],
 	["five", 5],
 ];
 
-buttons.forEach(([id, value]) => {
+inputButtons.forEach(([id, value]) => {
 	createInputButton(id, value);
 });
 
@@ -46,12 +46,12 @@ function createOperationButton(id, value, _operation) {
 	});
 }
 
-const operators = [
+const operationButtons = [
 	["plus", "+", (a, b) => a + b],
 	["times", "*", (a, b) => a * b],
 ];
 
-operators.forEach(([id, value, _operation]) => {
+operationButtons.forEach(([id, value, _operation]) => {
 	createOperationButton(id, value, _operation);
 });
 
