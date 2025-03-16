@@ -1,3 +1,5 @@
+const container = document.getElementById("calculator");
+
 function createElement(tagName, id, textContent = null, onClick = null) {
 	const element = document.createElement(tagName);
 	element.id = id;
@@ -7,7 +9,7 @@ function createElement(tagName, id, textContent = null, onClick = null) {
 	if (onClick) {
 		element.addEventListener("click", onClick);
 	}
-	document.body.appendChild(element);
+	container.appendChild(element);
 	return element;
 }
 
