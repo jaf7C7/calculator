@@ -8,7 +8,7 @@ multiplication and division.
 - HTML5
 - CSS3
 - JavaScript ES6
-- **TODO**: A front-end testing framework
+- `mocha`, `chai`, `http-server` and `selenium` for testing
 
 ## Behaviour:
 
