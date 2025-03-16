@@ -30,6 +30,10 @@ describe("User Interface", () => {
 		const oneLabel = await one.getAttribute("textContent");
 		assert.equal("1", oneLabel);
 
+		const two = await driver.findElement(By.id("two"));
+		const twoLabel = await two.getAttribute("textContent");
+		assert.equal("2", twoLabel);
+
 		const plus = await driver.findElement(By.id("plus"));
 		const plusLabel = await plus.getAttribute("textContent");
 		assert.equal("+", plusLabel);

@@ -27,6 +27,15 @@ createElement("button", "one", "1", () => {
 	display.textContent += "1";
 });
 
+createElement("button", "two", "2", () => {
+	if (!firstOperand) {
+		firstOperand = 2;
+	} else {
+		secondOperand = 2;
+	}
+	display.textContent += "2";
+});
+
 createElement("button", "plus", "+", () => {
 	operation = (a, b) => a + b;
 	display.textContent += "+";
