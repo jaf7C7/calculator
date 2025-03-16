@@ -1,4 +1,4 @@
-import { Builder, Browser } from "selenium-webdriver";
+import { Builder, Browser, By } from "selenium-webdriver";
 import { assert } from "chai";
 
 const url = "http://localhost:3000";
@@ -18,5 +18,10 @@ describe("User Interface", () => {
 	it("Should have 'Calculator' as the page title", async () => {
 		const title = await driver.getTitle();
 		assert.equal("Calculator", title);
+	});
+
+	it("Should have a container element with id 'calculator'", async () => {
+		const container = await driver.findElement(By.id("calculator"));
+		assert.notEqual(null, container);
 	});
 });
