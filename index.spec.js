@@ -24,4 +24,9 @@ describe("User Interface", () => {
 		const container = await driver.findElement(By.id("calculator"));
 		assert.notEqual(null, container);
 	});
+
+	it("Should create a button for the number '1' with id 'one'", async () => {
+		const one = await driver.findElement(By.id("one"));
+		assert.notEqual(null, one);
+	});
 });
