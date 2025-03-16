@@ -13,13 +13,17 @@ function createElement(tagName, id, textContent = null, onClick = null) {
 	return element;
 }
 
+function createButton(id, value, onClick) {
+	createElement("button", id, value, onClick);
+}
+
 let firstOperand;
 let secondOperand;
 let operation;
 const display = createElement("div", "display");
 
 function createInputButton(id, value) {
-	createElement("button", id, value, () => {
+	createButton(id, value, () => {
 		if (!firstOperand) {
 			firstOperand = value;
 		} else {
@@ -40,7 +44,7 @@ inputButtons.forEach(([id, value]) => {
 });
 
 function createOperationButton(id, value, _operation) {
-	createElement("button", id, value, () => {
+	createButton(id, value, () => {
 		operation = _operation;
 		display.textContent += value;
 	});
@@ -55,6 +59,6 @@ operationButtons.forEach(([id, value, _operation]) => {
 	createOperationButton(id, value, _operation);
 });
 
-createElement("button", "equals", "=", () => {
+createButton("equals", "=", () => {
 	display.textContent = operation(firstOperand, secondOperand);
 });
