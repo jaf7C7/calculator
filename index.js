@@ -46,8 +46,14 @@ function createOperationButton(id, value, _operation) {
 	});
 }
 
-createOperationButton("plus", "+", (a, b) => a + b);
-createOperationButton("times", "*", (a, b) => a * b);
+const operators = [
+	["plus", "+", (a, b) => a + b],
+	["times", "*", (a, b) => a * b],
+];
+
+operators.forEach(([id, value, _operation]) => {
+	createOperationButton(id, value, _operation);
+});
 
 createElement("button", "equals", "=", () => {
 	display.textContent = operation(firstOperand, secondOperand);
