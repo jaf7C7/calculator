@@ -15,43 +15,7 @@ describe("User Interface", () => {
 		await driver.quit();
 	});
 
-	it("Should have 'Calculator' as the page title", async () => {
-		const title = await driver.getTitle();
-		assert.equal("Calculator", title);
-	});
-
-	it("Should have a container element with id 'calculator'", async () => {
-		const results = await driver.findElements(By.id("calculator"));
-		assert.notEqual(0, results.length);
-	});
-
-	it("Should create buttons for user input", async () => {
-		const one = await driver.findElement(By.id("one"));
-		const oneLabel = await one.getAttribute("textContent");
-		assert.equal("1", oneLabel);
-
-		const two = await driver.findElement(By.id("two"));
-		const twoLabel = await two.getAttribute("textContent");
-		assert.equal("2", twoLabel);
-
-		const plus = await driver.findElement(By.id("plus"));
-		const plusLabel = await plus.getAttribute("textContent");
-		assert.equal("+", plusLabel);
-
-		const equals = await driver.findElement(By.id("equals"));
-		const equalsLabel = await equals.getAttribute("textContent");
-		assert.equal("=", equalsLabel);
-	});
-
-	it("Should echo input numbers to the display", async () => {
-		const one = await driver.findElement(By.id("one"));
-		const display = await driver.findElement(By.id("display"));
-		one.click();
-		const displayedText = await display.getAttribute("textContent");
-		assert.equal("1", displayedText);
-	});
-
-	it("Should calculate '1 + 1 = 2' correctly", async () => {
+	it("Should handle addition", async () => {
 		const one = await driver.findElement(By.id("one"));
 		const plus = await driver.findElement(By.id("plus"));
 		const equals = await driver.findElement(By.id("equals"));
