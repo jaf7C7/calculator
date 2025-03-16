@@ -32,6 +32,7 @@ function createInputButton(id, value) {
 const buttons = [
 	["one", 1],
 	["two", 2],
+	["five", 5],
 ];
 
 buttons.forEach(([id, value]) => {
@@ -41,6 +42,11 @@ buttons.forEach(([id, value]) => {
 createElement("button", "plus", "+", () => {
 	operation = (a, b) => a + b;
 	display.textContent += "+";
+});
+
+createElement("button", "times", "*", () => {
+	operation = (a, b) => a * b;
+	display.textContent += "*";
 });
 
 createElement("button", "equals", "=", () => {
