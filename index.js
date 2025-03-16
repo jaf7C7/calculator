@@ -18,23 +18,19 @@ let secondOperand;
 let operation;
 const display = createElement("div", "display");
 
-createElement("button", "one", "1", () => {
-	if (!firstOperand) {
-		firstOperand = 1;
-	} else {
-		secondOperand = 1;
-	}
-	display.textContent += "1";
-});
+function createInputButton(id, value) {
+	createElement("button", id, value, () => {
+		if (!firstOperand) {
+			firstOperand = value;
+		} else {
+			secondOperand = value;
+		}
+		display.textContent += String(value);
+	});
+}
 
-createElement("button", "two", "2", () => {
-	if (!firstOperand) {
-		firstOperand = 2;
-	} else {
-		secondOperand = 2;
-	}
-	display.textContent += "2";
-});
+createInputButton("one", 1);
+createInputButton("two", 2);
 
 createElement("button", "plus", "+", () => {
 	operation = (a, b) => a + b;
