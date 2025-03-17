@@ -4,7 +4,11 @@
 - [x] ~~Initial styling~~
 - [x] ~~Generalise creation of input buttons~~
 - [x] ~~Factor out global variables~~
-- [ ] **Factor out classes (container?) (display?)**
+- [x] ~~Factor out classes (container?) (display?)~~
+- [ ] `AC` button
+- [ ] **`Del` button**
+- [ ] Subtraction
+- [ ] Division
 - [ ] Handle very large numbers (how large?)
 - [ ] Handle very small numbers (how small?)
 - [ ] Separation of concerns
