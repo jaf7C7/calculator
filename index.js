@@ -43,13 +43,16 @@ function createOperationButton(
 	});
 }
 
+function performCalculation(display, calculation) {
+	display.textContent = calculation.operation(
+		calculation.firstOperand, calculation.secondOperand
+	);
+};
+
 function createEqualsButton(container, display, calculation) {
-	const performCalculation = () => {
-		display.textContent = calculation.operation(
-			calculation.firstOperand, calculation.secondOperand
-		);
-	};
-	createButton(container, "equals", "=", performCalculation);
+	createButton(container, "equals", "=", () => {
+		performCalculation(display, calculation);
+	});
 }
 
 function createDisplay(container) {
