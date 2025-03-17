@@ -29,14 +29,6 @@ function selectOperation(display, calculation, _operation, value) {
 	display.textContent += value;
 };
 
-function createOperationButton(
-	container, display, calculation, id, value, _operation
-) {
-	createButton(container, id, value, () => {
-		selectOperation(display, calculation, _operation, value);
-	});
-}
-
 function performCalculation(display, calculation) {
 	display.textContent = calculation.operation(
 		calculation.firstOperand, calculation.secondOperand
@@ -81,7 +73,9 @@ function createApp() {
 	});
 
 	operationButtons.forEach(([id, value, _operation]) => {
-		createOperationButton(container, display, calculation, id, value, _operation);
+		createButton(container, id, value, () => {
+			selectOperation(display, calculation, _operation, value);
+		});
 	});
 
 	createEqualsButton(container, display, calculation);
