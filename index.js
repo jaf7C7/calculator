@@ -43,10 +43,6 @@ function addOperand(calculation, operand) {
 	}
 }
 
-function append(display, value) {
-	display.element.textContent += String(value);
-}
-
 function inputValue(display, calculation, value) {
 	addOperand(calculation, value);
 	display.append(value);
