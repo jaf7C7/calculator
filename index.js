@@ -16,12 +16,6 @@ function createButton(container, id, value, onClick) {
 }
 
 function createApp() {
-	const calculationVariables = {
-		firstOperand: null,
-		secondOperand: null,
-		operation: null,
-	}
-
 	function createInputButton(container, display, calculationVariables, id, value) {
 		createButton(container, id, value, () => {
 			if (!calculationVariables.firstOperand) {
@@ -52,6 +46,12 @@ function createApp() {
 
 	const container = document.getElementById("calculator");
 	const display = createElement(container, "div", "display");
+
+	const calculationVariables = {
+		firstOperand: null,
+		secondOperand: null,
+		operation: null,
+	}
 
 	const inputButtons = [
 		["one", 1],
