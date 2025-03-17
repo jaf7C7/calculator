@@ -1,7 +1,7 @@
 function createApp() {
 	const container = document.getElementById("calculator");
 
-	function createElement(tagName, id, textContent = null, onClick = null) {
+	function createElement(container, tagName, id, textContent = null, onClick = null) {
 		const element = document.createElement(tagName);
 		element.id = id;
 		if (textContent) {
@@ -14,17 +14,17 @@ function createApp() {
 		return element;
 	}
 
-	function createButton(id, value, onClick) {
-		createElement("button", id, value, onClick);
+	function createButton(container, id, value, onClick) {
+		createElement(container, "button", id, value, onClick);
 	}
 
 	let firstOperand;
 	let secondOperand;
 	let operation;
-	const display = createElement("div", "display");
+	const display = createElement(container, "div", "display");
 
-	function createInputButton(id, value) {
-		createButton(id, value, () => {
+	function createInputButton(container, id, value) {
+		createButton(container, id, value, () => {
 			if (!firstOperand) {
 				firstOperand = value;
 			} else {
@@ -41,11 +41,11 @@ function createApp() {
 	];
 
 	inputButtons.forEach(([id, value]) => {
-		createInputButton(id, value);
+		createInputButton(container, id, value);
 	});
 
-	function createOperationButton(id, value, _operation) {
-		createButton(id, value, () => {
+	function createOperationButton(container, id, value, _operation) {
+		createButton(container, id, value, () => {
 			operation = _operation;
 			display.textContent += value;
 		});
@@ -57,10 +57,10 @@ function createApp() {
 	];
 
 	operationButtons.forEach(([id, value, _operation]) => {
-		createOperationButton(id, value, _operation);
+		createOperationButton(container, id, value, _operation);
 	});
 
-	createButton("equals", "=", () => {
+	createButton(container, "equals", "=", () => {
 		display.textContent = operation(firstOperand, secondOperand);
 	});
 }
