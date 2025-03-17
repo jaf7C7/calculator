@@ -25,10 +25,9 @@ function inputValue(display, calculation, value) {
 }
 
 function createInputButton(container, display, calculation, id, value) {
-	const callback = () => {
+	createButton(container, id, value, () => {
 		inputValue(display, calculation, value);
-	};
-	createButton(container, id, value, callback);
+	});
 }
 
 function createOperationButton(
