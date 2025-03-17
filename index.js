@@ -15,12 +15,12 @@ function createButton(container, id, value, onClick) {
 	createElement(container, "button", id, value, onClick);
 }
 
-function createInputButton(container, display, calculationVariables, id, value) {
+function createInputButton(container, display, calculation, id, value) {
 	const inputValue = () => {
-		if (!calculationVariables.firstOperand) {
-			calculationVariables.firstOperand = value;
+		if (!calculation.firstOperand) {
+			calculation.firstOperand = value;
 		} else {
-			calculationVariables.secondOperand = value;
+			calculation.secondOperand = value;
 		}
 		display.textContent += String(value);
 	};
@@ -28,19 +28,19 @@ function createInputButton(container, display, calculationVariables, id, value) 
 }
 
 function createOperationButton(
-	container, display, calculationVariables, id, value, _operation
+	container, display, calculation, id, value, _operation
 ) {
 	const selectOperation = () => {
-		calculationVariables.operation = _operation;
+		calculation.operation = _operation;
 		display.textContent += value;
 	};
 	createButton(container, id, value, selectOperation);
 }
 
-function createEqualsButton(container, display, calculationVariables) {
+function createEqualsButton(container, display, calculation) {
 	const performCalculation = () => {
-		display.textContent = calculationVariables.operation(
-			calculationVariables.firstOperand, calculationVariables.secondOperand
+		display.textContent = calculation.operation(
+			calculation.firstOperand, calculation.secondOperand
 		);
 	};
 	createButton(container, "equals", "=", performCalculation);
@@ -54,7 +54,7 @@ function createApp() {
 	const container = document.getElementById("calculator");
 	const display = createDisplay(container);
 
-	const calculationVariables = {
+	const calculation = {
 		firstOperand: null,
 		secondOperand: null,
 		operation: null,
@@ -72,14 +72,14 @@ function createApp() {
 	];
 
 	inputButtons.forEach(([id, value]) => {
-		createInputButton(container, display, calculationVariables, id, value);
+		createInputButton(container, display, calculation, id, value);
 	});
 
 	operationButtons.forEach(([id, value, _operation]) => {
-		createOperationButton(container, display, calculationVariables, id, value, _operation);
+		createOperationButton(container, display, calculation, id, value, _operation);
 	});
 
-	createEqualsButton(container, display, calculationVariables);
+	createEqualsButton(container, display, calculation);
 }
 
 createApp();
