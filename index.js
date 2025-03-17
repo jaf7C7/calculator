@@ -33,6 +33,10 @@ class Display {
 	append(value) {
 		this.element.textContent += String(value);
 	}
+
+	updateDisplay(value) {
+		this.element.textContent = value
+	}
 }
 
 function addOperand(calculation, operand) {
@@ -59,12 +63,8 @@ function calculate(calculation) {
 	);
 }
 
-function updateDisplay(display, value) {
-	display.element.textContent = value
-}
-
 function performCalculation(display, calculation) {
-	updateDisplay(display, calculate(calculation));
+	display.updateDisplay(calculate(calculation));
 };
 
 function add(a, b) {
