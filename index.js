@@ -16,31 +16,34 @@ function createButton(container, id, value, onClick) {
 }
 
 function createInputButton(container, display, calculationVariables, id, value) {
-	createButton(container, id, value, () => {
+	const inputValue = () => {
 		if (!calculationVariables.firstOperand) {
 			calculationVariables.firstOperand = value;
 		} else {
 			calculationVariables.secondOperand = value;
 		}
 		display.textContent += String(value);
-	});
+	};
+	createButton(container, id, value, inputValue);
 }
 
 function createOperationButton(
 	container, display, calculationVariables, id, value, _operation
 ) {
-	createButton(container, id, value, () => {
+	const selectOperation = () => {
 		calculationVariables.operation = _operation;
 		display.textContent += value;
-	});
+	};
+	createButton(container, id, value, selectOperation);
 }
 
 function createEqualsButton(container, display, calculationVariables) {
-	createButton(container, "equals", "=", () => {
+	const performCalculation = () => {
 		display.textContent = calculationVariables.operation(
 			calculationVariables.firstOperand, calculationVariables.secondOperand
 		);
-	});
+	};
+	createButton(container, "equals", "=", performCalculation);
 }
 
 function createDisplay(container) {
