@@ -16,31 +16,37 @@ function createButton(container, id, value, onClick) {
 }
 
 function createApp() {
-	let firstOperand;
-	let secondOperand;
-	let operation;
+	const calculationVariables = {
+		firstOperand: null,
+		secondOperand: null,
+		operation: null,
+	}
 
-	function createInputButton(container, display, id, value) {
+	function createInputButton(container, display, calculationVariables, id, value) {
 		createButton(container, id, value, () => {
-			if (!firstOperand) {
-				firstOperand = value;
+			if (!calculationVariables.firstOperand) {
+				calculationVariables.firstOperand = value;
 			} else {
-				secondOperand = value;
+				calculationVariables.secondOperand = value;
 			}
 			display.textContent += String(value);
 		});
 	}
 
-	function createOperationButton(container, display, id, value, _operation) {
+	function createOperationButton(
+		container, display, calculationVariables, id, value, _operation
+	) {
 		createButton(container, id, value, () => {
-			operation = _operation;
+			calculationVariables.operation = _operation;
 			display.textContent += value;
 		});
 	}
 
-	function createEqualsButton(container, display) {
+	function createEqualsButton(container, display, calculationVariables) {
 		createButton(container, "equals", "=", () => {
-			display.textContent = operation(firstOperand, secondOperand);
+			display.textContent = calculationVariables.operation(
+				calculationVariables.firstOperand, calculationVariables.secondOperand
+			);
 		});
 	}
 
@@ -59,14 +65,14 @@ function createApp() {
 	];
 
 	inputButtons.forEach(([id, value]) => {
-		createInputButton(container, display, id, value);
+		createInputButton(container, display, calculationVariables, id, value);
 	});
 
 	operationButtons.forEach(([id, value, _operation]) => {
-		createOperationButton(container, display, id, value, _operation);
+		createOperationButton(container, display, calculationVariables, id, value, _operation);
 	});
 
-	createEqualsButton(container, display);
+	createEqualsButton(container, display, calculationVariables);
 }
 
 createApp();
