@@ -33,9 +33,13 @@ function addOperand(calculation, operand) {
 	}
 }
 
+function updateDisplay(display, value) {
+	display.textContent += String(value);
+}
+
 function inputValue(display, calculation, value) {
 	addOperand(calculation, value);
-	display.textContent += String(value);
+	updateDisplay(display, value);
 }
 
 function selectOperation(display, calculation, _operation, value) {
