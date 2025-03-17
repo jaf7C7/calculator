@@ -15,35 +15,35 @@ function createButton(container, id, value, onClick) {
 	createElement(container, "button", id, value, onClick);
 }
 
+function createInputButton(container, display, calculationVariables, id, value) {
+	createButton(container, id, value, () => {
+		if (!calculationVariables.firstOperand) {
+			calculationVariables.firstOperand = value;
+		} else {
+			calculationVariables.secondOperand = value;
+		}
+		display.textContent += String(value);
+	});
+}
+
+function createOperationButton(
+	container, display, calculationVariables, id, value, _operation
+) {
+	createButton(container, id, value, () => {
+		calculationVariables.operation = _operation;
+		display.textContent += value;
+	});
+}
+
+function createEqualsButton(container, display, calculationVariables) {
+	createButton(container, "equals", "=", () => {
+		display.textContent = calculationVariables.operation(
+			calculationVariables.firstOperand, calculationVariables.secondOperand
+		);
+	});
+}
+
 function createApp() {
-	function createInputButton(container, display, calculationVariables, id, value) {
-		createButton(container, id, value, () => {
-			if (!calculationVariables.firstOperand) {
-				calculationVariables.firstOperand = value;
-			} else {
-				calculationVariables.secondOperand = value;
-			}
-			display.textContent += String(value);
-		});
-	}
-
-	function createOperationButton(
-		container, display, calculationVariables, id, value, _operation
-	) {
-		createButton(container, id, value, () => {
-			calculationVariables.operation = _operation;
-			display.textContent += value;
-		});
-	}
-
-	function createEqualsButton(container, display, calculationVariables) {
-		createButton(container, "equals", "=", () => {
-			display.textContent = calculationVariables.operation(
-				calculationVariables.firstOperand, calculationVariables.secondOperand
-			);
-		});
-	}
-
 	const container = document.getElementById("calculator");
 	const display = createElement(container, "div", "display");
 
