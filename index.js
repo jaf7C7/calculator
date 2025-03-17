@@ -64,8 +64,12 @@ function inputValue(display, calculation, value) {
 	display.append(value);
 }
 
-function selectOperation(display, calculation, operation, value) {
+function selectCalculationOperation(calculation, operation) {
 	calculation.operation = operation;
+}
+
+function selectOperation(display, calculation, operation, value) {
+	selectCalculationOperation(calculation, operation);
 	display.append(value);
 };
 
