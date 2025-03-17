@@ -53,6 +53,10 @@ class Calculation {
 			this.secondOperand = operand;
 		}
 	}
+
+	calculate() {
+		return this.operation(this.firstOperand, this.secondOperand);
+	}
 }
 
 function inputValue(display, calculation, value) {
@@ -65,14 +69,8 @@ function selectOperation(display, calculation, operation, value) {
 	display.append(value);
 };
 
-function calculate(calculation) {
-	return calculation.operation(
-		calculation.firstOperand, calculation.secondOperand
-	);
-}
-
 function performCalculation(display, calculation) {
-	display.update(calculate(calculation));
+	display.update(calculation.calculate());
 };
 
 function add(a, b) {
