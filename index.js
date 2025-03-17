@@ -63,10 +63,6 @@ class Calculation {
 	}
 }
 
-function calculate(display, calculation) {
-	display.update(calculation.calculate());
-};
-
 function add(a, b) {
 	return a + b;
 }
@@ -106,7 +102,7 @@ function createApp() {
 	});
 
 	container.createButton("equals", "=", () => {
-		calculate(display, calculation);
+		display.update(calculation.calculate());
 	});
 }
 
