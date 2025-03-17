@@ -35,12 +35,6 @@ function performCalculation(display, calculation) {
 	);
 };
 
-function createEqualsButton(container, display, calculation) {
-	createButton(container, "equals", "=", () => {
-		performCalculation(display, calculation);
-	});
-}
-
 function createDisplay(container) {
 	return createElement(container, "div", "display");
 }
@@ -78,7 +72,9 @@ function createApp() {
 		});
 	});
 
-	createEqualsButton(container, display, calculation);
+	createButton(container, "equals", "=", () => {
+		performCalculation(display, calculation);
+	});
 }
 
 createApp();
