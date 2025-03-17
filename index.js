@@ -29,6 +29,10 @@ class Display {
 	constructor(element) {
 		this.element = element;
 	}
+
+	appendDisplay(value) {
+		this.element.textContent += String(value);
+	}
 }
 
 function addOperand(calculation, operand) {
@@ -45,7 +49,7 @@ function appendDisplay(display, value) {
 
 function inputValue(display, calculation, value) {
 	addOperand(calculation, value);
-	appendDisplay(display, value);
+	display.appendDisplay(value);
 }
 
 function selectOperation(display, calculation, operation, value) {
