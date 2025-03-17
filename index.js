@@ -73,7 +73,7 @@ function selectOperation(display, calculation, operation, value) {
 	display.append(value);
 };
 
-function performCalculation(display, calculation) {
+function calculate(display, calculation) {
 	display.update(calculation.calculate());
 };
 
@@ -114,7 +114,7 @@ function createApp() {
 	});
 
 	container.createButton("equals", "=", () => {
-		performCalculation(display, calculation);
+		calculate(display, calculation);
 	});
 }
 
