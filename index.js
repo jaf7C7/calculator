@@ -54,6 +54,10 @@ class Calculation {
 		}
 	}
 
+	selectCalculationOperation(operation) {
+		this.operation = operation;
+	}
+
 	calculate() {
 		return this.operation(this.firstOperand, this.secondOperand);
 	}
@@ -64,12 +68,8 @@ function inputValue(display, calculation, value) {
 	display.append(value);
 }
 
-function selectCalculationOperation(calculation, operation) {
-	calculation.operation = operation;
-}
-
 function selectOperation(display, calculation, operation, value) {
-	selectCalculationOperation(calculation, operation);
+	calculation.selectCalculationOperation(operation);
 	display.append(value);
 };
 
