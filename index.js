@@ -68,11 +68,6 @@ function addOperand(display, calculation, value) {
 	display.append(value);
 }
 
-function selectOperation(display, calculation, operation, value) {
-	calculation.selectOperation(operation);
-	display.append(value);
-};
-
 function calculate(display, calculation) {
 	display.update(calculation.calculate());
 };
@@ -109,7 +104,8 @@ function createApp() {
 
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			selectOperation(display, calculation, operation, value);
+			calculation.selectOperation(operation);
+			display.append(value);
 		});
 	});
 
