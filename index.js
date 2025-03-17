@@ -54,7 +54,7 @@ function inputValue(display, calculation, value) {
 
 function selectOperation(display, calculation, operation, value) {
 	calculation.operation = operation;
-	display.element.textContent += value;
+	display.append(value);
 };
 
 function calculate(calculation) {
