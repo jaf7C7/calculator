@@ -53,8 +53,12 @@ function calculate(calculation) {
 	);
 }
 
+function updateDisplay(display, value) {
+	display.textContent = value
+}
+
 function performCalculation(display, calculation) {
-	display.textContent = calculate(calculation);
+	updateDisplay(display, calculate(calculation));
 };
 
 function add(a, b) {
