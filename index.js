@@ -21,7 +21,13 @@ class Container {
 	}
 
 	createDisplay() {
-		return this.createElement("div", "display");
+		return new Display(this.createElement("div", "display"));
+	}
+}
+
+class Display {
+	constructor(element) {
+		this.element = element;
 	}
 }
 
@@ -34,7 +40,7 @@ function addOperand(calculation, operand) {
 }
 
 function appendDisplay(display, value) {
-	display.textContent += String(value);
+	display.element.textContent += String(value);
 }
 
 function inputValue(display, calculation, value) {
@@ -44,7 +50,7 @@ function inputValue(display, calculation, value) {
 
 function selectOperation(display, calculation, operation, value) {
 	calculation.operation = operation;
-	display.textContent += value;
+	display.element.textContent += value;
 };
 
 function calculate(calculation) {
@@ -54,7 +60,7 @@ function calculate(calculation) {
 }
 
 function updateDisplay(display, value) {
-	display.textContent = value
+	display.element.textContent = value
 }
 
 function performCalculation(display, calculation) {
