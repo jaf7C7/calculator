@@ -17,13 +17,13 @@ function createButton(container, id, value, onClick) {
 
 function createApp() {
 	const container = document.getElementById("calculator");
+	const display = createElement(container, "div", "display");
 
 	let firstOperand;
 	let secondOperand;
 	let operation;
-	const display = createElement(container, "div", "display");
 
-	function createInputButton(container, id, value) {
+	function createInputButton(container, display, id, value) {
 		createButton(container, id, value, () => {
 			if (!firstOperand) {
 				firstOperand = value;
@@ -41,7 +41,7 @@ function createApp() {
 	];
 
 	inputButtons.forEach(([id, value]) => {
-		createInputButton(container, id, value);
+		createInputButton(container, display, id, value);
 	});
 
 	function createOperationButton(container, id, value, _operation) {
