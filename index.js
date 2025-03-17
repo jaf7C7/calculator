@@ -39,6 +39,14 @@ function createDisplay(container) {
 	return createElement(container, "div", "display");
 }
 
+function add(a, b) {
+	return a + b;
+}
+
+function multiply(a, b) {
+	return a * b;
+}
+
 function createApp() {
 	const container = document.getElementById("calculator");
 	const display = createDisplay(container);
@@ -56,8 +64,8 @@ function createApp() {
 	];
 
 	const operationButtons = [
-		["plus", "+", (a, b) => a + b],
-		["times", "*", (a, b) => a * b],
+		["plus", "+", add],
+		["times", "*", multiply],
 	];
 
 	inputButtons.forEach(([id, value]) => {
