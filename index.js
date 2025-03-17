@@ -43,9 +43,13 @@ function createEqualsButton(container, display, calculationVariables) {
 	});
 }
 
+function createDisplay(container) {
+	return createElement(container, "div", "display");
+}
+
 function createApp() {
 	const container = document.getElementById("calculator");
-	const display = createElement(container, "div", "display");
+	const display = createDisplay(container);
 
 	const calculationVariables = {
 		firstOperand: null,
