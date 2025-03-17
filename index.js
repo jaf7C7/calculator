@@ -63,7 +63,7 @@ class Calculation {
 	}
 }
 
-function inputValue(display, calculation, value) {
+function addOperand(display, calculation, value) {
 	calculation.addOperand(value);
 	display.append(value);
 }
@@ -103,7 +103,7 @@ function createApp() {
 
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
-			inputValue(display, calculation, value);
+			addOperand(display, calculation, value);
 		});
 	});
 
