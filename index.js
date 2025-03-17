@@ -1,18 +1,24 @@
-function createElement(container, tagName, id, textContent = null, onClick = null) {
-	const element = document.createElement(tagName);
-	element.id = id;
-	if (textContent) {
-		element.textContent = textContent;
+class Container {
+	constructor(element) {
+		this.element = element;
 	}
-	if (onClick) {
-		element.addEventListener("click", onClick);
+
+	createElement(tagName, id, textContent = null, onClick = null) {
+		const element = document.createElement(tagName);
+		element.id = id;
+		if (textContent) {
+			element.textContent = textContent;
+		}
+		if (onClick) {
+			element.addEventListener("click", onClick);
+		}
+		this.element.appendChild(element);
+		return element;
 	}
-	container.appendChild(element);
-	return element;
 }
 
 function createButton(container, id, value, onClick) {
-	createElement(container, "button", id, value, onClick);
+	container.createElement("button", id, value, onClick);
 }
 
 function inputValue(display, calculation, value) {
@@ -36,7 +42,7 @@ function performCalculation(display, calculation) {
 };
 
 function createDisplay(container) {
-	return createElement(container, "div", "display");
+	return container.createElement("div", "display");
 }
 
 function add(a, b) {
@@ -48,7 +54,7 @@ function multiply(a, b) {
 }
 
 function createApp() {
-	const container = document.getElementById("calculator");
+	const container = new Container(document.getElementById("calculator"));
 	const display = createDisplay(container);
 
 	const calculation = {
