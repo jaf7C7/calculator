@@ -60,9 +60,13 @@ function createApp() {
 		createOperationButton(container, id, value, _operation);
 	});
 
-	createButton(container, "equals", "=", () => {
-		display.textContent = operation(firstOperand, secondOperand);
-	});
+	function createEqualsButton(container, display) {
+		createButton(container, "equals", "=", () => {
+			display.textContent = operation(firstOperand, secondOperand);
+		});
+	}
+
+	createEqualsButton(container, display);
 }
 
 createApp();
