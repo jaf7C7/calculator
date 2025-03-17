@@ -25,12 +25,16 @@ class Container {
 	}
 }
 
-function inputValue(display, calculation, value) {
+function addOperand(calculation, operand) {
 	if (!calculation.firstOperand) {
-		calculation.firstOperand = value;
+		calculation.firstOperand = operand;
 	} else {
-		calculation.secondOperand = value;
+		calculation.secondOperand = operand;
 	}
+}
+
+function inputValue(display, calculation, value) {
+	addOperand(calculation, value);
 	display.textContent += String(value);
 }
 
