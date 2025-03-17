@@ -44,7 +44,7 @@ function createApp() {
 		createInputButton(container, display, id, value);
 	});
 
-	function createOperationButton(container, id, value, _operation) {
+	function createOperationButton(container, display, id, value, _operation) {
 		createButton(container, id, value, () => {
 			operation = _operation;
 			display.textContent += value;
@@ -57,7 +57,7 @@ function createApp() {
 	];
 
 	operationButtons.forEach(([id, value, _operation]) => {
-		createOperationButton(container, id, value, _operation);
+		createOperationButton(container, display, id, value, _operation);
 	});
 
 	function createEqualsButton(container, display) {
