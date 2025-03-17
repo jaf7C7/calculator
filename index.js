@@ -42,8 +42,8 @@ function inputValue(display, calculation, value) {
 	appendDisplay(display, value);
 }
 
-function selectOperation(display, calculation, _operation, value) {
-	calculation.operation = _operation;
+function selectOperation(display, calculation, operation, value) {
+	calculation.operation = operation;
 	display.textContent += value;
 };
 
@@ -92,9 +92,9 @@ function createApp() {
 		});
 	});
 
-	operationButtons.forEach(([id, value, _operation]) => {
+	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			selectOperation(display, calculation, _operation, value);
+			selectOperation(display, calculation, operation, value);
 		});
 	});
 
