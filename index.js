@@ -15,16 +15,20 @@ function createButton(container, id, value, onClick) {
 	createElement(container, "button", id, value, onClick);
 }
 
+function inputValue(display, calculation, value) {
+	if (!calculation.firstOperand) {
+		calculation.firstOperand = value;
+	} else {
+		calculation.secondOperand = value;
+	}
+	display.textContent += String(value);
+}
+
 function createInputButton(container, display, calculation, id, value) {
-	const inputValue = () => {
-		if (!calculation.firstOperand) {
-			calculation.firstOperand = value;
-		} else {
-			calculation.secondOperand = value;
-		}
-		display.textContent += String(value);
+	const callback = () => {
+		inputValue(display, calculation, value);
 	};
-	createButton(container, id, value, inputValue);
+	createButton(container, id, value, callback);
 }
 
 function createOperationButton(
