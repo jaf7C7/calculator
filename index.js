@@ -24,12 +24,6 @@ function inputValue(display, calculation, value) {
 	display.textContent += String(value);
 }
 
-function createInputButton(container, display, calculation, id, value) {
-	createButton(container, id, value, () => {
-		inputValue(display, calculation, value);
-	});
-}
-
 function selectOperation(display, calculation, _operation, value) {
 	calculation.operation = _operation;
 	display.textContent += value;
@@ -81,7 +75,9 @@ function createApp() {
 	];
 
 	inputButtons.forEach(([id, value]) => {
-		createInputButton(container, display, calculation, id, value);
+		createButton(container, id, value, () => {
+			inputValue(display, calculation, value);
+		});
 	});
 
 	operationButtons.forEach(([id, value, _operation]) => {
