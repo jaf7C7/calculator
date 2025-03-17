@@ -1,22 +1,22 @@
+function createElement(container, tagName, id, textContent = null, onClick = null) {
+	const element = document.createElement(tagName);
+	element.id = id;
+	if (textContent) {
+		element.textContent = textContent;
+	}
+	if (onClick) {
+		element.addEventListener("click", onClick);
+	}
+	container.appendChild(element);
+	return element;
+}
+
+function createButton(container, id, value, onClick) {
+	createElement(container, "button", id, value, onClick);
+}
+
 function createApp() {
 	const container = document.getElementById("calculator");
-
-	function createElement(container, tagName, id, textContent = null, onClick = null) {
-		const element = document.createElement(tagName);
-		element.id = id;
-		if (textContent) {
-			element.textContent = textContent;
-		}
-		if (onClick) {
-			element.addEventListener("click", onClick);
-		}
-		container.appendChild(element);
-		return element;
-	}
-
-	function createButton(container, id, value, onClick) {
-		createElement(container, "button", id, value, onClick);
-	}
 
 	let firstOperand;
 	let secondOperand;
