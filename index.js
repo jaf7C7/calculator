@@ -34,7 +34,7 @@ class Display {
 		this.element.textContent += String(value);
 	}
 
-	updateDisplay(value) {
+	update(value) {
 		this.element.textContent = value
 	}
 }
@@ -64,7 +64,7 @@ function calculate(calculation) {
 }
 
 function performCalculation(display, calculation) {
-	display.updateDisplay(calculate(calculation));
+	display.update(calculate(calculation));
 };
 
 function add(a, b) {
