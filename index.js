@@ -30,7 +30,7 @@ class Display {
 		this.element = element;
 	}
 
-	appendDisplay(value) {
+	append(value) {
 		this.element.textContent += String(value);
 	}
 }
@@ -43,13 +43,13 @@ function addOperand(calculation, operand) {
 	}
 }
 
-function appendDisplay(display, value) {
+function append(display, value) {
 	display.element.textContent += String(value);
 }
 
 function inputValue(display, calculation, value) {
 	addOperand(calculation, value);
-	display.appendDisplay(value);
+	display.append(value);
 }
 
 function selectOperation(display, calculation, operation, value) {
