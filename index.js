@@ -45,18 +45,18 @@ class Calculation {
 		this.secondOperand = null;
 		this.operation = null;
 	}
-}
 
-function addOperand(calculation, operand) {
-	if (!calculation.firstOperand) {
-		calculation.firstOperand = operand;
-	} else {
-		calculation.secondOperand = operand;
+	addOperand(operand) {
+		if (!this.firstOperand) {
+			this.firstOperand = operand;
+		} else {
+			this.secondOperand = operand;
+		}
 	}
 }
 
 function inputValue(display, calculation, value) {
-	addOperand(calculation, value);
+	calculation.addOperand(value);
 	display.append(value);
 }
 
