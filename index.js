@@ -19,6 +19,10 @@ class Container {
 	createButton(id, value, onClick) {
 		this.createElement("button", id, value, onClick);
 	}
+
+	createDisplay() {
+		return this.createElement("div", "display");
+	}
 }
 
 function inputValue(display, calculation, value) {
@@ -41,10 +45,6 @@ function performCalculation(display, calculation) {
 	);
 };
 
-function createDisplay(container) {
-	return container.createElement("div", "display");
-}
-
 function add(a, b) {
 	return a + b;
 }
@@ -55,7 +55,7 @@ function multiply(a, b) {
 
 function createApp() {
 	const container = new Container(document.getElementById("calculator"));
-	const display = createDisplay(container);
+	const display = container.createDisplay();
 
 	const calculation = {
 		firstOperand: null,
