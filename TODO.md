@@ -5,10 +5,11 @@
 - [x] ~~Generalise creation of input buttons~~
 - [x] ~~Factor out global variables~~
 - [x] ~~Factor out classes (container?) (display?)~~
-- [ ] `AC` button
-- [ ] **`Del` button**
+- [ ] **`AC` button**
+- [ ] `Del` button
 - [ ] Subtraction
 - [ ] Division
+- [ ] Calculation chaining
 - [ ] Handle very large numbers (how large?)
 - [ ] Handle very small numbers (how small?)
 - [ ] Separation of concerns
