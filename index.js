@@ -39,6 +39,14 @@ class Display {
 	}
 }
 
+class Calculation {
+	constructor() {
+		this.firstOperand = null;
+		this.secondOperand = null;
+		this.operation = null;
+	}
+}
+
 function addOperand(calculation, operand) {
 	if (!calculation.firstOperand) {
 		calculation.firstOperand = operand;
@@ -78,12 +86,7 @@ function multiply(a, b) {
 function createApp() {
 	const container = new Container(document.getElementById("calculator"));
 	const display = container.createDisplay();
-
-	const calculation = {
-		firstOperand: null,
-		secondOperand: null,
-		operation: null,
-	}
+	const calculation = new Calculation();
 
 	const inputButtons = [
 		["one", 1],
