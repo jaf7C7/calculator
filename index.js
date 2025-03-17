@@ -15,10 +15,10 @@ class Container {
 		this.element.appendChild(element);
 		return element;
 	}
-}
 
-function createButton(container, id, value, onClick) {
-	container.createElement("button", id, value, onClick);
+	createButton(id, value, onClick) {
+		this.createElement("button", id, value, onClick);
+	}
 }
 
 function inputValue(display, calculation, value) {
@@ -75,18 +75,18 @@ function createApp() {
 	];
 
 	inputButtons.forEach(([id, value]) => {
-		createButton(container, id, value, () => {
+		container.createButton(id, value, () => {
 			inputValue(display, calculation, value);
 		});
 	});
 
 	operationButtons.forEach(([id, value, _operation]) => {
-		createButton(container, id, value, () => {
+		container.createButton(id, value, () => {
 			selectOperation(display, calculation, _operation, value);
 		});
 	});
 
-	createButton(container, "equals", "=", () => {
+	container.createButton("equals", "=", () => {
 		performCalculation(display, calculation);
 	});
 }
