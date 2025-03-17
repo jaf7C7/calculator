@@ -30,14 +30,17 @@ function createInputButton(container, display, calculation, id, value) {
 	});
 }
 
+function selectOperation(display, calculation, _operation, value) {
+	calculation.operation = _operation;
+	display.textContent += value;
+};
+
 function createOperationButton(
 	container, display, calculation, id, value, _operation
 ) {
-	const selectOperation = () => {
-		calculation.operation = _operation;
-		display.textContent += value;
-	};
-	createButton(container, id, value, selectOperation);
+	createButton(container, id, value, () => {
+		selectOperation(display, calculation, _operation, value);
+	});
 }
 
 function createEqualsButton(container, display, calculation) {
