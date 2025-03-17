@@ -47,10 +47,14 @@ function selectOperation(display, calculation, _operation, value) {
 	display.textContent += value;
 };
 
-function performCalculation(display, calculation) {
-	display.textContent = calculation.operation(
+function calculate(calculation) {
+	return calculation.operation(
 		calculation.firstOperand, calculation.secondOperand
 	);
+}
+
+function performCalculation(display, calculation) {
+	display.textContent = calculate(calculation);
 };
 
 function add(a, b) {
