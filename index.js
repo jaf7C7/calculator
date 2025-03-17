@@ -54,7 +54,7 @@ class Calculation {
 		}
 	}
 
-	selectCalculationOperation(operation) {
+	selectOperation(operation) {
 		this.operation = operation;
 	}
 
@@ -69,7 +69,7 @@ function inputValue(display, calculation, value) {
 }
 
 function selectOperation(display, calculation, operation, value) {
-	calculation.selectCalculationOperation(operation);
+	calculation.selectOperation(operation);
 	display.append(value);
 };
 
