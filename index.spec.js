@@ -49,13 +49,13 @@ describe("User Interface", () => {
 		two.click();
 		times.click();
 		two.click();
-		const calculation = await display.getAttribute("textContent");
 
+		const calculation = await display.getAttribute("textContent");
 		assert.equal("2*2", calculation);
 
 		equals.click();
-		const result = await display.getAttribute("textContent");
 
+		const result = await display.getAttribute("textContent");
 		assert.equal("4", result);
 	});
 
@@ -68,8 +68,8 @@ describe("User Interface", () => {
 		one.click();
 		equals.click();
 		allClear.click();
-		const result = await display.getAttribute("textContent");
 
+		const result = await display.getAttribute("textContent");
 		assert.equal("", result);
 	});
 
@@ -82,6 +82,7 @@ describe("User Interface", () => {
 		plus.click();
 		one.click();
 		equals.click();
+
 		allClear.click();
 
 		two.click();
@@ -90,7 +91,6 @@ describe("User Interface", () => {
 		equals.click();
 
 		const result = await display.getAttribute("textContent");
-
 		assert.equal("4", result);
 	});
 });
