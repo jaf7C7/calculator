@@ -106,4 +106,18 @@ describe("User Interface", () => {
 		const result = await display.getAttribute("textContent");
 		assert.equal("12", result);
 	});
+
+	it("Should be able to delete a digit from the current operand", async () => {
+		const del = await driver.findElement(By.id("delete"));
+		const plus = await driver.findElement(By.id("plus"));
+
+		one.click();
+		plus.click();
+		one.click();
+		del.click();
+		two.click();
+
+		const calculation = await display.getAttribute("textContent");
+		assert.equal("1+2", calculation);
+	});
 });

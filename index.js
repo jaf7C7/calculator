@@ -30,6 +30,10 @@ class Display {
 		this.element = element;
 	}
 
+	read() {
+		return this.element.textContent;
+	}
+
 	append(value) {
 		this.element.textContent += String(value);
 	}
@@ -113,6 +117,11 @@ function createApp() {
 	container.createButton("allClear", "AC", () => {
 		calculation = new Calculation();
 		display.update("");
+	});
+
+	container.createButton("delete", "Del", () => {
+		calculation.currentOperand = calculation.currentOperand.slice(0, -1);
+		display.update(display.read().slice(0, -1));
 	});
 }
 
