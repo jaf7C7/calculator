@@ -15,3 +15,5 @@
 - [ ] Separation of concerns
 - [ ] Make tests faster?
 - [ ] Floating point numbers
+- [ ] Theme switcher
+- [ ] `i` in a circle in bottom left, which pops up some project information when clicked
