@@ -104,6 +104,10 @@ function createApp() {
 	container.createButton("equals", "=", () => {
 		display.update(calculation.calculate());
 	});
+
+	container.createButton("allClear", "AC", () => {
+		display.update("");
+	});
 }
 
 createApp();
