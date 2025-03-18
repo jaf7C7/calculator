@@ -51,23 +51,23 @@ class Calculation {
 		this.currentOperand += value;
 	}
 
-	addOperand(operand) {
+	addOperand() {
+		const operand = Number(this.currentOperand);
 		if (!this.firstOperand) {
 			this.firstOperand = operand;
 		} else {
 			this.secondOperand = operand;
 		}
+		this.currentOperand = "";
 	}
 
 	selectOperation(operation) {
-		this.addOperand(Number(this.currentOperand));
-		this.currentOperand = "";
+		this.addOperand();
 		this.operation = operation;
 	}
 
 	calculate() {
-		this.addOperand(Number(this.currentOperand));
-		this.currentOperand = "";
+		this.addOperand();
 		return this.operation(this.firstOperand, this.secondOperand);
 	}
 }
