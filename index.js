@@ -44,6 +44,11 @@ class Calculation {
 		this.firstOperand = null;
 		this.secondOperand = null;
 		this.operation = null;
+		this.currentOperand = "";
+	}
+
+	appendToCurrentOperand(value) {
+		this.currentOperand += value;
 	}
 
 	addOperand(operand) {
@@ -55,10 +60,14 @@ class Calculation {
 	}
 
 	selectOperation(operation) {
+		this.addOperand(Number(this.currentOperand));
+		this.currentOperand = "";
 		this.operation = operation;
 	}
 
 	calculate() {
+		this.addOperand(Number(this.currentOperand));
+		this.currentOperand = "";
 		return this.operation(this.firstOperand, this.secondOperand);
 	}
 }
@@ -89,7 +98,7 @@ function createApp() {
 
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
-			calculation.addOperand(value);
+			calculation.appendToCurrentOperand(value);
 			display.append(value);
 		});
 	});

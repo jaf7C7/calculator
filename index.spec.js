@@ -93,4 +93,17 @@ describe("User Interface", () => {
 		const result = await display.getAttribute("textContent");
 		assert.equal("4", result);
 	});
+
+	it("Should handle multi-digit operands", async () => {
+		const plus = await driver.findElement(By.id("plus"));
+
+		one.click();
+		one.click();
+		plus.click();
+		one.click();
+		equals.click();
+
+		const result = await display.getAttribute("textContent");
+		assert.equal("12", result);
+	});
 });
