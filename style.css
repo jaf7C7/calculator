@@ -1,10 +1,13 @@
+#calculator * {
+	font-family: monospace;
+	font-size: 32px;
+}
+
 #calculator {
 	background-color: #efefef;
 	border-radius: 5px;
 	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 	display: grid;
-	font-family: monospace;
-	font-size: 32px;
 	grid-gap: 2px;
 	grid-template-columns: repeat(4, 1fr);
 	margin: 1rem;
