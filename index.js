@@ -47,7 +47,7 @@ class Calculation {
 		this.currentOperand = "";
 	}
 
-	appendToCurrentOperand(value) {
+	updateOperand(value) {
 		this.currentOperand += value;
 	}
 
@@ -98,7 +98,7 @@ function createApp() {
 
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
-			calculation.appendToCurrentOperand(value);
+			calculation.updateOperand(value);
 			display.append(value);
 		});
 	});
