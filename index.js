@@ -51,7 +51,7 @@ class Calculation {
 		this.currentOperand += value;
 	}
 
-	addOperand() {
+	saveOperand() {
 		const operand = Number(this.currentOperand);
 		if (!this.firstOperand) {
 			this.firstOperand = operand;
@@ -62,12 +62,12 @@ class Calculation {
 	}
 
 	selectOperation(operation) {
-		this.addOperand();
+		this.saveOperand();
 		this.operation = operation;
 	}
 
 	calculate() {
-		this.addOperand();
+		this.saveOperand();
 		return this.operation(this.firstOperand, this.secondOperand);
 	}
 }
