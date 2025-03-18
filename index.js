@@ -74,7 +74,7 @@ function multiply(a, b) {
 function createApp() {
 	const container = new Container(document.getElementById("calculator"));
 	const display = container.createDisplay();
-	const calculation = new Calculation();
+	let calculation = new Calculation();
 
 	const inputButtons = [
 		["one", 1],
@@ -106,6 +106,7 @@ function createApp() {
 	});
 
 	container.createButton("allClear", "AC", () => {
+		calculation = new Calculation();
 		display.update("");
 	});
 }

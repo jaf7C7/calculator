@@ -72,4 +72,25 @@ describe("User Interface", () => {
 
 		assert.equal("", result);
 	});
+
+	it("Should handle consecutive calculations", async () => {
+		const plus = await driver.findElement(By.id("plus"));
+		const times = await driver.findElement(By.id("times"));
+		const allClear = await driver.findElement(By.id("allClear"));
+
+		one.click();
+		plus.click();
+		one.click();
+		equals.click();
+		allClear.click();
+
+		two.click();
+		times.click();
+		two.click();
+		equals.click();
+
+		const result = await display.getAttribute("textContent");
+
+		assert.equal("4", result);
+	});
 });
