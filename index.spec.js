@@ -44,6 +44,22 @@ describe("User Interface", () => {
 		assert.equal("2", result);
 	});
 
+	it("Should handle subtraction", async () => {
+		const minus = await driver.findElement(By.id("minus"));
+
+		one.click();
+		minus.click();
+		one.click();
+
+		const calculation = await display.getAttribute("textContent");
+		assert.equal("1-1", calculation);
+
+		equals.click();
+
+		const result = await display.getAttribute("textContent");
+		assert.equal("0", result);
+	});
+
 	it("Should handle multiplication", async () => {
 		const times = await driver.findElement(By.id("times"));
 

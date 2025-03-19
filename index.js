@@ -76,6 +76,10 @@ function add(a, b) {
 	return a + b;
 }
 
+function subtract(a, b) {
+	return a - b;
+}
+
 function multiply(a, b) {
 	return a * b;
 }
@@ -104,8 +108,9 @@ function createApp() {
 
 	const operationButtons = [
 		["plus", "+", add],
+		["minus", "-", subtract],
 		["times", "*", multiply],
-		["divide", "/", divide]
+		["divide", "/", divide],
 	];
 
 	inputButtons.forEach(([id, value]) => {
