@@ -120,7 +120,7 @@ function createApp() {
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
 			calculation.currentOperand += value;
-			if (calculation.currentOperand === "1111111")
+			if (calculation.currentOperand.length > 3)
 				display.update(formatNumber(calculation.currentOperand));
 			else
 				display.append(value);
