@@ -40,3 +40,7 @@
 #equals {
 	grid-column: span 2;
 }
+
+#allClear {
+	grid-column: span 2;
+}
