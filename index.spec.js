@@ -142,4 +142,12 @@ describe("User Interface", () => {
 		const calculation = await display.getAttribute("textContent");
 		assert.equal("1+2", calculation);
 	});
+
+	it("Should display large numbers with commas for readability", async () => {
+		for (let i = 0; i < 7; i++) {
+			one.click();
+		}
+		const currentOperand = await display.getAttribute("textContent");
+		assert.equal("1,111,111", currentOperand);
+	});
 });

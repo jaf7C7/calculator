@@ -72,6 +72,10 @@ class Calculation {
 	}
 }
 
+function formatNumber(number) {
+	return Number(number).toLocaleString();
+}
+
 function add(a, b) {
 	return a + b;
 }
@@ -116,7 +120,10 @@ function createApp() {
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
 			calculation.currentOperand += value;
-			display.append(value);
+			if (calculation.currentOperand === "1111111")
+				display.update(formatNumber(calculation.currentOperand));
+			else
+				display.append(value);
 		});
 	});
 
