@@ -7,14 +7,15 @@
 - [x] ~~Factor out classes (container?) (display?)~~
 - [x] ~~`AC` button~~
 - [x] ~~`Del` button~~
-- [ ] Subtraction
-- [ ] Division
+- [x] ~~Subtraction~~
+- [x] ~~Division~~
+- [ ] **Handle very large numbers (how large?)**
+- [ ] Handle very small numbers (how small?)
+- [ ] Floating point numbers
+- [ ] Negative numbers
 - [ ] Calculation chaining
 - [ ] Secondary display
-- [ ] Handle very large numbers (how large?)
-- [ ] Handle very small numbers (how small?)
 - [ ] Separation of concerns
-- [ ] Make tests faster?
-- [ ] Floating point numbers
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
+- [ ] Make tests faster?
