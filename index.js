@@ -49,7 +49,7 @@ class Calculation {
 		this.secondOperand = null;
 		this.operation = null;
 		this.currentOperand = "";
-		this.operator = "";
+		this.operatorChar = "";
 	}
 
 	inputValue(value) {
@@ -80,7 +80,7 @@ class Calculation {
 		return [
 			this.firstOperand || this.currentOperand,
 			this.secondOperand || this.currentOperand,
-		].map((e) => Number(e).toLocaleString()).join(this.operator);
+		].map((e) => Number(e).toLocaleString()).join(this.operatorChar);
 	}
 }
 
@@ -139,7 +139,7 @@ function createApp() {
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
 			calculation.selectOperator(operation);
-			calculation.operator = value;
+			calculation.operatorChar = value;
 			display.update(calculation.toString());
 		});
 	});
