@@ -60,6 +60,22 @@ describe("User Interface", () => {
 		assert.equal("4", result);
 	});
 
+	it("Should handle division", async () => {
+		const divide = await driver.findElement(By.id("divide"));
+
+		two.click();
+		divide.click();
+		two.click();
+
+		const calculation = await display.getAttribute("textContent");
+		assert.equal("2/2", calculation);
+
+		equals.click();
+
+		const result = await display.getAttribute("textContent");
+		assert.equal("1", result);
+	});
+
 	it("Should be able to clear the current calculation", async () => {
 		const times = await driver.findElement(By.id("times"));
 		const allClear = await driver.findElement(By.id("allClear"));

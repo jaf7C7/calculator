@@ -80,6 +80,10 @@ function multiply(a, b) {
 	return a * b;
 }
 
+function divide(a, b) {
+	return a / b;
+}
+
 function createApp() {
 	const container = new Container(document.getElementById("calculator"));
 	const display = container.createDisplay();
@@ -101,6 +105,7 @@ function createApp() {
 	const operationButtons = [
 		["plus", "+", add],
 		["times", "*", multiply],
+		["divide", "/", divide]
 	];
 
 	inputButtons.forEach(([id, value]) => {
