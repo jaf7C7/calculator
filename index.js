@@ -49,12 +49,11 @@ class Calculation {
 		this.secondOperand = null;
 		this.operation = null;
 		this.currentOperand = "";
-		this.calculationString = "";
+		this.operator = "";
 	}
 
 	inputValue(value) {
 		this.currentOperand += value;
-		this.calculationString += value;
 	}
 
 	saveOperand() {
@@ -78,9 +77,10 @@ class Calculation {
 	}
 
 	toString() {
-		return this.calculationString.split(/\D/).map((e) => {
-			return Number(e).toLocaleString();
-		}).join(this.calculationString.replaceAll(/\d/g, ''));
+		return [
+			this.firstOperand || this.currentOperand,
+			this.secondOperand || this.currentOperand,
+		].map((e) => Number(e).toLocaleString()).join(this.operator);
 	}
 }
 
@@ -132,7 +132,6 @@ function createApp() {
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
 			calculation.currentOperand += value;
-			calculation.calculationString += value;
 			display.update(calculation.toString());
 		});
 	});
@@ -140,7 +139,7 @@ function createApp() {
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
 			calculation.selectOperation(operation);
-			calculation.calculationString += value;
+			calculation.operator = value;
 			display.update(calculation.toString());
 		});
 	});
@@ -156,7 +155,6 @@ function createApp() {
 
 	container.createButton("delete", "Del", () => {
 		calculation.currentOperand = calculation.currentOperand.slice(0, -1);
-		calculation.calculationString = calculation.calculationString.slice(0, -1);
 		display.update(calculation.toString());
 	});
 }
