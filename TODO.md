@@ -11,8 +11,10 @@
 - [x] ~~Division~~
 - [ ] **Handle very large numbers (how large?)**
 - [ ] Handle very small numbers (how small?)
+- [ ] Automatic comma insertion to denote thousands, millions, etc.
 - [ ] Floating point numbers
 - [ ] Negative numbers
+- [ ] Keyboard input
 - [ ] Calculation chaining
 - [ ] Secondary display
 - [ ] Separation of concerns
