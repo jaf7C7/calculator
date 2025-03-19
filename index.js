@@ -6,7 +6,7 @@ class Container {
 	createElement(tagName, id, textContent = null, onClick = null) {
 		const element = document.createElement(tagName);
 		element.id = id;
-		if (textContent) {
+		if (textContent !== null) {
 			element.textContent = textContent;
 		}
 		if (onClick) {
