@@ -20,8 +20,9 @@
 #display {
 	background-color: white;
 	grid-column: span 4;
-	height: 2rem;
-	padding: 3rem 2rem;
+	min-height: 3rem;
+	padding: 1.5rem;
+	overflow-wrap: anywhere;
 }
 
 #calculator button {
