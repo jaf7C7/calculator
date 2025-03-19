@@ -147,7 +147,11 @@ describe("User Interface", () => {
 		for (let i = 0; i < 7; i++) {
 			one.click();
 		}
-		const currentOperand = await display.getAttribute("textContent");
-		assert.equal("1,111,111", currentOperand);
+		plus.click();
+		for (let i = 0; i < 7; i++) {
+			two.click();
+		}
+		const calculation = await display.getAttribute("textContent");
+		assert.equal("1,111,111+2,222,222", calculation);
 	});
 });
