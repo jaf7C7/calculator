@@ -9,8 +9,8 @@
 - [x] ~~`Del` button~~
 - [x] ~~Subtraction~~
 - [x] ~~Division~~
-- [ ] **Handle very large numbers (how large?)**
-- [ ] Handle very small numbers (how small?)
+- [x] ~~Handle very large numbers (how large?)~~
+- [x] Handle very small numbers (how small?)
 - [ ] Automatic comma insertion to denote thousands, millions, etc.
 - [ ] Floating point numbers
 - [ ] Negative numbers
