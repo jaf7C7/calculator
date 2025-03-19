@@ -66,14 +66,14 @@ class Calculation {
 		this.currentOperand = "";
 	}
 
-	selectOperator(operation) {
+	selectOperator(operator) {
 		this.saveOperand();
-		this.operation = operation;
+		this.operator = operator;
 	}
 
 	calculate() {
 		this.saveOperand();
-		return this.operation(this.firstOperand, this.secondOperand);
+		return this.operator(this.firstOperand, this.secondOperand);
 	}
 
 	toString() {
@@ -138,7 +138,8 @@ function createApp() {
 
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			calculation.selectOperator(operation);
+			const operator = operation;
+			calculation.selectOperator(operator);
 			calculation.operatorChar = value;
 			display.update(calculation.toString());
 		});
