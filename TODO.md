@@ -10,6 +10,7 @@
 - [ ] Subtraction
 - [ ] Division
 - [ ] Calculation chaining
+- [ ] Secondary display
 - [ ] Handle very large numbers (how large?)
 - [ ] Handle very small numbers (how small?)
 - [ ] Separation of concerns
