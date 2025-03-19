@@ -66,7 +66,7 @@ class Calculation {
 		this.currentOperand = "";
 	}
 
-	selectOperation(operation) {
+	selectOperator(operation) {
 		this.saveOperand();
 		this.operation = operation;
 	}
@@ -138,7 +138,7 @@ function createApp() {
 
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			calculation.selectOperation(operation);
+			calculation.selectOperator(operation);
 			calculation.operator = value;
 			display.update(calculation.toString());
 		});
