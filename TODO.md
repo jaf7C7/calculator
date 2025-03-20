@@ -10,7 +10,8 @@
 - [x] ~~Subtraction~~
 - [x] ~~Division~~
 - [x] ~~Handle very large numbers (how large?)~~
-- [x] Handle very small numbers (how small?)
+- [x] ~~Handle very small numbers (how small?)~~
+- [ ] **Fix flaky tests** (subtraction, division, commas)
 - [ ] Automatic comma insertion to denote thousands, millions, etc.
 - [ ] Floating point numbers
 - [ ] Negative numbers
