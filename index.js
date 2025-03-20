@@ -43,6 +43,14 @@ class Display {
 	}
 }
 
+class Operator extends Function {
+	constructor(operation, value) {
+		const self = (...args) => operation(...args);
+		self.value = value;
+		return self;
+	}
+}
+
 class Calculation {
 	constructor() {
 		this.firstOperand = null;
@@ -137,8 +145,7 @@ function createApp() {
 
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			const operator = operation;
-			operator.value = value;
+			const operator = new Operator(operation, value);
 			calculation.selectOperator(operator);
 			display.update(calculation.toString());
 		});
