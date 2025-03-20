@@ -55,7 +55,7 @@ class Calculation {
 	constructor() {
 		this.firstOperand = null;
 		this.secondOperand = null;
-		this.operation = null;
+		this.operator = null;
 		this.currentOperand = "";
 	}
 
