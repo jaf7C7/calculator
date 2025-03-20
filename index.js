@@ -84,10 +84,16 @@ class Calculation {
 	}
 
 	toString() {
-		return [
-			this.firstOperand || this.currentOperand,
-			this.secondOperand || this.currentOperand,
-		].map((e) => Number(e).toLocaleString()).join(this.operator.value);
+		function formatNumber(number) {
+			return Number(number).toLocaleString();
+		}
+		let str = "";
+		if (this.firstOperand) {
+			str += formatNumber(this.firstOperand);
+			str += this.operator.value;
+		}
+		str += formatNumber(this.currentOperand);
+		return str;
 	}
 }
 

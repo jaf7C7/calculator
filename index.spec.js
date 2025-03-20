@@ -30,6 +30,12 @@ describe("User Interface", () => {
 		await driver.quit();
 	});
 
+	it("Should echo input values on the display", async () => {
+		one.click();
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("1", displayed);
+	});
+
 	it("Should handle addition", async () => {
 		one.click();
 		plus.click();
