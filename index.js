@@ -92,7 +92,9 @@ class Calculation {
 			str += formatNumber(this.firstOperand);
 			str += this.operator.value;
 		}
-		str += formatNumber(this.currentOperand);
+		if (this.currentOperand) {
+			str += formatNumber(this.currentOperand);
+		}
 		return str;
 	}
 }
