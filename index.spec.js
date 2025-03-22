@@ -31,20 +31,20 @@ describe("User Interface", () => {
 	});
 
 	it("Should echo input values on the display", async () => {
-		one.click();
+		await one.click();
 		const displayed = await display.getAttribute("textContent");
 		assert.equal("1", displayed);
 	});
 
 	it("Should handle addition", async () => {
-		one.click();
-		plus.click();
-		one.click();
+		await one.click();
+		await plus.click();
+		await one.click();
 
 		const calculation = await display.getAttribute("textContent");
 		assert.equal("1+1", calculation);
 
-		equals.click();
+		await equals.click();
 
 		const result = await display.getAttribute("textContent");
 		assert.equal("2", result);
@@ -53,14 +53,14 @@ describe("User Interface", () => {
 	it("Should handle subtraction", async () => {
 		const minus = await driver.findElement(By.id("minus"));
 
-		one.click();
-		minus.click();
-		one.click();
+		await one.click();
+		await minus.click();
+		await one.click();
 
 		const calculation = await display.getAttribute("textContent");
 		assert.equal("1-1", calculation);
 
-		equals.click();
+		await equals.click();
 
 		const result = await display.getAttribute("textContent");
 		assert.equal("0", result);
@@ -69,14 +69,14 @@ describe("User Interface", () => {
 	it("Should handle multiplication", async () => {
 		const times = await driver.findElement(By.id("times"));
 
-		two.click();
-		times.click();
-		two.click();
+		await two.click();
+		await times.click();
+		await two.click();
 
 		const calculation = await display.getAttribute("textContent");
 		assert.equal("2*2", calculation);
 
-		equals.click();
+		await equals.click();
 
 		const result = await display.getAttribute("textContent");
 		assert.equal("4", result);
@@ -85,14 +85,14 @@ describe("User Interface", () => {
 	it("Should handle division", async () => {
 		const divide = await driver.findElement(By.id("divide"));
 
-		two.click();
-		divide.click();
-		two.click();
+		await two.click();
+		await divide.click();
+		await two.click();
 
 		const calculation = await display.getAttribute("textContent");
 		assert.equal("2/2", calculation);
 
-		equals.click();
+		await equals.click();
 
 		const result = await display.getAttribute("textContent");
 		assert.equal("1", result);
@@ -102,19 +102,19 @@ describe("User Interface", () => {
 		const times = await driver.findElement(By.id("times"));
 		const allClear = await driver.findElement(By.id("allClear"));
 
-		one.click();
-		plus.click();
-		one.click();
-		equals.click();
+		await one.click();
+		await plus.click();
+		await one.click();
+		await equals.click();
 
-		allClear.click();
+		await allClear.click();
 		const calculation = await display.getAttribute("textContent");
 		assert.equal("", calculation);
 
-		two.click();
-		times.click();
-		two.click();
-		equals.click();
+		await two.click();
+		await times.click();
+		await two.click();
+		await equals.click();
 
 		const result = await display.getAttribute("textContent");
 		assert.equal("4", result);
@@ -123,11 +123,11 @@ describe("User Interface", () => {
 	it("Should handle multi-digit operands", async () => {
 		const plus = await driver.findElement(By.id("plus"));
 
-		one.click();
-		one.click();
-		plus.click();
-		one.click();
-		equals.click();
+		await one.click();
+		await one.click();
+		await plus.click();
+		await one.click();
+		await equals.click();
 
 		const result = await display.getAttribute("textContent");
 		assert.equal("12", result);
@@ -137,13 +137,13 @@ describe("User Interface", () => {
 		const del = await driver.findElement(By.id("delete"));
 		const plus = await driver.findElement(By.id("plus"));
 
-		one.click();
-		one.click();
-		del.click();
-		plus.click();
-		one.click();
-		del.click();
-		two.click();
+		await one.click();
+		await one.click();
+		await del.click();
+		await plus.click();
+		await one.click();
+		await del.click();
+		await two.click();
 
 		const calculation = await display.getAttribute("textContent");
 		assert.equal("1+2", calculation);
@@ -151,11 +151,11 @@ describe("User Interface", () => {
 
 	it("Should display large numbers with commas for readability", async () => {
 		for (let i = 0; i < 7; i++) {
-			one.click();
+			await one.click();
 		}
-		plus.click();
+		await plus.click();
 		for (let i = 0; i < 7; i++) {
-			two.click();
+			await two.click();
 		}
 		const calculation = await display.getAttribute("textContent");
 		assert.equal("1,111,111+2,222,222", calculation);
