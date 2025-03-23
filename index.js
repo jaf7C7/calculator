@@ -85,6 +85,12 @@ class Calculation {
 		this.operator = operator;
 	}
 
+	_selectOperator(display, operation, value) {
+		const operator = new Operator(operation, value);
+		this.selectOperator(operator);
+		display.update(this.toString());
+	}
+
 	calculate() {
 		this.saveOperand();
 		return this.operator(this.firstOperand, this.secondOperand);
@@ -169,14 +175,9 @@ function createApp() {
 		});
 	});
 
-	function selectOperator(calculation, display, operation, value) {
-		const operator = new Operator(operation, value);
-		calculation.selectOperator(operator);
-		display.update(calculation.toString());
-	}
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			selectOperator(calculation, display, operation, value);
+			calculation._selectOperator(display, operation, value);
 		});
 	});
 
