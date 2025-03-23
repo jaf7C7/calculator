@@ -161,9 +161,12 @@ function createApp() {
 		});
 	});
 
-	container.createButton("equals", "=", () => {
+	function calculate(display) {
 		display.update(calculation.calculate());
 		calculation = new Calculation();
+	}
+	container.createButton("equals", "=", () => {
+		calculate(display);
 	});
 
 	container.createButton("allClear", "AC", () => {
