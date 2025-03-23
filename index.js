@@ -123,6 +123,10 @@ class Calculator {
 	inputValue(value) {
 		this.calculation.inputValue(this.display, value);
 	}
+
+	selectOperator(operation, value) {
+		this.calculation.selectOperator(this.display, operation, value);
+	}
 }
 
 function formatNumber(str) {
@@ -181,7 +185,7 @@ function createApp() {
 
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			calculator.calculation.selectOperator(calculator.display, operation, value);
+			calculator.selectOperator(operation, value);
 		});
 	});
 
