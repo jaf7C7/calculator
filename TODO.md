@@ -11,9 +11,8 @@
 - [x] ~~Division~~
 - [x] ~~Handle very large numbers (how large?)~~
 - [x] ~~Handle very small numbers (how small?)~~
-- [ ] ~~Fix flaky tests (subtraction, division, commas)~~
-- [ ] **Clicking `1` and `+` displays `1+0`**
-- [ ] Automatic comma insertion to denote thousands, millions, etc.
+- [x] ~~Fix flaky tests (subtraction, division, commas)~~
+- [ ] **Automatic comma insertion to denote thousands, millions, etc.**
 - [ ] Floating point numbers
 - [ ] Negative numbers
 - [ ] Keyboard input
