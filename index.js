@@ -59,10 +59,10 @@ class Calculation {
 		}
 	}
 
-	selectOperator(_operator) {
+	selectOperator(operator) {
 		this._saveOperand(this._currentOperand);
 		this._currentOperand = "";
-		this._operator = _operator;
+		this._operator = operator;
 	}
 
 	calculate() {
