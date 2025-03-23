@@ -59,13 +59,8 @@ class Calculation {
 		this.currentOperand = "";
 	}
 
-	_inputValue(value) {
+	inputValue(value) {
 		this.currentOperand += value;
-	}
-
-	inputValue(display, value) {
-		this._inputValue(value);
-		display.update(this.toString());
 	}
 
 	saveOperand() {
@@ -115,7 +110,8 @@ class Calculator {
 	}
 
 	inputValue(value) {
-		this.calculation.inputValue(this.display, value);
+		this.calculation.inputValue(value);
+		this.display.update(this.calculation.toString());
 	}
 
 	selectOperator(operation, value) {
