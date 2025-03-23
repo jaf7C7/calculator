@@ -59,8 +59,9 @@ class Calculation {
 		this.currentOperand = "";
 	}
 
-	inputValue(value) {
+	inputValue(display, value) {
 		this.currentOperand += value;
+		display.update(this.toString());
 	}
 
 	saveOperand() {
@@ -158,13 +159,9 @@ function createApp() {
 		["divide", "/", divide],
 	];
 
-	function inputValue(calculation, display, value) {
-		calculation.currentOperand += value;
-		display.update(calculation.toString());
-	}
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
-			inputValue(calculation, display, value);
+			calculation.inputValue(display, value);
 		});
 	});
 
