@@ -117,6 +117,7 @@ class Calculation {
 class Calculator {
 	constructor(display) {
 		this.display = display;
+		this.calculation = new Calculation();
 	}
 }
 
@@ -147,7 +148,6 @@ function createApp() {
 	const container = new Container(document.getElementById("calculator"));
 	const display = container.createDisplay();
 	const calculator = new Calculator(display);
-	let calculation = new Calculation();
 
 	const inputButtons = [
 		["one", 1],
@@ -171,26 +171,26 @@ function createApp() {
 
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
-			calculation.inputValue(calculator.display, value);
+			calculator.calculation.inputValue(calculator.display, value);
 		});
 	});
 
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			calculation.selectOperator(calculator.display, operation, value);
+			calculator.calculation.selectOperator(calculator.display, operation, value);
 		});
 	});
 
 	function calculate(calculator) {
-		calculator.display.update(calculation.calculate());
-		calculation = new Calculation();
+		calculator.display.update(calculator.calculation.calculate());
+		calculator.calculation = new Calculation();
 	}
 	container.createButton("equals", "=", () => {
 		calculate(calculator);
 	});
 
 	function clearAll(calculator) {
-		calculation = new Calculation();
+		calculator.calculation = new Calculation();
 		calculator.display.update("");
 	}
 	container.createButton("allClear", "AC", () => {
@@ -198,7 +198,7 @@ function createApp() {
 	});
 
 	container.createButton("delete", "Del", () => {
-		calculation.deleteChar(calculator);
+		calculator.calculation.deleteChar(calculator);
 	});
 }
 
