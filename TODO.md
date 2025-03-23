@@ -20,8 +20,8 @@
 - [ ] Keyboard input
 - [ ] Calculation chaining
 - [ ] Secondary display
-- [ ] Remove duplication between `Calculator` and `Calculation`
-- [ ] **Extract `Button` class**
+- [ ] **Remove duplication between `Calculator` and `Calculation`**
+- [ ] Extract `Button` class
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
 - [ ] Make tests faster?
