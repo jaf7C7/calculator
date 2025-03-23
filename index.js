@@ -190,12 +190,12 @@ function createApp() {
 		clearAll(display);
 	});
 
-	function deleteChar(display) {
+	function deleteChar(calculation, display) {
 		calculation.currentOperand = calculation.currentOperand.slice(0, -1);
 		display.update(calculation.toString());
 	}
 	container.createButton("delete", "Del", () => {
-		deleteChar(display);
+		deleteChar(calculation, display);
 	});
 }
 
