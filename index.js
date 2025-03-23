@@ -181,24 +181,24 @@ function createApp() {
 		});
 	});
 
-	function calculate(display) {
-		display.update(calculation.calculate());
+	function calculate(calculator) {
+		calculator.display.update(calculation.calculate());
 		calculation = new Calculation();
 	}
 	container.createButton("equals", "=", () => {
-		calculate(calculator.display);
+		calculate(calculator);
 	});
 
-	function clearAll(display) {
+	function clearAll(calculator) {
 		calculation = new Calculation();
-		display.update("");
+		calculator.display.update("");
 	}
 	container.createButton("allClear", "AC", () => {
-		clearAll(calculator.display);
+		clearAll(calculator);
 	});
 
 	container.createButton("delete", "Del", () => {
-		calculation.deleteChar(calculator.display);
+		calculation.deleteChar(calculator);
 	});
 }
 
