@@ -13,13 +13,15 @@
 - [x] ~~Handle very small numbers (how small?)~~
 - [x] ~~Fix flaky tests (subtraction, division, commas)~~
 - [x] ~~Automatic comma insertion to denote thousands, millions, etc.~~
-- [ ] **After 999,999,999,999,999 operands rounded to 10,000,000,000,000**
+- [x] ~~After 999,999,999,999,999 operands rounded to 10,000,000,000,000~~
+- [ ] `Del` can delete an operator
 - [ ] Floating point numbers
 - [ ] Negative numbers
 - [ ] Keyboard input
 - [ ] Calculation chaining
 - [ ] Secondary display
-- [ ] Separation of concerns
+- [ ] Remove duplication between `Calculator` and `Calculation`
+- [ ] **Extract `Button` class**
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
 - [ ] Make tests faster?
