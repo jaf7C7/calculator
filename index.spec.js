@@ -114,6 +114,24 @@ describe("User Interface", () => {
 		assert.equal("", displayed);
 	});
 
+	it("Should be able to handle consecutive calculations", async () => {
+		const times = await driver.findElement(By.id("times"));
+		const allClear = await driver.findElement(By.id("allClear"));
+
+		await one.click();
+		await plus.click();
+		await one.click();
+		await equals.click();
+
+		await two.click();
+		await times.click();
+		await two.click();
+		await equals.click();
+
+		const result = await display.getAttribute("textContent");
+		assert.equal("4", result);
+	});
+
 	it("Should handle multi-digit operands", async () => {
 		const plus = await driver.findElement(By.id("plus"));
 
