@@ -3,7 +3,7 @@ class Container {
 		this._element = element;
 	}
 
-	createElement(tagName, id, textContent = null, onClick = null) {
+	_createElement(tagName, id, textContent = null, onClick = null) {
 		const element = document.createElement(tagName);
 		element.id = id;
 		if (textContent !== null) {
@@ -17,11 +17,11 @@ class Container {
 	}
 
 	createButton(id, value, onClick) {
-		this.createElement("button", id, value, onClick);
+		this._createElement("button", id, value, onClick);
 	}
 
 	createDisplay() {
-		return new Display(this.createElement("div", "display"));
+		return new Display(this._createElement("div", "display"));
 	}
 }
 
