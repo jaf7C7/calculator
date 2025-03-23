@@ -63,7 +63,7 @@ class Calculation {
 		this.currentOperand += value;
 	}
 
-	saveOperand() {
+	_saveOperand() {
 		if (this.currentOperand !== "") {
 			const operand = Number(this.currentOperand);
 			if (!this.firstOperand) {
@@ -76,12 +76,12 @@ class Calculation {
 	}
 
 	selectOperator(operator) {
-		this.saveOperand();
+		this._saveOperand();
 		this.operator = operator;
 	}
 
 	calculate() {
-		this.saveOperand();
+		this._saveOperand();
 		return this.operator(this.firstOperand, this.secondOperand);
 	}
 
