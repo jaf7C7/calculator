@@ -182,7 +182,7 @@ describe("User Interface", () => {
 		assert.equal("1,111,111+2,222,222", calculation);
 	});
 
-	it("Should handle large numbers without loss of accuracy", async () => {
+	it("Should handle displaying large numbers without loss of accuracy", async () => {
 		const nine = await driver.findElement(By.id("nine"));
 
 		for (let i = 0; i < 16; i++) {
