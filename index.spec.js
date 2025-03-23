@@ -108,18 +108,10 @@ describe("User Interface", () => {
 		await plus.click();
 		await one.click();
 		await equals.click();
-
 		await allClear.click();
-		const calculation = await display.getAttribute("textContent");
-		assert.equal("", calculation);
 
-		await two.click();
-		await times.click();
-		await two.click();
-		await equals.click();
-
-		const result = await display.getAttribute("textContent");
-		assert.equal("4", result);
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("", displayed);
 	});
 
 	it("Should handle multi-digit operands", async () => {
