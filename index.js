@@ -110,7 +110,7 @@ class Calculator {
 		this.calculation = new Calculation();
 	}
 
-	clearAll() {
+	clear() {
 		this.calculation = new Calculation();
 		this.display("");
 	}
@@ -187,7 +187,7 @@ function createApp() {
 	});
 
 	container.createButton("allClear", "AC", () => {
-		calculator.clearAll();
+		calculator.clear();
 	});
 
 	container.createButton("delete", "Del", () => {
