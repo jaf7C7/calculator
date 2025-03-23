@@ -100,8 +100,7 @@ class Calculator {
 		this.display(this.calculation.toString());
 	}
 
-	selectOperator(value, operation) {
-		const operator = new Operator(value, operation);
+	selectOperator(operator) {
 		this.calculation.selectOperator(operator);
 		this.display(this.calculation.toString());
 	}
@@ -177,8 +176,9 @@ function createApp() {
 	});
 
 	operationButtons.forEach(([id, value, operation]) => {
-		container.createButton(id, value, () => {
-			calculator.selectOperator(value, operation);
+		const operator = new Operator(value, operation);
+		container.createButton(id, operator.value, () => {
+			calculator.selectOperator(operator);
 		});
 	});
 
