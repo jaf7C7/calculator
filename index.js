@@ -44,7 +44,7 @@ class Calculation {
 		this._operator = "";
 	}
 
-	inputValue(value) {
+	input(value) {
 		this._currentOperand += value;
 	}
 
@@ -95,8 +95,8 @@ class Calculator {
 		this._currentOperand = "";
 	}
 
-	inputValue(value) {
-		this.calculation.inputValue(value);
+	input(value) {
+		this.calculation.input(value);
 		this.display(this.calculation.toString());
 	}
 
@@ -171,7 +171,7 @@ function createApp() {
 
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
-			calculator.inputValue(value);
+			calculator.input(value);
 		});
 	});
 
