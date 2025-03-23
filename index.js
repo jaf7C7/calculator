@@ -59,8 +59,12 @@ class Calculation {
 		this.currentOperand = "";
 	}
 
-	inputValue(display, value) {
+	_inputValue(value) {
 		this.currentOperand += value;
+	}
+
+	inputValue(display, value) {
+		this._inputValue(value);
 		display.update(this.toString());
 	}
 
