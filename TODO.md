@@ -14,6 +14,7 @@
 - [x] ~~Fix flaky tests (subtraction, division, commas)~~
 - [x] ~~Automatic comma insertion to denote thousands, millions, etc.~~
 - [x] ~~After 999,999,999,999,999 operands rounded to 10,000,000,000,000~~
+- [ ] Handle calculation of large numbers without loss in accuracy
 - [ ] `Del` can delete an operator
 - [ ] Floating point numbers
 - [ ] Negative numbers
