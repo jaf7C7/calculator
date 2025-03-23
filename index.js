@@ -163,14 +163,14 @@ function createApp() {
 		});
 	});
 
-	function selectOperator(display, operation, value) {
+	function selectOperator(calculation, display, operation, value) {
 		const operator = new Operator(operation, value);
 		calculation.selectOperator(operator);
 		display.update(calculation.toString());
 	}
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			selectOperator(display, operation, value);
+			selectOperator(calculation, display, operation, value);
 		});
 	});
 
