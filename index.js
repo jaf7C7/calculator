@@ -153,13 +153,13 @@ function createApp() {
 		["divide", "/", divide],
 	];
 
-	function inputValue(display, value) {
+	function inputValue(calculation, display, value) {
 		calculation.currentOperand += value;
 		display.update(calculation.toString());
 	}
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
-			inputValue(display, value);
+			inputValue(calculation, display, value);
 		});
 	});
 
