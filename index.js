@@ -97,9 +97,8 @@ class Calculation {
 		return str;
 	}
 
-	deleteChar(display) {
+	deleteChar() {
 		this.currentOperand = this.currentOperand.slice(0, -1);
-		display.update(this.toString());
 	}
 }
 
@@ -132,6 +131,7 @@ class Calculator {
 
 	deleteChar() {
 		this.calculation.deleteChar();
+		this.display.update(this.calculation.toString());
 	}
 }
 
