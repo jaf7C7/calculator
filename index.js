@@ -48,25 +48,26 @@ class Calculation {
 		this._currentOperand += value;
 	}
 
-	_saveOperand() {
-		if (this._currentOperand !== "") {
-			const operand = Number(this._currentOperand);
+	_saveOperand(operand) {
+		if (operand !== "") {
+			const _operand = Number(operand);
 			if (!this._firstOperand) {
-				this._firstOperand = operand;
+				this._firstOperand = _operand;
 			} else {
-				this._secondOperand = operand;
+				this._secondOperand = _operand;
 			}
 		}
-		this._currentOperand = "";
 	}
 
 	selectOperator(_operator) {
-		this._saveOperand();
+		this._saveOperand(this._currentOperand);
+		this._currentOperand = "";
 		this._operator = _operator;
 	}
 
 	calculate() {
-		this._saveOperand();
+		this._saveOperand(this._currentOperand);
+		this._currentOperand = "";
 		return this._operator(this._firstOperand, this._secondOperand);
 	}
 
@@ -91,6 +92,7 @@ class Calculator {
 	constructor(display) {
 		this.display = display;
 		this.calculation = new Calculation();
+		this._currentOperand = "";
 	}
 
 	inputValue(value) {
