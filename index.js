@@ -83,7 +83,7 @@ class Calculation {
 		return str;
 	}
 
-	deleteChar() {
+	delete() {
 		this._currentOperand = this._currentOperand.slice(0, -1);
 	}
 }
@@ -115,8 +115,8 @@ class Calculator {
 		this.display("");
 	}
 
-	deleteChar() {
-		this.calculation.deleteChar();
+	delete() {
+		this.calculation.delete();
 		this.display(this.calculation.toString());
 	}
 }
@@ -191,7 +191,7 @@ function createApp() {
 	});
 
 	container.createButton("delete", "Del", () => {
-		calculator.deleteChar();
+		calculator.delete();
 	});
 }
 
