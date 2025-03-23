@@ -30,10 +30,6 @@ class Display {
 		this._element = element;
 	}
 
-	read() {
-		return this._element.textContent;
-	}
-
 	append(value) {
 		this._element.textContent += String(value);
 	}
