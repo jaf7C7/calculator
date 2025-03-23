@@ -169,14 +169,20 @@ function createApp() {
 		calculate(display);
 	});
 
-	container.createButton("allClear", "AC", () => {
+	function clearAll(display) {
 		calculation = new Calculation();
 		display.update("");
+	}
+	container.createButton("allClear", "AC", () => {
+		clearAll(display);
 	});
 
-	container.createButton("delete", "Del", () => {
+	function deleteChar(display) {
 		calculation.currentOperand = calculation.currentOperand.slice(0, -1);
 		display.update(calculation.toString());
+	}
+	container.createButton("delete", "Del", () => {
+		deleteChar(display);
 	});
 }
 
