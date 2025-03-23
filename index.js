@@ -86,8 +86,11 @@ class Calculation {
 	}
 
 	toString() {
-		function formatNumber(number) {
-			return Number(number).toLocaleString();
+		function formatNumber(str) {
+			if (str.length > 15) {
+				return BigInt(str).toLocaleString();
+			}
+			return Number(str).toLocaleString();
 		}
 		let str = "";
 		if (this.firstOperand !== "") {
