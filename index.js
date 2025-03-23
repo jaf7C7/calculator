@@ -132,6 +132,11 @@ class Calculator {
 		this.display.update(this.calculation.calculate());
 		this.calculation = new Calculation();
 	}
+
+	clearAll() {
+		this.calculation = new Calculation();
+		this.display.update("");
+	}
 }
 
 function formatNumber(str) {
@@ -198,12 +203,8 @@ function createApp() {
 		calculator.calculate();
 	});
 
-	function clearAll(calculator) {
-		calculator.calculation = new Calculation();
-		calculator.display.update("");
-	}
 	container.createButton("allClear", "AC", () => {
-		clearAll(calculator);
+		calculator.clearAll();
 	});
 
 	container.createButton("delete", "Del", () => {
