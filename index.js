@@ -137,6 +137,10 @@ class Calculator {
 		this.calculation = new Calculation();
 		this.display.update("");
 	}
+
+	deleteChar() {
+		this.calculation.deleteChar();
+	}
 }
 
 function formatNumber(str) {
@@ -208,7 +212,7 @@ function createApp() {
 	});
 
 	container.createButton("delete", "Del", () => {
-		calculator.calculation.deleteChar(calculator);
+		calculator.deleteChar();
 	});
 }
 
