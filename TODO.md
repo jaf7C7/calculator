@@ -14,14 +14,15 @@
 - [x] ~~Fix flaky tests (subtraction, division, commas)~~
 - [x] ~~Automatic comma insertion to denote thousands, millions, etc.~~
 - [x] ~~After 999,999,999,999,999 operands rounded to 10,000,000,000,000~~
+- [ ] **Remove duplication between `Calculator` and `Calculation`**
 - [ ] Handle calculation of large numbers without loss in accuracy
 - [ ] `Del` can delete an operator
 - [ ] Floating point numbers
 - [ ] Negative numbers
 - [ ] Keyboard input
+- [ ] Finish styling
 - [ ] Calculation chaining
 - [ ] Secondary display
-- [ ] **Remove duplication between `Calculator` and `Calculation`**
 - [ ] Extract `Button` class
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
