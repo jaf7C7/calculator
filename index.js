@@ -80,14 +80,14 @@ class Calculation {
 		this.currentOperand = "";
 	}
 
-	selectOperator(operator) {
+	_selectOperator(operator) {
 		this.saveOperand();
 		this.operator = operator;
 	}
 
-	_selectOperator(display, operation, value) {
+	selectOperator(display, operation, value) {
 		const operator = new Operator(operation, value);
-		this.selectOperator(operator);
+		this._selectOperator(operator);
 		display.update(this.toString());
 	}
 
@@ -177,7 +177,7 @@ function createApp() {
 
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			calculation._selectOperator(display, operation, value);
+			calculation.selectOperator(display, operation, value);
 		});
 	});
 
