@@ -80,15 +80,9 @@ class Calculation {
 		this.currentOperand = "";
 	}
 
-	_selectOperator(operator) {
+	selectOperator(operator) {
 		this.saveOperand();
 		this.operator = operator;
-	}
-
-	selectOperator(display, operation, value) {
-		const operator = new Operator(operation, value);
-		this._selectOperator(operator);
-		display.update(this.toString());
 	}
 
 	calculate() {
@@ -125,7 +119,9 @@ class Calculator {
 	}
 
 	selectOperator(operation, value) {
-		this.calculation.selectOperator(this.display, operation, value);
+		const operator = new Operator(operation, value);
+		this.calculation.selectOperator(operator);
+		this.display.update(this.calculation.toString());
 	}
 
 	calculate() {
