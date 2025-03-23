@@ -29,7 +29,7 @@ class Container {
 }
 
 class Operator extends Function {
-	constructor(operation, value) {
+	constructor(value, operation) {
 		const self = (...args) => operation(...args);
 		self.value = value;
 		return self;
@@ -101,7 +101,7 @@ class Calculator {
 	}
 
 	selectOperator(operation, value) {
-		const operator = new Operator(operation, value);
+		const operator = new Operator(value, operation);
 		this.calculation.selectOperator(operator);
 		this.display(this.calculation.toString());
 	}
