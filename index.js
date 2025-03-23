@@ -119,6 +119,10 @@ class Calculator {
 		this.display = display;
 		this.calculation = new Calculation();
 	}
+
+	inputValue(value) {
+		this.calculation.inputValue(this.display, value);
+	}
 }
 
 function formatNumber(str) {
@@ -171,7 +175,7 @@ function createApp() {
 
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
-			calculator.calculation.inputValue(calculator.display, value);
+			calculator.inputValue(value);
 		});
 	});
 
