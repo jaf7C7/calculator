@@ -171,13 +171,13 @@ function createApp() {
 
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
-			calculation.inputValue(display, value);
+			calculation.inputValue(calculator.display, value);
 		});
 	});
 
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			calculation.selectOperator(display, operation, value);
+			calculation.selectOperator(calculator.display, operation, value);
 		});
 	});
 
@@ -186,7 +186,7 @@ function createApp() {
 		calculation = new Calculation();
 	}
 	container.createButton("equals", "=", () => {
-		calculate(display);
+		calculate(calculator.display);
 	});
 
 	function clearAll(display) {
@@ -194,11 +194,11 @@ function createApp() {
 		display.update("");
 	}
 	container.createButton("allClear", "AC", () => {
-		clearAll(display);
+		clearAll(calculator.display);
 	});
 
 	container.createButton("delete", "Del", () => {
-		calculation.deleteChar(display);
+		calculation.deleteChar(calculator.display);
 	});
 }
 
