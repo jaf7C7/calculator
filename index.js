@@ -64,11 +64,13 @@ class Calculation {
 	}
 
 	saveOperand() {
-		const operand = Number(this.currentOperand);
-		if (!this.firstOperand) {
-			this.firstOperand = operand;
-		} else {
-			this.secondOperand = operand;
+		if (this.currentOperand !== "") {
+			const operand = Number(this.currentOperand);
+			if (!this.firstOperand) {
+				this.firstOperand = operand;
+			} else {
+				this.secondOperand = operand;
+			}
 		}
 		this.currentOperand = "";
 	}

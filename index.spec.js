@@ -38,6 +38,13 @@ describe("User Interface", () => {
 		assert.equal("1+", displayed);
 	});
 
+	it("Should not echo operators if there are no operands", async () => {
+		plus.click();
+
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("", displayed);
+	});
+
 	it("Should handle addition", async () => {
 		const zero = await driver.findElement(By.id("zero"));
 
