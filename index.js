@@ -53,9 +53,9 @@ class Operator extends Function {
 
 class Calculation {
 	constructor() {
-		this.firstOperand = null;
-		this.secondOperand = null;
-		this.operator = null;
+		this.firstOperand = "";
+		this.secondOperand = "";
+		this.operator = "";
 		this.currentOperand = "";
 	}
 
@@ -88,11 +88,11 @@ class Calculation {
 			return Number(number).toLocaleString();
 		}
 		let str = "";
-		if (this.firstOperand) {
+		if (this.firstOperand !== "") {
 			str += formatNumber(this.firstOperand);
 			str += this.operator.value;
 		}
-		if (this.currentOperand) {
+		if (this.currentOperand !== "") {
 			str += formatNumber(this.currentOperand);
 		}
 		return str;

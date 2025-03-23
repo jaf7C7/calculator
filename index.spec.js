@@ -39,17 +39,19 @@ describe("User Interface", () => {
 	});
 
 	it("Should handle addition", async () => {
-		await one.click();
+		const zero = await driver.findElement(By.id("zero"));
+
+		await zero.click();
 		await plus.click();
 		await one.click();
 
 		const calculation = await display.getAttribute("textContent");
-		assert.equal("1+1", calculation);
+		assert.equal("0+1", calculation);
 
 		await equals.click();
 
 		const result = await display.getAttribute("textContent");
-		assert.equal("2", result);
+		assert.equal("1", result);
 	});
 
 	it("Should handle subtraction", async () => {
