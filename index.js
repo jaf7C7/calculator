@@ -98,6 +98,12 @@ class Calculation {
 	}
 }
 
+class Calculator {
+	constructor(display) {
+		this.display = display;
+	}
+}
+
 function formatNumber(str) {
 	if (str.length > 15) {
 		return BigInt(str).toLocaleString();
@@ -124,6 +130,7 @@ function divide(a, b) {
 function createApp() {
 	const container = new Container(document.getElementById("calculator"));
 	const display = container.createDisplay();
+	const calculator = new Calculator(display);
 	let calculation = new Calculation();
 
 	const inputButtons = [
@@ -153,11 +160,14 @@ function createApp() {
 		});
 	});
 
+	function selectOperator(display, operation, value) {
+		const operator = new Operator(operation, value);
+		calculation.selectOperator(operator);
+		display.update(calculation.toString());
+	}
 	operationButtons.forEach(([id, value, operation]) => {
 		container.createButton(id, value, () => {
-			const operator = new Operator(operation, value);
-			calculation.selectOperator(operator);
-			display.update(calculation.toString());
+			selectOperator(display, operation, value);
 		});
 	});
 
