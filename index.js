@@ -127,6 +127,11 @@ class Calculator {
 	selectOperator(operation, value) {
 		this.calculation.selectOperator(this.display, operation, value);
 	}
+
+	calculate() {
+		this.display.update(this.calculation.calculate());
+		this.calculation = new Calculation();
+	}
 }
 
 function formatNumber(str) {
@@ -189,12 +194,8 @@ function createApp() {
 		});
 	});
 
-	function calculate(calculator) {
-		calculator.display.update(calculator.calculation.calculate());
-		calculator.calculation = new Calculation();
-	}
 	container.createButton("equals", "=", () => {
-		calculate(calculator);
+		calculator.calculate();
 	});
 
 	function clearAll(calculator) {
