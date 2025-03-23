@@ -40,7 +40,7 @@ class Calculation {
 	constructor() {
 		this._firstOperand = "";
 		this._secondOperand = "";
-		this.operator = "";
+		this._operator = "";
 		this.currentOperand = "";
 	}
 
@@ -60,21 +60,21 @@ class Calculation {
 		this.currentOperand = "";
 	}
 
-	selectOperator(operator) {
+	selectOperator(_operator) {
 		this._saveOperand();
-		this.operator = operator;
+		this._operator = _operator;
 	}
 
 	calculate() {
 		this._saveOperand();
-		return this.operator(this._firstOperand, this._secondOperand);
+		return this._operator(this._firstOperand, this._secondOperand);
 	}
 
 	toString() {
 		let str = "";
 		if (this._firstOperand !== "") {
 			str += formatNumber(this._firstOperand);
-			str += this.operator.value;
+			str += this._operator.value;
 		}
 		if (this.currentOperand !== "") {
 			str += formatNumber(this.currentOperand);
