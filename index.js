@@ -27,19 +27,19 @@ class Container {
 
 class Display {
 	constructor(element) {
-		this.element = element;
+		this._element = element;
 	}
 
 	read() {
-		return this.element.textContent;
+		return this._element.textContent;
 	}
 
 	append(value) {
-		this.element.textContent += String(value);
+		this._element.textContent += String(value);
 	}
 
 	update(value) {
-		this.element.textContent = value
+		this._element.textContent = value
 	}
 }
 
