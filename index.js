@@ -21,21 +21,10 @@ class Container {
 	}
 
 	createDisplay() {
-		return new Display(this._createElement("div", "display"));
-	}
-}
-
-class Display {
-	constructor(element) {
-		this._element = element;
-	}
-
-	append(value) {
-		this._element.textContent += String(value);
-	}
-
-	update(value) {
-		this._element.textContent = value
+		const element = this._createElement("div", "display");
+		return (text) => {
+			element.textContent = text;
+		};
 	}
 }
 
@@ -106,28 +95,28 @@ class Calculator {
 
 	inputValue(value) {
 		this.calculation.inputValue(value);
-		this.display.update(this.calculation.toString());
+		this.display(this.calculation.toString());
 	}
 
 	selectOperator(operation, value) {
 		const operator = new Operator(operation, value);
 		this.calculation.selectOperator(operator);
-		this.display.update(this.calculation.toString());
+		this.display(this.calculation.toString());
 	}
 
 	calculate() {
-		this.display.update(this.calculation.calculate());
+		this.display(this.calculation.calculate());
 		this.calculation = new Calculation();
 	}
 
 	clearAll() {
 		this.calculation = new Calculation();
-		this.display.update("");
+		this.display("");
 	}
 
 	deleteChar() {
 		this.calculation.deleteChar();
-		this.display.update(this.calculation.toString());
+		this.display(this.calculation.toString());
 	}
 }
 
