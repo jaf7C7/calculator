@@ -32,8 +32,10 @@ describe("User Interface", () => {
 
 	it("Should echo input values on the display", async () => {
 		await one.click();
+		await plus.click();
+
 		const displayed = await display.getAttribute("textContent");
-		assert.equal("1", displayed);
+		assert.equal("1+", displayed);
 	});
 
 	it("Should handle addition", async () => {
@@ -159,13 +161,5 @@ describe("User Interface", () => {
 		}
 		const calculation = await display.getAttribute("textContent");
 		assert.equal("1,111,111+2,222,222", calculation);
-	});
-
-	it("Should display input values correctly", async () => {
-		await one.click();
-		await plus.click();
-
-		const calculation = await display.getAttribute("textContent");
-		assert.equal("1+", calculation);
 	});
 });
