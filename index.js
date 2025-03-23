@@ -96,6 +96,11 @@ class Calculation {
 		}
 		return str;
 	}
+
+	deleteChar(display) {
+		this.currentOperand = this.currentOperand.slice(0, -1);
+		display.update(this.toString());
+	}
 }
 
 class Calculator {
@@ -190,12 +195,8 @@ function createApp() {
 		clearAll(display);
 	});
 
-	function deleteChar(calculation, display) {
-		calculation.currentOperand = calculation.currentOperand.slice(0, -1);
-		display.update(calculation.toString());
-	}
 	container.createButton("delete", "Del", () => {
-		deleteChar(calculation, display);
+		calculation.deleteChar(display);
 	});
 }
 
