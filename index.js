@@ -39,7 +39,7 @@ class Operator extends Function {
 class Calculation {
 	constructor() {
 		this._firstOperand = "";
-		this.secondOperand = "";
+		this._secondOperand = "";
 		this.operator = "";
 		this.currentOperand = "";
 	}
@@ -54,7 +54,7 @@ class Calculation {
 			if (!this._firstOperand) {
 				this._firstOperand = operand;
 			} else {
-				this.secondOperand = operand;
+				this._secondOperand = operand;
 			}
 		}
 		this.currentOperand = "";
@@ -67,7 +67,7 @@ class Calculation {
 
 	calculate() {
 		this._saveOperand();
-		return this.operator(this._firstOperand, this.secondOperand);
+		return this.operator(this._firstOperand, this._secondOperand);
 	}
 
 	toString() {
