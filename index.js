@@ -92,7 +92,6 @@ class Calculator {
 	constructor(display) {
 		this.display = display;
 		this.calculation = new Calculation();
-		this._currentOperand = "";
 	}
 
 	input(value) {
