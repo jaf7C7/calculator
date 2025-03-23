@@ -1,6 +1,6 @@
 class Container {
 	constructor(element) {
-		this.element = element;
+		this._element = element;
 	}
 
 	createElement(tagName, id, textContent = null, onClick = null) {
@@ -12,7 +12,7 @@ class Container {
 		if (onClick) {
 			element.addEventListener("click", onClick);
 		}
-		this.element.appendChild(element);
+		this._element.appendChild(element);
 		return element;
 	}
 
