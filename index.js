@@ -40,24 +40,24 @@ class Calculation {
 	constructor() {
 		this._firstOperand = "";
 		this._secondOperand = "";
+		this._currentOperand = "";
 		this._operator = "";
-		this.currentOperand = "";
 	}
 
 	inputValue(value) {
-		this.currentOperand += value;
+		this._currentOperand += value;
 	}
 
 	_saveOperand() {
-		if (this.currentOperand !== "") {
-			const operand = Number(this.currentOperand);
+		if (this._currentOperand !== "") {
+			const operand = Number(this._currentOperand);
 			if (!this._firstOperand) {
 				this._firstOperand = operand;
 			} else {
 				this._secondOperand = operand;
 			}
 		}
-		this.currentOperand = "";
+		this._currentOperand = "";
 	}
 
 	selectOperator(_operator) {
@@ -76,14 +76,14 @@ class Calculation {
 			str += formatNumber(this._firstOperand);
 			str += this._operator.value;
 		}
-		if (this.currentOperand !== "") {
-			str += formatNumber(this.currentOperand);
+		if (this._currentOperand !== "") {
+			str += formatNumber(this._currentOperand);
 		}
 		return str;
 	}
 
 	deleteChar() {
-		this.currentOperand = this.currentOperand.slice(0, -1);
+		this._currentOperand = this._currentOperand.slice(0, -1);
 	}
 }
 
