@@ -48,7 +48,7 @@ class Calculation {
 		this._currentOperand += value;
 	}
 
-	_saveOperand(operand) {
+	saveOperand(operand) {
 		if (operand !== "") {
 			const _operand = Number(operand);
 			if (!this._firstOperand) {
@@ -60,13 +60,13 @@ class Calculation {
 	}
 
 	selectOperator(operator) {
-		this._saveOperand(this._currentOperand);
+		this.saveOperand(this._currentOperand);
 		this._currentOperand = "";
 		this._operator = operator;
 	}
 
 	calculate() {
-		this._saveOperand(this._currentOperand);
+		this.saveOperand(this._currentOperand);
 		this._currentOperand = "";
 		return this._operator(this._firstOperand, this._secondOperand);
 	}
