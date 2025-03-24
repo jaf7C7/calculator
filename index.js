@@ -1,4 +1,4 @@
-class Container {
+class UI {
 	constructor(element) {
 		this._element = element;
 	}
@@ -112,8 +112,8 @@ function divide(a, b) {
 }
 
 function createApp() {
-	const container = new Container(document.getElementById("calculator"));
-	const display = container.createDisplay();
+	const ui = new UI(document.getElementById("calculator"));
+	const display = ui.createDisplay();
 	let calculation = new Calculation();
 
 	const inputButtons = [
@@ -137,7 +137,7 @@ function createApp() {
 	];
 
 	inputButtons.forEach(([id, value]) => {
-		container.createButton(id, value, () => {
+		ui.createButton(id, value, () => {
 			calculation.input(value);
 			display(calculation.toString());
 		});
@@ -145,23 +145,23 @@ function createApp() {
 
 	operationButtons.forEach(([id, value, operation]) => {
 		const operator = new Operator(value, operation);
-		container.createButton(id, operator.value, () => {
+		ui.createButton(id, operator.value, () => {
 			calculation.selectOperator(operator);
 			display(calculation.toString());
 		});
 	});
 
-	container.createButton("equals", "=", () => {
+	ui.createButton("equals", "=", () => {
 		display(calculation.calculate());
 		calculation = new Calculation();
 	});
 
-	container.createButton("allClear", "AC", () => {
+	ui.createButton("allClear", "AC", () => {
 		calculation = new Calculation();
 		display(calculation.toString());
 	});
 
-	container.createButton("delete", "Del", () => {
+	ui.createButton("delete", "Del", () => {
 		calculation.delete();
 		display(calculation.toString());
 	});
