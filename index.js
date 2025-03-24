@@ -9,7 +9,8 @@ class Operator extends Function {
 }
 
 class Calculator {
-	constructor() {
+	constructor(display) {
+		this._display = display;
 		this._firstOperand = "";
 		this._secondOperand = "";
 		this._currentOperand = "";
@@ -88,7 +89,7 @@ function divide(a, b) {
 function createApp() {
 	const ui = new UI();
 	const display = ui.createDisplay();
-	let calculator = new Calculator();
+	let calculator = new Calculator(display);
 
 	const inputButtons = [
 		["one", 1],
