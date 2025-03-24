@@ -83,13 +83,6 @@ class Calculation {
 		return str;
 	}
 
-	clear() {
-		this._firstOperand = "";
-		this._secondOperand = "";
-		this._currentOperand = "";
-		this._operator = "";
-	}
-
 	delete() {
 		this._currentOperand = this._currentOperand.slice(0, -1);
 	}
@@ -121,7 +114,7 @@ function divide(a, b) {
 function createApp() {
 	const container = new Container(document.getElementById("calculator"));
 	const display = container.createDisplay();
-	const calculation = new Calculation();
+	let calculation = new Calculation();
 
 	const inputButtons = [
 		["one", 1],
@@ -160,11 +153,11 @@ function createApp() {
 
 	container.createButton("equals", "=", () => {
 		display(calculation.calculate());
-		calculation.clear();
+		calculation = new Calculation();
 	});
 
 	container.createButton("allClear", "AC", () => {
-		calculation.clear();
+		calculation = new Calculation();
 		display(calculation.toString());
 	});
 
