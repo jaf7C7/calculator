@@ -29,17 +29,16 @@ class Calculation {
 				this._secondOperand = _operand;
 			}
 		}
+		this._currentOperand = "";
 	}
 
 	selectOperator(operator) {
 		this._addOperand(this._currentOperand);
-		this._currentOperand = "";
 		this._operator = operator;
 	}
 
 	calculate() {
 		this._addOperand(this._currentOperand);
-		this._currentOperand = "";
 		return this._operator(this._firstOperand, this._secondOperand);
 	}
 
