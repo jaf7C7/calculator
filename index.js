@@ -56,6 +56,13 @@ class Calculator {
 	delete() {
 		this._currentOperand = this._currentOperand.slice(0, -1);
 	}
+
+	reset() {
+		this._firstOperand = "";
+		this._secondOperand = "";
+		this._currentOperand = "";
+		this._operator = "";
+	}
 }
 
 function formatNumber(str) {
@@ -120,11 +127,11 @@ function createApp() {
 
 	ui.createButton("equals", "=", () => {
 		display(calculator.calculate());
-		calculator = new Calculator();
+		calculator.reset();
 	});
 
 	ui.createButton("allClear", "AC", () => {
-		calculator = new Calculator();
+		calculator.reset();
 		display(calculator.toString());
 	});
 
