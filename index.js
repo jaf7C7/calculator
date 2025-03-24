@@ -36,8 +36,9 @@ class Operator extends Function {
 	}
 }
 
-class Calculation {
-	constructor() {
+class Calculator {
+	constructor(display) {
+		this.display = display;
 		this._firstOperand = "";
 		this._secondOperand = "";
 		this._currentOperand = "";
@@ -46,6 +47,7 @@ class Calculation {
 
 	input(value) {
 		this._currentOperand += value;
+		this.display(this.toString());
 	}
 
 	addOperand(operand) {
@@ -63,12 +65,18 @@ class Calculation {
 		this.addOperand(this._currentOperand);
 		this._currentOperand = "";
 		this._operator = operator;
+		this.display(this.toString());
 	}
 
 	calculate() {
 		this.addOperand(this._currentOperand);
 		this._currentOperand = "";
-		return this._operator(this._firstOperand, this._secondOperand);
+		const result = this._operator(this._firstOperand, this._secondOperand);
+		this.display(result);
+		this._firstOperand = "";
+		this._secondOperand = "";
+		this._currentOperand = "";
+		this._operator = "";
 	}
 
 	toString() {
@@ -83,40 +91,17 @@ class Calculation {
 		return str;
 	}
 
-	delete() {
-		this._currentOperand = this._currentOperand.slice(0, -1);
-	}
-}
-
-class Calculator {
-	constructor(display) {
-		this.display = display;
-		this.calculation = new Calculation();
-	}
-
-	input(value) {
-		this.calculation.input(value);
-		this.display(this.calculation.toString());
-	}
-
-	selectOperator(operator) {
-		this.calculation.selectOperator(operator);
-		this.display(this.calculation.toString());
-	}
-
-	calculate() {
-		this.display(this.calculation.calculate());
-		this.calculation = new Calculation();
-	}
-
 	clear() {
-		this.calculation = new Calculation();
+		this._firstOperand = "";
+		this._secondOperand = "";
+		this._currentOperand = "";
+		this._operator = "";
 		this.display("");
 	}
 
 	delete() {
-		this.calculation.delete();
-		this.display(this.calculation.toString());
+		this._currentOperand = this._currentOperand.slice(0, -1);
+		this.display(this.toString());
 	}
 }
 
