@@ -44,7 +44,7 @@ class Calculator {
 		this._addOperand(this._currentOperand);
 		const result = this._operator(this._firstOperand, this._secondOperand);
 		this._display(result);
-		this.reset();
+		this._reset();
 	}
 
 	toString() {
@@ -64,11 +64,11 @@ class Calculator {
 	}
 
 	clear() {
-		this.reset();
+		this._reset();
 		this._display(this.toString());
 	}
 
-	reset() {
+	_reset() {
 		this._firstOperand = "";
 		this._secondOperand = "";
 		this._currentOperand = "";
