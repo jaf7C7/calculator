@@ -37,8 +37,7 @@ class Operator extends Function {
 }
 
 class Calculator {
-	constructor(display) {
-		this.display = display;
+	constructor() {
 		this._firstOperand = "";
 		this._secondOperand = "";
 		this._currentOperand = "";
@@ -69,9 +68,7 @@ class Calculator {
 	calculate() {
 		this._addOperand(this._currentOperand);
 		this._currentOperand = "";
-		const result = this._operator(this._firstOperand, this._secondOperand);
-		this.display(result);
-		this.clear();
+		return this._operator(this._firstOperand, this._secondOperand);
 	}
 
 	toString() {
@@ -124,7 +121,7 @@ function divide(a, b) {
 function createApp() {
 	const container = new Container(document.getElementById("calculator"));
 	const display = container.createDisplay();
-	const calculator = new Calculator(display);
+	const calculator = new Calculator();
 
 	const inputButtons = [
 		["one", 1],
@@ -162,7 +159,8 @@ function createApp() {
 	});
 
 	container.createButton("equals", "=", () => {
-		calculator.calculate();
+		display(calculator.calculate());
+		calculator.clear();
 	});
 
 	container.createButton("allClear", "AC", () => {
