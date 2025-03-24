@@ -73,7 +73,7 @@ class Calculator {
 		this._currentOperand = "";
 		const result = this._operator(this._firstOperand, this._secondOperand);
 		this.display(result);
-		this.reset();
+		this._reset();
 	}
 
 	toString() {
@@ -88,7 +88,7 @@ class Calculator {
 		return str;
 	}
 
-	reset() {
+	_reset() {
 		this._firstOperand = "";
 		this._secondOperand = "";
 		this._currentOperand = "";
@@ -96,7 +96,7 @@ class Calculator {
 	}
 
 	clear() {
-		this.reset();
+		this._reset();
 		this.display(this.toString());
 	}
 
