@@ -8,7 +8,7 @@ class Operator extends Function {
 	}
 }
 
-class Calculation {
+class Calculator {
 	constructor() {
 		this._firstOperand = "";
 		this._secondOperand = "";
@@ -81,7 +81,7 @@ function divide(a, b) {
 function createApp() {
 	const ui = new UI();
 	const display = ui.createDisplay();
-	let calculation = new Calculation();
+	let calculator = new Calculator();
 
 	const inputButtons = [
 		["one", 1],
@@ -105,32 +105,32 @@ function createApp() {
 
 	inputButtons.forEach(([id, value]) => {
 		ui.createButton(id, value, () => {
-			calculation.input(value);
-			display(calculation.toString());
+			calculator.input(value);
+			display(calculator.toString());
 		});
 	});
 
 	operationButtons.forEach(([id, value, operation]) => {
 		const operator = new Operator(value, operation);
 		ui.createButton(id, operator.value, () => {
-			calculation.selectOperator(operator);
-			display(calculation.toString());
+			calculator.selectOperator(operator);
+			display(calculator.toString());
 		});
 	});
 
 	ui.createButton("equals", "=", () => {
-		display(calculation.calculate());
-		calculation = new Calculation();
+		display(calculator.calculate());
+		calculator = new Calculator();
 	});
 
 	ui.createButton("allClear", "AC", () => {
-		calculation = new Calculation();
-		display(calculation.toString());
+		calculator = new Calculator();
+		display(calculator.toString());
 	});
 
 	ui.createButton("delete", "Del", () => {
-		calculation.delete();
-		display(calculation.toString());
+		calculator.delete();
+		display(calculator.toString());
 	});
 }
 
