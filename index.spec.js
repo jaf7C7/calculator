@@ -39,7 +39,7 @@ describe("User Interface", () => {
 	});
 
 	it("Should not echo operators if there are no operands", async () => {
-		plus.click();
+		await plus.click();
 
 		const displayed = await display.getAttribute("textContent");
 		assert.equal("", displayed);
