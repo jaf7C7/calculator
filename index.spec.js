@@ -52,8 +52,8 @@ describe("User Interface", () => {
 		await plus.click();
 		await one.click();
 
-		const calculation = await display.getAttribute("textContent");
-		assert.equal("0+1", calculation);
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("0+1", displayed);
 
 		await equals.click();
 
@@ -68,8 +68,8 @@ describe("User Interface", () => {
 		await minus.click();
 		await one.click();
 
-		const calculation = await display.getAttribute("textContent");
-		assert.equal("1-1", calculation);
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("1-1", displayed);
 
 		await equals.click();
 
@@ -84,8 +84,8 @@ describe("User Interface", () => {
 		await times.click();
 		await two.click();
 
-		const calculation = await display.getAttribute("textContent");
-		assert.equal("2*2", calculation);
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("2*2", displayed);
 
 		await equals.click();
 
@@ -100,8 +100,8 @@ describe("User Interface", () => {
 		await divide.click();
 		await two.click();
 
-		const calculation = await display.getAttribute("textContent");
-		assert.equal("2/2", calculation);
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("2/2", displayed);
 
 		await equals.click();
 
@@ -163,8 +163,8 @@ describe("User Interface", () => {
 		await del.click();
 		await two.click();
 
-		const calculation = await display.getAttribute("textContent");
-		assert.equal("1+2", calculation);
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("1+2", displayed);
 	});
 
 	it("Should display large numbers with commas for readability", async () => {
@@ -175,8 +175,9 @@ describe("User Interface", () => {
 		for (let i = 0; i < 7; i++) {
 			await two.click();
 		}
-		const calculation = await display.getAttribute("textContent");
-		assert.equal("1,111,111+2,222,222", calculation);
+
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("1,111,111+2,222,222", displayed);
 	});
 
 	it("Should handle displaying large numbers without loss of accuracy", async () => {
