@@ -19,6 +19,7 @@ class Calculator {
 
 	input(value) {
 		this._currentOperand += value;
+		this._display(this.toString());
 	}
 
 	_addOperand(operand) {
@@ -36,11 +37,14 @@ class Calculator {
 	selectOperator(operator) {
 		this._addOperand(this._currentOperand);
 		this._operator = operator;
+		this._display(this.toString());
 	}
 
 	calculate() {
 		this._addOperand(this._currentOperand);
-		return this._operator(this._firstOperand, this._secondOperand);
+		const result = this._operator(this._firstOperand, this._secondOperand);
+		this._display(result);
+		this.reset();
 	}
 
 	toString() {
@@ -56,6 +60,12 @@ class Calculator {
 
 	delete() {
 		this._currentOperand = this._currentOperand.slice(0, -1);
+		this._display(this.toString());
+	}
+
+	clear() {
+		this.reset();
+		this._display(this.toString());
 	}
 
 	reset() {
@@ -114,7 +124,6 @@ function createApp() {
 	inputButtons.forEach(([id, value]) => {
 		ui.createButton(id, value, () => {
 			calculator.input(value);
-			display(calculator.toString());
 		});
 	});
 
@@ -122,23 +131,19 @@ function createApp() {
 		const operator = new Operator(value, operation);
 		ui.createButton(id, operator.value, () => {
 			calculator.selectOperator(operator);
-			display(calculator.toString());
 		});
 	});
 
 	ui.createButton("equals", "=", () => {
-		display(calculator.calculate());
-		calculator.reset();
+		calculator.calculate();
 	});
 
 	ui.createButton("allClear", "AC", () => {
-		calculator.reset();
-		display(calculator.toString());
+		calculator.clear();
 	});
 
 	ui.createButton("delete", "Del", () => {
 		calculator.delete();
-		display(calculator.toString());
 	});
 }
 
