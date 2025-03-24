@@ -36,7 +36,7 @@ class Operator extends Function {
 	}
 }
 
-class Calculator {
+class Calculation {
 	constructor() {
 		this._firstOperand = "";
 		this._secondOperand = "";
@@ -121,7 +121,7 @@ function divide(a, b) {
 function createApp() {
 	const container = new Container(document.getElementById("calculator"));
 	const display = container.createDisplay();
-	const calculator = new Calculator();
+	const calculation = new Calculation();
 
 	const inputButtons = [
 		["one", 1],
@@ -145,32 +145,32 @@ function createApp() {
 
 	inputButtons.forEach(([id, value]) => {
 		container.createButton(id, value, () => {
-			calculator.input(value);
-			display(calculator.toString());
+			calculation.input(value);
+			display(calculation.toString());
 		});
 	});
 
 	operationButtons.forEach(([id, value, operation]) => {
 		const operator = new Operator(value, operation);
 		container.createButton(id, operator.value, () => {
-			calculator.selectOperator(operator);
-			display(calculator.toString());
+			calculation.selectOperator(operator);
+			display(calculation.toString());
 		});
 	});
 
 	container.createButton("equals", "=", () => {
-		display(calculator.calculate());
-		calculator.clear();
+		display(calculation.calculate());
+		calculation.clear();
 	});
 
 	container.createButton("allClear", "AC", () => {
-		calculator.clear();
-		display(calculator.toString());
+		calculation.clear();
+		display(calculation.toString());
 	});
 
 	container.createButton("delete", "Del", () => {
-		calculator.delete();
-		display(calculator.toString());
+		calculation.delete();
+		display(calculation.toString());
 	});
 }
 
