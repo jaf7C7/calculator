@@ -24,11 +24,10 @@ class Calculator {
 
 	_addOperand(operand) {
 		if (operand !== "") {
-			const _operand = Number(operand);
 			if (!this._firstOperand) {
-				this._firstOperand = _operand;
+				this._firstOperand = operand;
 			} else {
-				this._secondOperand = _operand;
+				this._secondOperand = operand;
 			}
 		}
 		this._currentOperand = "";
@@ -42,7 +41,10 @@ class Calculator {
 
 	calculate() {
 		this._addOperand(this._currentOperand);
-		const result = this._operator(this._firstOperand, this._secondOperand);
+		const result = this._operator(
+			Number(this._firstOperand),
+			Number(this._secondOperand),
+		);
 		this._display(result);
 		this._reset();
 	}
