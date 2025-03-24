@@ -167,4 +167,4 @@ function createApp() {
 	});
 }
 
-createApp();
+export default createApp();
