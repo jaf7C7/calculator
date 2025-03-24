@@ -19,7 +19,7 @@ class Calculator {
 
 	input(value) {
 		this._currentOperand += value;
-		this._display(this.toString());
+		this._display(this._toString());
 	}
 
 	_addOperand(operand) {
@@ -37,7 +37,7 @@ class Calculator {
 	selectOperator(operator) {
 		this._addOperand(this._currentOperand);
 		this._operator = operator;
-		this._display(this.toString());
+		this._display(this._toString());
 	}
 
 	calculate() {
@@ -47,7 +47,7 @@ class Calculator {
 		this._reset();
 	}
 
-	toString() {
+	_toString() {
 		let str = "";
 		if (this._firstOperand !== "") {
 			str += `${formatNumber(this._firstOperand)}${this._operator.value}`;
@@ -60,12 +60,12 @@ class Calculator {
 
 	delete() {
 		this._currentOperand = this._currentOperand.slice(0, -1);
-		this._display(this.toString());
+		this._display(this._toString());
 	}
 
 	clear() {
 		this._reset();
-		this._display(this.toString());
+		this._display(this._toString());
 	}
 
 	_reset() {
