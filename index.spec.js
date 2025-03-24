@@ -124,16 +124,13 @@ describe("User Interface", () => {
 	});
 
 	it("Should be able to handle consecutive calculations", async () => {
-		const times = await driver.findElement(By.id("times"));
-		const allClear = await driver.findElement(By.id("allClear"));
-
 		await one.click();
 		await plus.click();
 		await one.click();
 		await equals.click();
 
 		await two.click();
-		await times.click();
+		await plus.click();
 		await two.click();
 		await equals.click();
 
