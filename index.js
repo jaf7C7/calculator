@@ -50,7 +50,7 @@ class Calculator {
 		this.display(this.toString());
 	}
 
-	addOperand(operand) {
+	_addOperand(operand) {
 		if (operand !== "") {
 			const _operand = Number(operand);
 			if (!this._firstOperand) {
@@ -62,14 +62,14 @@ class Calculator {
 	}
 
 	selectOperator(operator) {
-		this.addOperand(this._currentOperand);
+		this._addOperand(this._currentOperand);
 		this._currentOperand = "";
 		this._operator = operator;
 		this.display(this.toString());
 	}
 
 	calculate() {
-		this.addOperand(this._currentOperand);
+		this._addOperand(this._currentOperand);
 		this._currentOperand = "";
 		const result = this._operator(this._firstOperand, this._secondOperand);
 		this.display(result);
