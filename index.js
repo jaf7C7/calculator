@@ -1,6 +1,6 @@
 class UI {
-	constructor(element) {
-		this._element = element;
+	constructor() {
+		this._element = document.getElementById("calculator");
 	}
 
 	_createElement(tagName, id, textContent = null, onClick = null) {
@@ -112,7 +112,7 @@ function divide(a, b) {
 }
 
 function createApp() {
-	const ui = new UI(document.getElementById("calculator"));
+	const ui = new UI();
 	const display = ui.createDisplay();
 	let calculation = new Calculation();
 
