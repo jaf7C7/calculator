@@ -1,32 +1,4 @@
-class UI {
-	constructor() {
-		this._element = document.getElementById("calculator");
-	}
-
-	_createElement(tagName, id, textContent = null, onClick = null) {
-		const element = document.createElement(tagName);
-		element.id = id;
-		if (textContent !== null) {
-			element.textContent = textContent;
-		}
-		if (onClick) {
-			element.addEventListener("click", onClick);
-		}
-		this._element.appendChild(element);
-		return element;
-	}
-
-	createButton(id, value, onClick) {
-		this._createElement("button", id, value, onClick);
-	}
-
-	createDisplay() {
-		const element = this._createElement("div", "display");
-		return (text) => {
-			element.textContent = text;
-		};
-	}
-}
+import UI from "./ui.js";
 
 class Operator extends Function {
 	constructor(value, operation) {
@@ -74,8 +46,7 @@ class Calculation {
 	toString() {
 		let str = "";
 		if (this._firstOperand !== "") {
-			str += formatNumber(this._firstOperand);
-			str += this._operator.value;
+			str += `${formatNumber(this._firstOperand)}${this._operator.value}`;
 		}
 		if (this._currentOperand !== "") {
 			str += formatNumber(this._currentOperand);
@@ -89,10 +60,7 @@ class Calculation {
 }
 
 function formatNumber(str) {
-	if (str.length > 15) {
-		return BigInt(str).toLocaleString();
-	}
-	return Number(str).toLocaleString();
+	return ((str.length > 15) ? BigInt(str) : Number(str)).toLocaleString();
 }
 
 function add(a, b) {
