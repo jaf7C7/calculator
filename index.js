@@ -79,6 +79,9 @@ class Calculator {
 }
 
 function formatNumber(str) {
+	if (str === ".") {
+		return "0.";
+	}
 	return ((str.length > 15) ? BigInt(str) : Number(str)).toLocaleString();
 }
 

@@ -210,4 +210,13 @@ describe("User Interface", () => {
 		const result = await display.getAttribute("textContent");
 		assert.equal("0.3", result);
 	});
+
+	it("Should assume initial digit '0' if '.' is the first input", async () => {
+		const point = await driver.findElement(By.id("point"));
+
+		await point.click();
+
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("0.", displayed);
+	});
 });
