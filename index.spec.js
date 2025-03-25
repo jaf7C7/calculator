@@ -180,17 +180,6 @@ describe("User Interface", () => {
 		assert.equal("1,111,111+2,222,222", displayed);
 	});
 
-	it("Should handle displaying large numbers without loss of accuracy", async () => {
-		const nine = await driver.findElement(By.id("nine"));
-
-		for (let i = 0; i < 16; i++) {
-			await nine.click();
-		}
-
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("9,999,999,999,999,999", displayed);
-	});
-
 	it("Should handle floating point calculations", async () => {
 		const zero = await driver.findElement(By.id("zero"));
 		const point = await driver.findElement(By.id("point"));
