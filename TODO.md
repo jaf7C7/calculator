@@ -15,16 +15,11 @@
 - [x] ~~Automatic comma insertion to denote thousands, millions, etc.~~
 - [x] ~~After 999,999,999,999,999 operands rounded to 10,000,000,000,000~~
 - [x] ~~Remove duplication between `Calculator` and `Calculation`~~
-- [ ] Separation of concerns
-- [ ] Handle calculation of large numbers without loss in accuracy
-- [ ] `Del` can delete an operator
-- [ ] **Floating point numbers**
+- [x] ~~Floating point numbers~~
+- [ ] **Keyboard input**
 - [ ] Negative numbers
-- [ ] Keyboard input
-- [ ] Finish styling
+- [ ] `Del` can delete an operator
 - [ ] Calculation chaining
-- [ ] Secondary display
-- [ ] Extract `Button` class
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
 - [ ] Make tests faster?
