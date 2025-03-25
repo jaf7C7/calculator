@@ -190,4 +190,24 @@ describe("User Interface", () => {
 		const displayed = await display.getAttribute("textContent");
 		assert.equal("9,999,999,999,999,999", displayed);
 	});
+
+	it("Should handle floating point calculations", async () => {
+		const zero = await driver.findElement(By.id("zero"));
+		const point = await driver.findElement(By.id("point"));
+
+		await point.click();
+		await one.click();
+		await plus.click();
+		await zero.click();
+		await point.click();
+		await two.click();
+
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("0.1+0.2", displayed);
+
+		await equals.click();
+
+		const result = await display.getAttribute("textContent");
+		assert.equal("0.3", result);
+	});
 });

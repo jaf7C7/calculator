@@ -45,7 +45,7 @@ class Calculator {
 			Number(this._firstOperand),
 			Number(this._secondOperand),
 		);
-		this._display(result);
+		this._display(formatNumber(result));
 		this._reset();
 	}
 
@@ -114,6 +114,7 @@ function createApp() {
 		["eight", 8],
 		["nine", 9],
 		["zero", 0],
+		["point", "."],
 	];
 
 	const operationButtons = [
