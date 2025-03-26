@@ -127,6 +127,11 @@ function handleButtonPress(calculator, button) {
 		8: (k) => calculator.input(k),
 		9: (k) => calculator.input(k),
 		".": (k) => calculator.input(k),
+		"+": (k) => calculator.selectOperator(new Operator(k, add)),
+		"-": (k) => calculator.selectOperator(new Operator(k, add)),
+		"*": (k) => calculator.selectOperator(new Operator(k, add)),
+		"/": (k) => calculator.selectOperator(new Operator(k, add)),
+		"%": (k) => calculator.selectOperator(new Operator("/", add)),
 	}
 	switch (button) {
 		case "0":
@@ -143,7 +148,7 @@ function handleButtonPress(calculator, button) {
 			buttons[button](button);
 			break;
 		case "+":
-			calculator.selectOperator(new Operator("+", add));
+			buttons[button](button);
 			break;
 		case "-":
 			calculator.selectOperator(new Operator("-", subtract));
