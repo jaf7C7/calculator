@@ -59,7 +59,7 @@ describe("User Interface", () => {
 			assert.equal("1.0", displayed);
 		});
 
-		it("Should assume initial digit '0' if '.' is the first input", async () => {
+		it("Should echo an initial digit '0' if '.' is the first input", async () => {
 			await point.click();
 
 			const displayed = await display.getAttribute("textContent");
