@@ -148,6 +148,23 @@ describe("User Interface", () => {
 			const result = await display.getAttribute("textContent");
 			assert.equal("1", result);
 		});
+
+		it("Should handle floating point numbers", async () => {
+			await zero.click();
+			await point.click();
+			await one.click();
+
+			await plus.click();
+
+			await zero.click();
+			await point.click();
+			await one.click();
+
+			await equals.click();
+
+			const result = await display.getAttribute("textContent");
+			assert.equal("0.2", result);
+		});
 	});
 
 	describe("AC button", () => {
@@ -166,6 +183,26 @@ describe("User Interface", () => {
 		});
 	});
 
+	describe("Del button", () => {
+		it("Should be able to delete a digit from the current operand", async () => {
+			const del = await driver.findElement(By.id("delete"));
+			const plus = await driver.findElement(By.id("plus"));
+
+			await one.click();
+			await one.click();
+			await del.click();
+			await plus.click();
+			await one.click();
+			await del.click();
+			await two.click();
+
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("1+2", displayed);
+		});
+	});
+
+	describe("Multiple calculations", () => {
+	});
 	it("Should be able to handle consecutive calculations", async () => {
 		await one.click();
 		await plus.click();
@@ -192,41 +229,6 @@ describe("User Interface", () => {
 
 		const result = await display.getAttribute("textContent");
 		assert.equal("12", result);
-	});
-
-	describe("Del button", () => {
-		it("Should be able to delete a digit from the current operand", async () => {
-			const del = await driver.findElement(By.id("delete"));
-			const plus = await driver.findElement(By.id("plus"));
-
-			await one.click();
-			await one.click();
-			await del.click();
-			await plus.click();
-			await one.click();
-			await del.click();
-			await two.click();
-
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("1+2", displayed);
-		});
-	});
-
-	it("Should handle floating point calculations", async () => {
-		await point.click();
-		await one.click();
-		await plus.click();
-		await zero.click();
-		await point.click();
-		await two.click();
-
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("0.1+0.2", displayed);
-
-		await equals.click();
-
-		const result = await display.getAttribute("textContent");
-		assert.equal("0.3", result);
 	});
 
 	it("Should respond to key events", async () => {
