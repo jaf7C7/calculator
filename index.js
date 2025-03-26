@@ -6,6 +6,13 @@ function createInputButton(ui, calculator, id, value) {
 	});
 }
 
+function createOperationButton(ui, calculator, id, value, operation) {
+	const operator = new Operator(value, operation);
+	ui.createButton(id, operator.value, () => {
+		calculator.selectOperator(operator);
+	});
+}
+
 class Operator extends Function {
 	constructor(value, operation) {
 		const self = (...args) => operation(...args);
@@ -143,10 +150,7 @@ function createApp() {
 	});
 
 	operationButtons.forEach(([id, value, operation]) => {
-		const operator = new Operator(value, operation);
-		ui.createButton(id, operator.value, () => {
-			calculator.selectOperator(operator);
-		});
+		createOperationButton(ui, calculator, id, value, operation);
 	});
 
 	ui.createButton("equals", "=", () => {
