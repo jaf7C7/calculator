@@ -115,31 +115,32 @@ class Calculator {
 	}
 }
 
-function handleButtonPress(calculator, button) {
-	function createKeypad(calculator) {
-		const keypad = {
-			1: (k) => calculator.input(k),
-			2: (k) => calculator.input(k),
-			3: (k) => calculator.input(k),
-			4: (k) => calculator.input(k),
-			5: (k) => calculator.input(k),
-			6: (k) => calculator.input(k),
-			7: (k) => calculator.input(k),
-			8: (k) => calculator.input(k),
-			9: (k) => calculator.input(k),
-			".": (k) => calculator.input(k),
-			"+": (k) => calculator.selectOperator(new Operator(k, add)),
-			"-": (k) => calculator.selectOperator(new Operator(k, subtract)),
-			"*": (k) => calculator.selectOperator(new Operator(k, multiply)),
-			"/": (k) => calculator.selectOperator(new Operator(k, divide)),
-			"%": (k) => calculator.selectOperator(new Operator("/", divide)),
-			"Delete": (k) => calculator[(event?.ctrlKey) ? "clear" : "delete"](),
-			"Backspace": (k) => calculator[(event?.ctrlKey) ? "clear" : "delete"](),
-			"=": (k) => calculator.calculate(),
-			"Enter": (k) => calculator.calculate(),
-		}
-		return keypad;
+function createKeypad(calculator) {
+	const keypad = {
+		1: (k) => calculator.input(k),
+		2: (k) => calculator.input(k),
+		3: (k) => calculator.input(k),
+		4: (k) => calculator.input(k),
+		5: (k) => calculator.input(k),
+		6: (k) => calculator.input(k),
+		7: (k) => calculator.input(k),
+		8: (k) => calculator.input(k),
+		9: (k) => calculator.input(k),
+		".": (k) => calculator.input(k),
+		"+": (k) => calculator.selectOperator(new Operator(k, add)),
+		"-": (k) => calculator.selectOperator(new Operator(k, subtract)),
+		"*": (k) => calculator.selectOperator(new Operator(k, multiply)),
+		"/": (k) => calculator.selectOperator(new Operator(k, divide)),
+		"%": (k) => calculator.selectOperator(new Operator("/", divide)),
+		"Delete": (k) => calculator[(event?.ctrlKey) ? "clear" : "delete"](),
+		"Backspace": (k) => calculator[(event?.ctrlKey) ? "clear" : "delete"](),
+		"=": (k) => calculator.calculate(),
+		"Enter": (k) => calculator.calculate(),
 	}
+	return keypad;
+}
+
+function handleButtonPress(calculator, button) {
 	const keypad = createKeypad(calculator);
 	keypad[button](button);
 }
