@@ -34,35 +34,44 @@ describe("User Interface", () => {
 		await driver.quit();
 	});
 
-	it("Should echo input values on the display", async () => {
-		await one.click();
+	describe("Display echo", () => {
+		it("Should echo input values on the display", async () => {
+			await one.click();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("1", displayed);
-	});
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("1", displayed);
+		});
 
-	it("Should echo a decimal point immediately as it is input", async () => {
-		await one.click();
-		await point.click();
+		it("Should echo a decimal point immediately as it is input", async () => {
+			await one.click();
+			await point.click();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("1.", displayed);
-	});
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("1.", displayed);
+		});
 
-	it("Should echo a leading decimal zero immediately as it is input", async () => {
-		await one.click();
-		await point.click();
-		await zero.click();
+		it("Should echo a leading decimal zero immediately as it is input", async () => {
+			await one.click();
+			await point.click();
+			await zero.click();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("1.0", displayed);
-	});
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("1.0", displayed);
+		});
 
-	it("Should not echo operators if there are no operands", async () => {
-		await plus.click();
+		it("Should assume initial digit '0' if '.' is the first input", async () => {
+			await point.click();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("", displayed);
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("0.", displayed);
+		});
+
+		it("Should not echo operators if there are no operands", async () => {
+			await plus.click();
+
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("", displayed);
+		});
 	});
 
 	it("Should handle addition", async () => {
@@ -213,13 +222,6 @@ describe("User Interface", () => {
 
 		const result = await display.getAttribute("textContent");
 		assert.equal("0.3", result);
-	});
-
-	it("Should assume initial digit '0' if '.' is the first input", async () => {
-		await point.click();
-
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("0.", displayed);
 	});
 
 	it("Should respond to key events", async () => {
