@@ -85,6 +85,13 @@ describe("User Interface", () => {
 			const displayed = await display.getAttribute("textContent");
 			assert.equal("1,111,111", displayed);
 		});
+
+		it("Should work via the keyboard", async () => {
+			await driver.actions().sendKeys("1").perform();
+
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("1", displayed);
+		});
 	});
 
 	describe("Operations", () => {
