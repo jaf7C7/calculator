@@ -116,6 +116,18 @@ class Calculator {
 }
 
 function handleButtonPress(calculator, button) {
+	const buttons = {
+		1: (k) => calculator.input(k),
+		2: (k) => calculator.input(k),
+		3: (k) => calculator.input(k),
+		4: (k) => calculator.input(k),
+		5: (k) => calculator.input(k),
+		6: (k) => calculator.input(k),
+		7: (k) => calculator.input(k),
+		8: (k) => calculator.input(k),
+		9: (k) => calculator.input(k),
+		".": (k) => calculator.input(k),
+	}
 	switch (button) {
 		case "0":
 		case "1":
@@ -128,7 +140,7 @@ function handleButtonPress(calculator, button) {
 		case "8":
 		case "9":
 		case ".":
-			calculator.input(button);
+			buttons[button](button);
 			break;
 		case "+":
 			calculator.selectOperator(new Operator("+", add));
