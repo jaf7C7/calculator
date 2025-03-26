@@ -98,20 +98,19 @@ class Calculator {
 		this._display(this._toString());
 	}
 
-	_addOperand(operand) {
-		if (operand !== "") {
-			if (!this._firstOperand) {
-				this._firstOperand = operand;
-			} else {
-				this._secondOperand = operand;
-			}
-		}
-		this._currentOperand = "";
-	}
-
 	selectOperator(operator) {
 		this._addOperand(this._currentOperand);
 		this._operator = operator;
+		this._display(this._toString());
+	}
+
+	delete() {
+		this._currentOperand = this._currentOperand.slice(0, -1);
+		this._display(this._toString());
+	}
+
+	clear() {
+		this._reset();
 		this._display(this._toString());
 	}
 
@@ -125,6 +124,17 @@ class Calculator {
 		this._reset();
 	}
 
+	_addOperand(operand) {
+		if (operand !== "") {
+			if (!this._firstOperand) {
+				this._firstOperand = operand;
+			} else {
+				this._secondOperand = operand;
+			}
+		}
+		this._currentOperand = "";
+	}
+
 	_toString() {
 		let str = "";
 		if (this._firstOperand !== "") {
@@ -134,16 +144,6 @@ class Calculator {
 			str += format(this._currentOperand);
 		}
 		return str;
-	}
-
-	delete() {
-		this._currentOperand = this._currentOperand.slice(0, -1);
-		this._display(this._toString());
-	}
-
-	clear() {
-		this._reset();
-		this._display(this._toString());
 	}
 
 	_reset() {
