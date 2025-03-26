@@ -16,7 +16,7 @@
 - [x] ~~After 999,999,999,999,999 operands rounded to 10,000,000,000,000~~
 - [x] ~~Remove duplication between `Calculator` and `Calculation`~~
 - [x] ~~Floating point numbers~~
-- [ ] **Keyboard input**
+- [x] ~~Keyboard input~~
 - [ ] `1.01` does not display properly
 - [ ] Negative numbers
 - [ ] `Del` can delete an operator

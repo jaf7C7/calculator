@@ -177,6 +177,7 @@ function createApp() {
 			case "%":
 				calculator.selectOperator(new Operator("/", divide));
 				break;
+			case "Delete":
 			case "Backspace":
 				if (event.ctrlKey) {
 					calculator.clear();
