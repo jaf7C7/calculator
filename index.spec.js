@@ -264,6 +264,15 @@ describe("User Interface", () => {
 		});
 	});
 
+	describe("Equals button", () => {
+		it("Should be bound to the '=' key", async () => {
+			await driver.actions().sendKeys("1+1=").perform();
+
+			const result = await display.getAttribute("textContent");
+			assert.equal("2", result);
+		});
+	});
+
 	describe("Del button", () => {
 		it("Should be able to delete a digit from the current operand", async () => {
 			const one = await driver.findElement(By.id("one"));

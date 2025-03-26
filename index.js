@@ -217,6 +217,7 @@ function createApp() {
 					calculator.delete();
 				}
 				break;
+			case "=":
 			case "Enter":
 				calculator.calculate();
 				break;
