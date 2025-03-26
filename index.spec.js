@@ -7,6 +7,8 @@ const options = new chrome.Options().addArguments("--headless=new");
 
 describe("User Interface", () => {
 	let driver;
+	let point;
+	let zero;
 	let one;
 	let two;
 	let plus;
@@ -19,6 +21,8 @@ describe("User Interface", () => {
 			.setChromeOptions(options)
 			.build();
 		await driver.get(url);
+		point = await driver.findElement(By.id("point"));
+		zero = await driver.findElement(By.id("zero"));
 		one = await driver.findElement(By.id("one"));
 		two = await driver.findElement(By.id("two"));
 		equals = await driver.findElement(By.id("equals"));
@@ -31,9 +35,6 @@ describe("User Interface", () => {
 	});
 
 	it("Should echo input values on the display", async () => {
-		const point = await driver.findElement(By.id("point"));
-		const zero = await driver.findElement(By.id("zero"));
-
 		await one.click();
 		await point.click();
 		await zero.click();
@@ -56,8 +57,6 @@ describe("User Interface", () => {
 	});
 
 	it("Should handle addition", async () => {
-		const zero = await driver.findElement(By.id("zero"));
-
 		await zero.click();
 		await plus.click();
 		await one.click();
@@ -191,9 +190,6 @@ describe("User Interface", () => {
 	});
 
 	it("Should handle floating point calculations", async () => {
-		const zero = await driver.findElement(By.id("zero"));
-		const point = await driver.findElement(By.id("point"));
-
 		await point.click();
 		await one.click();
 		await plus.click();
@@ -211,8 +207,6 @@ describe("User Interface", () => {
 	});
 
 	it("Should assume initial digit '0' if '.' is the first input", async () => {
-		const point = await driver.findElement(By.id("point"));
-
 		await point.click();
 
 		const displayed = await display.getAttribute("textContent");
