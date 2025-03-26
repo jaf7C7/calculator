@@ -25,6 +25,12 @@ function createClearButton(ui, calculator) {
 	});
 }
 
+function createDeleteButton(ui, calculator) {
+	ui.createButton("delete", "Del", () => {
+		calculator.delete();
+	});
+}
+
 class Operator extends Function {
 	constructor(value, operation) {
 		const self = (...args) => operation(...args);
@@ -167,10 +173,7 @@ function createApp() {
 
 	createEqualsButton(ui, calculator);
 	createClearButton(ui, calculator);
-
-	ui.createButton("delete", "Del", () => {
-		calculator.delete();
-	});
+	createDeleteButton(ui, calculator);
 
 	document.body.addEventListener("keydown", (event) => {
 		switch (event.key) {
