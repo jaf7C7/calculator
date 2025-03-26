@@ -176,6 +176,16 @@ function createApp() {
 			case "/":
 				calculator.selectOperator(new Operator("/", divide));
 				break;
+			case "Backspace":
+				if (event.ctrlKey) {
+					calculator.clear();
+				} else {
+					calculator.delete();
+				}
+				break;
+			case "Enter":
+				calculator.calculate();
+				break;
 		}
 	});
 }

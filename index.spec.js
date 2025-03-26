@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { Builder, Browser, By } from "selenium-webdriver";
+import { Builder, Browser, By, Key } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome.js"; // XXX: Breaks without '.js' extension
 
 const url = "http://localhost:8080";
@@ -210,13 +210,24 @@ describe("User Interface", () => {
 	});
 
 	it("Should respond to key events", async () => {
-		const container = await driver.findElement(By.id("calculator"));
 		const actions = driver.actions();
 
-		await container.click();
-		await actions.sendKeys("0.1*2").perform();
+		await actions.sendKeys("0.1*2", Key.BACK_SPACE, "3000").perform();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("0.1*2", displayed);
+		let displayed = await display.getAttribute("textContent");
+		assert.equal("0.1*3,000", displayed);
+
+		await actions.sendKeys(Key.ENTER).perform();
+
+		const result = await display.getAttribute("textContent");
+		assert.equal("300", result);
+
+		await actions.keyDown(Key.CONTROL)
+			.sendKeys(Key.BACK_SPACE)
+			.keyUp(Key.CONTROL)
+			.perform();
+
+		displayed = await display.getAttribute("textContent");
+		assert.equal("", displayed);
 	});
 });
