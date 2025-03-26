@@ -13,6 +13,12 @@ function createOperationButton(ui, calculator, id, value, operation) {
 	});
 }
 
+function createEqualsButton(ui, calculator) {
+	ui.createButton("equals", "=", () => {
+		calculator.calculate();
+	});
+}
+
 class Operator extends Function {
 	constructor(value, operation) {
 		const self = (...args) => operation(...args);
@@ -153,9 +159,7 @@ function createApp() {
 		createOperationButton(ui, calculator, id, value, operation);
 	});
 
-	ui.createButton("equals", "=", () => {
-		calculator.calculate();
-	});
+	createEqualsButton(ui, calculator);
 
 	ui.createButton("allClear", "AC", () => {
 		calculator.clear();
