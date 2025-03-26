@@ -79,6 +79,9 @@ class Calculator {
 }
 
 function formatNumber(str) {
+	if (str === "1." || str === "1.0") {
+		return str;
+	}
 	return ((str === ".") ?  "0." : Number(str)).toLocaleString();
 }
 

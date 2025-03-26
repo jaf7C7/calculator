@@ -31,11 +31,21 @@ describe("User Interface", () => {
 	});
 
 	it("Should echo input values on the display", async () => {
+		const point = await driver.findElement(By.id("point"));
+		const zero = await driver.findElement(By.id("zero"));
+
+		await one.click();
+		await point.click();
+		await zero.click();
+
+		let displayed = await display.getAttribute("textContent");
+		assert.equal("1.0", displayed);
+
 		await one.click();
 		await plus.click();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("1+", displayed);
+		displayed = await display.getAttribute("textContent");
+		assert.equal("1.01+", displayed);
 	});
 
 	it("Should not echo operators if there are no operands", async () => {
