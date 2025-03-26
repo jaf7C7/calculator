@@ -182,11 +182,16 @@ describe("User Interface", () => {
 				assert.equal("1", result);
 			});
 
-			it("Should be bound to the '/' key", async () => {
-				await driver.actions().sendKeys("1/1", Key.ENTER).perform();
+			["/", "%"].forEach((key) => {
+				it(`Should be bound to the '${key}' key`, async () => {
+					await driver
+						.actions()
+						.sendKeys(`1${key}1`, Key.ENTER)
+						.perform();
 
-				const result = await display.getAttribute("textContent");
-				assert.equal("1", result);
+					const result = await display.getAttribute("textContent");
+					assert.equal("1", result);
+				});
 			});
 		});
 
@@ -241,16 +246,21 @@ describe("User Interface", () => {
 			assert.equal("", displayed);
 		});
 
-		it("Should be bound to 'Ctrl+Delete'", async () => {
-			await driver.actions()
-				.sendKeys("1")
-				.keyDown(Key.CONTROL)
-				.sendKeys(Key.DELETE)
-				.keyUp(Key.CONTROL)
-				.perform();
+		[
+			["Delete", Key.DELETE],
+			["Backspace", Key.BACK_SPACE],
+		].forEach(([name, key]) => {
+			it(`Should be bound to 'Ctrl+${name}'`, async () => {
+				await driver.actions()
+					.sendKeys("1")
+					.keyDown(Key.CONTROL)
+					.sendKeys(key)
+					.keyUp(Key.CONTROL)
+					.perform();
 
-			const result = await display.getAttribute("textContent");
-			assert.equal("", result);
+				const result = await display.getAttribute("textContent");
+				assert.equal("", result);
+			});
 		});
 	});
 
@@ -275,11 +285,16 @@ describe("User Interface", () => {
 			assert.equal("1+2", displayed);
 		});
 
-		it("Should be bound to 'Delete'", async () => {
-			await driver.actions().sendKeys("1", Key.DELETE).perform();
+		[
+			["Delete", Key.DELETE],
+			["Backspace", Key.BACK_SPACE],
+		].forEach(([name, key]) => {
+			it(`Should be bound to '${name}'`, async () => {
+				await driver.actions().sendKeys("1", key).perform();
 
-			const result = await display.getAttribute("textContent");
-			assert.equal("", result);
+				const result = await display.getAttribute("textContent");
+				assert.equal("", result);
+			});
 		});
 	});
 
