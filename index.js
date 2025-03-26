@@ -116,8 +116,8 @@ class Calculator {
 }
 
 function handleButtonPress(calculator, button) {
-	function createKeyboard(calculator) {
-		const buttons = {
+	function createKeypad(calculator) {
+		const keypad = {
 			1: (k) => calculator.input(k),
 			2: (k) => calculator.input(k),
 			3: (k) => calculator.input(k),
@@ -138,10 +138,10 @@ function handleButtonPress(calculator, button) {
 			"=": (k) => calculator.calculate(),
 			"Enter": (k) => calculator.calculate(),
 		}
-		return buttons;
+		return keypad;
 	}
-	const buttons = createKeyboard(calculator);
-	buttons[button](button);
+	const keypad = createKeypad(calculator);
+	keypad[button](button);
 }
 
 function format(str) {
