@@ -208,4 +208,15 @@ describe("User Interface", () => {
 		const displayed = await display.getAttribute("textContent");
 		assert.equal("0.", displayed);
 	});
+
+	it("Should respond to key events", async () => {
+		const container = await driver.findElement(By.id("calculator"));
+		const actions = driver.actions();
+
+		await container.click();
+		await actions.sendKeys("0").perform();
+
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("0", displayed);
+	});
 });
