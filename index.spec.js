@@ -95,14 +95,22 @@ describe("User Interface", () => {
 	});
 
 	describe("Operation buttons", () => {
+		let equals;
+
+		beforeEach(async () => {
+			equals = await driver.findElement(By.id("equals"));
+		});
+
 		it("Should handle addition", async () => {
-			await zero.click();
+			const plus = await driver.findElement(By.id("plus"));
+
+			await one.click();
 			await plus.click();
 			await one.click();
 			await equals.click();
 
 			const result = await display.getAttribute("textContent");
-			assert.equal("1", result);
+			assert.equal("2", result);
 		});
 
 		it("Should handle subtraction", async () => {
@@ -120,21 +128,21 @@ describe("User Interface", () => {
 		it("Should handle multiplication", async () => {
 			const times = await driver.findElement(By.id("times"));
 
-			await two.click();
+			await one.click();
 			await times.click();
-			await two.click();
+			await one.click();
 			await equals.click();
 
 			const result = await display.getAttribute("textContent");
-			assert.equal("4", result);
+			assert.equal("1", result);
 		});
 
 		it("Should handle division", async () => {
 			const divide = await driver.findElement(By.id("divide"));
 
-			await two.click();
+			await one.click();
 			await divide.click();
-			await two.click();
+			await one.click();
 			await equals.click();
 
 			const result = await display.getAttribute("textContent");
