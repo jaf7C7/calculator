@@ -17,6 +17,7 @@
 - [x] ~~Remove duplication between `Calculator` and `Calculation`~~
 - [x] ~~Floating point numbers~~
 - [ ] **Keyboard input**
+- [ ] `1.01` does not display properly
 - [ ] Negative numbers
 - [ ] `Del` can delete an operator
 - [ ] Calculation chaining
