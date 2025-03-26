@@ -150,18 +150,20 @@ describe("User Interface", () => {
 		});
 	});
 
-	it("Should be able to clear the current calculation", async () => {
-		const times = await driver.findElement(By.id("times"));
-		const allClear = await driver.findElement(By.id("allClear"));
+	describe("AC button", () => {
+		it("Should be able to clear the current calculation", async () => {
+			const times = await driver.findElement(By.id("times"));
+			const allClear = await driver.findElement(By.id("allClear"));
 
-		await one.click();
-		await plus.click();
-		await one.click();
-		await equals.click();
-		await allClear.click();
+			await one.click();
+			await plus.click();
+			await one.click();
+			await equals.click();
+			await allClear.click();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("", displayed);
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("", displayed);
+		});
 	});
 
 	it("Should be able to handle consecutive calculations", async () => {
