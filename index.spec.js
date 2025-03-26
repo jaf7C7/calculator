@@ -74,66 +74,68 @@ describe("User Interface", () => {
 		});
 	});
 
-	it("Should handle addition", async () => {
-		await zero.click();
-		await plus.click();
-		await one.click();
+	describe("Operations", () => {
+		it("Should handle addition", async () => {
+			await zero.click();
+			await plus.click();
+			await one.click();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("0+1", displayed);
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("0+1", displayed);
 
-		await equals.click();
+			await equals.click();
 
-		const result = await display.getAttribute("textContent");
-		assert.equal("1", result);
-	});
+			const result = await display.getAttribute("textContent");
+			assert.equal("1", result);
+		});
 
-	it("Should handle subtraction", async () => {
-		const minus = await driver.findElement(By.id("minus"));
+		it("Should handle subtraction", async () => {
+			const minus = await driver.findElement(By.id("minus"));
 
-		await one.click();
-		await minus.click();
-		await one.click();
+			await one.click();
+			await minus.click();
+			await one.click();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("1-1", displayed);
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("1-1", displayed);
 
-		await equals.click();
+			await equals.click();
 
-		const result = await display.getAttribute("textContent");
-		assert.equal("0", result);
-	});
+			const result = await display.getAttribute("textContent");
+			assert.equal("0", result);
+		});
 
-	it("Should handle multiplication", async () => {
-		const times = await driver.findElement(By.id("times"));
+		it("Should handle multiplication", async () => {
+			const times = await driver.findElement(By.id("times"));
 
-		await two.click();
-		await times.click();
-		await two.click();
+			await two.click();
+			await times.click();
+			await two.click();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("2*2", displayed);
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("2*2", displayed);
 
-		await equals.click();
+			await equals.click();
 
-		const result = await display.getAttribute("textContent");
-		assert.equal("4", result);
-	});
+			const result = await display.getAttribute("textContent");
+			assert.equal("4", result);
+		});
 
-	it("Should handle division", async () => {
-		const divide = await driver.findElement(By.id("divide"));
+		it("Should handle division", async () => {
+			const divide = await driver.findElement(By.id("divide"));
 
-		await two.click();
-		await divide.click();
-		await two.click();
+			await two.click();
+			await divide.click();
+			await two.click();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("2/2", displayed);
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("2/2", displayed);
 
-		await equals.click();
+			await equals.click();
 
-		const result = await display.getAttribute("textContent");
-		assert.equal("1", result);
+			const result = await display.getAttribute("textContent");
+			assert.equal("1", result);
+		});
 	});
 
 	it("Should be able to clear the current calculation", async () => {
