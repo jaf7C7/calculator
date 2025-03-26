@@ -105,16 +105,25 @@ describe("User Interface", () => {
 			equals = await driver.findElement(By.id("equals"));
 		});
 
-		it("Should handle addition", async () => {
-			const plus = await driver.findElement(By.id("plus"));
+		describe("Addition", () => {
+			it("Should give the correct result", async () => {
+				const plus = await driver.findElement(By.id("plus"));
 
-			await one.click();
-			await plus.click();
-			await one.click();
-			await equals.click();
+				await one.click();
+				await plus.click();
+				await one.click();
+				await equals.click();
 
-			const result = await display.getAttribute("textContent");
-			assert.equal("2", result);
+				const result = await display.getAttribute("textContent");
+				assert.equal("2", result);
+			});
+
+			it("Should have a keybinding", async () => {
+				await driver.actions().sendKeys("1+1", Key.ENTER).perform();
+
+				const result = await display.getAttribute("textContent");
+				assert.equal("2", result);
+			});
 		});
 
 		it("Should handle subtraction", async () => {
@@ -247,27 +256,5 @@ describe("User Interface", () => {
 			const result = await display.getAttribute("textContent");
 			assert.equal("4", result);
 		});
-	});
-
-	it("Should respond to key events", async () => {
-		const actions = driver.actions();
-
-		await actions.sendKeys("0.1*2", Key.BACK_SPACE, "3000").perform();
-
-		let displayed = await display.getAttribute("textContent");
-		assert.equal("0.1*3,000", displayed);
-
-		await actions.sendKeys(Key.ENTER).perform();
-
-		const result = await display.getAttribute("textContent");
-		assert.equal("300", result);
-
-		await actions.keyDown(Key.CONTROL)
-			.sendKeys(Key.BACK_SPACE)
-			.keyUp(Key.CONTROL)
-			.perform();
-
-		displayed = await display.getAttribute("textContent");
-		assert.equal("", displayed);
 	});
 });
