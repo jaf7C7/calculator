@@ -118,7 +118,7 @@ describe("User Interface", () => {
 				assert.equal("2", result);
 			});
 
-			it("Should have a keybinding", async () => {
+			it("Should be bound to the '+' key", async () => {
 				await driver.actions().sendKeys("1+1", Key.ENTER).perform();
 
 				const result = await display.getAttribute("textContent");
@@ -139,7 +139,7 @@ describe("User Interface", () => {
 				assert.equal("0", result);
 			});
 
-			it("Should have a keybinding", async () => {
+			it("Should be bound to the '-' key", async () => {
 				await driver.actions().sendKeys("1-1", Key.ENTER).perform();
 
 				const result = await display.getAttribute("textContent");
@@ -161,7 +161,7 @@ describe("User Interface", () => {
 				assert.equal("1", result);
 			});
 
-			it("Should have a keybinding", async () => {
+			it("Should be bound to the '*' key", async () => {
 				await driver.actions().sendKeys("1*1", Key.ENTER).perform();
 
 				const result = await display.getAttribute("textContent");
@@ -182,7 +182,7 @@ describe("User Interface", () => {
 				assert.equal("1", result);
 			});
 
-			it("Should have a keybinding", async () => {
+			it("Should be bound to the '/' key", async () => {
 				await driver.actions().sendKeys("1/1", Key.ENTER).perform();
 
 				const result = await display.getAttribute("textContent");
@@ -240,6 +240,18 @@ describe("User Interface", () => {
 			const displayed = await display.getAttribute("textContent");
 			assert.equal("", displayed);
 		});
+
+		it("Should be bound to 'Ctrl+Delete'", async () => {
+			await driver.actions()
+				.sendKeys("1")
+				.keyDown(Key.CONTROL)
+				.sendKeys(Key.DELETE)
+				.keyUp(Key.CONTROL)
+				.perform();
+
+			const result = await display.getAttribute("textContent");
+			assert.equal("", result);
+		});
 	});
 
 	describe("Del button", () => {
@@ -261,6 +273,13 @@ describe("User Interface", () => {
 
 			const displayed = await display.getAttribute("textContent");
 			assert.equal("1+2", displayed);
+		});
+
+		it("Should be bound to 'Delete'", async () => {
+			await driver.actions().sendKeys("1", Key.DELETE).perform();
+
+			const result = await display.getAttribute("textContent");
+			assert.equal("", result);
 		});
 	});
 
