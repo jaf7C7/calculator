@@ -19,6 +19,12 @@ function createEqualsButton(ui, calculator) {
 	});
 }
 
+function createClearButton(ui, calculator) {
+	ui.createButton("allClear", "AC", () => {
+		calculator.clear();
+	});
+}
+
 class Operator extends Function {
 	constructor(value, operation) {
 		const self = (...args) => operation(...args);
@@ -160,10 +166,7 @@ function createApp() {
 	});
 
 	createEqualsButton(ui, calculator);
-
-	ui.createButton("allClear", "AC", () => {
-		calculator.clear();
-	});
+	createClearButton(ui, calculator);
 
 	ui.createButton("delete", "Del", () => {
 		calculator.delete();
