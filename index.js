@@ -79,10 +79,15 @@ class Calculator {
 }
 
 function formatNumber(str) {
-	if (str === "1." || str === "1.0") {
-		return str;
+	let result = "";
+	if (str === ".") {
+		result = "0.";
+	} else if (String(str).match(/\d+\.0*$/)) {
+		result = str;
+	} else {
+		result = Number(str).toLocaleString();
 	}
-	return ((str === ".") ?  "0." : Number(str)).toLocaleString();
+	return result;
 }
 
 function add(a, b) {
