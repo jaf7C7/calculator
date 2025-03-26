@@ -1,5 +1,11 @@
 import UI from "./ui.js";
 
+function createInputButton(ui, calculator, id, value) {
+	ui.createButton(id, value, () => {
+		calculator.input(value);
+	});
+}
+
 class Operator extends Function {
 	constructor(value, operation) {
 		const self = (...args) => operation(...args);
@@ -133,9 +139,7 @@ function createApp() {
 	];
 
 	inputButtons.forEach(([id, value]) => {
-		ui.createButton(id, value, () => {
-			calculator.input(value);
-		});
+		createInputButton(ui, calculator, id, value);
 	});
 
 	operationButtons.forEach(([id, value, operation]) => {
