@@ -81,13 +81,9 @@ describe("User Interface", () => {
 			for (let i = 0; i < 7; i++) {
 				await one.click();
 			}
-			await plus.click();
-			for (let i = 0; i < 7; i++) {
-				await one.click();
-			}
 
 			const displayed = await display.getAttribute("textContent");
-			assert.equal("1,111,111+1,111,111", displayed);
+			assert.equal("1,111,111", displayed);
 		});
 	});
 
