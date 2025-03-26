@@ -126,40 +126,68 @@ describe("User Interface", () => {
 			});
 		});
 
-		it("Should handle subtraction", async () => {
-			const minus = await driver.findElement(By.id("minus"));
+		describe("Subtraction", () => {
+			it("Should give the correct result", async () => {
+				const minus = await driver.findElement(By.id("minus"));
 
-			await one.click();
-			await minus.click();
-			await one.click();
-			await equals.click();
+				await one.click();
+				await minus.click();
+				await one.click();
+				await equals.click();
 
-			const result = await display.getAttribute("textContent");
-			assert.equal("0", result);
+				const result = await display.getAttribute("textContent");
+				assert.equal("0", result);
+			});
+
+			it("Should have a keybinding", async () => {
+				await driver.actions().sendKeys("1-1", Key.ENTER).perform();
+
+				const result = await display.getAttribute("textContent");
+				assert.equal("0", result);
+			});
 		});
 
-		it("Should handle multiplication", async () => {
-			const times = await driver.findElement(By.id("times"));
 
-			await one.click();
-			await times.click();
-			await one.click();
-			await equals.click();
+		describe("Multiplication", () => {
+			it("Should give the correct result", async () => {
+				const times = await driver.findElement(By.id("times"));
 
-			const result = await display.getAttribute("textContent");
-			assert.equal("1", result);
+				await one.click();
+				await times.click();
+				await one.click();
+				await equals.click();
+
+				const result = await display.getAttribute("textContent");
+				assert.equal("1", result);
+			});
+
+			it("Should have a keybinding", async () => {
+				await driver.actions().sendKeys("1*1", Key.ENTER).perform();
+
+				const result = await display.getAttribute("textContent");
+				assert.equal("1", result);
+			});
 		});
 
-		it("Should handle division", async () => {
-			const divide = await driver.findElement(By.id("divide"));
+		describe("Division", () => {
+			it("Should give the correct result", async () => {
+				const divide = await driver.findElement(By.id("divide"));
 
-			await one.click();
-			await divide.click();
-			await one.click();
-			await equals.click();
+				await one.click();
+				await divide.click();
+				await one.click();
+				await equals.click();
 
-			const result = await display.getAttribute("textContent");
-			assert.equal("1", result);
+				const result = await display.getAttribute("textContent");
+				assert.equal("1", result);
+			});
+
+			it("Should have a keybinding", async () => {
+				await driver.actions().sendKeys("1/1", Key.ENTER).perform();
+
+				const result = await display.getAttribute("textContent");
+				assert.equal("1", result);
+			});
 		});
 
 		it("Should handle floating point numbers", async () => {
