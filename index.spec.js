@@ -34,7 +34,7 @@ describe("User Interface", () => {
 		await driver.quit();
 	});
 
-	describe("Display echo", () => {
+	describe("Input buttons", () => {
 		it("Should echo input values on the display", async () => {
 			await one.click();
 
