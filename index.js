@@ -115,6 +115,49 @@ class Calculator {
 	}
 }
 
+function handleButtonPress(calculator, button) {
+	switch (button) {
+		case "0":
+		case "1":
+		case "2":
+		case "3":
+		case "4":
+		case "5":
+		case "6":
+		case "7":
+		case "8":
+		case "9":
+		case ".":
+			calculator.input(button);
+			break;
+		case "+":
+			calculator.selectOperator(new Operator("+", add));
+			break;
+		case "-":
+			calculator.selectOperator(new Operator("-", subtract));
+			break;
+		case "*":
+			calculator.selectOperator(new Operator("*", multiply));
+			break;
+		case "/":
+		case "%":
+			calculator.selectOperator(new Operator("/", divide));
+			break;
+		case "Delete":
+		case "Backspace":
+			if (event.ctrlKey) {
+				calculator.clear();
+			} else {
+				calculator.delete();
+			}
+			break;
+		case "=":
+		case "Enter":
+			calculator.calculate();
+			break;
+	}
+}
+
 function format(str) {
 	let result = "";
 	if (str === ".") {
@@ -182,46 +225,7 @@ function createApp() {
 	createDeleteButton(ui, calculator);
 
 	addKeybinding((event) => {
-		switch (event.key) {
-			case "0":
-			case "1":
-			case "2":
-			case "3":
-			case "4":
-			case "5":
-			case "6":
-			case "7":
-			case "8":
-			case "9":
-			case ".":
-				calculator.input(event.key);
-				break;
-			case "+":
-				calculator.selectOperator(new Operator("+", add));
-				break;
-			case "-":
-				calculator.selectOperator(new Operator("-", subtract));
-				break;
-			case "*":
-				calculator.selectOperator(new Operator("*", multiply));
-				break;
-			case "/":
-			case "%":
-				calculator.selectOperator(new Operator("/", divide));
-				break;
-			case "Delete":
-			case "Backspace":
-				if (event.ctrlKey) {
-					calculator.clear();
-				} else {
-					calculator.delete();
-				}
-				break;
-			case "=":
-			case "Enter":
-				calculator.calculate();
-				break;
-		}
+		handleButtonPress(calculator, event.key);
 	});
 }
 
