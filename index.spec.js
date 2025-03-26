@@ -7,12 +7,6 @@ const options = new chrome.Options().addArguments("--headless=new");
 
 describe("User Interface", () => {
 	let driver;
-	let point;
-	let zero;
-	let one;
-	let two;
-	let plus;
-	let equals;
 	let display;
 
 	beforeEach(async () => {
@@ -20,14 +14,10 @@ describe("User Interface", () => {
 			.forBrowser(Browser.CHROME)
 			.setChromeOptions(options)
 			.build();
+
 		await driver.get(url);
-		point = await driver.findElement(By.id("point"));
-		zero = await driver.findElement(By.id("zero"));
-		one = await driver.findElement(By.id("one"));
-		two = await driver.findElement(By.id("two"));
-		equals = await driver.findElement(By.id("equals"));
+
 		display = await driver.findElement(By.id("display"));
-		plus = await driver.findElement(By.id("plus"));
 	});
 
 	afterEach(async () => {
@@ -36,6 +26,8 @@ describe("User Interface", () => {
 
 	describe("Input buttons", () => {
 		it("Should echo input values on the display", async () => {
+			const one = await driver.findElement(By.id("one"));
+
 			await one.click();
 
 			const displayed = await display.getAttribute("textContent");
@@ -43,6 +35,9 @@ describe("User Interface", () => {
 		});
 
 		it("Should echo a decimal point immediately as it is input", async () => {
+			const one = await driver.findElement(By.id("one"));
+			const point = await driver.findElement(By.id("point"));
+
 			await one.click();
 			await point.click();
 
@@ -51,6 +46,10 @@ describe("User Interface", () => {
 		});
 
 		it("Should echo a leading decimal zero immediately as it is input", async () => {
+			const one = await driver.findElement(By.id("one"));
+			const point = await driver.findElement(By.id("point"));
+			const zero = await driver.findElement(By.id("zero"));
+
 			await one.click();
 			await point.click();
 			await zero.click();
@@ -60,6 +59,8 @@ describe("User Interface", () => {
 		});
 
 		it("Should echo an initial digit '0' if '.' is the first input", async () => {
+			const point = await driver.findElement(By.id("point"));
+
 			await point.click();
 
 			const displayed = await display.getAttribute("textContent");
@@ -76,6 +77,7 @@ describe("User Interface", () => {
 		});
 
 		it("Should display large numbers with commas for readability", async () => {
+			const one = await driver.findElement(By.id("one"));
 			const plus = await driver.findElement(By.id("plus"));
 
 			for (let i = 0; i < 7; i++) {
@@ -95,9 +97,11 @@ describe("User Interface", () => {
 	});
 
 	describe("Operation buttons", () => {
+		let one;
 		let equals;
 
 		beforeEach(async () => {
+			one = await driver.findElement(By.id("one"));
 			equals = await driver.findElement(By.id("equals"));
 		});
 
@@ -150,20 +154,23 @@ describe("User Interface", () => {
 		});
 
 		it("Should handle floating point numbers", async () => {
-			await zero.click();
+			const point = await driver.findElement(By.id("point"));
+			const plus = await driver.findElement(By.id("plus"));
+
+			await one.click();
 			await point.click();
 			await one.click();
 
 			await plus.click();
 
-			await zero.click();
+			await one.click();
 			await point.click();
 			await one.click();
 
 			await equals.click();
 
 			const result = await display.getAttribute("textContent");
-			assert.equal("0.2", result);
+			assert.equal("2.2", result);
 		});
 
 		it("Should handle multi-digit operands", async () => {
@@ -182,7 +189,9 @@ describe("User Interface", () => {
 
 	describe("AC button", () => {
 		it("Should be able to clear the current calculation", async () => {
-			const times = await driver.findElement(By.id("times"));
+			const one = await driver.findElement(By.id("one"));
+			const plus = await driver.findElement(By.id("plus"));
+			const equals = await driver.findElement(By.id("equals"));
 			const allClear = await driver.findElement(By.id("allClear"));
 
 			await one.click();
@@ -198,6 +207,7 @@ describe("User Interface", () => {
 
 	describe("Del button", () => {
 		it("Should be able to delete a digit from the current operand", async () => {
+			const one = await driver.findElement(By.id("one"));
 			const two = await driver.findElement(By.id("two"));
 			const plus = await driver.findElement(By.id("plus"));
 			const del = await driver.findElement(By.id("delete"));
@@ -205,7 +215,9 @@ describe("User Interface", () => {
 			await one.click();
 			await one.click();
 			await del.click();
+
 			await plus.click();
+
 			await one.click();
 			await del.click();
 			await two.click();
@@ -217,6 +229,7 @@ describe("User Interface", () => {
 
 	describe("Multiple calculations", () => {
 		it("Should be able to handle consecutive calculations", async () => {
+			const one = await driver.findElement(By.id("one"));
 			const two = await driver.findElement(By.id("two"));
 			const plus = await driver.findElement(By.id("plus"));
 			const equals = await driver.findElement(By.id("equals"));
