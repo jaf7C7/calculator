@@ -94,7 +94,7 @@ describe("User Interface", () => {
 		});
 	});
 
-	describe("Operations", () => {
+	describe("Operation buttons", () => {
 		it("Should handle addition", async () => {
 			await zero.click();
 			await plus.click();
