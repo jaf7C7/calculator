@@ -134,33 +134,10 @@ function handleButtonPress(calculator, button) {
 		"%": (k) => calculator.selectOperator(new Operator("/", divide)),
 		"Delete": (k) => calculator[(event?.ctrlKey) ? "clear" : "delete"](),
 		"Backspace": (k) => calculator[(event?.ctrlKey) ? "clear" : "delete"](),
+		"=": (k) => calculator.calculate(),
+		"Enter": (k) => calculator.calculate(),
 	}
-	switch (button) {
-		case "0":
-		case "1":
-		case "2":
-		case "3":
-		case "4":
-		case "5":
-		case "6":
-		case "7":
-		case "8":
-		case "9":
-		case ".":
-		case "+":
-		case "-":
-		case "*":
-		case "/":
-		case "%":
-		case "Delete":
-		case "Backspace":
-			buttons[button](button);
-			break;
-		case "=":
-		case "Enter":
-			calculator.calculate();
-			break;
-	}
+	buttons[button](button);
 }
 
 function format(str) {
