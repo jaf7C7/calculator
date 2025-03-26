@@ -165,6 +165,19 @@ describe("User Interface", () => {
 			const result = await display.getAttribute("textContent");
 			assert.equal("0.2", result);
 		});
+
+		it("Should handle multi-digit operands", async () => {
+			const plus = await driver.findElement(By.id("plus"));
+
+			await one.click();
+			await one.click();
+			await plus.click();
+			await one.click();
+			await equals.click();
+
+			const result = await display.getAttribute("textContent");
+			assert.equal("12", result);
+		});
 	});
 
 	describe("AC button", () => {
@@ -202,33 +215,20 @@ describe("User Interface", () => {
 	});
 
 	describe("Multiple calculations", () => {
-	});
-	it("Should be able to handle consecutive calculations", async () => {
-		await one.click();
-		await plus.click();
-		await one.click();
-		await equals.click();
+		it("Should be able to handle consecutive calculations", async () => {
+			await one.click();
+			await plus.click();
+			await one.click();
+			await equals.click();
 
-		await two.click();
-		await plus.click();
-		await two.click();
-		await equals.click();
+			await two.click();
+			await plus.click();
+			await two.click();
+			await equals.click();
 
-		const result = await display.getAttribute("textContent");
-		assert.equal("4", result);
-	});
-
-	it("Should handle multi-digit operands", async () => {
-		const plus = await driver.findElement(By.id("plus"));
-
-		await one.click();
-		await one.click();
-		await plus.click();
-		await one.click();
-		await equals.click();
-
-		const result = await display.getAttribute("textContent");
-		assert.equal("12", result);
+			const result = await display.getAttribute("textContent");
+			assert.equal("4", result);
+		});
 	});
 
 	it("Should respond to key events", async () => {
