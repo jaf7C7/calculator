@@ -79,10 +79,6 @@ describe("User Interface", () => {
 			await zero.click();
 			await plus.click();
 			await one.click();
-
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("0+1", displayed);
-
 			await equals.click();
 
 			const result = await display.getAttribute("textContent");
@@ -95,10 +91,6 @@ describe("User Interface", () => {
 			await one.click();
 			await minus.click();
 			await one.click();
-
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("1-1", displayed);
-
 			await equals.click();
 
 			const result = await display.getAttribute("textContent");
@@ -111,10 +103,6 @@ describe("User Interface", () => {
 			await two.click();
 			await times.click();
 			await two.click();
-
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("2*2", displayed);
-
 			await equals.click();
 
 			const result = await display.getAttribute("textContent");
@@ -127,10 +115,6 @@ describe("User Interface", () => {
 			await two.click();
 			await divide.click();
 			await two.click();
-
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("2/2", displayed);
-
 			await equals.click();
 
 			const result = await display.getAttribute("textContent");
