@@ -115,34 +115,22 @@ class Calculator {
 	}
 }
 
-function createKeypad(calculator) {
-	const keypad = {
-		1: (k) => calculator.input(k),
-		2: (k) => calculator.input(k),
-		3: (k) => calculator.input(k),
-		4: (k) => calculator.input(k),
-		5: (k) => calculator.input(k),
-		6: (k) => calculator.input(k),
-		7: (k) => calculator.input(k),
-		8: (k) => calculator.input(k),
-		9: (k) => calculator.input(k),
-		".": (k) => calculator.input(k),
-		"+": (k) => calculator.selectOperator(new Operator(k, add)),
-		"-": (k) => calculator.selectOperator(new Operator(k, subtract)),
-		"*": (k) => calculator.selectOperator(new Operator(k, multiply)),
-		"/": (k) => calculator.selectOperator(new Operator(k, divide)),
-		"%": (k) => calculator.selectOperator(new Operator("/", divide)),
-		"Delete": (k) => calculator[(event?.ctrlKey) ? "clear" : "delete"](),
-		"Backspace": (k) => calculator[(event?.ctrlKey) ? "clear" : "delete"](),
-		"=": (k) => calculator.calculate(),
-		"Enter": (k) => calculator.calculate(),
+function handleButtonPress(calculator, button, ctrlKey) {
+	if (button.match(/[.0-9]/)) {
+		calculator.input(button)
+	} else if (button === "+") {
+		calculator.selectOperator(new Operator("+", add));
+	} else if (button === "-") {
+		calculator.selectOperator(new Operator("-", subtract));
+	} else if (button === "*") {
+		calculator.selectOperator(new Operator("*", multiply));
+	} else if (button.match(/[/%]/)) {
+		calculator.selectOperator(new Operator("/", divide));
+	} else if (button.match(/Delete|Backspace/)) {
+		calculator[(ctrlKey) ? "clear" : "delete"]();
+	} else if (button.match(/=|Enter/)) {
+		calculator.calculate();
 	}
-	return keypad;
-}
-
-function handleButtonPress(calculator, button) {
-	const keypad = createKeypad(calculator);
-	keypad[button](button);
 }
 
 function format(str) {
@@ -212,7 +200,7 @@ function createApp() {
 	createDeleteButton(ui, calculator);
 
 	addKeybinding((event) => {
-		handleButtonPress(calculator, event.key);
+		handleButtonPress(calculator, event.key, event.ctrlKey);
 	});
 }
 
