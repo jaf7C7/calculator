@@ -174,6 +174,7 @@ function createApp() {
 				calculator.selectOperator(new Operator("*", multiply));
 				break;
 			case "/":
+			case "%":
 				calculator.selectOperator(new Operator("/", divide));
 				break;
 			case "Backspace":
