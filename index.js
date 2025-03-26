@@ -1,5 +1,11 @@
 import UI from "./ui.js";
 
+function addKeybinding(callback) {
+	document.body.addEventListener("keydown", (event) => {
+		callback(event);
+	});
+}
+
 function createInputButton(ui, calculator, id, value) {
 	ui.createButton(id, value, () => {
 		calculator.input(value);
@@ -175,7 +181,7 @@ function createApp() {
 	createClearButton(ui, calculator);
 	createDeleteButton(ui, calculator);
 
-	document.body.addEventListener("keydown", (event) => {
+	addKeybinding((event) => {
 		switch (event.key) {
 			case "0":
 			case "1":
