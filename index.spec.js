@@ -214,9 +214,9 @@ describe("User Interface", () => {
 		const actions = driver.actions();
 
 		await container.click();
-		await actions.sendKeys("0").perform();
+		await actions.sendKeys("0.1*2").perform();
 
 		const displayed = await display.getAttribute("textContent");
-		assert.equal("0", displayed);
+		assert.equal("0.1*2", displayed);
 	});
 });

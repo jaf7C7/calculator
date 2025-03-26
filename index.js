@@ -164,6 +164,18 @@ function createApp() {
 			case ".":
 				calculator.input(event.key);
 				break;
+			case "+":
+				calculator.selectOperator(new Operator("+", add));
+				break;
+			case "-":
+				calculator.selectOperator(new Operator("-", subtract));
+				break;
+			case "*":
+				calculator.selectOperator(new Operator("*", multiply));
+				break;
+			case "/":
+				calculator.selectOperator(new Operator("/", divide));
+				break;
 		}
 	});
 }
