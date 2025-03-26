@@ -194,20 +194,22 @@ describe("User Interface", () => {
 		assert.equal("12", result);
 	});
 
-	it("Should be able to delete a digit from the current operand", async () => {
-		const del = await driver.findElement(By.id("delete"));
-		const plus = await driver.findElement(By.id("plus"));
+	describe("Del button", () => {
+		it("Should be able to delete a digit from the current operand", async () => {
+			const del = await driver.findElement(By.id("delete"));
+			const plus = await driver.findElement(By.id("plus"));
 
-		await one.click();
-		await one.click();
-		await del.click();
-		await plus.click();
-		await one.click();
-		await del.click();
-		await two.click();
+			await one.click();
+			await one.click();
+			await del.click();
+			await plus.click();
+			await one.click();
+			await del.click();
+			await two.click();
 
-		const displayed = await display.getAttribute("textContent");
-		assert.equal("1+2", displayed);
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("1+2", displayed);
+		});
 	});
 
 	it("Should handle floating point calculations", async () => {
