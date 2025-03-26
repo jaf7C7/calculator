@@ -198,8 +198,9 @@ describe("User Interface", () => {
 
 	describe("Del button", () => {
 		it("Should be able to delete a digit from the current operand", async () => {
-			const del = await driver.findElement(By.id("delete"));
+			const two = await driver.findElement(By.id("two"));
 			const plus = await driver.findElement(By.id("plus"));
+			const del = await driver.findElement(By.id("delete"));
 
 			await one.click();
 			await one.click();
@@ -216,6 +217,10 @@ describe("User Interface", () => {
 
 	describe("Multiple calculations", () => {
 		it("Should be able to handle consecutive calculations", async () => {
+			const two = await driver.findElement(By.id("two"));
+			const plus = await driver.findElement(By.id("plus"));
+			const equals = await driver.findElement(By.id("equals"));
+
 			await one.click();
 			await plus.click();
 			await one.click();
