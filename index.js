@@ -45,17 +45,17 @@ class Calculator {
 			Number(this._firstOperand),
 			Number(this._secondOperand),
 		);
-		this._display(formatNumber(result));
+		this._display(format(result));
 		this._reset();
 	}
 
 	_toString() {
 		let str = "";
 		if (this._firstOperand !== "") {
-			str += `${formatNumber(this._firstOperand)}${this._operator.value}`;
+			str += `${format(this._firstOperand)}${this._operator.value}`;
 		}
 		if (this._currentOperand !== "") {
-			str += formatNumber(this._currentOperand);
+			str += format(this._currentOperand);
 		}
 		return str;
 	}
@@ -78,7 +78,7 @@ class Calculator {
 	}
 }
 
-function formatNumber(str) {
+function format(str) {
 	let result = "";
 	if (str === ".") {
 		result = "0.";
