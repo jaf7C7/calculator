@@ -37,6 +37,45 @@ function createDeleteButton(ui, calculator) {
 	});
 }
 
+function createKeypad(ui, calculator) {
+	const inputButtons = [
+		["one", 1],
+		["two", 2],
+		["three", 3],
+		["four", 4],
+		["five", 5],
+		["six", 6],
+		["seven", 7],
+		["eight", 8],
+		["nine", 9],
+		["zero", 0],
+		["point", "."],
+	];
+
+	const operationButtons = [
+		["plus", "+", add],
+		["minus", "-", subtract],
+		["times", "*", multiply],
+		["divide", "/", divide],
+	];
+
+	inputButtons.forEach(([id, value]) => {
+		createInputButton(ui, calculator, id, value);
+	});
+
+	operationButtons.forEach(([id, value, operation]) => {
+		createOperationButton(ui, calculator, id, value, operation);
+	});
+
+	createEqualsButton(ui, calculator);
+	createClearButton(ui, calculator);
+	createDeleteButton(ui, calculator);
+
+	addKeybinding((event) => {
+		handleButtonPress(calculator, event.key, event.ctrlKey);
+	});
+}
+
 class Operator extends Function {
 	constructor(value, operation) {
 		const self = (...args) => operation(...args);
@@ -159,45 +198,6 @@ function multiply(a, b) {
 
 function divide(a, b) {
 	return a / b;
-}
-
-function createKeypad(ui, calculator) {
-	const inputButtons = [
-		["one", 1],
-		["two", 2],
-		["three", 3],
-		["four", 4],
-		["five", 5],
-		["six", 6],
-		["seven", 7],
-		["eight", 8],
-		["nine", 9],
-		["zero", 0],
-		["point", "."],
-	];
-
-	const operationButtons = [
-		["plus", "+", add],
-		["minus", "-", subtract],
-		["times", "*", multiply],
-		["divide", "/", divide],
-	];
-
-	inputButtons.forEach(([id, value]) => {
-		createInputButton(ui, calculator, id, value);
-	});
-
-	operationButtons.forEach(([id, value, operation]) => {
-		createOperationButton(ui, calculator, id, value, operation);
-	});
-
-	createEqualsButton(ui, calculator);
-	createClearButton(ui, calculator);
-	createDeleteButton(ui, calculator);
-
-	addKeybinding((event) => {
-		handleButtonPress(calculator, event.key, event.ctrlKey);
-	});
 }
 
 function createApp() {
