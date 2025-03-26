@@ -161,11 +161,7 @@ function divide(a, b) {
 	return a / b;
 }
 
-function createApp() {
-	const ui = new UI();
-	const display = ui.createDisplay();
-	let calculator = new Calculator(display);
-
+function createKeypad(ui, calculator) {
 	const inputButtons = [
 		["one", 1],
 		["two", 2],
@@ -202,6 +198,14 @@ function createApp() {
 	addKeybinding((event) => {
 		handleButtonPress(calculator, event.key, event.ctrlKey);
 	});
+}
+
+function createApp() {
+	const ui = new UI();
+	const display = ui.createDisplay();
+	let calculator = new Calculator(display);
+
+	createKeypad(ui, calculator);
 }
 
 export default createApp;
