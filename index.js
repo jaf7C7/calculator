@@ -110,7 +110,7 @@ const subtract = new Operator("-", (a, b) => a - b);
 const multiply = new Operator("*", (a, b) => a * b);
 const divide = new Operator("/", (a, b) => a / b);
 
-const inputButtons = [
+const keypad = [
 	new InputButton("one", 1),
 	new InputButton("two", 2),
 	new InputButton("three", 3),
@@ -121,10 +121,7 @@ const inputButtons = [
 	new InputButton("eight", 8),
 	new InputButton("nine", 9),
 	new InputButton("zero", 0),
-	new InputButton("point", ".")
-];
-
-const operationButtons = [
+	new InputButton("point", "."),
 	new OperationButton("plus", add),
 	new OperationButton("minus", subtract),
 	new OperationButton("times", multiply),
@@ -158,17 +155,12 @@ function createButton(ui, calculator, btn) {
 function createKeypad(
 	ui,
 	calculator,
-	inputButtons,
-	operationButtons,
+	keypad,
 	deleteBtn,
 	clearBtn,
 	equalsBtn
 ) {
-	inputButtons.forEach((btn) => {
-		createButton(ui, calculator, btn);
-	});
-
-	operationButtons.forEach((btn) => {
+	keypad.forEach((btn) => {
 		createButton(ui, calculator, btn);
 	});
 
@@ -219,8 +211,7 @@ function createApp() {
 	createKeypad(
 		ui,
 		calculator,
-		inputButtons,
-		operationButtons,
+		keypad,
 		deleteBtn,
 		clearBtn,
 		equalsBtn,
