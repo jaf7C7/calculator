@@ -137,6 +137,7 @@ const keypad = [
 	new Button("equals", "=", (calculator) => {
 		calculator.calculate();
 	}),
+	clearBtn,
 ];
 
 function addKeybinding(callback) {
@@ -156,13 +157,11 @@ function createKeypad(
 	calculator,
 	keypad,
 	deleteBtn,
-	clearBtn,
 ) {
 	keypad.forEach((btn) => {
 		createButton(ui, calculator, btn);
 	});
 
-	createButton(ui, calculator, clearBtn);
 	createButton(ui, calculator, deleteBtn);
 
 	addKeybinding((event) => {
@@ -210,7 +209,6 @@ function createApp() {
 		calculator,
 		keypad,
 		deleteBtn,
-		clearBtn,
 	);
 }
 
