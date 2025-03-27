@@ -114,10 +114,6 @@ const deleteBtn = new Button("delete", "Del", (calculator) => {
 	calculator.delete();
 });
 
-const clearBtn = new Button("allClear", "AC", (calculator) => {
-	calculator.clear();
-});
-
 const keypad = [
 	new InputButton("one", 1),
 	new InputButton("two", 2),
@@ -137,7 +133,9 @@ const keypad = [
 	new Button("equals", "=", (calculator) => {
 		calculator.calculate();
 	}),
-	clearBtn,
+	new Button("allClear", "AC", (calculator) => {
+		calculator.clear();
+	}),
 ];
 
 function addKeybinding(callback) {
