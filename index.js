@@ -94,8 +94,10 @@ class Calculator {
 	}
 
 	input(value) {
-		this._currentOperand += value;
-		this._display(this._toString());
+		if (!this._currentOperand.includes(".") || value !== ".") {
+			this._currentOperand += value;
+			this._display(this._toString());
+		}
 	}
 
 	selectOperator(operator) {

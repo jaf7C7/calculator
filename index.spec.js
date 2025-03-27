@@ -67,6 +67,16 @@ describe("User Interface", () => {
 			assert.equal("0.", displayed);
 		});
 
+		it("Should only allow a single point per operand", async () => {
+			const point = await driver.findElement(By.id("point"));
+
+			await point.click();
+			await point.click();
+
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("0.", displayed);
+		});
+
 		it("Should not echo operators if there are no operands", async () => {
 			const plus = await driver.findElement(By.id("plus"));
 
