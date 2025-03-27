@@ -138,6 +138,7 @@ const keypad = [
 	new OperationButton("minus", subtract),
 	new OperationButton("times", multiply),
 	new OperationButton("divide", divide),
+	equalsBtn,
 ];
 
 function addKeybinding(callback) {
@@ -158,13 +159,11 @@ function createKeypad(
 	keypad,
 	deleteBtn,
 	clearBtn,
-	equalsBtn
 ) {
 	keypad.forEach((btn) => {
 		createButton(ui, calculator, btn);
 	});
 
-	createButton(ui, calculator, equalsBtn);
 	createButton(ui, calculator, clearBtn);
 	createButton(ui, calculator, deleteBtn);
 
@@ -214,7 +213,6 @@ function createApp() {
 		keypad,
 		deleteBtn,
 		clearBtn,
-		equalsBtn,
 	);
 }
 
