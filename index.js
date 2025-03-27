@@ -80,21 +80,10 @@ class Calculator {
 	}
 }
 
-function add(a, b) {
-	return a + b;
-}
-
-function subtract(a, b) {
-	return a - b;
-}
-
-function multiply(a, b) {
-	return a * b;
-}
-
-function divide(a, b) {
-	return a / b;
-}
+const add = new Operator("+", (a, b) => a + b);
+const subtract = new Operator("-", (a, b) => a - b);
+const multiply = new Operator("*", (a, b) => a * b);
+const divide = new Operator("/", (a, b) => a / b);
 
 const inputButtons = [
 	["one", 1],
@@ -111,10 +100,10 @@ const inputButtons = [
 ];
 
 const operationButtons = [
-	["plus", "+", add],
-	["minus", "-", subtract],
-	["times", "*", multiply],
-	["divide", "/", divide],
+	["plus", add],
+	["minus", subtract],
+	["times", multiply],
+	["divide", divide],
 ];
 
 const deleteBtn = {
@@ -160,11 +149,10 @@ function createInputButton(ui, calculator, id, value) {
 	});
 }
 
-function createOperationButton(ui, calculator, id, value, operation) {
-	const operator = new Operator(value, operation);
+function createOperationButton(ui, calculator, id, operator) {
 	const btn = {
 		id: id,
-		value: value,
+		value: operator.value,
 		onClick: function (calculator) {
 			calculator.selectOperator(operator);
 		},
@@ -205,8 +193,8 @@ function createKeypad(
 		createInputButton(ui, calculator, id, value);
 	});
 
-	operationButtons.forEach(([id, value, operation]) => {
-		createOperationButton(ui, calculator, id, value, operation);
+	operationButtons.forEach(([id, operator]) => {
+		createOperationButton(ui, calculator, id, operator);
 	});
 
 	createEqualsButton(ui, calculator, equalsBtn);
@@ -222,13 +210,13 @@ function handleButtonPress(calculator, button, ctrlKey) {
 	if (button.match(/[.0-9]/)) {
 		calculator.input(button)
 	} else if (button === "+") {
-		calculator.selectOperator(new Operator("+", add));
+		calculator.selectOperator(add);
 	} else if (button === "-") {
-		calculator.selectOperator(new Operator("-", subtract));
+		calculator.selectOperator(subtract);
 	} else if (button === "*") {
-		calculator.selectOperator(new Operator("*", multiply));
+		calculator.selectOperator(multiply);
 	} else if (button.match(/[/%]/)) {
-		calculator.selectOperator(new Operator("/", divide));
+		calculator.selectOperator(divide);
 	} else if (button.match(/Delete|Backspace/)) {
 		calculator[(ctrlKey) ? "clear" : "delete"]();
 	} else if (button.match(/=|Enter/)) {
