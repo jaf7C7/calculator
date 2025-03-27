@@ -110,6 +110,18 @@ const subtract = new Operator("-", (a, b) => a - b);
 const multiply = new Operator("*", (a, b) => a * b);
 const divide = new Operator("/", (a, b) => a / b);
 
+const deleteBtn = new Button("delete", "Del", (calculator) => {
+	calculator.delete();
+});
+
+const clearBtn = new Button("allClear", "AC", (calculator) => {
+	calculator.clear();
+});
+
+const equalsBtn = new Button("equals", "=", (calculator) => {
+	calculator.calculate();
+});
+
 const keypad = [
 	new InputButton("one", 1),
 	new InputButton("two", 2),
@@ -127,18 +139,6 @@ const keypad = [
 	new OperationButton("times", multiply),
 	new OperationButton("divide", divide),
 ];
-
-const deleteBtn = new Button("delete", "Del", (calculator) => {
-	calculator.delete();
-});
-
-const clearBtn = new Button("allClear", "AC", (calculator) => {
-	calculator.clear();
-});
-
-const equalsBtn = new Button("equals", "=", (calculator) => {
-	calculator.calculate();
-});
 
 function addKeybinding(callback) {
 	document.body.addEventListener("keydown", (event) => {
