@@ -140,21 +140,13 @@ const deleteBtn = new Button("delete", "Del", (calculator) => {
 	calculator.delete();
 });
 
-const clearBtn = {
-	id: "allClear",
-	value: "AC",
-	onClick: function (calculator) {
-		calculator.clear();
-	},
-};
+const clearBtn = new Button("allClear", "AC", (calculator) => {
+	calculator.clear();
+});
 
-const equalsBtn = {
-	id: "equals",
-	value: "=",
-	onClick: function (calculator) {
-		calculator.calculate();
-	},
-};
+const equalsBtn = new Button("equals", "=", (calculator) => {
+	calculator.calculate();
+});
 
 function addKeybinding(callback) {
 	document.body.addEventListener("keydown", (event) => {
