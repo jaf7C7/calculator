@@ -81,8 +81,15 @@ function createClearButton(ui, calculator) {
 }
 
 function createDeleteButton(ui, calculator) {
-	ui.createButton("delete", "Del", () => {
-		calculator.delete();
+	const btn = {
+		id: "delete",
+		value: "Del",
+		onClick: function (calculator) {
+			calculator.delete();
+		},
+	};
+	ui.createButton(btn.id, btn.value, () => {
+		btn.onClick(calculator);
 	});
 }
 
