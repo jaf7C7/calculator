@@ -110,11 +110,12 @@ const inputButtons = [
 	new InputButton("point", ".")
 ];
 
+
 const operationButtons = [
-	["plus", add],
-	["minus", subtract],
-	["times", multiply],
-	["divide", divide],
+	{id: "plus", operator: add},
+	{id: "minus", operator: subtract},
+	{id: "times", operator: multiply},
+	{id: "divide", operator: divide},
 ];
 
 const deleteBtn = {
@@ -197,8 +198,8 @@ function createKeypad(
 		createInputButton(ui, calculator, btn);
 	});
 
-	operationButtons.forEach(([id, operator]) => {
-		createOperationButton(ui, calculator, id, operator);
+	operationButtons.forEach((btn) => {
+		createOperationButton(ui, calculator, btn.id, btn.operator);
 	});
 
 	createEqualsButton(ui, calculator, equalsBtn);
