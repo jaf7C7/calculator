@@ -1,5 +1,26 @@
 import UI from "./ui.js";
 
+const inputButtons = [
+	["one", 1],
+	["two", 2],
+	["three", 3],
+	["four", 4],
+	["five", 5],
+	["six", 6],
+	["seven", 7],
+	["eight", 8],
+	["nine", 9],
+	["zero", 0],
+	["point", "."],
+];
+
+const operationButtons = [
+	["plus", "+", add],
+	["minus", "-", subtract],
+	["times", "*", multiply],
+	["divide", "/", divide],
+];
+
 function addKeybinding(callback) {
 	document.body.addEventListener("keydown", (event) => {
 		callback(event);
@@ -37,28 +58,7 @@ function createDeleteButton(ui, calculator) {
 	});
 }
 
-function createKeypad(ui, calculator) {
-	const inputButtons = [
-		["one", 1],
-		["two", 2],
-		["three", 3],
-		["four", 4],
-		["five", 5],
-		["six", 6],
-		["seven", 7],
-		["eight", 8],
-		["nine", 9],
-		["zero", 0],
-		["point", "."],
-	];
-
-	const operationButtons = [
-		["plus", "+", add],
-		["minus", "-", subtract],
-		["times", "*", multiply],
-		["divide", "/", divide],
-	];
-
+function createKeypad(ui, calculator, inputButtons, operationButtons) {
 	inputButtons.forEach(([id, value]) => {
 		createInputButton(ui, calculator, id, value);
 	});
@@ -207,7 +207,7 @@ function createApp() {
 	const display = ui.createDisplay();
 	let calculator = new Calculator(display);
 
-	createKeypad(ui, calculator);
+	createKeypad(ui, calculator, inputButtons, operationButtons);
 }
 
 export default createApp;
