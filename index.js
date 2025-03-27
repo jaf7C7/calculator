@@ -163,10 +163,6 @@ function createOperationButton(ui, calculator, btn) {
 	createButton(ui, calculator, btn);
 }
 
-function createEqualsButton(ui, calculator, btn) {
-	createButton(ui, calculator, btn);
-}
-
 function createKeypad(
 	ui,
 	calculator,
@@ -184,7 +180,7 @@ function createKeypad(
 		createOperationButton(ui, calculator, btn);
 	});
 
-	createEqualsButton(ui, calculator, equalsBtn);
+	createButton(ui, calculator, equalsBtn);
 	createButton(ui, calculator, clearBtn);
 	createButton(ui, calculator, deleteBtn);
 
