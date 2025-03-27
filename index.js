@@ -128,13 +128,17 @@ const operationButtons = [
 	new OperationButton("divide", divide),
 ];
 
-const deleteBtn = {
-	id: "delete",
-	value: "Del",
-	onClick: function (calculator) {
-		calculator.delete();
-	},
-};
+class Button {
+	constructor(id, value, onClick) {
+		this.id = id;
+		this.value = value;
+		this.onClick = onClick;
+	}
+}
+
+const deleteBtn = new Button("delete", "Del", (calculator) => {
+	calculator.delete();
+});
 
 const clearBtn = {
 	id: "allClear",
