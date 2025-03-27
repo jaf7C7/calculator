@@ -21,6 +21,14 @@ const operationButtons = [
 	["divide", "/", divide],
 ];
 
+const deleteBtn = {
+	id: "delete",
+	value: "Del",
+	onClick: function (calculator) {
+		calculator.delete();
+	},
+};
+
 function addKeybinding(callback) {
 	document.body.addEventListener("keydown", (event) => {
 		callback(event);
@@ -80,20 +88,15 @@ function createClearButton(ui, calculator) {
 	});
 }
 
-function createDeleteButton(ui, calculator) {
-	const btn = {
-		id: "delete",
-		value: "Del",
-		onClick: function (calculator) {
-			calculator.delete();
-		},
-	};
+function createDeleteButton(ui, calculator, btn) {
 	ui.createButton(btn.id, btn.value, () => {
 		btn.onClick(calculator);
 	});
 }
 
-function createKeypad(ui, calculator, inputButtons, operationButtons) {
+function createKeypad(
+	ui, calculator, inputButtons, operationButtons, deleteBtn
+) {
 	inputButtons.forEach(([id, value]) => {
 		createInputButton(ui, calculator, id, value);
 	});
@@ -104,7 +107,7 @@ function createKeypad(ui, calculator, inputButtons, operationButtons) {
 
 	createEqualsButton(ui, calculator);
 	createClearButton(ui, calculator);
-	createDeleteButton(ui, calculator);
+	createDeleteButton(ui, calculator, deleteBtn);
 
 	addKeybinding((event) => {
 		handleButtonPress(calculator, event.key, event.ctrlKey);
@@ -242,7 +245,7 @@ function createApp() {
 	const display = ui.createDisplay();
 	let calculator = new Calculator(display);
 
-	createKeypad(ui, calculator, inputButtons, operationButtons);
+	createKeypad(ui, calculator, inputButtons, operationButtons, deleteBtn);
 }
 
 export default createApp;
