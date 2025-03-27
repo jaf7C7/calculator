@@ -55,8 +55,15 @@ function createOperationButton(ui, calculator, id, value, operation) {
 }
 
 function createEqualsButton(ui, calculator) {
-	ui.createButton("equals", "=", () => {
-		calculator.calculate();
+	const btn = {
+		id: "equals",
+		value: "=",
+		onClick: function (calculator) {
+			calculator.calculate();
+		},
+	};
+	ui.createButton(btn.id, btn.value, () => {
+		btn.onClick(calculator);
 	});
 }
 
