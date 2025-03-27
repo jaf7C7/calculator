@@ -159,10 +159,6 @@ function createInputButton(ui, calculator, btn) {
 	createButton(ui, calculator, btn);
 }
 
-function createOperationButton(ui, calculator, btn) {
-	createButton(ui, calculator, btn);
-}
-
 function createKeypad(
 	ui,
 	calculator,
@@ -177,7 +173,7 @@ function createKeypad(
 	});
 
 	operationButtons.forEach((btn) => {
-		createOperationButton(ui, calculator, btn);
+		createButton(ui, calculator, btn);
 	});
 
 	createButton(ui, calculator, equalsBtn);
