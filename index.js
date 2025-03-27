@@ -42,8 +42,15 @@ function createInputButton(ui, calculator, id, value) {
 
 function createOperationButton(ui, calculator, id, value, operation) {
 	const operator = new Operator(value, operation);
-	ui.createButton(id, operator.value, () => {
-		calculator.selectOperator(operator);
+	const btn = {
+		id: id,
+		value: value,
+		onClick: function (calculator) {
+			calculator.selectOperator(operator);
+		},
+	};
+	ui.createButton(btn.id, btn.value, () => {
+		btn.onClick(calculator);
 	});
 }
 
