@@ -167,10 +167,6 @@ function createEqualsButton(ui, calculator, btn) {
 	createButton(ui, calculator, btn);
 }
 
-function createClearButton(ui, calculator, btn) {
-	createButton(ui, calculator, btn);
-}
-
 function createKeypad(
 	ui,
 	calculator,
@@ -189,7 +185,7 @@ function createKeypad(
 	});
 
 	createEqualsButton(ui, calculator, equalsBtn);
-	createClearButton(ui, calculator, clearBtn);
+	createButton(ui, calculator, clearBtn);
 	createButton(ui, calculator, deleteBtn);
 
 	addKeybinding((event) => {
