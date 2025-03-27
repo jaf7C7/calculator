@@ -68,8 +68,15 @@ function createEqualsButton(ui, calculator) {
 }
 
 function createClearButton(ui, calculator) {
-	ui.createButton("allClear", "AC", () => {
-		calculator.clear();
+	const btn = {
+		id: "allClear",
+		value: "AC",
+		onClick: function (calculator) {
+			calculator.clear();
+		},
+	};
+	ui.createButton(btn.id, btn.value, () => {
+		btn.onClick(calculator);
 	});
 }
 
