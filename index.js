@@ -118,10 +118,6 @@ const clearBtn = new Button("allClear", "AC", (calculator) => {
 	calculator.clear();
 });
 
-const equalsBtn = new Button("equals", "=", (calculator) => {
-	calculator.calculate();
-});
-
 const keypad = [
 	new InputButton("one", 1),
 	new InputButton("two", 2),
@@ -138,7 +134,9 @@ const keypad = [
 	new OperationButton("minus", subtract),
 	new OperationButton("times", multiply),
 	new OperationButton("divide", divide),
-	equalsBtn,
+	new Button("equals", "=", (calculator) => {
+		calculator.calculate();
+	}),
 ];
 
 function addKeybinding(callback) {
