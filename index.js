@@ -26,14 +26,11 @@ class OperationButton extends Button {
 	}
 }
 
-class InputButton {
+class InputButton extends Button {
 	constructor(id, value) {
-		this.id = id;
-		this.value = value;
-	}
-
-	onClick(calculator) {
-		calculator.input(this.value);
+		super(id, value, function (calculator) {
+			calculator.input(this.value);
+		});
 	}
 }
 
