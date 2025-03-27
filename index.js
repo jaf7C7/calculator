@@ -149,34 +149,30 @@ function addKeybinding(callback) {
 	});
 }
 
-function createInputButton(ui, calculator, btn) {
+function createButton(ui, calculator, btn) {
 	ui.createButton(btn.id, btn.value, () => {
 		btn.onClick(calculator);
 	});
+}
+
+function createInputButton(ui, calculator, btn) {
+	createButton(ui, calculator, btn);
 }
 
 function createOperationButton(ui, calculator, btn) {
-	ui.createButton(btn.id, btn.value, () => {
-		btn.onClick(calculator);
-	});
+	createButton(ui, calculator, btn);
 }
 
 function createEqualsButton(ui, calculator, btn) {
-	ui.createButton(btn.id, btn.value, () => {
-		btn.onClick(calculator);
-	});
+	createButton(ui, calculator, btn);
 }
 
 function createClearButton(ui, calculator, btn) {
-	ui.createButton(btn.id, btn.value, () => {
-		btn.onClick(calculator);
-	});
+	createButton(ui, calculator, btn);
 }
 
 function createDeleteButton(ui, calculator, btn) {
-	ui.createButton(btn.id, btn.value, () => {
-		btn.onClick(calculator);
-	});
+	createButton(ui, calculator, btn);
 }
 
 function createKeypad(
