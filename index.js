@@ -1,38 +1,5 @@
 import UI from "./ui.js";
 
-class Operator extends Function {
-	constructor(value, operation) {
-		const self = (...args) => operation(...args);
-		self.value = value;
-		return self;
-	}
-}
-
-class Button {
-	constructor(id, value, onClick) {
-		this.id = id;
-		this.value = value;
-		this.onClick = onClick;
-	}
-}
-
-class OperationButton extends Button {
-	constructor(id, operator) {
-		super(id, operator.value, function (calculator) {
-			calculator.selectOperator(this.operator);
-		});
-		this.operator = operator;
-	}
-}
-
-class InputButton extends Button {
-	constructor(id, value) {
-		super(id, value, function (calculator) {
-			calculator.input(this.value);
-		});
-	}
-}
-
 class Calculator {
 	constructor(display) {
 		this._display = display;
@@ -102,6 +69,39 @@ class Calculator {
 		this._secondOperand = "";
 		this._currentOperand = "";
 		this._operator = "";
+	}
+}
+
+class Operator extends Function {
+	constructor(value, operation) {
+		const self = (...args) => operation(...args);
+		self.value = value;
+		return self;
+	}
+}
+
+class Button {
+	constructor(id, value, onClick) {
+		this.id = id;
+		this.value = value;
+		this.onClick = onClick;
+	}
+}
+
+class OperationButton extends Button {
+	constructor(id, operator) {
+		super(id, operator.value, function (calculator) {
+			calculator.selectOperator(this.operator);
+		});
+		this.operator = operator;
+	}
+}
+
+class InputButton extends Button {
+	constructor(id, value) {
+		super(id, value, function (calculator) {
+			calculator.input(this.value);
+		});
 	}
 }
 
