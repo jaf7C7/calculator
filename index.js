@@ -8,6 +8,17 @@ class Operator extends Function {
 	}
 }
 
+class InputButton {
+	constructor(id, value) {
+		this.id = id;
+		this.value = value;
+	}
+
+	onClick(calculator) {
+		calculator.input(this.value);
+	}
+}
+
 class Calculator {
 	constructor(display) {
 		this._display = display;
@@ -86,17 +97,17 @@ const multiply = new Operator("*", (a, b) => a * b);
 const divide = new Operator("/", (a, b) => a / b);
 
 const inputButtons = [
-	["one", 1],
-	["two", 2],
-	["three", 3],
-	["four", 4],
-	["five", 5],
-	["six", 6],
-	["seven", 7],
-	["eight", 8],
-	["nine", 9],
-	["zero", 0],
-	["point", "."],
+	new InputButton("one", 1),
+	new InputButton("two", 2),
+	new InputButton("three", 3),
+	new InputButton("four", 4),
+	new InputButton("five", 5),
+	new InputButton("six", 6),
+	new InputButton("seven", 7),
+	new InputButton("eight", 8),
+	new InputButton("nine", 9),
+	new InputButton("zero", 0),
+	new InputButton("point", ".")
 ];
 
 const operationButtons = [
@@ -136,14 +147,7 @@ function addKeybinding(callback) {
 	});
 }
 
-function createInputButton(ui, calculator, id, value) {
-	const btn = {
-		id: id,
-		value: value,
-		onClick: function (calculator) {
-			calculator.input(this.value);
-		},
-	};
+function createInputButton(ui, calculator, btn) {
 	ui.createButton(btn.id, btn.value, () => {
 		btn.onClick(calculator);
 	});
@@ -189,8 +193,8 @@ function createKeypad(
 	clearBtn,
 	equalsBtn
 ) {
-	inputButtons.forEach(([id, value]) => {
-		createInputButton(ui, calculator, id, value);
+	inputButtons.forEach((btn) => {
+		createInputButton(ui, calculator, btn);
 	});
 
 	operationButtons.forEach(([id, operator]) => {
