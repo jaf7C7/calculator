@@ -18,10 +18,9 @@ class Button {
 
 class OperationButton extends Button {
 	constructor(id, operator) {
-		const onClick = function (calculator) {
+		super(id, operator.value, function (calculator) {
 			calculator.selectOperator(this.operator);
-		};
-		super(id, operator.value, onClick);
+		});
 		this.operator = operator;
 	}
 }
