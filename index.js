@@ -8,6 +8,17 @@ class Operator extends Function {
 	}
 }
 
+class OperationButton {
+	constructor(id, operator) {
+		this.id = id;
+		this.operator = operator;
+	}
+
+	onClick(calculator) {
+	    calculator.selectOperator(this.operator);
+	}
+}
+
 class InputButton {
 	constructor(id, value) {
 		this.id = id;
@@ -110,13 +121,6 @@ const inputButtons = [
 	new InputButton("point", ".")
 ];
 
-class OperationButton {
-	constructor(id, operator) {
-		this.id = id;
-		this.operator = operator;
-	}
-}
-
 const operationButtons = [
 	new OperationButton("plus", add),
 	new OperationButton("minus", subtract),
@@ -160,14 +164,7 @@ function createInputButton(ui, calculator, btn) {
 	});
 }
 
-function createOperationButton(ui, calculator, id, operator) {
-	const btn = {
-		id: id,
-		value: operator.value,
-		onClick: function (calculator) {
-			calculator.selectOperator(operator);
-		},
-	};
+function createOperationButton(ui, calculator, btn) {
 	ui.createButton(btn.id, btn.value, () => {
 		btn.onClick(calculator);
 	});
@@ -205,7 +202,7 @@ function createKeypad(
 	});
 
 	operationButtons.forEach((btn) => {
-		createOperationButton(ui, calculator, btn.id, btn.operator);
+		createOperationButton(ui, calculator, btn);
 	});
 
 	createEqualsButton(ui, calculator, equalsBtn);
