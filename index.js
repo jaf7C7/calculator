@@ -110,12 +110,18 @@ const inputButtons = [
 	new InputButton("point", ".")
 ];
 
+class OperationButton {
+	constructor(id, operator) {
+		this.id = id;
+		this.operator = operator;
+	}
+}
 
 const operationButtons = [
-	{id: "plus", operator: add},
-	{id: "minus", operator: subtract},
-	{id: "times", operator: multiply},
-	{id: "divide", operator: divide},
+	new OperationButton("plus", add),
+	new OperationButton("minus", subtract),
+	new OperationButton("times", multiply),
+	new OperationButton("divide", divide),
 ];
 
 const deleteBtn = {
