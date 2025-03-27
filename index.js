@@ -28,8 +28,15 @@ function addKeybinding(callback) {
 }
 
 function createInputButton(ui, calculator, id, value) {
-	ui.createButton(id, value, () => {
-		calculator.input(value);
+	const btn = {
+		id: id,
+		value: value,
+		onClick: function (calculator) {
+			calculator.input(this.value);
+		},
+	};
+	ui.createButton(btn.id, btn.value, () => {
+		btn.onClick(calculator);
 	});
 }
 
