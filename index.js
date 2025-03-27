@@ -8,6 +8,14 @@ class Operator extends Function {
 	}
 }
 
+class Button {
+	constructor(id, value, onClick) {
+		this.id = id;
+		this.value = value;
+		this.onClick = onClick;
+	}
+}
+
 class OperationButton {
 	constructor(id, operator) {
 		this.id = id;
@@ -127,14 +135,6 @@ const operationButtons = [
 	new OperationButton("times", multiply),
 	new OperationButton("divide", divide),
 ];
-
-class Button {
-	constructor(id, value, onClick) {
-		this.id = id;
-		this.value = value;
-		this.onClick = onClick;
-	}
-}
 
 const deleteBtn = new Button("delete", "Del", (calculator) => {
 	calculator.delete();
