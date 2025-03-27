@@ -1,5 +1,101 @@
 import UI from "./ui.js";
 
+class Operator extends Function {
+	constructor(value, operation) {
+		const self = (...args) => operation(...args);
+		self.value = value;
+		return self;
+	}
+}
+
+class Calculator {
+	constructor(display) {
+		this._display = display;
+		this._firstOperand = "";
+		this._secondOperand = "";
+		this._currentOperand = "";
+		this._operator = "";
+	}
+
+	input(value) {
+		if (!this._currentOperand.includes(".") || value !== ".") {
+			this._currentOperand += value;
+			this._display(this._toString());
+		}
+	}
+
+	selectOperator(operator) {
+		this._addOperand(this._currentOperand);
+		this._operator = operator;
+		this._display(this._toString());
+	}
+
+	delete() {
+		this._currentOperand = this._currentOperand.slice(0, -1);
+		this._display(this._toString());
+	}
+
+	clear() {
+		this._reset();
+		this._display(this._toString());
+	}
+
+	calculate() {
+		this._addOperand(this._currentOperand);
+		const result = this._operator(
+			Number(this._firstOperand),
+			Number(this._secondOperand),
+		);
+		this._display(format(result));
+		this._reset();
+	}
+
+	_addOperand(operand) {
+		if (operand !== "") {
+			if (!this._firstOperand) {
+				this._firstOperand = operand;
+			} else {
+				this._secondOperand = operand;
+			}
+		}
+		this._currentOperand = "";
+	}
+
+	_toString() {
+		let str = "";
+		if (this._firstOperand !== "") {
+			str += `${format(this._firstOperand)}${this._operator.value}`;
+		}
+		if (this._currentOperand !== "") {
+			str += format(this._currentOperand);
+		}
+		return str;
+	}
+
+	_reset() {
+		this._firstOperand = "";
+		this._secondOperand = "";
+		this._currentOperand = "";
+		this._operator = "";
+	}
+}
+
+function add(a, b) {
+	return a + b;
+}
+
+function subtract(a, b) {
+	return a - b;
+}
+
+function multiply(a, b) {
+	return a * b;
+}
+
+function divide(a, b) {
+	return a / b;
+}
+
 const inputButtons = [
 	["one", 1],
 	["two", 2],
@@ -122,86 +218,6 @@ function createKeypad(
 	});
 }
 
-class Operator extends Function {
-	constructor(value, operation) {
-		const self = (...args) => operation(...args);
-		self.value = value;
-		return self;
-	}
-}
-
-class Calculator {
-	constructor(display) {
-		this._display = display;
-		this._firstOperand = "";
-		this._secondOperand = "";
-		this._currentOperand = "";
-		this._operator = "";
-	}
-
-	input(value) {
-		if (!this._currentOperand.includes(".") || value !== ".") {
-			this._currentOperand += value;
-			this._display(this._toString());
-		}
-	}
-
-	selectOperator(operator) {
-		this._addOperand(this._currentOperand);
-		this._operator = operator;
-		this._display(this._toString());
-	}
-
-	delete() {
-		this._currentOperand = this._currentOperand.slice(0, -1);
-		this._display(this._toString());
-	}
-
-	clear() {
-		this._reset();
-		this._display(this._toString());
-	}
-
-	calculate() {
-		this._addOperand(this._currentOperand);
-		const result = this._operator(
-			Number(this._firstOperand),
-			Number(this._secondOperand),
-		);
-		this._display(format(result));
-		this._reset();
-	}
-
-	_addOperand(operand) {
-		if (operand !== "") {
-			if (!this._firstOperand) {
-				this._firstOperand = operand;
-			} else {
-				this._secondOperand = operand;
-			}
-		}
-		this._currentOperand = "";
-	}
-
-	_toString() {
-		let str = "";
-		if (this._firstOperand !== "") {
-			str += `${format(this._firstOperand)}${this._operator.value}`;
-		}
-		if (this._currentOperand !== "") {
-			str += format(this._currentOperand);
-		}
-		return str;
-	}
-
-	_reset() {
-		this._firstOperand = "";
-		this._secondOperand = "";
-		this._currentOperand = "";
-		this._operator = "";
-	}
-}
-
 function handleButtonPress(calculator, button, ctrlKey) {
 	if (button.match(/[.0-9]/)) {
 		calculator.input(button)
@@ -230,22 +246,6 @@ function format(str) {
 		result = Number(str).toLocaleString();
 	}
 	return result;
-}
-
-function add(a, b) {
-	return a + b;
-}
-
-function subtract(a, b) {
-	return a - b;
-}
-
-function multiply(a, b) {
-	return a * b;
-}
-
-function divide(a, b) {
-	return a / b;
 }
 
 function createApp() {
