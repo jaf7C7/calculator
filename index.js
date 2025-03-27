@@ -16,14 +16,14 @@ class Button {
 	}
 }
 
-class OperationButton {
+class OperationButton extends Button {
 	constructor(id, operator) {
+		super();
 		this.id = id;
 		this.operator = operator;
-	}
-
-	onClick(calculator) {
-	    calculator.selectOperator(this.operator);
+		this.onClick = function (calculator) {
+			calculator.selectOperator(this.operator);
+		};
 	}
 }
 
