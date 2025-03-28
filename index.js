@@ -121,8 +121,10 @@ function createButton(ui, calculator, id, value, function_, keybindings = null) 
 	});
 	if (keybindings !== null) {
 		document.body.addEventListener("keydown", (event) => {
-			const correctKeysPressed = keybindings.find((key) => key.value === event.key && key.ctrlKey === event.ctrlKey) !== undefined;
-			if (correctKeysPressed) {
+			const keybinding = keybindings.find((key) => {
+				return key.value === event.key && key.ctrlKey === event.ctrlKey;
+			});
+			if (keybinding !== undefined) {
 				function_();
 			}
 		});
