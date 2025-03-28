@@ -120,9 +120,9 @@ function createButton(ui, calculator, id, value, function_, keybindings) {
 	});
 }
 
-function selectOperator(calculation, display, operator) {
-	calculation.selectOperator(operator);
-	display(calculation.toString());
+function selectOperator(calculator, display, operator) {
+	calculator.calculation.selectOperator(operator);
+	display(calculator.calculation.toString());
 }
 
 function createApp() {
@@ -156,19 +156,19 @@ function createApp() {
 	});
 
 	createButton(ui, calculator, "plus", "+", () => {
-		selectOperator(calculator.calculation, display, add);
+		selectOperator(calculator, display, add);
 	}, [{value: "+", ctrlKey: false}]);
 
 	createButton(ui, calculator, "minus", "-", () => {
-		selectOperator(calculator.calculation, display, subtract);
+		selectOperator(calculator, display, subtract);
 	}, [{value: "-", ctrlKey: false}]);
 
 	createButton(ui, calculator, "times", "*", () => {
-		selectOperator(calculator.calculation, display, multiply);
+		selectOperator(calculator, display, multiply);
 	}, [{value: "*", ctrlKey: false}]);
 
 	createButton(ui, calculator, "divide", "/", () => {
-		selectOperator(calculator.calculation, display, divide);
+		selectOperator(calculator, display, divide);
 	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
 
 	createButton(ui, calculator, "equals", "=", () => {
