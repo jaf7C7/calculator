@@ -170,18 +170,11 @@ function createApp() {
 	createButton(ui, calculator, "divide", "/", () => {
 		calculator.selectOperator((a, b) => a / b, "/");
 	}, "%");
+	createButton(ui, calculator, "equals", "=", () => {
+		calculator.calculate();
+	}, "Enter");
 
 	let btn;
-
-	btn = ui.createElement("button", "equals", "=");
-	btn.addEventListener("click", () => {
-		calculator.calculate();
-	});
-	document.body.addEventListener("keydown", (event) => {
-		if (event.key === "=" || event.key === "Enter") {
-			calculator.calculate();
-		}
-	});
 
 	btn = ui.createElement("button", "allClear", "AC");
 	btn.addEventListener("click", () => {
