@@ -179,7 +179,11 @@ function createApp() {
 			calculator.selectOperator(multiply);
 		} else if (event.key.match(/[/%]/)) {
 			calculator.selectOperator(divide);
-		} else if (event.key.match(/Delete|Backspace/)) {
+		}
+	});
+
+	document.body.addEventListener("keydown", (event) => {
+		if (event.key.match(/Delete|Backspace/)) {
 			calculator[(event.ctrlKey) ? "clear" : "delete"]();
 		} else if (event.key.match(/=|Enter/)) {
 			calculator.calculate();
