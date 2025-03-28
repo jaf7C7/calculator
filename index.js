@@ -183,16 +183,17 @@ function createApp() {
 	btn.addEventListener("click", () => {
 		calculator.clear();
 	});
+	document.body.addEventListener("keydown", (event) => {
+		if (event.ctrlKey && (event.key === "Delete" || event.key === "Backspace")) {
+			calculator.clear();
+		}
+	});
 
 	btn = ui.createElement("button", "delete", "Del");
 	btn.addEventListener("click", () => {
 		calculator.delete();
 	});
-
 	document.body.addEventListener("keydown", (event) => {
-		if (event.ctrlKey && (event.key === "Delete" || event.key === "Backspace")) {
-			calculator.clear();
-		}
 		if (!event.ctrlKey && (event.key === "Delete" || event.key === "Backspace")) {
 			calculator.delete();
 		}
