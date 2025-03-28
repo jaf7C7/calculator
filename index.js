@@ -138,14 +138,24 @@ function createApp() {
 	});
 
 	let btn;
+	let id;
+	let value;
+	let function_;
+	let keyAlias;
 
-	btn = ui.createElement("button", "plus", "+");
-	btn.addEventListener("click", () => {
+	id = "plus";
+	value = "+";
+	function_ = () => {
 		calculator.selectOperator((a, b) => a + b, "+");
+	};
+	keyAlias = null;
+	btn = ui.createElement("button", id, value);
+	btn.addEventListener("click", () => {
+		function_();
 	});
 	document.body.addEventListener("keydown", (event) => {
-		if (event.key === "+") {
-			calculator.selectOperator((a, b) => a + b, "+");
+		if (event.key === value) {
+			function_();
 		}
 	});
 
