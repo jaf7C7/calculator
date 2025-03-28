@@ -173,6 +173,11 @@ function createApp() {
 	btn.addEventListener("click", () => {
 		calculator.calculate();
 	});
+	document.body.addEventListener("keydown", (event) => {
+		if (event.key.match(/=|Enter/)) {
+			calculator.calculate();
+		}
+	});
 
 	btn = ui.createElement("button", "allClear", "AC");
 	btn.addEventListener("click", () => {
@@ -187,8 +192,6 @@ function createApp() {
 	document.body.addEventListener("keydown", (event) => {
 		if (event.key.match(/Delete|Backspace/)) {
 			calculator[(event.ctrlKey) ? "clear" : "delete"]();
-		} else if (event.key.match(/=|Enter/)) {
-			calculator.calculate();
 		}
 	});
 }
