@@ -115,9 +115,9 @@ function createButton(ui, calculator, id, value, function_, keybindings) {
 	});
 }
 
-function input(calculation, display, value) {
-	calculation.input(value);
-	display(calculation.toString());
+function input(calculator, display, value) {
+	calculator.calculation.input(value);
+	display(calculator.calculation.toString());
 }
 
 function selectOperator(calculation, display, operator) {
@@ -151,7 +151,7 @@ function createApp() {
 
 	inputButtons.forEach((btn) => {
 		createButton(ui, calculator.calculation, btn.id, btn.value, () => {
-			input(calculator.calculation, display, btn.value);
+			input(calculator, display, btn.value);
 		}, [{value: btn.value, ctrlKey: false}]);
 	});
 
