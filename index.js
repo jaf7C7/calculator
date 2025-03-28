@@ -177,17 +177,6 @@ function createButton(ui, calculator, btn) {
 	});
 }
 
-function createKeypad(ui, calculator, keypad) {
-	keypad.forEach((btn) => {
-		createButton(ui, calculator, btn);
-	});
-
-
-	addKeybinding((event) => {
-		handleButtonPress(calculator, event.key, event.ctrlKey);
-	});
-}
-
 function handleButtonPress(calculator, button, ctrlKey) {
 	if (button.match(/[.0-9]/)) {
 		calculator.input(button)
@@ -223,7 +212,12 @@ function createApp() {
 	const display = ui.createDisplay();
 	let calculator = new Calculator(display);
 
-	createKeypad(ui, calculator, keypad);
+	keypad.forEach((btn) => {
+		createButton(ui, calculator, btn);
+	});
+	addKeybinding((event) => {
+		handleButtonPress(calculator, event.key, event.ctrlKey);
+	});
 }
 
 export default createApp;
