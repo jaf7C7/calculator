@@ -27,7 +27,8 @@ class Calculator {
 		this._firstOperand = "";
 		this._secondOperand = "";
 		this._currentOperand = "";
-		this._operator = "";
+		this._operationSymbol = "";
+		this._operation = "";
 	}
 
 	input(value) {
@@ -37,9 +38,10 @@ class Calculator {
 		}
 	}
 
-	selectOperator(operator) {
+	selectOperator(operation, operationSymbol) {
 		this._addOperand(this._currentOperand);
-		this._operator = operator;
+		this._operation = operation;
+		this._operationSymbol = operationSymbol;
 		this._display(this._toString());
 	}
 
@@ -55,7 +57,7 @@ class Calculator {
 
 	calculate() {
 		this._addOperand(this._currentOperand);
-		const result = this._operator(
+		const result = this._operation(
 			Number(this._firstOperand),
 			Number(this._secondOperand),
 		);
@@ -77,7 +79,7 @@ class Calculator {
 	_toString() {
 		let str = "";
 		if (this._firstOperand !== "") {
-			str += `${format(this._firstOperand)}${this._operator.value}`;
+			str += `${format(this._firstOperand)}${this._operationSymbol}`;
 		}
 		if (this._currentOperand !== "") {
 			str += format(this._currentOperand);
@@ -89,22 +91,10 @@ class Calculator {
 		this._firstOperand = "";
 		this._secondOperand = "";
 		this._currentOperand = "";
-		this._operator = "";
+		this._operation = "";
+		this._operationSymbol = "";
 	}
 }
-
-class Operator extends Function {
-	constructor(value, operation) {
-		const self = (...args) => operation(...args);
-		self.value = value;
-		return self;
-	}
-}
-
-const add = new Operator("+", (a, b) => a + b);
-const subtract = new Operator("-", (a, b) => a - b);
-const multiply = new Operator("*", (a, b) => a * b);
-const divide = new Operator("/", (a, b) => a / b);
 
 function format(str) {
 	let result = "";
@@ -148,21 +138,21 @@ function createApp() {
 	});
 
 	[
-		{id: "plus", operator: add},
-		{id: "minus", operator: subtract},
-		{id: "times", operator: multiply},
-		{id: "divide", operator: divide},
+		{id: "plus", operation: (a, b) => a + b, operationSymbol: "+"},
+		{id: "minus", operation: (a, b) => a - b, operationSymbol: "-"},
+		{id: "times", operation: (a, b) => a * b, operationSymbol: "*"},
+		{id: "divide", operation: (a, b) => a / b, operationSymbol: "/"},
 	].forEach((btn) => {
-		const b = ui.createElement("button", btn.id, btn.value);
+		const b = ui.createElement("button", btn.id, btn.operationSymbol);
 		b.addEventListener("click", () => {
-			calculator.selectOperator(btn.operator);
+			calculator.selectOperator(btn.operation, btn.operationSymbol);
 		});
 		document.body.addEventListener("keydown", (event) => {
-			if (event.key === btn.operator.value) {
-				calculator.selectOperator(btn.operator);
+			if (event.key === btn.operationSymbol) {
+				calculator.selectOperator(btn.operation, btn.operationSymbol);
 			}
 			if (event.key === "%") {
-				calculator.selectOperator(divide);
+				calculator.selectOperator((a, b) => a / b, "/");
 			}
 		});
 	});
