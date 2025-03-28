@@ -137,12 +137,10 @@ function createApp() {
 		});
 	});
 
-	function createPlusButton(id) {
+	function createPlusButton(id, value) {
 		let btn;
-		let value;
 		let function_;
 		let keyAlias;
-		value = "+";
 		function_ = () => {
 			calculator.selectOperator((a, b) => a + b, "+");
 		};
@@ -157,7 +155,7 @@ function createApp() {
 			}
 		});
 	}
-	createPlusButton("plus");
+	createPlusButton("plus", "+");
 
 	function createMinusButton() {
 		let btn;
