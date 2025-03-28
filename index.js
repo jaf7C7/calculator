@@ -159,10 +159,26 @@ function createApp() {
 		{id: "nine", value: 9, onClick: function (calculator) { calculator.input(this.value); }},
 		{id: "zero", value: 0, onClick: function (calculator) { calculator.input(this.value); }},
 		{id: "point", value: ".", onClick: function (calculator) { calculator.input(this.value); }},
+	].forEach((btn) => {
+		const b = ui.createElement("button", btn.id, btn.value);
+		b.addEventListener("click", () => {
+			btn.onClick(calculator);
+		});
+	});
+
+	[
 		{id: "plus", operator: add, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
 		{id: "minus", operator: subtract, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
 		{id: "times", operator: multiply, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
 		{id: "divide", operator: divide, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
+	].forEach((btn) => {
+		const b = ui.createElement("button", btn.id, btn.value);
+		b.addEventListener("click", () => {
+			btn.onClick(calculator);
+		});
+	});
+
+	[
 		{id: "equals", value: "=", onClick: (calculator) => { calculator.calculate(); }},
 		{id: "allClear", value: "AC", onClick: (calculator) => { calculator.clear(); }},
 		{id: "delete", value: "Del", onClick: (calculator) => { calculator.delete(); }},
@@ -172,6 +188,7 @@ function createApp() {
 			btn.onClick(calculator);
 		});
 	});
+
 	addKeybinding((event) => {
 		handleButtonPress(calculator, event.key, event.ctrlKey);
 	});
