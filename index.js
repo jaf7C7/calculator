@@ -36,8 +36,8 @@ class Calculator {
 	input(value) {
 		if (!this._currentOperand.includes(".") || value !== ".") {
 			this._currentOperand += value;
-			this._display(this._toString());
 		}
+		this._display(this._toString());
 	}
 
 	selectOperator(operation, operationSymbol) {
