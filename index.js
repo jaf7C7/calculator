@@ -87,6 +87,11 @@ class Calculator {
 		this.display(format(result));
 		this.calculation = new Calculation();
 	}
+
+	clear() {
+		this.calculation = new Calculation();
+		this.display(this.calculation.toString());
+	}
 }
 
 class Operation {
@@ -183,8 +188,7 @@ function createApp() {
 	}, [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}]);
 
 	createButton(ui, calculator, "allClear", "AC", () => {
-		calculator.calculation = new Calculation();
-		display(calculator.calculation.toString());
+		calculator.clear();
 	}, [{value: "Delete", ctrlKey: true}, {value: "Backspace", ctrlKey: true}]);
 
 	createButton(ui, calculator, "delete", "Del", () => {
