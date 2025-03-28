@@ -167,15 +167,20 @@ function createApp() {
 		});
 	});
 
-	ui.createElement("button", "equals", "=").addEventListener("click", () => {
+	let btn;
+
+	btn = ui.createElement("button", "equals", "=");
+	btn.addEventListener("click", () => {
 		calculator.calculate();
 	});
 
-	ui.createElement("button", "allClear", "AC").addEventListener("click", () => {
+	btn = ui.createElement("button", "allClear", "AC");
+	btn.addEventListener("click", () => {
 		calculator.clear();
 	});
 
-	ui.createElement("button", "delete", "Del").addEventListener("click", () => {
+	btn = ui.createElement("button", "delete", "Del");
+	btn.addEventListener("click", () => {
 		calculator.delete();
 	});
 
