@@ -173,17 +173,9 @@ function createApp() {
 		calculator.selectOperator((a, b) => a - b, "-");
 	});
 
-	function createTimesButton() {
+	function createTimesButton(id, value, function_) {
 		let btn;
-		let id;
-		let value;
-		let function_;
 		let keyAlias;
-		id = "times";
-		value = "*";
-		function_ = () => {
-			calculator.selectOperator((a, b) => a * b, "*");
-		};
 		keyAlias = null;
 		btn = ui.createElement("button", id, value);
 		btn.addEventListener("click", () => {
@@ -195,7 +187,9 @@ function createApp() {
 			}
 		});
 	}
-	createTimesButton();
+	createTimesButton("times", "*", () => {
+		calculator.selectOperator((a, b) => a * b, "*");
+	});
 
 	function createDivideButton() {
 		let btn;
