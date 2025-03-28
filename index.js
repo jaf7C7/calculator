@@ -142,6 +142,12 @@ function createApp() {
 		});
 	});
 
+	document.body.addEventListener("keydown", (event) => {
+		if (event.key.match(/[.0-9]/)) {
+			calculator.input(event.key);
+		}
+	});
+
 	[
 		{id: "plus", operator: add},
 		{id: "minus", operator: subtract},
@@ -163,12 +169,6 @@ function createApp() {
 		b.addEventListener("click", () => {
 			btn.onClick(calculator);
 		});
-	});
-
-	document.body.addEventListener("keydown", (event) => {
-		if (event.key.match(/[.0-9]/)) {
-			calculator.input(event.key);
-		}
 	});
 
 	document.body.addEventListener("keydown", (event) => {
