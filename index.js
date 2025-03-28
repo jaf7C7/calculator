@@ -25,7 +25,7 @@ class UI {
 
 class Calculator {
 	constructor(display) {
-		this._display = display;
+		this.display = display;
 		this._firstOperand = "";
 		this._secondOperand = "";
 		this._currentOperand = "";
@@ -37,24 +37,23 @@ class Calculator {
 		if (!this._currentOperand.includes(".") || value !== ".") {
 			this._currentOperand += value;
 		}
-		this._display(this._toString());
 	}
 
 	selectOperator(operation, operationSymbol) {
 		this._addOperand(this._currentOperand);
 		this._operation = operation;
 		this._operationSymbol = operationSymbol;
-		this._display(this._toString());
+		this.display(this.toString());
 	}
 
 	delete() {
 		this._currentOperand = this._currentOperand.slice(0, -1);
-		this._display(this._toString());
+		this.display(this.toString());
 	}
 
 	clear() {
 		this._reset();
-		this._display(this._toString());
+		this.display(this.toString());
 	}
 
 	calculate() {
@@ -63,7 +62,7 @@ class Calculator {
 			Number(this._firstOperand),
 			Number(this._secondOperand),
 		);
-		this._display(format(result));
+		this.display(format(result));
 		this._reset();
 	}
 
@@ -78,7 +77,7 @@ class Calculator {
 		this._currentOperand = "";
 	}
 
-	_toString() {
+	toString() {
 		let str = "";
 		if (this._firstOperand !== "") {
 			str += `${format(this._firstOperand)}${this._operationSymbol}`;
@@ -148,6 +147,7 @@ function createApp() {
 	inputButtons.forEach((btn) => {
 		createButton(ui, calculator, btn.id, btn.value, () => {
 			calculator.input(btn.value);
+			calculator.display(calculator.toString());
 		}, [{value: btn.value, ctrlKey: false}]);
 	});
 
