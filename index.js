@@ -25,8 +25,7 @@ class UI {
 
 class Calculation {
 	constructor() {
-		this._firstOperand = "";
-		this._secondOperand = "";
+		this._operands = [];
 		this._currentOperand = "";
 		this._operationSymbol = "";
 		this._operation = "";
@@ -52,26 +51,20 @@ class Calculation {
 
 	calculate() {
 		this._addOperand(this._currentOperand);
-		const result = this._operation(
-			Number(this._firstOperand),
-			Number(this._secondOperand),
-		);
-		return result;
+		return this._operands
+			.map((o) => Number(o))
+			.reduce((a, b) => this._operation(a, b))
 	}
 
 	_addOperand(operand) {
-		if (!this._firstOperand) {
-			this._firstOperand = operand;
-		} else {
-			this._secondOperand = operand;
-		}
+		this._operands.push(this._currentOperand);
 		this._currentOperand = "";
 	}
 
 	toString() {
-		return [this._firstOperand, this._currentOperand]
+		return this._operands.concat(this._currentOperand)
 			.map((operand) => format(operand))
-			.join(this._operationSymbol);
+			.join(this._operationSymbol)
 	}
 }
 
