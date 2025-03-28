@@ -167,8 +167,12 @@ function createApp() {
 
 	document.body.addEventListener("keydown", (event) => {
 		if (event.key.match(/[.0-9]/)) {
-			calculator.input(event.key)
-		} else if (event.key === "+") {
+			calculator.input(event.key);
+		}
+	});
+
+	document.body.addEventListener("keydown", (event) => {
+		if (event.key === "+") {
 			calculator.selectOperator(add);
 		} else if (event.key === "-") {
 			calculator.selectOperator(subtract);
