@@ -24,3 +24,4 @@
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
 - [ ] Make tests faster?
+- [ ] Add `chromedriver` as an `npm` dependency (run `npm info chromedriver`)
