@@ -242,32 +242,36 @@ function createApp() {
 		{
 			id: "plus",
 			value: "+",
-			operator: add,
+			function: "selectOperator",
+			args: [add],
 			keybindings: [{value: "+", ctrlKey: false}],
 		},
 		{
 			id: "minus",
 			value: "-",
-			operator: subtract,
+			function: "selectOperator",
+			args: [subtract],
 			keybindings: [{value: "-", ctrlKey: false}],
 		},
 		{
 			id:"times",
 			value: "*",
-			operator: multiply,
+			function: "selectOperator",
+			args: [multiply],
 			keybindings: [{value: "*", ctrlKey: false}],
 		},
 		{
 			id: "divide",
 			value: "/",
-			operator: divide,
+			function: "selectOperator",
+			args: [divide],
 			keybindings: [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}],
 		}
 	];
 
 	operationButtons.forEach((btn) => {
 		ui.createButton(btn.id, btn.value, () => {
-			calculator.selectOperator(btn.operator);
+			calculator[btn.function](...btn.args);
 		}, btn.keybindings);
 	});
 
