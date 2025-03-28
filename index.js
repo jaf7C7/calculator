@@ -151,8 +151,10 @@ function createApp() {
 		}, [{value: btn.value, ctrlKey: false}]);
 	});
 
+	const add = (a, b) => a + b;
+
 	createButton(ui, calculator, "plus", "+", () => {
-		calculator.selectOperator((a, b) => a + b, "+");
+		calculator.selectOperator(add, "+");
 	}, [{value: "+", ctrlKey: false}]);
 
 	createButton(ui, calculator, "minus", "-", () => {
