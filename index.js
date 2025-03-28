@@ -153,23 +153,67 @@ function createApp() {
 	const add = new Operation("+", (a, b) => a + b);
 
 	const inputButtons = [
-		{id: "one", value: "1"},
-		{id: "two", value: "2"},
-		{id: "three", value: "3"},
-		{id: "four", value: "4"},
-		{id: "five", value: "5"},
-		{id: "six", value: "6"},
-		{id: "seven", value: "7"},
-		{id: "eight", value: "8"},
-		{id: "nine", value: "9"},
-		{id: "zero", value: "0"},
-		{id: "point", value: "."},
+		{
+			id: "one",
+			value: "1",
+			keybindings: [{value: "1", ctrlKey: false}],
+		},
+		{
+			id: "two",
+			value: "2",
+			keybindings: [{value: "2", ctrlKey: false}],
+		},
+		{
+			id: "three",
+			value: "3",
+			keybindings: [{value: "3", ctrlKey: false}],
+		},
+		{
+			id: "four",
+			value: "4",
+			keybindings: [{value: "4", ctrlKey: false}],
+		},
+		{
+			id: "five",
+			value: "5",
+			keybindings: [{value: "5", ctrlKey: false}],
+		},
+		{
+			id: "six",
+			value: "6",
+			keybindings: [{value: "6", ctrlKey: false}],
+		},
+		{
+			id: "seven",
+			value: "7",
+			keybindings: [{value: "7", ctrlKey: false}],
+		},
+		{
+			id: "eight",
+			value: "8",
+			keybindings: [{value: "8", ctrlKey: false}],
+		},
+		{
+			id: "nine",
+			value: "9",
+			keybindings: [{value: "9", ctrlKey: false}],
+		},
+		{
+			id: "zero",
+			value: "0",
+			keybindings: [{value: "0", ctrlKey: false}],
+		},
+		{
+			id: "point",
+			value: ".",
+			keybindings: [{value: ".", ctrlKey: false}],
+		},
 	]
 
 	inputButtons.forEach((btn) => {
 		ui.createButton(btn.id, btn.value, () => {
 			calculator.input(btn.value);
-		}, [{value: btn.value, ctrlKey: false}]);
+		}, btn.keybindings);
 	});
 
 	const operationButtons = [
