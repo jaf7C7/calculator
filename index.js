@@ -3,14 +3,11 @@ class UI {
 		this._element = document.getElementById("calculator");
 	}
 
-	createElement(tagName, id, textContent = null, onClick = null) {
+	createElement(tagName, id, textContent = null) {
 		const element = document.createElement(tagName);
 		element.id = id;
 		if (textContent !== null) {
 			element.textContent = textContent;
-		}
-		if (onClick) {
-			element.addEventListener("click", onClick);
 		}
 		this._element.appendChild(element);
 		return element;
@@ -170,10 +167,8 @@ function createApp() {
 		{id: "allClear", value: "AC", onClick: (calculator) => { calculator.clear(); }},
 		{id: "delete", value: "Del", onClick: (calculator) => { calculator.delete(); }},
 	].forEach((btn) => {
-		function createButton(ui, id, value, onClick) {
-			ui.createElement("button", id, value, onClick);
-		}
-		createButton(ui, btn.id, btn.value, () => {
+		const b = ui.createElement("button", btn.id, btn.value);
+		b.addEventListener("click", () => {
 			btn.onClick(calculator);
 		});
 	});
