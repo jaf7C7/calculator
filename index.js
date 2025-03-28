@@ -27,8 +27,7 @@ class Calculation {
 	constructor() {
 		this._operands = [];
 		this._currentOperand = "";
-		this._operationSymbol = "";
-		this._operation = "";
+		this._operation = new Operation("", () => undefined);
 	}
 
 	input(value) {
@@ -37,11 +36,10 @@ class Calculation {
 		}
 	}
 
-	selectOperator(operation, operationSymbol) {
+	selectOperator(operation) {
 		if (this._currentOperand !== "") {
 			this._addOperand(this._currentOperand);
 			this._operation = operation;
-			this._operationSymbol = operationSymbol;
 		}
 	}
 
@@ -53,7 +51,7 @@ class Calculation {
 		this._addOperand(this._currentOperand);
 		return this._operands
 			.map((o) => Number(o))
-			.reduce((a, b) => this._operation(a, b))
+			.reduce((a, b) => this._operation.perform(a, b))
 	}
 
 	_addOperand(operand) {
@@ -64,7 +62,22 @@ class Calculation {
 	toString() {
 		return this._operands.concat(this._currentOperand)
 			.map((operand) => format(operand))
-			.join(this._operationSymbol)
+			.join(this._operation.toString())
+	}
+}
+
+class Operation {
+	constructor(symbol, operation) {
+		this._symbol = symbol;
+		this._operation = operation;
+	}
+
+	perform(a, b) {
+		return this._operation(a, b);
+	}
+
+	toString() {
+		return this._symbol;
 	}
 }
 
@@ -101,6 +114,11 @@ function createApp() {
 	const display = ui.createDisplay();
 	let calculation = new Calculation();
 
+	const subtract = new Operation("-", (a, b) => a - b);
+	const multiply = new Operation("*", (a, b) => a * b);
+	const divide = new Operation("/", (a, b) => a / b);
+	const add = new Operation("+", (a, b) => a + b);
+
 	const inputButtons = [
 		{id: "one", value: "1"},
 		{id: "two", value: "2"},
@@ -122,31 +140,23 @@ function createApp() {
 		}, [{value: btn.value, ctrlKey: false}]);
 	});
 
-	const add = (a, b) => a + b;
-
 	createButton(ui, calculation, "plus", "+", () => {
-		calculation.selectOperator(add, "+");
+		calculation.selectOperator(add);
 		display(calculation.toString());
 	}, [{value: "+", ctrlKey: false}]);
 
-	const subtract = (a, b) => a - b;
-
 	createButton(ui, calculation, "minus", "-", () => {
-		calculation.selectOperator(subtract, "-");
+		calculation.selectOperator(subtract);
 		display(calculation.toString());
 	}, [{value: "-", ctrlKey: false}]);
 
-	const multiply = (a, b) => a * b;
-
 	createButton(ui, calculation, "times", "*", () => {
-		calculation.selectOperator(multiply, "*");
+		calculation.selectOperator(multiply);
 		display(calculation.toString());
 	}, [{value: "*", ctrlKey: false}]);
 
-	const divide = (a, b) => a / b;
-
 	createButton(ui, calculation, "divide", "/", () => {
-		calculation.selectOperator(divide, "/");
+		calculation.selectOperator(divide);
 		display(calculation.toString());
 	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
 
