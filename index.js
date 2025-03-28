@@ -108,7 +108,7 @@ function format(str) {
 	return result;
 }
 
-function createButton(ui, calculator, id, value, function_, keyAlias = null) {
+function createButton(ui, calculator, id, value, function_, keybindings = null) {
 	let btn;
 	btn = ui.createElement("button", id, value);
 	btn.addEventListener("click", () => {
@@ -119,9 +119,9 @@ function createButton(ui, calculator, id, value, function_, keyAlias = null) {
 			function_();
 		}
 	});
-	if (keyAlias !== null) {
+	if (keybindings !== null) {
 		document.body.addEventListener("keydown", (event) => {
-			if (event.ctrlKey == keyAlias.ctrlKey && event.key === keyAlias.value) {
+			if (event.ctrlKey == keybindings.ctrlKey && event.key === keybindings.value) {
 				function_();
 			}
 		});
