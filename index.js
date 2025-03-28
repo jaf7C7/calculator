@@ -67,23 +67,24 @@ class Calculation {
 }
 
 class Calculator {
-	constructor() {
+	constructor(display) {
+		this.display = display;
 		this.calculation = new Calculation();
 	}
 
-	input(display, value) {
+	input(value) {
 		this.calculation.input(value);
-		display(this.calculation.toString());
+		this.display(this.calculation.toString());
 	}
 
-	selectOperator(display, operator) {
+	selectOperator(operator) {
 		this.calculation.selectOperator(operator);
-		display(this.calculation.toString());
+		this.display(this.calculation.toString());
 	}
 
-	calculate(display) {
+	calculate() {
 		const result = this.calculation.calculate();
-		display(format(result));
+		this.display(format(result));
 		this.calculation = new Calculation();
 	}
 }
@@ -134,7 +135,7 @@ function createButton(ui, calculator, id, value, function_, keybindings) {
 function createApp() {
 	const ui = new UI();
 	const display = ui.createDisplay();
-	const calculator = new Calculator();
+	const calculator = new Calculator(display);
 
 	const subtract = new Operation("-", (a, b) => a - b);
 	const multiply = new Operation("*", (a, b) => a * b);
@@ -157,28 +158,28 @@ function createApp() {
 
 	inputButtons.forEach((btn) => {
 		createButton(ui, calculator.calculation, btn.id, btn.value, () => {
-			calculator.input(display, btn.value);
+			calculator.input(btn.value);
 		}, [{value: btn.value, ctrlKey: false}]);
 	});
 
 	createButton(ui, calculator, "plus", "+", () => {
-		calculator.selectOperator(display, add);
+		calculator.selectOperator(add);
 	}, [{value: "+", ctrlKey: false}]);
 
 	createButton(ui, calculator, "minus", "-", () => {
-		calculator.selectOperator(display, subtract);
+		calculator.selectOperator(subtract);
 	}, [{value: "-", ctrlKey: false}]);
 
 	createButton(ui, calculator, "times", "*", () => {
-		calculator.selectOperator(display, multiply);
+		calculator.selectOperator(multiply);
 	}, [{value: "*", ctrlKey: false}]);
 
 	createButton(ui, calculator, "divide", "/", () => {
-		calculator.selectOperator(display, divide);
+		calculator.selectOperator(divide);
 	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
 
 	createButton(ui, calculator, "equals", "=", () => {
-		calculator.calculate(display);
+		calculator.calculate();
 	}, [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}]);
 
 	createButton(ui, calculator, "allClear", "AC", () => {
