@@ -48,14 +48,6 @@ class Calculator {
 		this._currentOperand = this._currentOperand.slice(0, -1);
 	}
 
-	clear() {
-		this._firstOperand = "";
-		this._secondOperand = "";
-		this._currentOperand = "";
-		this._operation = "";
-		this._operationSymbol = "";
-	}
-
 	calculate() {
 		this._addOperand(this._currentOperand);
 		const result = this._operation(
@@ -173,11 +165,11 @@ function createApp() {
 	createButton(ui, calculator, "equals", "=", () => {
 		const result = calculator.calculate();
 		display(format(result));
-		calculator.clear();
+		calculator = new Calculator();
 	}, [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}]);
 
 	createButton(ui, calculator, "allClear", "AC", () => {
-		calculator.clear();
+		calculator = new Calculator();
 		display(calculator.toString());
 	}, [{value: "Delete", ctrlKey: true}, {value: "Backspace", ctrlKey: true}]);
 
