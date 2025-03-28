@@ -49,7 +49,11 @@ class Calculator {
 	}
 
 	clear() {
-		this.reset();
+		this._firstOperand = "";
+		this._secondOperand = "";
+		this._currentOperand = "";
+		this._operation = "";
+		this._operationSymbol = "";
 	}
 
 	calculate() {
@@ -81,14 +85,6 @@ class Calculator {
 			str += format(this._currentOperand);
 		}
 		return str;
-	}
-
-	reset() {
-		this._firstOperand = "";
-		this._secondOperand = "";
-		this._currentOperand = "";
-		this._operation = "";
-		this._operationSymbol = "";
 	}
 }
 
@@ -177,7 +173,7 @@ function createApp() {
 	createButton(ui, calculator, "equals", "=", () => {
 		const result = calculator.calculate();
 		display(format(result));
-		calculator.reset();
+		calculator.clear();
 	}, [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}]);
 
 	createButton(ui, calculator, "allClear", "AC", () => {
