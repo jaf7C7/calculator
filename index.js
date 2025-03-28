@@ -144,12 +144,6 @@ function addKeybinding(callback) {
 	});
 }
 
-function createButton(ui, calculator, btn) {
-	ui.createButton(btn.id, btn.value, () => {
-		btn.onClick(calculator);
-	});
-}
-
 function handleButtonPress(calculator, button, ctrlKey) {
 	if (button.match(/[.0-9]/)) {
 		calculator.input(button)
@@ -211,7 +205,9 @@ function createApp() {
 			calculator.delete();
 		}),
 	].forEach((btn) => {
-		createButton(ui, calculator, btn);
+		ui.createButton(btn.id, btn.value, () => {
+			btn.onClick(calculator);
+		});
 	});
 	addKeybinding((event) => {
 		handleButtonPress(calculator, event.key, event.ctrlKey);
