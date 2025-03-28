@@ -158,21 +158,27 @@ function createApp() {
 	createButton(ui, calculator, "plus", "+", () => {
 		calculator.selectOperator((a, b) => a + b, "+");
 	}, [{value: "+", ctrlKey: false}]);
+
 	createButton(ui, calculator, "minus", "-", () => {
 		calculator.selectOperator((a, b) => a - b, "-");
 	}, [{value: "-", ctrlKey: false}]);
+
 	createButton(ui, calculator, "times", "*", () => {
 		calculator.selectOperator((a, b) => a * b, "*");
 	}, [{value: "*", ctrlKey: false}]);
+
 	createButton(ui, calculator, "divide", "/", () => {
 		calculator.selectOperator((a, b) => a / b, "/");
 	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
+
 	createButton(ui, calculator, "equals", "=", () => {
 		calculator.calculate();
 	}, [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}]);
+
 	createButton(ui, calculator, "allClear", "AC", () => {
 		calculator.clear();
 	}, [{value: "Delete", ctrlKey: true}, {value: "Backspace", ctrlKey: true}]);
+
 	createButton(ui, calculator, "delete", "Del", () => {
 		calculator.delete();
 	}, [{value: "Delete", ctrlKey: false}, {value: "Backspace", ctrlKey: false}]);
