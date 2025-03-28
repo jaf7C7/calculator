@@ -137,27 +137,52 @@ function createApp() {
 		});
 	});
 
-	[
-		{id: "plus", operation: (a, b) => a + b, operationSymbol: "+"},
-		{id: "minus", operation: (a, b) => a - b, operationSymbol: "-"},
-		{id: "times", operation: (a, b) => a * b, operationSymbol: "*"},
-		{id: "divide", operation: (a, b) => a / b, operationSymbol: "/"},
-	].forEach((btn) => {
-		const b = ui.createElement("button", btn.id, btn.operationSymbol);
-		b.addEventListener("click", () => {
-			calculator.selectOperator(btn.operation, btn.operationSymbol);
-		});
-		document.body.addEventListener("keydown", (event) => {
-			if (event.key === btn.operationSymbol) {
-				calculator.selectOperator(btn.operation, btn.operationSymbol);
-			}
-			if (event.key === "%") {
-				calculator.selectOperator((a, b) => a / b, "/");
-			}
-		});
+	let btn;
+
+	btn = ui.createElement("button", "plus", "+");
+	btn.addEventListener("click", () => {
+		calculator.selectOperator((a, b) => a + b, "+");
+	});
+	document.body.addEventListener("keydown", (event) => {
+		if (event.key === "+") {
+			calculator.selectOperator((a, b) => a + b, "+");
+		}
 	});
 
-	let btn;
+	btn = ui.createElement("button", "minus", "-");
+	btn.addEventListener("click", () => {
+		calculator.selectOperator((a, b) => a - b, "-");
+	});
+	document.body.addEventListener("keydown", (event) => {
+		if (event.key === "-") {
+			calculator.selectOperator((a, b) => a - b, "-");
+		}
+	});
+
+	btn = ui.createElement("button", "times", "*");
+	btn.addEventListener("click", () => {
+		calculator.selectOperator((a, b) => a * b, "*");
+	});
+	document.body.addEventListener("keydown", (event) => {
+		if (event.key === "*") {
+			calculator.selectOperator((a, b) => a * b, "*");
+		}
+	});
+
+	btn = ui.createElement("button", "divide", "/");
+	btn.addEventListener("click", () => {
+		calculator.selectOperator((a, b) => a / b, "/");
+	});
+	document.body.addEventListener("keydown", (event) => {
+		if (event.key === "/") {
+			calculator.selectOperator((a, b) => a / b, "/");
+		}
+	});
+	document.body.addEventListener("keydown", (event) => {
+		if (event.key === "%") {
+			calculator.selectOperator((a, b) => a / b, "/");
+		}
+	});
 
 	btn = ui.createElement("button", "equals", "=");
 	btn.addEventListener("click", () => {
