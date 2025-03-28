@@ -112,24 +112,6 @@ function addKeybinding(callback) {
 	});
 }
 
-function handleButtonPress(calculator, button, ctrlKey) {
-	if (button.match(/[.0-9]/)) {
-		calculator.input(button)
-	} else if (button === "+") {
-		calculator.selectOperator(add);
-	} else if (button === "-") {
-		calculator.selectOperator(subtract);
-	} else if (button === "*") {
-		calculator.selectOperator(multiply);
-	} else if (button.match(/[/%]/)) {
-		calculator.selectOperator(divide);
-	} else if (button.match(/Delete|Backspace/)) {
-		calculator[(ctrlKey) ? "clear" : "delete"]();
-	} else if (button.match(/=|Enter/)) {
-		calculator.calculate();
-	}
-}
-
 function format(str) {
 	let result = "";
 	if (str === ".") {
@@ -190,7 +172,21 @@ function createApp() {
 	});
 
 	addKeybinding((event) => {
-		handleButtonPress(calculator, event.key, event.ctrlKey);
+		if (event.key.match(/[.0-9]/)) {
+			calculator.input(event.key)
+		} else if (event.key === "+") {
+			calculator.selectOperator(add);
+		} else if (event.key === "-") {
+			calculator.selectOperator(subtract);
+		} else if (event.key === "*") {
+			calculator.selectOperator(multiply);
+		} else if (event.key.match(/[/%]/)) {
+			calculator.selectOperator(divide);
+		} else if (event.key.match(/Delete|Backspace/)) {
+			calculator[(event.ctrlKey) ? "clear" : "delete"]();
+		} else if (event.key.match(/=|Enter/)) {
+			calculator.calculate();
+		}
 	});
 }
 
