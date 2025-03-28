@@ -138,33 +138,6 @@ const subtract = new Operator("-", (a, b) => a - b);
 const multiply = new Operator("*", (a, b) => a * b);
 const divide = new Operator("/", (a, b) => a / b);
 
-const keypad = [
-	new InputButton("one", 1),
-	new InputButton("two", 2),
-	new InputButton("three", 3),
-	new InputButton("four", 4),
-	new InputButton("five", 5),
-	new InputButton("six", 6),
-	new InputButton("seven", 7),
-	new InputButton("eight", 8),
-	new InputButton("nine", 9),
-	new InputButton("zero", 0),
-	new InputButton("point", "."),
-	new OperationButton("plus", add),
-	new OperationButton("minus", subtract),
-	new OperationButton("times", multiply),
-	new OperationButton("divide", divide),
-	new Button("equals", "=", (calculator) => {
-		calculator.calculate();
-	}),
-	new Button("allClear", "AC", (calculator) => {
-		calculator.clear();
-	}),
-	new Button("delete", "Del", (calculator) => {
-		calculator.delete();
-	}),
-];
-
 function addKeybinding(callback) {
 	document.body.addEventListener("keydown", (event) => {
 		callback(event);
@@ -212,7 +185,32 @@ function createApp() {
 	const display = ui.createDisplay();
 	let calculator = new Calculator(display);
 
-	keypad.forEach((btn) => {
+	[
+		new InputButton("one", 1),
+		new InputButton("two", 2),
+		new InputButton("three", 3),
+		new InputButton("four", 4),
+		new InputButton("five", 5),
+		new InputButton("six", 6),
+		new InputButton("seven", 7),
+		new InputButton("eight", 8),
+		new InputButton("nine", 9),
+		new InputButton("zero", 0),
+		new InputButton("point", "."),
+		new OperationButton("plus", add),
+		new OperationButton("minus", subtract),
+		new OperationButton("times", multiply),
+		new OperationButton("divide", divide),
+		new Button("equals", "=", (calculator) => {
+			calculator.calculate();
+		}),
+		new Button("allClear", "AC", (calculator) => {
+			calculator.clear();
+		}),
+		new Button("delete", "Del", (calculator) => {
+			calculator.delete();
+		}),
+	].forEach((btn) => {
 		createButton(ui, calculator, btn);
 	});
 	addKeybinding((event) => {
