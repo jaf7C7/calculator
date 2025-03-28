@@ -169,7 +169,23 @@ function createApp() {
 
 	[
 		{id: "equals", value: "=", onClick: (calculator) => { calculator.calculate(); }},
+	].forEach((btn) => {
+		const b = ui.createElement("button", btn.id, btn.value);
+		b.addEventListener("click", () => {
+			btn.onClick(calculator);
+		});
+	});
+
+	[
 		{id: "allClear", value: "AC", onClick: (calculator) => { calculator.clear(); }},
+	].forEach((btn) => {
+		const b = ui.createElement("button", btn.id, btn.value);
+		b.addEventListener("click", () => {
+			btn.onClick(calculator);
+		});
+	});
+
+	[
 		{id: "delete", value: "Del", onClick: (calculator) => { calculator.delete(); }},
 	].forEach((btn) => {
 		const b = ui.createElement("button", btn.id, btn.value);
