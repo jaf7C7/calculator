@@ -140,12 +140,11 @@ function createApp() {
 		b.addEventListener("click", () => {
 			calculator.input(btn.value);
 		});
-	});
-
-	document.body.addEventListener("keydown", (event) => {
-		if (event.key.match(/[.0-9]/)) {
-			calculator.input(event.key);
-		}
+		document.body.addEventListener("keydown", (event) => {
+			if (event.key == btn.value) {
+				calculator.input(btn.value);
+			}
+		});
 	});
 
 	[
