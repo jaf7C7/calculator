@@ -121,7 +121,8 @@ function createButton(ui, calculator, id, value, function_, keybindings = null) 
 	});
 	if (keybindings !== null) {
 		document.body.addEventListener("keydown", (event) => {
-			if (event.ctrlKey == keybindings.ctrlKey && event.key === keybindings.value) {
+			const correctKeysPressed = keybindings.find((key) => key.value === event.key && key.ctrlKey === event.ctrlKey) !== undefined;
+			if (correctKeysPressed) {
 				function_();
 			}
 		});
@@ -168,10 +169,10 @@ function createApp() {
 	});
 	createButton(ui, calculator, "divide", "/", () => {
 		calculator.selectOperator((a, b) => a / b, "/");
-	}, {value: "%", ctrlKey: false});
+	}, [{value: "%", ctrlKey: false}]);
 	createButton(ui, calculator, "equals", "=", () => {
 		calculator.calculate();
-	}, {value: "Enter", ctrlKey: false});
+	}, [{value: "Enter", ctrlKey: false}]);
 
 	let btn;
 
