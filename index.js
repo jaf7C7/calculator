@@ -190,7 +190,7 @@ function createApp() {
 	});
 
 	document.body.addEventListener("keydown", (event) => {
-		if (event.key.match(/Delete|Backspace/)) {
+		if (event.key === "Delete" || event.key === "Backspace") {
 			calculator[(event.ctrlKey) ? "clear" : "delete"]();
 		}
 	});
