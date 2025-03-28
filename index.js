@@ -108,6 +108,27 @@ function format(str) {
 	return result;
 }
 
+function createButton(ui, calculator, id, value, function_, keyAlias = null) {
+	let btn;
+	btn = ui.createElement("button", id, value);
+	btn.addEventListener("click", () => {
+		function_();
+	});
+	document.body.addEventListener("keydown", (event) => {
+		if (event.key === value) {
+			function_();
+		}
+	});
+	console.log(keyAlias);
+	if (keyAlias !== null) {
+		document.body.addEventListener("keydown", (event) => {
+			if (event.key === "%") {
+				calculator.selectOperator((a, b) => a / b, "/");
+			}
+		});
+	}
+}
+
 function createApp() {
 	const ui = new UI();
 	const display = ui.createDisplay();
@@ -137,37 +158,16 @@ function createApp() {
 		});
 	});
 
-	function createButton(id, value, function_, keyAlias = null) {
-		let btn;
-		btn = ui.createElement("button", id, value);
-		btn.addEventListener("click", () => {
-			function_();
-		});
-		document.body.addEventListener("keydown", (event) => {
-			if (event.key === value) {
-				function_();
-			}
-		});
-		console.log(keyAlias);
-		if (keyAlias !== null) {
-			document.body.addEventListener("keydown", (event) => {
-				if (event.key === "%") {
-					calculator.selectOperator((a, b) => a / b, "/");
-				}
-			});
-		}
-	}
-
-	createButton("plus", "+", () => {
+	createButton(ui, calculator, "plus", "+", () => {
 		calculator.selectOperator((a, b) => a + b, "+");
 	});
-	createButton("minus", "-", () => {
+	createButton(ui, calculator, "minus", "-", () => {
 		calculator.selectOperator((a, b) => a - b, "-");
 	});
-	createButton("times", "*", () => {
+	createButton(ui, calculator, "times", "*", () => {
 		calculator.selectOperator((a, b) => a * b, "*");
 	});
-	createButton("divide", "/", () => {
+	createButton(ui, calculator, "divide", "/", () => {
 		calculator.selectOperator((a, b) => a / b, "/");
 	}, "%");
 
