@@ -3,6 +3,12 @@
 A very simple calculator which can perform addition, subtraction,
 multiplication and division.
 
+## Try it out
+
+Clone the repository and run `npm install` from the project root. When the
+dependencies have finished installing, Run `npm start` and visit
+<http://localhost:8080>.
+
 ## Tech stack:
 
 - HTML5
