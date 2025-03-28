@@ -137,62 +137,105 @@ function createApp() {
 		});
 	});
 
-	let btn;
-	let id;
-	let value;
-	let function_;
-	let keyAlias;
-
-	id = "plus";
-	value = "+";
-	function_ = () => {
-		calculator.selectOperator((a, b) => a + b, "+");
-	};
-	keyAlias = null;
-	btn = ui.createElement("button", id, value);
-	btn.addEventListener("click", () => {
-		function_();
-	});
-	document.body.addEventListener("keydown", (event) => {
-		if (event.key === value) {
+	(() => {
+		let btn;
+		let id;
+		let value;
+		let function_;
+		let keyAlias;
+		id = "plus";
+		value = "+";
+		function_ = () => {
+			calculator.selectOperator((a, b) => a + b, "+");
+		};
+		keyAlias = null;
+		btn = ui.createElement("button", id, value);
+		btn.addEventListener("click", () => {
 			function_();
-		}
-	});
+		});
+		document.body.addEventListener("keydown", (event) => {
+			if (event.key === value) {
+				function_();
+			}
+		});
+	})();
 
-	btn = ui.createElement("button", "minus", "-");
-	btn.addEventListener("click", () => {
-		calculator.selectOperator((a, b) => a - b, "-");
-	});
-	document.body.addEventListener("keydown", (event) => {
-		if (event.key === "-") {
+	(() => {
+		let btn;
+		let id;
+		let value;
+		let function_;
+		let keyAlias;
+		id = "minus";
+		value = "-";
+		function_ = () => {
 			calculator.selectOperator((a, b) => a - b, "-");
-		}
-	});
+		};
+		keyAlias = null;
+		btn = ui.createElement("button", id, value);
+		btn.addEventListener("click", () => {
+			function_();
+		});
+		document.body.addEventListener("keydown", (event) => {
+			if (event.key === value) {
+				function_();
+			}
+		});
+	})();
 
-	btn = ui.createElement("button", "times", "*");
-	btn.addEventListener("click", () => {
-		calculator.selectOperator((a, b) => a * b, "*");
-	});
-	document.body.addEventListener("keydown", (event) => {
-		if (event.key === "*") {
+	(() => {
+		let btn;
+		let id;
+		let value;
+		let function_;
+		let keyAlias;
+		id = "times";
+		value = "*";
+		function_ = () => {
 			calculator.selectOperator((a, b) => a * b, "*");
-		}
-	});
+		};
+		keyAlias = null;
+		btn = ui.createElement("button", id, value);
+		btn.addEventListener("click", () => {
+			function_();
+		});
+		document.body.addEventListener("keydown", (event) => {
+			if (event.key === value) {
+				function_();
+			}
+		});
+	})();
 
-	btn = ui.createElement("button", "divide", "/");
-	btn.addEventListener("click", () => {
-		calculator.selectOperator((a, b) => a / b, "/");
-	});
-	document.body.addEventListener("keydown", (event) => {
-		if (event.key === "/") {
+	(() => {
+		let btn;
+		let id;
+		let value;
+		let function_;
+		let keyAlias;
+		id = "divide";
+		value = "/";
+		function_ = () => {
 			calculator.selectOperator((a, b) => a / b, "/");
-		}
-	});
+		};
+		keyAlias = null;
+		btn = ui.createElement("button", id, value);
+		btn.addEventListener("click", () => {
+			function_();
+		});
+		document.body.addEventListener("keydown", (event) => {
+			if (event.key === value) {
+				function_();
+			}
+		});
+	})();
+
 	document.body.addEventListener("keydown", (event) => {
 		if (event.key === "%") {
 			calculator.selectOperator((a, b) => a / b, "/");
 		}
 	});
+
+	let btn;
 
 	btn = ui.createElement("button", "equals", "=");
 	btn.addEventListener("click", () => {
