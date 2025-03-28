@@ -43,7 +43,6 @@ class Calculator {
 		this._addOperand(this._currentOperand);
 		this._operation = operation;
 		this._operationSymbol = operationSymbol;
-		this.display(this.toString());
 	}
 
 	delete() {
@@ -155,24 +154,28 @@ function createApp() {
 
 	createButton(ui, calculator, "plus", "+", () => {
 		calculator.selectOperator(add, "+");
+		calculator.display(calculator.toString());
 	}, [{value: "+", ctrlKey: false}]);
 
 	const subtract = (a, b) => a - b;
 
 	createButton(ui, calculator, "minus", "-", () => {
 		calculator.selectOperator(subtract, "-");
+		calculator.display(calculator.toString());
 	}, [{value: "-", ctrlKey: false}]);
 
 	const multiply = (a, b) => a * b;
 
 	createButton(ui, calculator, "times", "*", () => {
 		calculator.selectOperator(multiply, "*");
+		calculator.display(calculator.toString());
 	}, [{value: "*", ctrlKey: false}]);
 
 	const divide = (a, b) => a / b;
 
 	createButton(ui, calculator, "divide", "/", () => {
 		calculator.selectOperator(divide, "/");
+		calculator.display(calculator.toString());
 	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
 
 	createButton(ui, calculator, "equals", "=", () => {
