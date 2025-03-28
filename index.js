@@ -108,22 +108,20 @@ function format(str) {
 	return result;
 }
 
-function createButton(ui, calculator, id, value, function_, keybindings = null) {
+function createButton(ui, calculator, id, value, function_, keybindings) {
 	let btn;
 	btn = ui.createElement("button", id, value);
 	btn.addEventListener("click", () => {
 		function_();
 	});
-	if (keybindings !== null) {
-		document.body.addEventListener("keydown", (event) => {
-			const keybinding = keybindings.find((key) => {
-				return key.value === event.key && key.ctrlKey === event.ctrlKey;
-			});
-			if (keybinding !== undefined) {
-				function_();
-			}
+	document.body.addEventListener("keydown", (event) => {
+		const keybinding = keybindings.find((key) => {
+			return key.value === event.key && key.ctrlKey === event.ctrlKey;
 		});
-	}
+		if (keybinding !== undefined) {
+			function_();
+		}
+	});
 }
 
 function createApp() {
