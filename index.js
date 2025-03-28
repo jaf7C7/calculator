@@ -122,8 +122,8 @@ function createButton(ui, calculator, id, value, function_, keyAlias = null) {
 	console.log(keyAlias);
 	if (keyAlias !== null) {
 		document.body.addEventListener("keydown", (event) => {
-			if (event.key === "%") {
-				calculator.selectOperator((a, b) => a / b, "/");
+			if (event.key === keyAlias) {
+				function_();
 			}
 		});
 	}
