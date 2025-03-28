@@ -51,7 +51,7 @@ class Calculator {
 	}
 
 	clear() {
-		this._reset();
+		this.reset();
 		this.display(this.toString());
 	}
 
@@ -61,8 +61,7 @@ class Calculator {
 			Number(this._firstOperand),
 			Number(this._secondOperand),
 		);
-		this.display(format(result));
-		this._reset();
+		return result;
 	}
 
 	_addOperand(operand) {
@@ -87,7 +86,7 @@ class Calculator {
 		return str;
 	}
 
-	_reset() {
+	reset() {
 		this._firstOperand = "";
 		this._secondOperand = "";
 		this._currentOperand = "";
@@ -179,7 +178,9 @@ function createApp() {
 	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
 
 	createButton(ui, calculator, "equals", "=", () => {
-		calculator.calculate();
+		const result = calculator.calculate();
+		calculator.display(format(result));
+		calculator.reset();
 	}, [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}]);
 
 	createButton(ui, calculator, "allClear", "AC", () => {
