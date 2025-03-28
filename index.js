@@ -125,14 +125,6 @@ class OperationButton extends Button {
 	}
 }
 
-class InputButton extends Button {
-	constructor(id, value) {
-		super(id, value, function (calculator) {
-			calculator.input(this.value);
-		});
-	}
-}
-
 const add = new Operator("+", (a, b) => a + b);
 const subtract = new Operator("-", (a, b) => a - b);
 const multiply = new Operator("*", (a, b) => a * b);
@@ -180,17 +172,17 @@ function createApp() {
 	let calculator = new Calculator(display);
 
 	[
-		new InputButton("one", 1),
-		new InputButton("two", 2),
-		new InputButton("three", 3),
-		new InputButton("four", 4),
-		new InputButton("five", 5),
-		new InputButton("six", 6),
-		new InputButton("seven", 7),
-		new InputButton("eight", 8),
-		new InputButton("nine", 9),
-		new InputButton("zero", 0),
-		new InputButton("point", "."),
+		{id: "one", value: 1, onClick: function (calculator) { calculator.input(this.value); }},
+		{id: "two", value: 2, onClick: function (calculator) { calculator.input(this.value); }},
+		{id: "three", value: 3, onClick: function (calculator) { calculator.input(this.value); }},
+		{id: "four", value: 4, onClick: function (calculator) { calculator.input(this.value); }},
+		{id: "five", value: 5, onClick: function (calculator) { calculator.input(this.value); }},
+		{id: "six", value: 6, onClick: function (calculator) { calculator.input(this.value); }},
+		{id: "seven", value: 7, onClick: function (calculator) { calculator.input(this.value); }},
+		{id: "eight", value: 8, onClick: function (calculator) { calculator.input(this.value); }},
+		{id: "nine", value: 9, onClick: function (calculator) { calculator.input(this.value); }},
+		{id: "zero", value: 0, onClick: function (calculator) { calculator.input(this.value); }},
+		{id: "point", value: ".", onClick: function (calculator) { calculator.input(this.value); }},
 		new OperationButton("plus", add),
 		new OperationButton("minus", subtract),
 		new OperationButton("times", multiply),
