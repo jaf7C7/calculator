@@ -119,7 +119,6 @@ function createButton(ui, calculator, id, value, function_, keyAlias = null) {
 			function_();
 		}
 	});
-	console.log(keyAlias);
 	if (keyAlias !== null) {
 		document.body.addEventListener("keydown", (event) => {
 			if (event.key === keyAlias) {
