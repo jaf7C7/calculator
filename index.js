@@ -106,12 +106,6 @@ const subtract = new Operator("-", (a, b) => a - b);
 const multiply = new Operator("*", (a, b) => a * b);
 const divide = new Operator("/", (a, b) => a / b);
 
-function addKeybinding(callback) {
-	document.body.addEventListener("keydown", (event) => {
-		callback(event);
-	});
-}
-
 function format(str) {
 	let result = "";
 	if (str === ".") {
@@ -171,7 +165,7 @@ function createApp() {
 		});
 	});
 
-	addKeybinding((event) => {
+	document.body.addEventListener("keydown", (event) => {
 		if (event.key.match(/[.0-9]/)) {
 			calculator.input(event.key)
 		} else if (event.key === "+") {
