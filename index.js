@@ -114,11 +114,6 @@ function createButton(ui, calculator, id, value, function_, keybindings = null) 
 	btn.addEventListener("click", () => {
 		function_();
 	});
-	document.body.addEventListener("keydown", (event) => {
-		if (event.key === value) {
-			function_();
-		}
-	});
 	if (keybindings !== null) {
 		document.body.addEventListener("keydown", (event) => {
 			const keybinding = keybindings.find((key) => {
@@ -162,19 +157,19 @@ function createApp() {
 
 	createButton(ui, calculator, "plus", "+", () => {
 		calculator.selectOperator((a, b) => a + b, "+");
-	});
+	}, [{value: "+", ctrlKey: false}]);
 	createButton(ui, calculator, "minus", "-", () => {
 		calculator.selectOperator((a, b) => a - b, "-");
-	});
+	}, [{value: "-", ctrlKey: false}]);
 	createButton(ui, calculator, "times", "*", () => {
 		calculator.selectOperator((a, b) => a * b, "*");
-	});
+	}, [{value: "*", ctrlKey: false}]);
 	createButton(ui, calculator, "divide", "/", () => {
 		calculator.selectOperator((a, b) => a / b, "/");
-	}, [{value: "%", ctrlKey: false}]);
+	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
 	createButton(ui, calculator, "equals", "=", () => {
 		calculator.calculate();
-	}, [{value: "Enter", ctrlKey: false}]);
+	}, [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}]);
 
 	let btn;
 
