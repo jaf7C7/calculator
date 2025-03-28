@@ -137,7 +137,7 @@ function createApp() {
 		});
 	});
 
-	function createPlusButton(id, value, function_) {
+	function createButton(id, value, function_) {
 		let btn;
 		let keyAlias;
 		keyAlias = null;
@@ -151,69 +151,19 @@ function createApp() {
 			}
 		});
 	}
-	createPlusButton("plus", "+", () => {
+
+	createButton("plus", "+", () => {
 		calculator.selectOperator((a, b) => a + b, "+");
 	});
-
-	function createMinusButton(id, value, function_) {
-		let btn;
-		let keyAlias;
-		keyAlias = null;
-		btn = ui.createElement("button", id, value);
-		btn.addEventListener("click", () => {
-			function_();
-		});
-		document.body.addEventListener("keydown", (event) => {
-			if (event.key === value) {
-				function_();
-			}
-		});
-	}
-	createMinusButton("minus", "-", () => {
+	createButton("minus", "-", () => {
 		calculator.selectOperator((a, b) => a - b, "-");
 	});
-
-	function createTimesButton(id, value, function_) {
-		let btn;
-		let keyAlias;
-		keyAlias = null;
-		btn = ui.createElement("button", id, value);
-		btn.addEventListener("click", () => {
-			function_();
-		});
-		document.body.addEventListener("keydown", (event) => {
-			if (event.key === value) {
-				function_();
-			}
-		});
-	}
-	createTimesButton("times", "*", () => {
+	createButton("times", "*", () => {
 		calculator.selectOperator((a, b) => a * b, "*");
 	});
-
-	function createDivideButton() {
-		let btn;
-		let id;
-		let value;
-		let function_;
-		let keyAlias;
-		id = "divide";
-		value = "/";
-		function_ = () => {
-			calculator.selectOperator((a, b) => a / b, "/");
-		};
-		keyAlias = null;
-		btn = ui.createElement("button", id, value);
-		btn.addEventListener("click", () => {
-			function_();
-		});
-		document.body.addEventListener("keydown", (event) => {
-			if (event.key === value) {
-				function_();
-			}
-		});
-	}
-	createDivideButton();
+	createButton("divide", "/", () => {
+		calculator.selectOperator((a, b) => a / b, "/");
+	});
 
 	document.body.addEventListener("keydown", (event) => {
 		if (event.key === "%") {
