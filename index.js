@@ -170,18 +170,11 @@ function createApp() {
 	createButton(ui, calculator, "equals", "=", () => {
 		calculator.calculate();
 	}, [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}]);
+	createButton(ui, calculator, "allClear", "AC", () => {
+		calculator.clear();
+	}, [{value: "Delete", ctrlKey: true}, {value: "Backspace", ctrlKey: true}]);
 
 	let btn;
-
-	btn = ui.createElement("button", "allClear", "AC");
-	btn.addEventListener("click", () => {
-		calculator.clear();
-	});
-	document.body.addEventListener("keydown", (event) => {
-		if (event.ctrlKey && (event.key === "Delete" || event.key === "Backspace")) {
-			calculator.clear();
-		}
-	});
 
 	btn = ui.createElement("button", "delete", "Del");
 	btn.addEventListener("click", () => {
