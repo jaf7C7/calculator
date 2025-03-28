@@ -47,12 +47,10 @@ class Calculator {
 
 	delete() {
 		this._currentOperand = this._currentOperand.slice(0, -1);
-		this.display(this.toString());
 	}
 
 	clear() {
 		this.reset();
-		this.display(this.toString());
 	}
 
 	calculate() {
@@ -185,10 +183,12 @@ function createApp() {
 
 	createButton(ui, calculator, "allClear", "AC", () => {
 		calculator.clear();
+		calculator.display(calculator.toString());
 	}, [{value: "Delete", ctrlKey: true}, {value: "Backspace", ctrlKey: true}]);
 
 	createButton(ui, calculator, "delete", "Del", () => {
 		calculator.delete();
+		calculator.display(calculator.toString());
 	}, [{value: "Delete", ctrlKey: false}, {value: "Backspace", ctrlKey: false}]);
 }
 
