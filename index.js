@@ -157,18 +157,14 @@ function createApp() {
 		b.addEventListener("click", () => {
 			calculator.selectOperator(btn.operator);
 		});
-	});
-
-	document.body.addEventListener("keydown", (event) => {
-		if (event.key === "+") {
-			calculator.selectOperator(add);
-		} else if (event.key === "-") {
-			calculator.selectOperator(subtract);
-		} else if (event.key === "*") {
-			calculator.selectOperator(multiply);
-		} else if (event.key.match(/[/%]/)) {
-			calculator.selectOperator(divide);
-		}
+		document.body.addEventListener("keydown", (event) => {
+			if (event.key === btn.operator.value) {
+				calculator.selectOperator(btn.operator);
+			}
+			if (event.key === "%") {
+				calculator.selectOperator(divide);
+			}
+		});
 	});
 
 	[
