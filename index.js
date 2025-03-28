@@ -80,6 +80,12 @@ class Calculator {
 		this.calculation.selectOperator(operator);
 		display(this.calculation.toString());
 	}
+
+	calculate(display) {
+		const result = this.calculation.calculate();
+		display(format(result));
+		this.calculation = new Calculation();
+	}
 }
 
 class Operation {
@@ -172,9 +178,7 @@ function createApp() {
 	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
 
 	createButton(ui, calculator, "equals", "=", () => {
-		const result = calculator.calculation.calculate();
-		display(format(result));
-		calculator.calculation = new Calculation();
+		calculator.calculate(display);
 	}, [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}]);
 
 	createButton(ui, calculator, "allClear", "AC", () => {
