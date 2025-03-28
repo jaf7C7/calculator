@@ -167,13 +167,8 @@ function createApp() {
 		});
 	});
 
-	[
-		{id: "equals", value: "=", onClick: (calculator) => { calculator.calculate(); }},
-	].forEach((btn) => {
-		const b = ui.createElement("button", btn.id, btn.value);
-		b.addEventListener("click", () => {
-			btn.onClick(calculator);
-		});
+	ui.createElement("button", "equals", "=").addEventListener("click", () => {
+		calculator.calculate();
 	});
 
 	[
