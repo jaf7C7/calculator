@@ -152,7 +152,7 @@ function createApp() {
 	const divide = new Operation("/", (a, b) => a / b);
 	const add = new Operation("+", (a, b) => a + b);
 
-	const inputButtons = [
+	const buttons = [
 		{
 			id: "one",
 			value: "1",
@@ -230,15 +230,6 @@ function createApp() {
 			args: ["."],
 			keybindings: [{value: ".", ctrlKey: false}],
 		},
-	]
-
-	inputButtons.forEach((btn) => {
-		ui.createButton(btn.id, btn.value, () => {
-			calculator[btn.function](...btn.args);
-		}, btn.keybindings);
-	});
-
-	const operationButtons = [
 		{
 			id: "plus",
 			value: "+",
@@ -266,39 +257,33 @@ function createApp() {
 			function: "selectOperator",
 			args: [divide],
 			keybindings: [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}],
-		}
-	];
-
-	operationButtons.forEach((btn) => {
-		ui.createButton(btn.id, btn.value, () => {
-			calculator[btn.function](...btn.args);
-		}, btn.keybindings);
-	});
-
-	const functionButtons = [
+		},
 		{
 			id: "equals",
 			value: "=",
 			function: "calculate",
+			args: [],
 			keybindings: [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}],
 		},
 		{
 			id: "allClear",
 			value: "AC",
 			function: "clear",
+			args: [],
 			keybindings: [{value: "Delete", ctrlKey: true}, {value: "Backspace", ctrlKey: true}],
 		},
 		{
 			id: "delete",
 			value: "Del",
 			function: "delete",
+			args: [],
 			keybindings: [{value: "Delete", ctrlKey: false}, {value: "Backspace", ctrlKey: false}],
 		},
 	];
 
-	functionButtons.forEach((btn) => {
+	buttons.forEach((btn) => {
 		ui.createButton(btn.id, btn.value, () => {
-			calculator[btn.function]();
+			calculator[btn.function](...btn.args);
 		}, btn.keybindings);
 	});
 }
