@@ -148,33 +148,33 @@ function createApp() {
 	let calculator = new Calculator(display);
 
 	[
-		{id: "one", value: 1, onClick: function (calculator) { calculator.input(this.value); }},
-		{id: "two", value: 2, onClick: function (calculator) { calculator.input(this.value); }},
-		{id: "three", value: 3, onClick: function (calculator) { calculator.input(this.value); }},
-		{id: "four", value: 4, onClick: function (calculator) { calculator.input(this.value); }},
-		{id: "five", value: 5, onClick: function (calculator) { calculator.input(this.value); }},
-		{id: "six", value: 6, onClick: function (calculator) { calculator.input(this.value); }},
-		{id: "seven", value: 7, onClick: function (calculator) { calculator.input(this.value); }},
-		{id: "eight", value: 8, onClick: function (calculator) { calculator.input(this.value); }},
-		{id: "nine", value: 9, onClick: function (calculator) { calculator.input(this.value); }},
-		{id: "zero", value: 0, onClick: function (calculator) { calculator.input(this.value); }},
-		{id: "point", value: ".", onClick: function (calculator) { calculator.input(this.value); }},
+		{id: "one", value: 1},
+		{id: "two", value: 2},
+		{id: "three", value: 3},
+		{id: "four", value: 4},
+		{id: "five", value: 5},
+		{id: "six", value: 6},
+		{id: "seven", value: 7},
+		{id: "eight", value: 8},
+		{id: "nine", value: 9},
+		{id: "zero", value: 0},
+		{id: "point", value: "."},
 	].forEach((btn) => {
 		const b = ui.createElement("button", btn.id, btn.value);
 		b.addEventListener("click", () => {
-			btn.onClick(calculator);
+			calculator.input(btn.value);
 		});
 	});
 
 	[
-		{id: "plus", operator: add, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
-		{id: "minus", operator: subtract, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
-		{id: "times", operator: multiply, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
-		{id: "divide", operator: divide, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
+		{id: "plus", operator: add},
+		{id: "minus", operator: subtract},
+		{id: "times", operator: multiply},
+		{id: "divide", operator: divide},
 	].forEach((btn) => {
 		const b = ui.createElement("button", btn.id, btn.value);
 		b.addEventListener("click", () => {
-			btn.onClick(calculator);
+			calculator.selectOperator(btn.operator);
 		});
 	});
 
