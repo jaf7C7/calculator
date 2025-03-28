@@ -39,9 +39,11 @@ class Calculation {
 	}
 
 	selectOperator(operation, operationSymbol) {
-		this._addOperand(this._currentOperand);
-		this._operation = operation;
-		this._operationSymbol = operationSymbol;
+		if (this._currentOperand !== "") {
+			this._addOperand(this._currentOperand);
+			this._operation = operation;
+			this._operationSymbol = operationSymbol;
+		}
 	}
 
 	delete() {
@@ -67,14 +69,9 @@ class Calculation {
 	}
 
 	toString() {
-		let str = "";
-		if (this._firstOperand !== "") {
-			str += `${format(this._firstOperand)}${this._operationSymbol}`;
-		}
-		if (this._currentOperand !== "") {
-			str += format(this._currentOperand);
-		}
-		return str;
+		return [this._firstOperand, this._currentOperand]
+			.map((operand) => format(operand))
+			.join(this._operationSymbol);
 	}
 }
 
@@ -84,7 +81,7 @@ function format(str) {
 		result = "0.";
 	} else if (String(str).match(/\d+\.0*$/)) {
 		result = str;
-	} else {
+	} else if (str !== "") {
 		result = Number(str).toLocaleString();
 	}
 	return result;
