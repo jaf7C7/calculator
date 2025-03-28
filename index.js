@@ -108,14 +108,6 @@ class Operator extends Function {
 	}
 }
 
-class Button {
-	constructor(id, value, onClick) {
-		this.id = id;
-		this.value = value;
-		this.onClick = onClick;
-	}
-}
-
 const add = new Operator("+", (a, b) => a + b);
 const subtract = new Operator("-", (a, b) => a - b);
 const multiply = new Operator("*", (a, b) => a * b);
@@ -178,15 +170,9 @@ function createApp() {
 		{id: "minus", operator: subtract, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
 		{id: "times", operator: multiply, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
 		{id: "divide", operator: divide, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
-		new Button("equals", "=", (calculator) => {
-			calculator.calculate();
-		}),
-		new Button("allClear", "AC", (calculator) => {
-			calculator.clear();
-		}),
-		new Button("delete", "Del", (calculator) => {
-			calculator.delete();
-		}),
+		{id: "equals", value: "=", onClick: (calculator) => { calculator.calculate(); }},
+		{id: "allClear", value: "AC", onClick: (calculator) => { calculator.clear(); }},
+		{id: "delete", value: "Del", onClick: (calculator) => { calculator.delete(); }},
 	].forEach((btn) => {
 		ui.createButton(btn.id, btn.value, () => {
 			btn.onClick(calculator);
