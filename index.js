@@ -116,15 +116,6 @@ class Button {
 	}
 }
 
-class OperationButton extends Button {
-	constructor(id, operator) {
-		super(id, operator.value, function (calculator) {
-			calculator.selectOperator(this.operator);
-		});
-		this.operator = operator;
-	}
-}
-
 const add = new Operator("+", (a, b) => a + b);
 const subtract = new Operator("-", (a, b) => a - b);
 const multiply = new Operator("*", (a, b) => a * b);
@@ -183,10 +174,10 @@ function createApp() {
 		{id: "nine", value: 9, onClick: function (calculator) { calculator.input(this.value); }},
 		{id: "zero", value: 0, onClick: function (calculator) { calculator.input(this.value); }},
 		{id: "point", value: ".", onClick: function (calculator) { calculator.input(this.value); }},
-		new OperationButton("plus", add),
-		new OperationButton("minus", subtract),
-		new OperationButton("times", multiply),
-		new OperationButton("divide", divide),
+		{id: "plus", operator: add, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
+		{id: "minus", operator: subtract, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
+		{id: "times", operator: multiply, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
+		{id: "divide", operator: divide, onClick: function (calculator) { calculator.selectOperator(this.operator); }},
 		new Button("equals", "=", (calculator) => {
 			calculator.calculate();
 		}),
