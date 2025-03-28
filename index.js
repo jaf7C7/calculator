@@ -249,17 +249,32 @@ function createApp() {
 		}, btn.keybindings);
 	});
 
-	ui.createButton("equals", "=", () => {
-		calculator.calculate();
-	}, [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}]);
+	const functionButtons = [
+		{
+			id: "equals",
+			value: "=",
+			function: "calculate",
+			keybindings: [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}],
+		},
+		{
+			id: "allClear",
+			value: "AC",
+			function: "clear",
+			keybindings: [{value: "Delete", ctrlKey: true}, {value: "Backspace", ctrlKey: true}],
+		},
+		{
+			id: "delete",
+			value: "Del",
+			function: "delete",
+			keybindings: [{value: "Delete", ctrlKey: false}, {value: "Backspace", ctrlKey: false}],
+		},
+	];
 
-	ui.createButton("allClear", "AC", () => {
-		calculator.clear();
-	}, [{value: "Delete", ctrlKey: true}, {value: "Backspace", ctrlKey: true}]);
-
-	ui.createButton("delete", "Del", () => {
-		calculator.delete();
-	}, [{value: "Delete", ctrlKey: false}, {value: "Backspace", ctrlKey: false}]);
+	functionButtons.forEach((btn) => {
+		ui.createButton(btn.id, btn.value, () => {
+			calculator[btn.function]();
+		}, btn.keybindings);
+	});
 }
 
 export default createApp;
