@@ -155,13 +155,9 @@ function createApp() {
 		calculator.selectOperator((a, b) => a + b, "+");
 	});
 
-	function createMinusButton(id, value) {
+	function createMinusButton(id, value, function_) {
 		let btn;
-		let function_;
 		let keyAlias;
-		function_ = () => {
-			calculator.selectOperator((a, b) => a - b, "-");
-		};
 		keyAlias = null;
 		btn = ui.createElement("button", id, value);
 		btn.addEventListener("click", () => {
@@ -173,7 +169,9 @@ function createApp() {
 			}
 		});
 	}
-	createMinusButton("minus", "-");
+	createMinusButton("minus", "-", () => {
+		calculator.selectOperator((a, b) => a - b, "-");
+	});
 
 	function createTimesButton() {
 		let btn;
