@@ -109,6 +109,16 @@ function createButton(ui, calculation, id, value, function_, keybindings) {
 	});
 }
 
+function input(calculation, display, value) {
+	calculation.input(value);
+	display(calculation.toString());
+}
+
+function selectOperator(calculation, display, operator) {
+	calculation.selectOperator(operator);
+	display(calculation.toString());
+}
+
 function createApp() {
 	const ui = new UI();
 	const display = ui.createDisplay();
@@ -135,29 +145,24 @@ function createApp() {
 
 	inputButtons.forEach((btn) => {
 		createButton(ui, calculation, btn.id, btn.value, () => {
-			calculation.input(btn.value);
-			display(calculation.toString());
+			input(calculation, display, btn.value);
 		}, [{value: btn.value, ctrlKey: false}]);
 	});
 
 	createButton(ui, calculation, "plus", "+", () => {
-		calculation.selectOperator(add);
-		display(calculation.toString());
+		selectOperator(calculation, display, add);
 	}, [{value: "+", ctrlKey: false}]);
 
 	createButton(ui, calculation, "minus", "-", () => {
-		calculation.selectOperator(subtract);
-		display(calculation.toString());
+		selectOperator(calculation, display, subtract);
 	}, [{value: "-", ctrlKey: false}]);
 
 	createButton(ui, calculation, "times", "*", () => {
-		calculation.selectOperator(multiply);
-		display(calculation.toString());
+		selectOperator(calculation, display, multiply);
 	}, [{value: "*", ctrlKey: false}]);
 
 	createButton(ui, calculation, "divide", "/", () => {
-		calculation.selectOperator(divide);
-		display(calculation.toString());
+		selectOperator(calculation, display, divide);
 	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
 
 	createButton(ui, calculation, "equals", "=", () => {
