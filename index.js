@@ -137,10 +137,8 @@ function createApp() {
 		});
 	});
 
-	function createButton(id, value, function_) {
+	function createButton(id, value, function_, keyAlias = null) {
 		let btn;
-		let keyAlias;
-		keyAlias = null;
 		btn = ui.createElement("button", id, value);
 		btn.addEventListener("click", () => {
 			function_();
@@ -150,6 +148,14 @@ function createApp() {
 				function_();
 			}
 		});
+		console.log(keyAlias);
+		if (keyAlias !== null) {
+			document.body.addEventListener("keydown", (event) => {
+				if (event.key === "%") {
+					calculator.selectOperator((a, b) => a / b, "/");
+				}
+			});
+		}
 	}
 
 	createButton("plus", "+", () => {
@@ -163,13 +169,7 @@ function createApp() {
 	});
 	createButton("divide", "/", () => {
 		calculator.selectOperator((a, b) => a / b, "/");
-	});
-
-	document.body.addEventListener("keydown", (event) => {
-		if (event.key === "%") {
-			calculator.selectOperator((a, b) => a / b, "/");
-		}
-	});
+	}, "%");
 
 	let btn;
 
