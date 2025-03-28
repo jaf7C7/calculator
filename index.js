@@ -159,17 +159,6 @@ function createApp() {
 		});
 	});
 
-	[
-		{id: "equals", value: "=", onClick: (calculator) => { calculator.calculate(); }},
-		{id: "allClear", value: "AC", onClick: (calculator) => { calculator.clear(); }},
-		{id: "delete", value: "Del", onClick: (calculator) => { calculator.delete(); }},
-	].forEach((btn) => {
-		const b = ui.createElement("button", btn.id, btn.value);
-		b.addEventListener("click", () => {
-			btn.onClick(calculator);
-		});
-	});
-
 	document.body.addEventListener("keydown", (event) => {
 		if (event.key === "+") {
 			calculator.selectOperator(add);
@@ -180,6 +169,17 @@ function createApp() {
 		} else if (event.key.match(/[/%]/)) {
 			calculator.selectOperator(divide);
 		}
+	});
+
+	[
+		{id: "equals", value: "=", onClick: (calculator) => { calculator.calculate(); }},
+		{id: "allClear", value: "AC", onClick: (calculator) => { calculator.clear(); }},
+		{id: "delete", value: "Del", onClick: (calculator) => { calculator.delete(); }},
+	].forEach((btn) => {
+		const b = ui.createElement("button", btn.id, btn.value);
+		b.addEventListener("click", () => {
+			btn.onClick(calculator);
+		});
 	});
 
 	document.body.addEventListener("keydown", (event) => {
