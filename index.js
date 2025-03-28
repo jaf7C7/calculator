@@ -3,7 +3,7 @@ class UI {
 		this._element = document.getElementById("calculator");
 	}
 
-	_createElement(tagName, id, textContent = null, onClick = null) {
+	createElement(tagName, id, textContent = null, onClick = null) {
 		const element = document.createElement(tagName);
 		element.id = id;
 		if (textContent !== null) {
@@ -16,12 +16,8 @@ class UI {
 		return element;
 	}
 
-	createButton(id, value, onClick) {
-		this._createElement("button", id, value, onClick);
-	}
-
 	createDisplay() {
-		const element = this._createElement("div", "display");
+		const element = this.createElement("div", "display");
 		return (text) => {
 			element.textContent = text;
 		};
@@ -174,7 +170,10 @@ function createApp() {
 		{id: "allClear", value: "AC", onClick: (calculator) => { calculator.clear(); }},
 		{id: "delete", value: "Del", onClick: (calculator) => { calculator.delete(); }},
 	].forEach((btn) => {
-		ui.createButton(btn.id, btn.value, () => {
+		function createButton(ui, id, value, onClick) {
+			ui.createElement("button", id, value, onClick);
+		}
+		createButton(ui, btn.id, btn.value, () => {
 			btn.onClick(calculator);
 		});
 	});
