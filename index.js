@@ -3,9 +3,11 @@ class UI {
 		this._element = document.getElementById("calculator");
 	}
 
-	createElement(tagName, id, textContent = null) {
+	createElement(tagName, id = null, textContent = null) {
 		const element = document.createElement(tagName);
-		element.id = id;
+		if (id !== null) {
+			element.id = id;
+		}
 		if (textContent !== null) {
 			element.textContent = textContent;
 		}
