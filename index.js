@@ -131,7 +131,7 @@ function createApp() {
 	const display = ui.createDisplay();
 	let calculator = new Calculator(display);
 
-	[
+	const inputButtons = [
 		{id: "one", value: "1"},
 		{id: "two", value: "2"},
 		{id: "three", value: "3"},
@@ -143,7 +143,9 @@ function createApp() {
 		{id: "nine", value: "9"},
 		{id: "zero", value: "0"},
 		{id: "point", value: "."},
-	].forEach((btn) => {
+	]
+
+	inputButtons.forEach((btn) => {
 		createButton(ui, calculator, btn.id, btn.value, () => {
 			calculator.input(btn.value);
 		}, [{value: btn.value, ctrlKey: false}]);
