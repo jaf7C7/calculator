@@ -157,16 +157,22 @@ function createApp() {
 		calculator.selectOperator(add, "+");
 	}, [{value: "+", ctrlKey: false}]);
 
+	const subtract = (a, b) => a - b;
+
 	createButton(ui, calculator, "minus", "-", () => {
-		calculator.selectOperator((a, b) => a - b, "-");
+		calculator.selectOperator(subtract, "-");
 	}, [{value: "-", ctrlKey: false}]);
 
+	const multiply = (a, b) => a * b;
+
 	createButton(ui, calculator, "times", "*", () => {
-		calculator.selectOperator((a, b) => a * b, "*");
+		calculator.selectOperator(multiply, "*");
 	}, [{value: "*", ctrlKey: false}]);
 
+	const divide = (a, b) => a / b;
+
 	createButton(ui, calculator, "divide", "/", () => {
-		calculator.selectOperator((a, b) => a / b, "/");
+		calculator.selectOperator(divide, "/");
 	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
 
 	createButton(ui, calculator, "equals", "=", () => {
