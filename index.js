@@ -70,6 +70,11 @@ class Calculator {
 	constructor() {
 		this.calculation = new Calculation();
 	}
+
+	input(display, value) {
+		this.calculation.input(value);
+		display(this.calculation.toString());
+	}
 }
 
 class Operation {
@@ -115,11 +120,6 @@ function createButton(ui, calculator, id, value, function_, keybindings) {
 	});
 }
 
-function input(calculator, display, value) {
-	calculator.calculation.input(value);
-	display(calculator.calculation.toString());
-}
-
 function selectOperator(calculation, display, operator) {
 	calculation.selectOperator(operator);
 	display(calculation.toString());
@@ -151,7 +151,7 @@ function createApp() {
 
 	inputButtons.forEach((btn) => {
 		createButton(ui, calculator.calculation, btn.id, btn.value, () => {
-			input(calculator, display, btn.value);
+			calculator.input(display, btn.value);
 		}, [{value: btn.value, ctrlKey: false}]);
 	});
 
