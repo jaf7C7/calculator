@@ -171,22 +171,12 @@ function createApp() {
 		calculator.calculate();
 	});
 
-	[
-		{id: "allClear", value: "AC", onClick: (calculator) => { calculator.clear(); }},
-	].forEach((btn) => {
-		const b = ui.createElement("button", btn.id, btn.value);
-		b.addEventListener("click", () => {
-			btn.onClick(calculator);
-		});
+	ui.createElement("button", "allClear", "AC").addEventListener("click", () => {
+		calculator.clear();
 	});
 
-	[
-		{id: "delete", value: "Del", onClick: (calculator) => { calculator.delete(); }},
-	].forEach((btn) => {
-		const b = ui.createElement("button", btn.id, btn.value);
-		b.addEventListener("click", () => {
-			btn.onClick(calculator);
-		});
+	ui.createElement("button", "delete", "Del").addEventListener("click", () => {
+		calculator.delete();
 	});
 
 	document.body.addEventListener("keydown", (event) => {
