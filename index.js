@@ -21,6 +21,22 @@ class UI {
 			element.textContent = text;
 		};
 	}
+
+	createButton(calculator, id, value, function_, keybindings) {
+		let btn;
+		btn = this.createElement("button", id, value);
+		btn.addEventListener("click", () => {
+			function_();
+		});
+		document.body.addEventListener("keydown", (event) => {
+			const keybinding = keybindings.find((key) => {
+				return key.value === event.key && key.ctrlKey === event.ctrlKey;
+			});
+			if (keybinding !== undefined) {
+				function_();
+			}
+		});
+	}
 }
 
 class Calculation {
@@ -126,22 +142,6 @@ function format(str) {
 	return result;
 }
 
-function createButton(ui, calculator, id, value, function_, keybindings) {
-	let btn;
-	btn = ui.createElement("button", id, value);
-	btn.addEventListener("click", () => {
-		function_();
-	});
-	document.body.addEventListener("keydown", (event) => {
-		const keybinding = keybindings.find((key) => {
-			return key.value === event.key && key.ctrlKey === event.ctrlKey;
-		});
-		if (keybinding !== undefined) {
-			function_();
-		}
-	});
-}
-
 function createApp() {
 	const ui = new UI();
 	const display = ui.createDisplay();
@@ -167,36 +167,36 @@ function createApp() {
 	]
 
 	inputButtons.forEach((btn) => {
-		createButton(ui, calculator.calculation, btn.id, btn.value, () => {
+		ui.createButton(calculator.calculation, btn.id, btn.value, () => {
 			calculator.input(btn.value);
 		}, [{value: btn.value, ctrlKey: false}]);
 	});
 
-	createButton(ui, calculator, "plus", "+", () => {
+	ui.createButton(calculator, "plus", "+", () => {
 		calculator.selectOperator(add);
 	}, [{value: "+", ctrlKey: false}]);
 
-	createButton(ui, calculator, "minus", "-", () => {
+	ui.createButton(calculator, "minus", "-", () => {
 		calculator.selectOperator(subtract);
 	}, [{value: "-", ctrlKey: false}]);
 
-	createButton(ui, calculator, "times", "*", () => {
+	ui.createButton(calculator, "times", "*", () => {
 		calculator.selectOperator(multiply);
 	}, [{value: "*", ctrlKey: false}]);
 
-	createButton(ui, calculator, "divide", "/", () => {
+	ui.createButton(calculator, "divide", "/", () => {
 		calculator.selectOperator(divide);
 	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
 
-	createButton(ui, calculator, "equals", "=", () => {
+	ui.createButton(calculator, "equals", "=", () => {
 		calculator.calculate();
 	}, [{value: "=", ctrlKey: false}, {value: "Enter", ctrlKey: false}]);
 
-	createButton(ui, calculator, "allClear", "AC", () => {
+	ui.createButton(calculator, "allClear", "AC", () => {
 		calculator.clear();
 	}, [{value: "Delete", ctrlKey: true}, {value: "Backspace", ctrlKey: true}]);
 
-	createButton(ui, calculator, "delete", "Del", () => {
+	ui.createButton(calculator, "delete", "Del", () => {
 		calculator.delete();
 	}, [{value: "Delete", ctrlKey: false}, {value: "Backspace", ctrlKey: false}]);
 }
