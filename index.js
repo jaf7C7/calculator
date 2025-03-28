@@ -75,6 +75,11 @@ class Calculator {
 		this.calculation.input(value);
 		display(this.calculation.toString());
 	}
+
+	selectOperator(display, operator) {
+		this.calculation.selectOperator(operator);
+		display(this.calculation.toString());
+	}
 }
 
 class Operation {
@@ -120,11 +125,6 @@ function createButton(ui, calculator, id, value, function_, keybindings) {
 	});
 }
 
-function selectOperator(calculator, display, operator) {
-	calculator.calculation.selectOperator(operator);
-	display(calculator.calculation.toString());
-}
-
 function createApp() {
 	const ui = new UI();
 	const display = ui.createDisplay();
@@ -156,19 +156,19 @@ function createApp() {
 	});
 
 	createButton(ui, calculator, "plus", "+", () => {
-		selectOperator(calculator, display, add);
+		calculator.selectOperator(display, add);
 	}, [{value: "+", ctrlKey: false}]);
 
 	createButton(ui, calculator, "minus", "-", () => {
-		selectOperator(calculator, display, subtract);
+		calculator.selectOperator(display, subtract);
 	}, [{value: "-", ctrlKey: false}]);
 
 	createButton(ui, calculator, "times", "*", () => {
-		selectOperator(calculator, display, multiply);
+		calculator.selectOperator(display, multiply);
 	}, [{value: "*", ctrlKey: false}]);
 
 	createButton(ui, calculator, "divide", "/", () => {
-		selectOperator(calculator, display, divide);
+		calculator.selectOperator(display, divide);
 	}, [{value: "/", ctrlKey: false}, {value: "%", ctrlKey: false}]);
 
 	createButton(ui, calculator, "equals", "=", () => {
