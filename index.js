@@ -137,7 +137,7 @@ function createApp() {
 		});
 	});
 
-	(() => {
+	function createPlusButton() {
 		let btn;
 		let id;
 		let value;
@@ -158,9 +158,10 @@ function createApp() {
 				function_();
 			}
 		});
-	})();
+	}
+	createPlusButton();
 
-	(() => {
+	function createMinusButton() {
 		let btn;
 		let id;
 		let value;
@@ -181,9 +182,10 @@ function createApp() {
 				function_();
 			}
 		});
-	})();
+	}
+	createMinusButton();
 
-	(() => {
+	function createTimesButton() {
 		let btn;
 		let id;
 		let value;
@@ -204,9 +206,10 @@ function createApp() {
 				function_();
 			}
 		});
-	})();
+	}
+	createTimesButton();
 
-	(() => {
+	function createDivideButton() {
 		let btn;
 		let id;
 		let value;
@@ -227,7 +230,8 @@ function createApp() {
 				function_();
 			}
 		});
-	})();
+	}
+	createDivideButton();
 
 	document.body.addEventListener("keydown", (event) => {
 		if (event.key === "%") {
