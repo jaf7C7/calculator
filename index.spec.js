@@ -239,80 +239,82 @@ describe("User Interface", () => {
 		});
 	});
 
-	describe("AC button", () => {
-		it("Should be able to clear the current calculation", async () => {
-			const one = await driver.findElement(By.id("one"));
-			const plus = await driver.findElement(By.id("plus"));
-			const equals = await driver.findElement(By.id("equals"));
-			const allClear = await driver.findElement(By.id("allClear"));
+	describe("Function buttons", () => {
+		describe("AC button", () => {
+			it("Should be able to clear the current calculation", async () => {
+				const one = await driver.findElement(By.id("one"));
+				const plus = await driver.findElement(By.id("plus"));
+				const equals = await driver.findElement(By.id("equals"));
+				const allClear = await driver.findElement(By.id("allClear"));
 
-			await one.click();
-			await plus.click();
-			await one.click();
-			await equals.click();
-			await allClear.click();
+				await one.click();
+				await plus.click();
+				await one.click();
+				await equals.click();
+				await allClear.click();
 
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("", displayed);
-		});
+				const displayed = await display.getAttribute("textContent");
+				assert.equal("", displayed);
+			});
 
-		[
-			["Delete", Key.DELETE],
-			["Backspace", Key.BACK_SPACE],
-		].forEach(([name, key]) => {
-			it(`Should be bound to 'Ctrl+${name}'`, async () => {
-				await driver.actions()
-					.sendKeys("1")
-					.keyDown(Key.CONTROL)
-					.sendKeys(key)
-					.keyUp(Key.CONTROL)
-					.perform();
+			[
+				["Delete", Key.DELETE],
+				["Backspace", Key.BACK_SPACE],
+			].forEach(([name, key]) => {
+				it(`Should be bound to 'Ctrl+${name}'`, async () => {
+					await driver.actions()
+						.sendKeys("1")
+						.keyDown(Key.CONTROL)
+						.sendKeys(key)
+						.keyUp(Key.CONTROL)
+						.perform();
 
-				const result = await display.getAttribute("textContent");
-				assert.equal("", result);
+					const result = await display.getAttribute("textContent");
+					assert.equal("", result);
+				});
 			});
 		});
-	});
 
-	describe("Equals button", () => {
-		it("Should be bound to the '=' key", async () => {
-			await driver.actions().sendKeys("1+1=").perform();
-
-			const result = await display.getAttribute("textContent");
-			assert.equal("2", result);
-		});
-	});
-
-	describe("Del button", () => {
-		it("Should be able to delete a digit from the current operand", async () => {
-			const one = await driver.findElement(By.id("one"));
-			const two = await driver.findElement(By.id("two"));
-			const plus = await driver.findElement(By.id("plus"));
-			const del = await driver.findElement(By.id("delete"));
-
-			await one.click();
-			await one.click();
-			await del.click();
-
-			await plus.click();
-
-			await one.click();
-			await del.click();
-			await two.click();
-
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("1+2", displayed);
-		});
-
-		[
-			["Delete", Key.DELETE],
-			["Backspace", Key.BACK_SPACE],
-		].forEach(([name, key]) => {
-			it(`Should be bound to '${name}'`, async () => {
-				await driver.actions().sendKeys("1", key).perform();
+		describe("Equals button", () => {
+			it("Should be bound to the '=' key", async () => {
+				await driver.actions().sendKeys("1+1=").perform();
 
 				const result = await display.getAttribute("textContent");
-				assert.equal("", result);
+				assert.equal("2", result);
+			});
+		});
+
+		describe("Del button", () => {
+			it("Should be able to delete a digit from the current operand", async () => {
+				const one = await driver.findElement(By.id("one"));
+				const two = await driver.findElement(By.id("two"));
+				const plus = await driver.findElement(By.id("plus"));
+				const del = await driver.findElement(By.id("delete"));
+
+				await one.click();
+				await one.click();
+				await del.click();
+
+				await plus.click();
+
+				await one.click();
+				await del.click();
+				await two.click();
+
+				const displayed = await display.getAttribute("textContent");
+				assert.equal("1+2", displayed);
+			});
+
+			[
+				["Delete", Key.DELETE],
+				["Backspace", Key.BACK_SPACE],
+			].forEach(([name, key]) => {
+				it(`Should be bound to '${name}'`, async () => {
+					await driver.actions().sendKeys("1", key).perform();
+
+					const result = await display.getAttribute("textContent");
+					assert.equal("", result);
+				});
 			});
 		});
 	});
