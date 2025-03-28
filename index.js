@@ -174,7 +174,7 @@ function createApp() {
 		calculator.calculate();
 	});
 	document.body.addEventListener("keydown", (event) => {
-		if (event.key.match(/=|Enter/)) {
+		if (event.key === "=" || event.key === "Enter") {
 			calculator.calculate();
 		}
 	});
