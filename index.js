@@ -58,12 +58,10 @@ class Calculation {
 	}
 
 	_addOperand(operand) {
-		if (operand !== "") {
-			if (!this._firstOperand) {
-				this._firstOperand = operand;
-			} else {
-				this._secondOperand = operand;
-			}
+		if (!this._firstOperand) {
+			this._firstOperand = operand;
+		} else {
+			this._secondOperand = operand;
 		}
 		this._currentOperand = "";
 	}
