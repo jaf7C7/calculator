@@ -37,7 +37,7 @@ class Calculation {
 	calculate() {
 		this._addOperand(this._currentOperand);
 		return this._operands
-			.map((o) => Number(o))
+			.map((operand) => Number(operand))
 			.reduce((a, b) => this._operation.perform(a, b))
 	}
 
