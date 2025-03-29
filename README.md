@@ -25,3 +25,4 @@ dependencies have finished installing, Run `npm start` and visit
   `9,999,999,999,999,999` is rounded to `10,000,000,000,000,000`.
 * Numbers larger than `Number.MAX_VALUE`, or smaller than `Number.MIN_VALUE`
   are rounded to `infinity` and `0` respectively.
+* The app has only been testing in Chrome.
