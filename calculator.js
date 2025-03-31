@@ -21,13 +21,6 @@ class Calculation {
 		this._operation = operation;
 	}
 
-	_selectOperator(operation) {
-		if (this.currentOperand !== "") {
-			this.addOperand(this.currentOperand);
-			this.selectOperator(operation);
-		}
-	}
-
 	delete() {
 		this.currentOperand = this.currentOperand.slice(0, -1);
 	}
@@ -91,8 +84,15 @@ class Calculator {
 		this.updateDisplay();
 	}
 
+	_selectOperator(operation) {
+		if (this.calculation.currentOperand !== "") {
+			this.calculation.addOperand(this.calculation.currentOperand);
+			this.calculation.selectOperator(operation);
+		}
+	}
+
 	selectOperator(operator) {
-		this.calculation._selectOperator(operator);
+		this._selectOperator(operator);
 		this.updateDisplay();
 	}
 
