@@ -13,7 +13,6 @@ function format(str) {
 class Calculation {
 	constructor() {
 		this._operands = [];
-		this.currentOperand = "";
 		this._operation = "";
 	}
 
