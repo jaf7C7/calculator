@@ -21,10 +21,6 @@ class Calculation {
 		this._operation = operation;
 	}
 
-	delete() {
-		this.currentOperand = this.currentOperand.slice(0, -1);
-	}
-
 	_calculate() {
 		return this._operands
 			.map((operand) => Number(operand))
@@ -103,8 +99,13 @@ class Calculator {
 		this.updateDisplay();
 	}
 
+	_delete() {
+		this.calculation.currentOperand =
+			this.calculation.currentOperand.slice(0, -1);
+	}
+
 	delete() {
-		this.calculation.delete();
+		this._delete();
 		this.updateDisplay();
 	}
 
