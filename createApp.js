@@ -1,6 +1,4 @@
-import UI from "./ui.js";
 import Calculator from "./calculator.js";
-import {add, subtract, multiply, divide} from "./operations.js";
 import keypad from "./keypad.js";
 
 function createApp(ui) {
