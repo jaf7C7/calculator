@@ -17,16 +17,24 @@ class Calculation {
 		this._operation = "";
 	}
 
+	_input(value) {
+		this._currentOperand += value;
+	}
+
 	input(value) {
 		if (!this._currentOperand.includes(".") || value !== ".") {
-			this._currentOperand += value;
+			this._input(value);
 		}
+	}
+
+	_selectOperator(operation) {
+		this._operation = operation;
 	}
 
 	selectOperator(operation) {
 		if (this._currentOperand !== "") {
 			this._addOperand(this._currentOperand);
-			this._operation = operation;
+			this._selectOperator(operation);
 		}
 	}
 
@@ -34,11 +42,15 @@ class Calculation {
 		this._currentOperand = this._currentOperand.slice(0, -1);
 	}
 
-	calculate() {
-		this._addOperand(this._currentOperand);
+	_calculate() {
 		return this._operands
 			.map((operand) => Number(operand))
 			.reduce((a, b) => this._operation.perform(a, b))
+	}
+
+	calculate() {
+		this._addOperand(this._currentOperand);
+		return this._calculate();
 	}
 
 	_addOperand(operand) {
@@ -46,10 +58,29 @@ class Calculation {
 		this._currentOperand = "";
 	}
 
+	_toString() {
+		let result = "";
+		if (this._operands[0]) {
+			result += format(this._operands[0]);
+		}
+		if (this._operation) {
+			result += this._operation.toString();
+		}
+		if (this._operands[1]) {
+			result += format(this._operands[1]);
+		}
+		return result;
+	}
+
 	toString() {
-		return this._operands.concat(this._currentOperand)
-			.map((operand) => format(operand))
-			.join(this._operation.toString())
+		let result = "";
+		if (this._toString()) {
+			result += this._toString();
+		}
+		if (this._currentOperand) {
+			result += format(this._currentOperand);
+		}
+		return result;
 	}
 }
 
