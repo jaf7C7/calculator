@@ -17,12 +17,6 @@ class Calculation {
 		this._operation = "";
 	}
 
-	input(value) {
-		if (!this.currentOperand.includes(".") || value !== ".") {
-			this.currentOperand += value;
-		}
-	}
-
 	_selectOperator(operation) {
 		this._operation = operation;
 	}
@@ -91,7 +85,9 @@ class Calculator {
 	}
 
 	input(value) {
-		this.calculation.input(value);
+		if (!this.calculation.currentOperand.includes(".") || value !== ".") {
+			this.calculation.currentOperand += value;
+		}
 		this.updateDisplay();
 	}
 
