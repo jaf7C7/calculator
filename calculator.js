@@ -17,13 +17,9 @@ class Calculation {
 		this._operation = "";
 	}
 
-	_input(value) {
-		this._currentOperand += value;
-	}
-
 	input(value) {
 		if (!this._currentOperand.includes(".") || value !== ".") {
-			this._input(value);
+			this._currentOperand += value;
 		}
 	}
 
