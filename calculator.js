@@ -28,7 +28,7 @@ class Calculation {
 	}
 
 	addOperand(operand) {
-		this._operands.push(this.currentOperand);
+		this._operands.push(operand);
 	}
 
 	toString() {
