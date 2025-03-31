@@ -55,10 +55,6 @@ class Calculation {
 		}
 		return result;
 	}
-
-	toString() {
-		return this.temp();
-	}
 }
 
 class Calculator {
@@ -106,7 +102,11 @@ class Calculator {
 	}
 
 	updateDisplay() {
-		this.display(this.calculation.toString());
+		this.display(this.toString());
+	}
+
+	toString() {
+		return this.calculation.temp();
 	}
 }
 
