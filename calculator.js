@@ -45,7 +45,7 @@ class Calculation {
 		return result;
 	}
 
-	toString() {
+	temp() {
 		let result = "";
 		if (this._toString()) {
 			result += this._toString();
@@ -54,6 +54,10 @@ class Calculation {
 			result += format(this.currentOperand);
 		}
 		return result;
+	}
+
+	toString() {
+		return this.temp();
 	}
 }
 
