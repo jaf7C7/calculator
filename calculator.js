@@ -13,13 +13,13 @@ function format(str) {
 class Calculation {
 	constructor() {
 		this._operands = [];
-		this._currentOperand = "";
+		this.currentOperand = "";
 		this._operation = "";
 	}
 
 	input(value) {
-		if (!this._currentOperand.includes(".") || value !== ".") {
-			this._currentOperand += value;
+		if (!this.currentOperand.includes(".") || value !== ".") {
+			this.currentOperand += value;
 		}
 	}
 
@@ -28,14 +28,14 @@ class Calculation {
 	}
 
 	selectOperator(operation) {
-		if (this._currentOperand !== "") {
-			this.addOperand(this._currentOperand);
+		if (this.currentOperand !== "") {
+			this.addOperand(this.currentOperand);
 			this._selectOperator(operation);
 		}
 	}
 
 	delete() {
-		this._currentOperand = this._currentOperand.slice(0, -1);
+		this.currentOperand = this.currentOperand.slice(0, -1);
 	}
 
 	_calculate() {
@@ -45,17 +45,17 @@ class Calculation {
 	}
 
 	calculate() {
-		this.addOperand(this._currentOperand);
+		this.addOperand(this.currentOperand);
 		return this._calculate();
 	}
 
 	_addOperand(operand) {
-		this._operands.push(this._currentOperand);
+		this._operands.push(this.currentOperand);
 	}
 
 	addOperand(operand) {
 		this._addOperand(operand);
-		this._currentOperand = "";
+		this.currentOperand = "";
 	}
 
 	_toString() {
@@ -77,8 +77,8 @@ class Calculation {
 		if (this._toString()) {
 			result += this._toString();
 		}
-		if (this._currentOperand) {
-			result += format(this._currentOperand);
+		if (this.currentOperand) {
+			result += format(this.currentOperand);
 		}
 		return result;
 	}
