@@ -27,13 +27,8 @@ class Calculation {
 			.reduce((a, b) => this._operation.perform(a, b))
 	}
 
-	_addOperand(operand) {
-		this._operands.push(this.currentOperand);
-	}
-
 	addOperand(operand) {
-		this._addOperand(operand);
-		this.currentOperand = "";
+		this._operands.push(this.currentOperand);
 	}
 
 	_toString() {
@@ -75,16 +70,21 @@ class Calculator {
 		this.updateDisplay();
 	}
 
+	_addOperand(operand) {
+		this.calculation.addOperand(operand);
+		this.calculation.currentOperand = "";
+	}
+
 	selectOperator(operator) {
 		if (this.calculation.currentOperand !== "") {
-			this.calculation.addOperand(this.calculation.currentOperand);
+			this._addOperand(this.calculation.currentOperand);
 			this.calculation.selectOperator(operator);
 		}
 		this.updateDisplay();
 	}
 
 	calculate() {
-		this.calculation.addOperand(this.calculation.currentOperand);
+		this._addOperand(this.calculation.currentOperand);
 		const result = this.calculation.calculate();
 		this.display(format(result));
 		this.calculation = new Calculation();
