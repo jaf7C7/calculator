@@ -31,7 +31,7 @@ class Calculation {
 		this._operands.push(this.currentOperand);
 	}
 
-	_toString() {
+	toString() {
 		let result = "";
 		if (this._operands[0]) {
 			result += format(this._operands[0]);
@@ -47,8 +47,8 @@ class Calculation {
 
 	temp() {
 		let result = "";
-		if (this._toString()) {
-			result += this._toString();
+		if (this.toString()) {
+			result += this.toString();
 		}
 		if (this.currentOperand) {
 			result += format(this.currentOperand);
