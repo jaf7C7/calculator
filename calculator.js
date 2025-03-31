@@ -92,12 +92,12 @@ class Calculator {
 
 	input(value) {
 		this.calculation.input(value);
-		this.display(this.calculation.toString());
+		this.updateDisplay();
 	}
 
 	selectOperator(operator) {
 		this.calculation.selectOperator(operator);
-		this.display(this.calculation.toString());
+		this.updateDisplay();
 	}
 
 	calculate() {
@@ -108,11 +108,15 @@ class Calculator {
 
 	clear() {
 		this.calculation = new Calculation();
-		this.display(this.calculation.toString());
+		this.updateDisplay();
 	}
 
 	delete() {
 		this.calculation.delete();
+		this.updateDisplay();
+	}
+
+	updateDisplay() {
 		this.display(this.calculation.toString());
 	}
 }
