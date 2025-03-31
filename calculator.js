@@ -17,14 +17,14 @@ class Calculation {
 		this._operation = "";
 	}
 
-	_selectOperator(operation) {
+	selectOperator(operation) {
 		this._operation = operation;
 	}
 
-	selectOperator(operation) {
+	_selectOperator(operation) {
 		if (this.currentOperand !== "") {
 			this.addOperand(this.currentOperand);
-			this._selectOperator(operation);
+			this.selectOperator(operation);
 		}
 	}
 
@@ -92,7 +92,7 @@ class Calculator {
 	}
 
 	selectOperator(operator) {
-		this.calculation.selectOperator(operator);
+		this.calculation._selectOperator(operator);
 		this.updateDisplay();
 	}
 
