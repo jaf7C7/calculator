@@ -83,13 +83,9 @@ class Calculator {
 		this.updateDisplay();
 	}
 
-	_calculate() {
-		this.calculation.addOperand(this.calculation.currentOperand);
-		return this.calculation.calculate();
-	}
-
 	calculate() {
-		const result = this._calculate();
+		this.calculation.addOperand(this.calculation.currentOperand);
+		const result = this.calculation.calculate();
 		this.display(format(result));
 		this.calculation = new Calculation();
 	}
