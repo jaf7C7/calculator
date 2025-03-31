@@ -44,17 +44,6 @@ class Calculation {
 		}
 		return result;
 	}
-
-	temp() {
-		let result = "";
-		if (this.toString()) {
-			result += this.toString();
-		}
-		if (this.currentOperand) {
-			result += format(this.currentOperand);
-		}
-		return result;
-	}
 }
 
 class Calculator {
@@ -106,7 +95,14 @@ class Calculator {
 	}
 
 	toString() {
-		return this.calculation.temp();
+		let result = "";
+		if (this.calculation.toString()) {
+			result += this.calculation.toString();
+		}
+		if (this.calculation.currentOperand) {
+			result += format(this.calculation.currentOperand);
+		}
+		return result;
 	}
 }
 
