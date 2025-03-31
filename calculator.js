@@ -84,10 +84,10 @@ class Calculator {
 		this.updateDisplay();
 	}
 
-	_selectOperator(operation) {
+	_selectOperator(operator) {
 		if (this.calculation.currentOperand !== "") {
 			this.calculation.addOperand(this.calculation.currentOperand);
-			this.calculation.selectOperator(operation);
+			this.calculation.selectOperator(operator);
 		}
 	}
 
