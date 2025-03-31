@@ -21,15 +21,10 @@ class Calculation {
 		this._operation = operation;
 	}
 
-	_calculate() {
+	calculate() {
 		return this._operands
 			.map((operand) => Number(operand))
 			.reduce((a, b) => this._operation.perform(a, b))
-	}
-
-	calculate() {
-		this.addOperand(this.currentOperand);
-		return this._calculate();
 	}
 
 	_addOperand(operand) {
@@ -88,8 +83,13 @@ class Calculator {
 		this.updateDisplay();
 	}
 
+	_calculate() {
+		this.calculation.addOperand(this.calculation.currentOperand);
+		return this.calculation.calculate();
+	}
+
 	calculate() {
-		const result = this.calculation.calculate();
+		const result = this._calculate();
 		this.display(format(result));
 		this.calculation = new Calculation();
 	}
