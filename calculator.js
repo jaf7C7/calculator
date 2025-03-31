@@ -99,13 +99,9 @@ class Calculator {
 		this.updateDisplay();
 	}
 
-	_delete() {
+	delete() {
 		this.calculation.currentOperand =
 			this.calculation.currentOperand.slice(0, -1);
-	}
-
-	delete() {
-		this._delete();
 		this.updateDisplay();
 	}
 
