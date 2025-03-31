@@ -50,30 +50,31 @@ class Calculator {
 	constructor(display) {
 		this.display = display;
 		this.calculation = new Calculation();
+		this.currentOperand = "";
 	}
 
 	input(value) {
-		if (!this.calculation.currentOperand.includes(".") || value !== ".") {
-			this.calculation.currentOperand += value;
+		if (!this.currentOperand.includes(".") || value !== ".") {
+			this.currentOperand += value;
 		}
 		this.updateDisplay();
 	}
 
 	_addOperand(operand) {
 		this.calculation.addOperand(operand);
-		this.calculation.currentOperand = "";
+		this.currentOperand = "";
 	}
 
 	selectOperator(operator) {
-		if (this.calculation.currentOperand !== "") {
-			this._addOperand(this.calculation.currentOperand);
+		if (this.currentOperand !== "") {
+			this._addOperand(this.currentOperand);
 			this.calculation.selectOperator(operator);
 		}
 		this.updateDisplay();
 	}
 
 	calculate() {
-		this._addOperand(this.calculation.currentOperand);
+		this._addOperand(this.currentOperand);
 		const result = this.calculation.calculate();
 		this.display(format(result));
 		this.calculation = new Calculation();
@@ -81,12 +82,13 @@ class Calculator {
 
 	clear() {
 		this.calculation = new Calculation();
+		this.currentOperand = "";
 		this.updateDisplay();
 	}
 
 	delete() {
-		this.calculation.currentOperand =
-			this.calculation.currentOperand.slice(0, -1);
+		this.currentOperand =
+			this.currentOperand.slice(0, -1);
 		this.updateDisplay();
 	}
 
@@ -99,8 +101,8 @@ class Calculator {
 		if (this.calculation.toString()) {
 			result += this.calculation.toString();
 		}
-		if (this.calculation.currentOperand) {
-			result += format(this.calculation.currentOperand);
+		if (this.currentOperand) {
+			result += format(this.currentOperand);
 		}
 		return result;
 	}
