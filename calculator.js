@@ -33,7 +33,7 @@ class Calculation {
 
 	selectOperator(operation) {
 		if (this._currentOperand !== "") {
-			this._addOperand(this._currentOperand);
+			this.addOperand(this._currentOperand);
 			this._selectOperator(operation);
 		}
 	}
@@ -49,12 +49,16 @@ class Calculation {
 	}
 
 	calculate() {
-		this._addOperand(this._currentOperand);
+		this.addOperand(this._currentOperand);
 		return this._calculate();
 	}
 
 	_addOperand(operand) {
 		this._operands.push(this._currentOperand);
+	}
+
+	addOperand(operand) {
+		this._addOperand(operand);
 		this._currentOperand = "";
 	}
 
