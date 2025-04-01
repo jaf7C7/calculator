@@ -71,5 +71,14 @@ describe("UI", () => {
 
 			assert.equal("😀", textContent);
 		});
+
+		it("Should create a button with the correct onClick callback", async () => {
+			const btn = await driver.findElement(By.id("button"));
+
+			await btn.click();
+
+			const title = await driver.getTitle();
+			assert.equal(title, "Hello.");
+		});
 	});
 });
