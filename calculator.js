@@ -60,7 +60,7 @@ class Calculator {
 	}
 
 	selectOperator(operator) {
-		if (this.currentOperand !== "") {
+		if (this.currentOperand !== "" && this.currentOperand !== "-") {
 			this._addOperand(this.currentOperand);
 			this.calculation.selectOperator(operator);
 		} else if (operator.toString() === "-") {

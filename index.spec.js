@@ -170,6 +170,19 @@ describe("User Interface", () => {
 				displayed = await display.getAttribute("textContent");
 				assert.equal("-1", displayed);
 			});
+
+			it("Should be idempotent when used to make an operand negative", async () => {
+				const minus = await driver.findElement(By.id("minus"));
+				const one = await driver.findElement(By.id("one"));
+				const plus = await driver.findElement(By.id("plus"));
+
+				await minus.click();
+				await minus.click();
+				await one.click();
+
+				const displayed = await display.getAttribute("textContent");
+				assert.equal("-1", displayed);
+			});
 		});
 
 		describe("Multiplication", () => {
