@@ -83,11 +83,7 @@ class Calculator {
 	}
 
 	updateDisplay() {
-		this.display(this.toString());
-	}
-
-	toString() {
-		return this.calculation.toString() + format(this.currentOperand);
+		this.display(this.calculation.toString() + format(this.currentOperand));
 	}
 }
 
