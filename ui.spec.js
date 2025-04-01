@@ -80,5 +80,14 @@ describe("UI", () => {
 			const title = await driver.getTitle();
 			assert.equal(title, "Hello.");
 		});
+
+		it("Should create a button with the correct keybinding", async () => {
+			const btn = await driver.findElement(By.id("button"));
+
+			await driver.actions().sendKeys("x").perform();
+
+			const title = await driver.getTitle();
+			assert.equal(title, "Hello.");
+		});
 	});
 });
