@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha *.spec.js",
-	"watch": "nodemon --ignore '*.{md,json,css}' --exec mocha *.spec.js",
+    "watch": "nodemon --ignore '*.{md,json,css}' --exec mocha *.spec.js",
     "start": "http-server ."
   },
   "repository": {
@@ -25,5 +25,8 @@
     "mocha": "^11.1.0",
     "nodemon": "^3.1.9",
     "selenium-webdriver": "^4.29.0"
+  },
+  "dependencies": {
+    "chromedriver": "^134.0.5"
   }
 }
