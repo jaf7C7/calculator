@@ -19,8 +19,8 @@
 - [x] ~~Keyboard input~~
 - [x] ~~`1.01` does not display properly~~
 - [x] ~~Negative numbers~~
-- [ ] **`Del` can delete an operator**
-- [ ] Calculation chaining
+- [x] ~~`Del` can delete an operator~~
+- [ ] **Calculation chaining**
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
 - [ ] Make tests faster?
