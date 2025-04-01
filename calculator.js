@@ -87,14 +87,7 @@ class Calculator {
 	}
 
 	toString() {
-		let result = "";
-		if (this.calculation.toString()) {
-			result += this.calculation.toString();
-		}
-		if (this.currentOperand) {
-			result += format(this.currentOperand);
-		}
-		return result;
+		return this.calculation.toString() + format(this.currentOperand);
 	}
 }
 
