@@ -2,7 +2,7 @@ function format(str) {
 	let result = "";
 	if (str === ".") {
 		result = "0.";
-	} else if (String(str).match(/\d+\.0*$/)) {
+	} else if (String(str).match(/\d+\.0*$/) || str === "-") {
 		result = str;
 	} else if (str !== "") {
 		result = Number(str).toLocaleString();

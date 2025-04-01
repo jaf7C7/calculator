@@ -346,9 +346,13 @@ describe("User Interface", () => {
 		const one = await driver.findElement(By.id("one"));
 
 		await minus.click();
+
+		let displayed = await display.getAttribute("textContent");
+		assert.equal("-", displayed);
+
 		await one.click();
 
-		const displayed = await display.getAttribute("textContent");
+		displayed = await display.getAttribute("textContent");
 		assert.equal("-1", displayed);
 	});
 
