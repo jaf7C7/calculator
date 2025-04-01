@@ -155,8 +155,22 @@ describe("User Interface", () => {
 				const result = await display.getAttribute("textContent");
 				assert.equal("0", result);
 			});
-		});
 
+			it("Should be able to make an operand negative", async () => {
+				const minus = await driver.findElement(By.id("minus"));
+				const one = await driver.findElement(By.id("one"));
+
+				await minus.click();
+
+				let displayed = await display.getAttribute("textContent");
+				assert.equal("-", displayed);
+
+				await one.click();
+
+				displayed = await display.getAttribute("textContent");
+				assert.equal("-1", displayed);
+			});
+		});
 
 		describe("Multiplication", () => {
 			it("Should give the correct result", async () => {
@@ -339,21 +353,6 @@ describe("User Interface", () => {
 			const result = await display.getAttribute("textContent");
 			assert.equal("4", result);
 		});
-	});
-
-	it("Should be able to make an operand negative", async () => {
-		const minus = await driver.findElement(By.id("minus"));
-		const one = await driver.findElement(By.id("one"));
-
-		await minus.click();
-
-		let displayed = await display.getAttribute("textContent");
-		assert.equal("-", displayed);
-
-		await one.click();
-
-		displayed = await display.getAttribute("textContent");
-		assert.equal("-1", displayed);
 	});
 
 	it("Should be able to handle negative numbers", async () => {

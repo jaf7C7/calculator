@@ -18,8 +18,8 @@
 - [x] ~~Floating point numbers~~
 - [x] ~~Keyboard input~~
 - [x] ~~`1.01` does not display properly~~
-- [ ] **Negative numbers**
-- [ ] `Del` can delete an operator
+- [x] ~~Negative numbers~~
+- [ ] **`Del` can delete an operator**
 - [ ] Calculation chaining
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
