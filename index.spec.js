@@ -266,6 +266,19 @@ describe("User Interface", () => {
 			const result = await display.getAttribute("textContent");
 			assert.equal("-2", result);
 		});
+
+		it("Should only allow one operator at a time", async () => {
+			const one = await driver.findElement(By.id("one"));
+			const times = await driver.findElement(By.id("times"));
+			const plus = await driver.findElement(By.id("plus"));
+
+			await one.click();
+			await plus.click();
+			await times.click();
+
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("1+", displayed);
+		});
 	});
 
 	describe("Function buttons", () => {
