@@ -35,9 +35,7 @@ class Calculation {
 		if (this._operands[0]) {
 			result += format(this._operands[0]);
 		}
-		if (this._operation) {
-			result += this._operation.toString();
-		}
+		result += this._operation.toString();
 		if (this._operands[1]) {
 			result += format(this._operands[1]);
 		}
