@@ -351,4 +351,19 @@ describe("User Interface", () => {
 		const displayed = await display.getAttribute("textContent");
 		assert.equal("-1", displayed);
 	});
+
+	it("Should be able to handle negative numbers", async () => {
+		const minus = await driver.findElement(By.id("minus"));
+		const one = await driver.findElement(By.id("one"));
+		const equals = await driver.findElement(By.id("equals"));
+
+		await minus.click();
+		await one.click();
+		await minus.click();
+		await one.click();
+		await equals.click();
+
+		const result = await display.getAttribute("textContent");
+		assert.equal("-2", result);
+	});
 });
