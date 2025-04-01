@@ -340,4 +340,15 @@ describe("User Interface", () => {
 			assert.equal("4", result);
 		});
 	});
+
+	it("Should be able to make an operand negative", async () => {
+		const minus = await driver.findElement(By.id("minus"));
+		const one = await driver.findElement(By.id("one"));
+
+		await minus.click();
+		await one.click();
+
+		const displayed = await display.getAttribute("textContent");
+		assert.equal("-1", displayed);
+	});
 });

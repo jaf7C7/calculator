@@ -60,6 +60,8 @@ class Calculator {
 		if (this.currentOperand !== "") {
 			this._addOperand(this.currentOperand);
 			this.calculation.selectOperator(operator);
+		} else if (operator.toString() === "-") {
+			this.currentOperand = "-";
 		}
 		this.updateDisplay();
 	}
