@@ -31,15 +31,9 @@ class Calculation {
 	}
 
 	toString() {
-		let result = "";
-		if (this._operands[0]) {
-			result += format(this._operands[0]);
-		}
-		result += this._operation.toString();
-		if (this._operands[1]) {
-			result += format(this._operands[1]);
-		}
-		return result;
+		const result = this._operands.map((o) => format(o));
+		result.splice(1, 0, this._operation.toString());
+		return result.join('');
 	}
 }
 
