@@ -20,8 +20,8 @@
 - [x] ~~`1.01` does not display properly~~
 - [x] ~~Negative numbers~~
 - [x] ~~`Del` can delete an operator~~
-- [ ] **Calculation chaining**
+- [x] ~~Calculation chaining~~
+- [ ] **Make tests faster?**
+- [ ] Add `chromedriver` as an `npm` dependency (run `npm info chromedriver`)
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
-- [ ] Make tests faster?
-- [ ] Add `chromedriver` as an `npm` dependency (run `npm info chromedriver`)
