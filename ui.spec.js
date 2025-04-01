@@ -55,4 +55,21 @@ describe("UI", () => {
 			assert.equal("Hello.", displayed)
 		});
 	});
+
+	describe("createButton()", () => {
+		beforeEach(async () => {
+			await executeScript(`
+				ui.createButton("button", "😀", () => {
+					document.title = "Hello.";
+				}, [{value: "x", ctrlKey: false}]);
+			`);
+		});
+
+		it("Should create a button with the correct attributes", async () => {
+			const btn = await driver.findElement(By.id("button"));
+			const textContent = await btn.getAttribute("textContent");
+
+			assert.equal("😀", textContent);
+		});
+	});
 });
