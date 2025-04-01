@@ -41,4 +41,18 @@ describe("UI", () => {
 			assert.equal("hi", textContent);
 		});
 	});
+
+	describe("createDisplay()", () => {
+		it("Should return a function to update a display element", async () => {
+			await executeScript(`
+				const display = ui.createDisplay();
+				display("Hello.");
+			`);
+
+			const display = await driver.findElement(By.id("display"));
+			const displayed = await display.getAttribute("textContent");
+
+			assert.equal("Hello.", displayed)
+		});
+	});
 });
