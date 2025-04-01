@@ -384,5 +384,20 @@ describe("User Interface", () => {
 			const result = await display.getAttribute("textContent");
 			assert.equal("4", result);
 		});
+
+		it("Should be able to chain operations together", async () => {
+			const one = await driver.findElement(By.id("one"));
+			const two = await driver.findElement(By.id("two"));
+			const plus = await driver.findElement(By.id("plus"));
+			const minus = await driver.findElement(By.id("minus"));
+
+			await one.click();
+			await plus.click();
+			await one.click();
+			await minus.click();
+
+			const displayed = await display.getAttribute("textContent");
+			assert.equal("2-", displayed);
+		});
 	});
 });
