@@ -17,10 +17,8 @@ class Calculation {
 	}
 
 	selectOperator(operation) {
-		if (this._operation !== "") {
-			if (this._operands.length > 1) {
-				this._operands = [String(this.calculate())];
-			}
+		if (this._operation !== "" && this._operands.length > 1) {
+			this._operands = [String(this.calculate())];
 		}
 		this._operation = operation;
 	}
