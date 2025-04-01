@@ -17,10 +17,10 @@
 - [x] ~~Remove duplication between `Calculator` and `Calculation`~~
 - [x] ~~Floating point numbers~~
 - [x] ~~Keyboard input~~
-- [x] `1.01` does not display properly
-- [ ] **`Del` can delete an operator**
+- [x] ~~`1.01` does not display properly~~
+- [ ] **Negative numbers**
+- [ ] `Del` can delete an operator
 - [ ] Calculation chaining
-- [ ] Negative numbers
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
 - [ ] Make tests faster?
