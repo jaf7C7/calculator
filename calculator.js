@@ -80,6 +80,9 @@ class Calculator {
 	}
 
 	delete() {
+		if (this.currentOperand === "") {
+			this.calculation.selectOperator("");
+		}
 		this.currentOperand = this.currentOperand.slice(0, -1);
 		this.updateDisplay();
 	}

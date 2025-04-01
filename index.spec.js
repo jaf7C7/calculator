@@ -330,6 +330,22 @@ describe("User Interface", () => {
 					assert.equal("", result);
 				});
 			});
+
+			it("Should be able to delete an operator", async () => {
+				const one = await driver.findElement(By.id("one"));
+				const del = await driver.findElement(By.id("delete"));
+				const plus = await driver.findElement(By.id("plus"));
+				const minus = await driver.findElement(By.id("minus"));
+
+				await one.click();
+				await plus.click();
+				await del.click();
+				await minus.click();
+				await one.click();
+
+				const displayed = await display.getAttribute("textContent");
+				assert.equal("1-1", displayed);
+			});
 		});
 	});
 
