@@ -22,6 +22,12 @@
 - [x] ~~`Del` can delete an operator~~
 - [x] ~~Calculation chaining~~
 - [x] ~~Add `chromedriver` as an `npm` dependency (run `npm info chromedriver`)~~
-- [ ] **Make tests faster?**
+- [x] ~~Make tests faster?~~
+- [ ] **Repeated `=` presses should not change result of calculation.**
+- [ ] Add tests for stated limitations:
+  - [ ] `0.9999999999999999` -> `1`
+  - [ ] `9,999,999,999,999,999` -> `10,000,000,000,000,000`
+  - [ ] Numbers larger than `Number.MAX_VALUE` -> `infinity`
+  - [ ] Numbers smaller than `Number.MIN_VALUE` -> `0`
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
