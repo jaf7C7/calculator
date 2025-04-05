@@ -2,428 +2,400 @@ import { assert } from "chai";
 import { Builder, Browser, By, Key } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome.js"; // XXX: Breaks without '.js' extension
 
+import MockUI from "./mockUI.js";
+import createApp from "./createApp.js";
+
 const url = "http://localhost:8080";
 const options = new chrome.Options().addArguments("--headless=new");
 
-describe("User Interface", () => {
-	let driver;
+describe("Calculator (Mocked UI)", () => {
+	let ui;
 	let display;
 
-	beforeEach(async () => {
-		driver = await new Builder()
-			.forBrowser(Browser.CHROME)
-			.setChromeOptions(options)
-			.build();
-
-		await driver.get(url);
-
-		display = await driver.findElement(By.id("display"));
-	});
-
-	afterEach(async () => {
-		await driver.quit();
+	beforeEach(() => {
+		ui = new MockUI();
+		createApp(ui);
+		display = ui.findElement("display");
 	});
 
 	describe("Input buttons", () => {
-		it("Should echo input values on the display", async () => {
-			const one = await driver.findElement(By.id("one"));
+		it("Should echo input values on the display", () => {
+			const one = ui.findElement("one");
 
-			await one.click();
+			one.click();
 
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("1", displayed);
+			assert.equal("1", display.textContent);
 		});
 
-		it("Should echo a decimal point immediately as it is input", async () => {
-			const one = await driver.findElement(By.id("one"));
-			const point = await driver.findElement(By.id("point"));
+		it("Should echo a decimal point immediately as it is input", () => {
+			const one = ui.findElement("one");
+			const point = ui.findElement("point");
 
-			await one.click();
-			await point.click();
+			one.click();
+			point.click();
 
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("1.", displayed);
+			assert.equal("1.", display.textContent);
 		});
 
-		it("Should echo a leading decimal zero immediately as it is input", async () => {
-			const one = await driver.findElement(By.id("one"));
-			const point = await driver.findElement(By.id("point"));
-			const zero = await driver.findElement(By.id("zero"));
+		it("Should echo a leading decimal zero immediately as it is input", () => {
+			const one = ui.findElement("one");
+			const point = ui.findElement("point");
+			const zero = ui.findElement("zero");
 
-			await one.click();
-			await point.click();
-			await zero.click();
+			one.click();
+			point.click();
+			zero.click();
 
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("1.0", displayed);
+			assert.equal("1.0", display.textContent);
 		});
 
-		it("Should echo an initial digit '0' if '.' is the first input", async () => {
-			const point = await driver.findElement(By.id("point"));
+		it("Should echo an initial digit '0' if '.' is the first input", () => {
+			const point = ui.findElement("point");
 
-			await point.click();
+			point.click();
 
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("0.", displayed);
+			assert.equal("0.", display.textContent);
 		});
 
-		it("Should only allow a single point per operand", async () => {
-			const point = await driver.findElement(By.id("point"));
+		it("Should only allow a single point per operand", () => {
+			const point = ui.findElement("point");
 
-			await point.click();
-			await point.click();
+			point.click();
+			point.click();
 
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("0.", displayed);
+			assert.equal("0.", display.textContent);
 		});
 
-		it("Should not echo operators if there are no operands", async () => {
-			const plus = await driver.findElement(By.id("plus"));
+		it("Should not echo operators if there are no operands", () => {
+			const plus = ui.findElement("plus");
 
-			await plus.click();
+			plus.click();
 
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("", displayed);
+			assert.equal("", display.textContent);
 		});
 
-		it("Should display large numbers with commas for readability", async () => {
-			const one = await driver.findElement(By.id("one"));
-			const plus = await driver.findElement(By.id("plus"));
+		it("Should display large numbers with commas for readability", () => {
+			const one = ui.findElement("one");
+			const plus = ui.findElement("plus");
 
 			for (let i = 0; i < 7; i++) {
-				await one.click();
+				one.click();
 			}
 
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("1,111,111", displayed);
+			assert.equal("1,111,111", display.textContent);
 		});
 
-		it("Should work via the keyboard", async () => {
-			await driver.actions().sendKeys("1").perform();
+		it("Should work via the keyboard", () => {
+			ui.pressKey({value: "1", ctrlKey: false});
 
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("1", displayed);
+			assert.equal("1", display.textContent);
 		});
 	});
 
 	describe("Operation buttons", () => {
-		let one;
-		let equals;
-
-		beforeEach(async () => {
-			one = await driver.findElement(By.id("one"));
-			equals = await driver.findElement(By.id("equals"));
-		});
-
 		describe("Addition", () => {
-			it("Should give the correct result", async () => {
-				const plus = await driver.findElement(By.id("plus"));
+			it("Should give the correct result", () => {
+				const plus = ui.findElement("plus");
+				const one = ui.findElement("one");
+				const equals = ui.findElement("equals");
 
-				await one.click();
-				await plus.click();
-				await one.click();
-				await equals.click();
+				one.click();
+				plus.click();
+				one.click();
+				equals.click();
 
-				const result = await display.getAttribute("textContent");
-				assert.equal("2", result);
+				assert.equal("2", display.textContent);
 			});
 
-			it("Should be bound to the '+' key", async () => {
-				await driver.actions().sendKeys("1+1", Key.ENTER).perform();
+			it("Should be bound to the '+' key", () => {
+				ui.pressKey({value: "1", ctrlKey: false});
+				ui.pressKey({value: "+", ctrlKey: false});
+				ui.pressKey({value: "1", ctrlKey: false});
+				ui.pressKey({value: "Enter", ctrlKey: false});
 
-				const result = await display.getAttribute("textContent");
-				assert.equal("2", result);
+				assert.equal("2", display.textContent);
 			});
 		});
 
 		describe("Subtraction", () => {
-			it("Should give the correct result", async () => {
-				const minus = await driver.findElement(By.id("minus"));
+			it("Should give the correct result", () => {
+				const minus = ui.findElement("minus");
+				const one = ui.findElement("one");
+				const equals = ui.findElement("equals");
 
-				await one.click();
-				await minus.click();
-				await one.click();
-				await equals.click();
+				one.click();
+				minus.click();
+				one.click();
+				equals.click();
 
-				const result = await display.getAttribute("textContent");
-				assert.equal("0", result);
+				assert.equal("0", display.textContent);
 			});
 
-			it("Should be bound to the '-' key", async () => {
-				await driver.actions().sendKeys("1-1", Key.ENTER).perform();
+			it("Should be bound to the '-' key", () => {
+				ui.pressKey({value: "1", ctrlKey: false});
+				ui.pressKey({value: "-", ctrlKey: false});
+				ui.pressKey({value: "1", ctrlKey: false});
+				ui.pressKey({value: "Enter", ctrlKey: false});
 
-				const result = await display.getAttribute("textContent");
-				assert.equal("0", result);
+				assert.equal("0", display.textContent);
 			});
 
-			it("Should be able to make an operand negative", async () => {
-				const minus = await driver.findElement(By.id("minus"));
-				const one = await driver.findElement(By.id("one"));
+			it("Should be able to make an operand negative", () => {
+				const minus = ui.findElement("minus");
+				const one = ui.findElement("one");
 
-				await minus.click();
+				minus.click();
 
-				let displayed = await display.getAttribute("textContent");
-				assert.equal("-", displayed);
+				assert.equal("-", display.textContent);
 
-				await one.click();
+				one.click();
 
-				displayed = await display.getAttribute("textContent");
-				assert.equal("-1", displayed);
+				assert.equal("-1", display.textContent);
 			});
 
-			it("Should be idempotent when used to make an operand negative", async () => {
-				const minus = await driver.findElement(By.id("minus"));
-				const one = await driver.findElement(By.id("one"));
-				const plus = await driver.findElement(By.id("plus"));
+			it("Should be idempotent when used to make an operand negative", () => {
+				const minus = ui.findElement("minus");
+				const one = ui.findElement("one");
+				const plus = ui.findElement("plus");
 
-				await minus.click();
-				await minus.click();
-				await one.click();
+				minus.click();
+				minus.click();
+				one.click();
 
-				const displayed = await display.getAttribute("textContent");
-				assert.equal("-1", displayed);
+				assert.equal("-1", display.textContent);
 			});
 		});
 
 		describe("Multiplication", () => {
-			it("Should give the correct result", async () => {
-				const times = await driver.findElement(By.id("times"));
+			it("Should give the correct result", () => {
+				const times = ui.findElement("times");
+				const one = ui.findElement("one");
+				const equals = ui.findElement("equals");
 
-				await one.click();
-				await times.click();
-				await one.click();
-				await equals.click();
+				one.click();
+				times.click();
+				one.click();
+				equals.click();
 
-				const result = await display.getAttribute("textContent");
-				assert.equal("1", result);
+				assert.equal("1", display.textContent);
 			});
 
-			it("Should be bound to the '*' key", async () => {
-				await driver.actions().sendKeys("1*1", Key.ENTER).perform();
+			it("Should be bound to the '*' key", () => {
+				ui.pressKey({value: "1", ctrlKey: false});
+				ui.pressKey({value: "*", ctrlKey: false});
+				ui.pressKey({value: "1", ctrlKey: false});
+				ui.pressKey({value: "Enter", ctrlKey: false});
 
-				const result = await display.getAttribute("textContent");
-				assert.equal("1", result);
+				assert.equal("1", display.textContent);
 			});
 		});
 
 		describe("Division", () => {
-			it("Should give the correct result", async () => {
-				const divide = await driver.findElement(By.id("divide"));
+			it("Should give the correct result", () => {
+				const divide = ui.findElement("divide");
+				const one = ui.findElement("one");
+				const equals = ui.findElement("equals");
 
-				await one.click();
-				await divide.click();
-				await one.click();
-				await equals.click();
+				one.click();
+				divide.click();
+				one.click();
+				equals.click();
 
-				const result = await display.getAttribute("textContent");
-				assert.equal("1", result);
+				assert.equal("1", display.textContent);
 			});
 
 			["/", "%"].forEach((key) => {
-				it(`Should be bound to the '${key}' key`, async () => {
-					await driver
-						.actions()
-						.sendKeys(`1${key}1`, Key.ENTER)
-						.perform();
+				it(`Should be bound to the '${key}' key`, () => {
+					ui.pressKey({value: "1", ctrlKey: false});
+					ui.pressKey({value: key, ctrlKey: false});
+					ui.pressKey({value: "1", ctrlKey: false});
+					ui.pressKey({value: "Enter", ctrlKey: false});
 
-					const result = await display.getAttribute("textContent");
-					assert.equal("1", result);
+					assert.equal("1", display.textContent);
 				});
 			});
 		});
 
-		it("Should handle floating point numbers", async () => {
-			const point = await driver.findElement(By.id("point"));
-			const plus = await driver.findElement(By.id("plus"));
+		it("Should handle floating point numbers", () => {
+			const one = ui.findElement("one");
+			const point = ui.findElement("point");
+			const plus = ui.findElement("plus");
+			const equals = ui.findElement("equals");
 
-			await one.click();
-			await point.click();
-			await one.click();
+			one.click();
+			point.click();
+			one.click();
 
-			await plus.click();
+			plus.click();
 
-			await one.click();
-			await point.click();
-			await one.click();
+			one.click();
+			point.click();
+			one.click();
 
-			await equals.click();
+			equals.click();
 
-			const result = await display.getAttribute("textContent");
-			assert.equal("2.2", result);
+			assert.equal("2.2", display.textContent);
 		});
 
-		it("Should handle multi-digit operands", async () => {
-			const plus = await driver.findElement(By.id("plus"));
+		it("Should handle multi-digit operands", () => {
+			const one = ui.findElement("one");
+			const point = ui.findElement("point");
+			const plus = ui.findElement("plus");
+			const equals = ui.findElement("equals");
 
-			await one.click();
-			await one.click();
-			await plus.click();
-			await one.click();
-			await equals.click();
+			one.click();
+			one.click();
+			plus.click();
+			one.click();
+			equals.click();
 
-			const result = await display.getAttribute("textContent");
-			assert.equal("12", result);
+			assert.equal("12", display.textContent);
 		});
 
-		it("Should be able to handle negative numbers", async () => {
-			const minus = await driver.findElement(By.id("minus"));
-			const one = await driver.findElement(By.id("one"));
-			const equals = await driver.findElement(By.id("equals"));
+		it("Should be able to handle negative numbers", () => {
+			const one = ui.findElement("one");
+			const minus = ui.findElement("minus");
+			const equals = ui.findElement("equals");
 
-			await minus.click();
-			await one.click();
-			await minus.click();
-			await one.click();
-			await equals.click();
+			minus.click();
+			one.click();
+			minus.click();
+			one.click();
+			equals.click();
 
-			const result = await display.getAttribute("textContent");
-			assert.equal("-2", result);
+			assert.equal("-2", display.textContent);
 		});
 
-		it("Should only allow one operator at a time", async () => {
-			const one = await driver.findElement(By.id("one"));
-			const times = await driver.findElement(By.id("times"));
-			const plus = await driver.findElement(By.id("plus"));
+		it("Should only allow one operator at a time", () => {
+			const one = ui.findElement("one");
+			const plus = ui.findElement("plus");
+			const times = ui.findElement("times");
+			const equals = ui.findElement("equals");
 
-			await one.click();
-			await plus.click();
-			await times.click();
+			one.click();
+			plus.click();
+			times.click();
 
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("1+", displayed);
+			assert.equal("1+", display.textContent);
 		});
 	});
 
 	describe("Function buttons", () => {
 		describe("AC button", () => {
-			it("Should be able to clear the current calculation", async () => {
-				const one = await driver.findElement(By.id("one"));
-				const plus = await driver.findElement(By.id("plus"));
-				const equals = await driver.findElement(By.id("equals"));
-				const allClear = await driver.findElement(By.id("allClear"));
+			it("Should be able to clear the current calculation", () => {
+				const one = ui.findElement("one");
+				const plus = ui.findElement("plus");
+				const equals = ui.findElement("equals");
+				const allClear = ui.findElement("allClear");
 
-				await one.click();
-				await plus.click();
-				await one.click();
-				await equals.click();
-				await allClear.click();
+				one.click();
+				plus.click();
+				one.click();
+				equals.click();
+				allClear.click();
 
-				const displayed = await display.getAttribute("textContent");
-				assert.equal("", displayed);
+				assert.equal("", display.textContent);
 			});
 
-			[
-				["Delete", Key.DELETE],
-				["Backspace", Key.BACK_SPACE],
-			].forEach(([name, key]) => {
-				it(`Should be bound to 'Ctrl+${name}'`, async () => {
-					await driver.actions()
-						.sendKeys("1")
-						.keyDown(Key.CONTROL)
-						.sendKeys(key)
-						.keyUp(Key.CONTROL)
-						.perform();
+			["Delete", "Backspace"].forEach((key) => {
+				it(`Should be bound to 'Ctrl+${key}'`, () => {
+					ui.pressKey({value: "1", ctrlKey: false});
+					ui.pressKey({value: key, ctrlKey: true});
 
-					const result = await display.getAttribute("textContent");
-					assert.equal("", result);
+					assert.equal("", display.textContent);
 				});
 			});
 		});
 
 		describe("Equals button", () => {
-			it("Should be bound to the '=' key", async () => {
-				await driver.actions().sendKeys("1+1=").perform();
+			it("Should be bound to the '=' key", () => {
+				ui.pressKey({value: "1", ctrlKey: false});
+				ui.pressKey({value: "+", ctrlKey: false});
+				ui.pressKey({value: "1", ctrlKey: false});
+				ui.pressKey({value: "=", ctrlKey: false});
 
-				const result = await display.getAttribute("textContent");
-				assert.equal("2", result);
+				assert.equal("2", display.textContent);
 			});
 		});
 
 		describe("Del button", () => {
-			it("Should be able to delete a digit from the current operand", async () => {
-				const one = await driver.findElement(By.id("one"));
-				const two = await driver.findElement(By.id("two"));
-				const plus = await driver.findElement(By.id("plus"));
-				const del = await driver.findElement(By.id("delete"));
+			it("Should be able to delete a digit from the current operand", () => {
+				const one = ui.findElement("one");
+				const two = ui.findElement("two");
+				const plus = ui.findElement("plus");
+				const del = ui.findElement("delete");
 
-				await one.click();
-				await one.click();
-				await del.click();
+				one.click();
+				one.click();
+				del.click();
 
-				await plus.click();
+				plus.click();
 
-				await one.click();
-				await del.click();
-				await two.click();
+				one.click();
+				del.click();
+				two.click();
 
-				const displayed = await display.getAttribute("textContent");
-				assert.equal("1+2", displayed);
+				assert.equal("1+2", display.textContent);
 			});
 
-			[
-				["Delete", Key.DELETE],
-				["Backspace", Key.BACK_SPACE],
-			].forEach(([name, key]) => {
-				it(`Should be bound to '${name}'`, async () => {
-					await driver.actions().sendKeys("1", key).perform();
+			["Delete", "Backspace"].forEach((key) => {
+				it(`Should be bound to '${key}'`, () => {
+					ui.pressKey({value: "1", ctrlKey: false});
+					ui.pressKey({value: key, ctrlKey: false});
 
-					const result = await display.getAttribute("textContent");
-					assert.equal("", result);
+					assert.equal("", display.textContent);
 				});
 			});
 
-			it("Should be able to delete an operator", async () => {
-				const one = await driver.findElement(By.id("one"));
-				const del = await driver.findElement(By.id("delete"));
-				const plus = await driver.findElement(By.id("plus"));
-				const minus = await driver.findElement(By.id("minus"));
+			it("Should be able to delete an operator", () => {
+				const one = ui.findElement("one");
+				const del = ui.findElement("delete");
+				const plus = ui.findElement("plus");
+				const minus = ui.findElement("minus");
 
-				await one.click();
-				await plus.click();
-				await del.click();
-				await minus.click();
-				await one.click();
+				one.click();
+				plus.click();
+				del.click();
+				minus.click();
+				one.click();
 
-				const displayed = await display.getAttribute("textContent");
-				assert.equal("1-1", displayed);
+				assert.equal("1-1", display.textContent);
 			});
 		});
 	});
 
 	describe("Multiple calculations", () => {
-		it("Should be able to handle consecutive calculations", async () => {
-			const one = await driver.findElement(By.id("one"));
-			const two = await driver.findElement(By.id("two"));
-			const plus = await driver.findElement(By.id("plus"));
-			const equals = await driver.findElement(By.id("equals"));
+		it("Should be able to handle consecutive calculations", () => {
+			const one = ui.findElement("one");
+			const two = ui.findElement("two");
+			const plus = ui.findElement("plus");
+			const equals = ui.findElement("equals");
 
-			await one.click();
-			await plus.click();
-			await one.click();
-			await equals.click();
+			one.click();
+			plus.click();
+			one.click();
+			equals.click();
 
-			await two.click();
-			await plus.click();
-			await two.click();
-			await equals.click();
+			two.click();
+			plus.click();
+			two.click();
+			equals.click();
 
-			const result = await display.getAttribute("textContent");
-			assert.equal("4", result);
+			assert.equal("4", display.textContent);
 		});
 
-		it("Should be able to chain operations together", async () => {
-			const one = await driver.findElement(By.id("one"));
-			const two = await driver.findElement(By.id("two"));
-			const plus = await driver.findElement(By.id("plus"));
-			const minus = await driver.findElement(By.id("minus"));
+		it("Should be able to chain operations together", () => {
+			const one = ui.findElement("one");
+			const two = ui.findElement("two");
+			const plus = ui.findElement("plus");
+			const minus = ui.findElement("minus");
 
-			await one.click();
-			await plus.click();
-			await one.click();
-			await minus.click();
+			one.click();
+			plus.click();
+			one.click();
+			minus.click();
 
-			const displayed = await display.getAttribute("textContent");
-			assert.equal("2-", displayed);
+			assert.equal("2-", display.textContent);
 		});
 	});
 });

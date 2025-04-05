@@ -29,11 +29,15 @@ class MockUI {
 	}
 
 	pressKey(key) {
-		const btn = this._elements.find((e) => {
-			return e.keybindings.find((k) => {
-				return k.value === key.value && k.ctrlKey === key.ctrlKey;
-			});
-		});
+		const wasPressed = (keybinding) => (
+			keybinding.value === key.value
+			&& keybinding.ctrlKey === key.ctrlKey
+		);
+
+		const btn = this._elements.find((e) => (
+			e.keybindings?.find((k) => wasPressed(k))
+		));
+
 		if (btn !== undefined) {
 			btn.click();
 		}
