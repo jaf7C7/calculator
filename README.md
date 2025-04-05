@@ -9,6 +9,9 @@ Clone the repository and run `npm install` from the project root. When the
 dependencies have finished installing, Run `npm start` and visit
 <http://localhost:8080>.
 
+To run the user interface tests, visit <http://localhost:8080/ui-tests>.
+To run all the other tests, run `npm test` from the project root.
+
 ## Tech stack:
 
 - HTML5
