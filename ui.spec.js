@@ -2,9 +2,9 @@ import { assert } from "./node_modules/chai/chai.js";
 import { UI, MockUI } from "./ui.js";
 
 [
-	{name: "UI", cls: UI},
-	{name: "MockUI", cls: MockUI},
-].forEach(({name, cls}) => {
+	{ name: "UI", cls: UI },
+	{ name: "MockUI", cls: MockUI },
+].forEach(({ name, cls }) => {
 	describe(name, () => {
 		let ui;
 
@@ -43,18 +43,23 @@ import { UI, MockUI } from "./ui.js";
 				displayFunction("Hello.");
 
 				const displayElement = ui.findElement("display");
-				assert.equal("Hello.", displayElement.textContent)
+				assert.equal("Hello.", displayElement.textContent);
 			});
 		});
 
 		describe("createButton()", () => {
-			let x
+			let x;
 
 			beforeEach(() => {
 				x = 0;
-				ui.createButton("button", "😀", () => {
-					x = 1;
-				}, [{value: "x", ctrlKey: false}]);
+				ui.createButton(
+					"button",
+					"😀",
+					() => {
+						x = 1;
+					},
+					[{ value: "x", ctrlKey: false }],
+				);
 			});
 
 			it("Should create a button with the correct attributes", () => {
@@ -74,7 +79,7 @@ import { UI, MockUI } from "./ui.js";
 			it("Should create a button with the correct keybinding", () => {
 				const btn = ui.findElement("button");
 
-				ui.pressKey({value: "x", ctrlKey: false});
+				ui.pressKey({ value: "x", ctrlKey: false });
 
 				assert.equal(1, x);
 			});

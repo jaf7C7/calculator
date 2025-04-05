@@ -29,7 +29,7 @@ class Calculation {
 
 	calculate() {
 		let result = "";
-		let operands = this._operands.map((operand) => Number(operand))
+		let operands = this._operands.map((operand) => Number(operand));
 		if (operands.length === 2 && this._operation !== "") {
 			result = String(this._operation.perform(...operands));
 		}
@@ -43,7 +43,7 @@ class Calculation {
 	toString() {
 		const result = this._operands.map((o) => format(o));
 		result.splice(1, 0, this._operation.toString());
-		return result.join('');
+		return result.join("");
 	}
 }
 

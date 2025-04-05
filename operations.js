@@ -18,4 +18,4 @@ const subtract = new Operation("-", (a, b) => a - b);
 const multiply = new Operation("*", (a, b) => a * b);
 const divide = new Operation("/", (a, b) => a / b);
 
-export {add, subtract, multiply, divide};
+export { add, subtract, multiply, divide };

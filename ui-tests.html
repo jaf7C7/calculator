@@ -1,23 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>UI Tests</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./node_modules/mocha/mocha.css" />
-    </head>
-    <body>
-		<div id="calculator" style="display: none;"></div>
-        <div id="mocha"></div>
+	<head>
+		<meta charset="utf-8" />
+		<title>UI Tests</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./node_modules/mocha/mocha.css" />
+	</head>
+	<body>
+		<div id="calculator" style="display: none"></div>
+		<div id="mocha"></div>
 
-        <script src="./node_modules/mocha/mocha.js"></script>
-        <script class="mocha-init">
-            mocha.setup('bdd');
-            mocha.checkLeaks();
-        </script>
-        <script type="module" src="ui.spec.js"></script>
-        <script type="module" class="mocha-exec">
-            mocha.run();
-        </script>
-    </body>
+		<script src="./node_modules/mocha/mocha.js"></script>
+		<script class="mocha-init">
+			mocha.setup("bdd");
+			mocha.checkLeaks();
+		</script>
+		<script type="module" src="ui.spec.js"></script>
+		<script type="module" class="mocha-exec">
+			mocha.run();
+		</script>
+	</body>
 </html>

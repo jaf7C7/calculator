@@ -80,7 +80,7 @@ describe("Calculator (Mocked UI)", () => {
 		});
 
 		it("Should work via the keyboard", () => {
-			ui.pressKey({value: "1", ctrlKey: false});
+			ui.pressKey({ value: "1", ctrlKey: false });
 
 			assert.equal("1", display.textContent);
 		});
@@ -102,10 +102,10 @@ describe("Calculator (Mocked UI)", () => {
 			});
 
 			it("Should be bound to the '+' key", () => {
-				ui.pressKey({value: "1", ctrlKey: false});
-				ui.pressKey({value: "+", ctrlKey: false});
-				ui.pressKey({value: "1", ctrlKey: false});
-				ui.pressKey({value: "Enter", ctrlKey: false});
+				ui.pressKey({ value: "1", ctrlKey: false });
+				ui.pressKey({ value: "+", ctrlKey: false });
+				ui.pressKey({ value: "1", ctrlKey: false });
+				ui.pressKey({ value: "Enter", ctrlKey: false });
 
 				assert.equal("2", display.textContent);
 			});
@@ -126,10 +126,10 @@ describe("Calculator (Mocked UI)", () => {
 			});
 
 			it("Should be bound to the '-' key", () => {
-				ui.pressKey({value: "1", ctrlKey: false});
-				ui.pressKey({value: "-", ctrlKey: false});
-				ui.pressKey({value: "1", ctrlKey: false});
-				ui.pressKey({value: "Enter", ctrlKey: false});
+				ui.pressKey({ value: "1", ctrlKey: false });
+				ui.pressKey({ value: "-", ctrlKey: false });
+				ui.pressKey({ value: "1", ctrlKey: false });
+				ui.pressKey({ value: "Enter", ctrlKey: false });
 
 				assert.equal("0", display.textContent);
 			});
@@ -175,10 +175,10 @@ describe("Calculator (Mocked UI)", () => {
 			});
 
 			it("Should be bound to the '*' key", () => {
-				ui.pressKey({value: "1", ctrlKey: false});
-				ui.pressKey({value: "*", ctrlKey: false});
-				ui.pressKey({value: "1", ctrlKey: false});
-				ui.pressKey({value: "Enter", ctrlKey: false});
+				ui.pressKey({ value: "1", ctrlKey: false });
+				ui.pressKey({ value: "*", ctrlKey: false });
+				ui.pressKey({ value: "1", ctrlKey: false });
+				ui.pressKey({ value: "Enter", ctrlKey: false });
 
 				assert.equal("1", display.textContent);
 			});
@@ -200,10 +200,10 @@ describe("Calculator (Mocked UI)", () => {
 
 			["/", "%"].forEach((key) => {
 				it(`Should be bound to the '${key}' key`, () => {
-					ui.pressKey({value: "1", ctrlKey: false});
-					ui.pressKey({value: key, ctrlKey: false});
-					ui.pressKey({value: "1", ctrlKey: false});
-					ui.pressKey({value: "Enter", ctrlKey: false});
+					ui.pressKey({ value: "1", ctrlKey: false });
+					ui.pressKey({ value: key, ctrlKey: false });
+					ui.pressKey({ value: "1", ctrlKey: false });
+					ui.pressKey({ value: "Enter", ctrlKey: false });
 
 					assert.equal("1", display.textContent);
 				});
@@ -293,8 +293,8 @@ describe("Calculator (Mocked UI)", () => {
 
 			["Delete", "Backspace"].forEach((key) => {
 				it(`Should be bound to 'Ctrl+${key}'`, () => {
-					ui.pressKey({value: "1", ctrlKey: false});
-					ui.pressKey({value: key, ctrlKey: true});
+					ui.pressKey({ value: "1", ctrlKey: false });
+					ui.pressKey({ value: key, ctrlKey: true });
 
 					assert.equal("", display.textContent);
 				});
@@ -303,10 +303,10 @@ describe("Calculator (Mocked UI)", () => {
 
 		describe("Equals button", () => {
 			it("Should be bound to the '=' key", () => {
-				ui.pressKey({value: "1", ctrlKey: false});
-				ui.pressKey({value: "+", ctrlKey: false});
-				ui.pressKey({value: "1", ctrlKey: false});
-				ui.pressKey({value: "=", ctrlKey: false});
+				ui.pressKey({ value: "1", ctrlKey: false });
+				ui.pressKey({ value: "+", ctrlKey: false });
+				ui.pressKey({ value: "1", ctrlKey: false });
+				ui.pressKey({ value: "=", ctrlKey: false });
 
 				assert.equal("2", display.textContent);
 			});
@@ -356,8 +356,8 @@ describe("Calculator (Mocked UI)", () => {
 
 			["Delete", "Backspace"].forEach((key) => {
 				it(`Should be bound to '${key}'`, () => {
-					ui.pressKey({value: "1", ctrlKey: false});
-					ui.pressKey({value: key, ctrlKey: false});
+					ui.pressKey({ value: "1", ctrlKey: false });
+					ui.pressKey({ value: key, ctrlKey: false });
 
 					assert.equal("", display.textContent);
 				});

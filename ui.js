@@ -47,8 +47,8 @@ class UI {
 	}
 
 	pressKey(key) {
-		const {value, ctrlKey} = key;
-		const event = new KeyboardEvent("keydown", {key: value, ctrlKey});
+		const { value, ctrlKey } = key;
+		const event = new KeyboardEvent("keydown", { key: value, ctrlKey });
 		document.body.dispatchEvent(event);
 	}
 }
@@ -63,7 +63,7 @@ class MockUI {
 	}
 
 	createElement(tagName, id, textContent) {
-		const e = {id, textContent}
+		const e = { id, textContent };
 		this._elements.push(e);
 		return e;
 	}
@@ -88,14 +88,12 @@ class MockUI {
 	}
 
 	pressKey(key) {
-		const wasPressed = (keybinding) => (
-			keybinding.value === key.value
-			&& keybinding.ctrlKey === key.ctrlKey
-		);
+		const wasPressed = (keybinding) =>
+			keybinding.value === key.value && keybinding.ctrlKey === key.ctrlKey;
 
-		const btn = this._elements.find((e) => (
-			e.keybindings?.find((k) => wasPressed(k))
-		));
+		const btn = this._elements.find((e) =>
+			e.keybindings?.find((k) => wasPressed(k)),
+		);
 
 		if (btn !== undefined) {
 			btn.click();
@@ -103,5 +101,4 @@ class MockUI {
 	}
 }
 
-
-export {UI, MockUI};
+export { UI, MockUI };
