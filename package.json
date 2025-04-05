@@ -5,8 +5,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha *.spec.js",
-    "watch": "nodemon --ignore '*.{md,json,css}' --exec mocha *.spec.js",
+    "test": "mocha index.spec.js",
+    "test-ui": "mocha ui.spec.js mockUI.spec.js",
+    "watch": "nodemon --ignore '*.{md,json,css}' --exec mocha index.spec.js",
     "start": "http-server ."
   },
   "repository": {
