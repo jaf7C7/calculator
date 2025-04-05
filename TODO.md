@@ -21,7 +21,7 @@
 - [x] ~~Negative numbers~~
 - [x] ~~`Del` can delete an operator~~
 - [x] ~~Calculation chaining~~
+- [x] ~~Add `chromedriver` as an `npm` dependency (run `npm info chromedriver`)~~
 - [ ] **Make tests faster?**
-- [ ] Add `chromedriver` as an `npm` dependency (run `npm info chromedriver`)
 - [ ] Theme switcher
 - [ ] `i` in a circle in bottom left, which pops up some project information when clicked
