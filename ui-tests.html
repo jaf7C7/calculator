@@ -4,16 +4,13 @@
         <meta charset="utf-8" />
         <title>UI Tests</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
+        <link rel="stylesheet" href="./node_modules/mocha/mocha.css" />
     </head>
     <body>
 		<div id="calculator" style="display: none;"></div>
-
         <div id="mocha"></div>
 
-        <script src="https://unpkg.com/chai@4/chai.js"></script>
-        <script src="https://unpkg.com/mocha/mocha.js"></script>
-
+        <script src="./node_modules/mocha/mocha.js"></script>
         <script class="mocha-init">
             mocha.setup('bdd');
             mocha.checkLeaks();
