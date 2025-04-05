@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import MockUI from "./mockUI.js";
+import { MockUI } from "./ui.js";
 import createApp from "./createApp.js";
 
 describe("Calculator (Mocked UI)", () => {
