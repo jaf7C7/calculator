@@ -6,7 +6,6 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha index.spec.js",
-    "test-ui": "mocha ui.spec.js mockUI.spec.js",
     "watch": "nodemon --ignore '*.{md,json,css}' --exec mocha index.spec.js",
     "start": "http-server ."
   },
@@ -24,10 +23,6 @@
     "chai": "^5.2.0",
     "http-server": "^14.1.1",
     "mocha": "^11.1.0",
-    "nodemon": "^3.1.9",
-    "selenium-webdriver": "^4.29.0"
-  },
-  "dependencies": {
-    "chromedriver": "^134.0.5"
+    "nodemon": "^3.1.9"
   }
 }
