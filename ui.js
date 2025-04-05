@@ -3,6 +3,10 @@ class UI {
 		this._element = document.getElementById("calculator");
 	}
 
+	clear() {
+		this._element.replaceChildren();
+	}
+
 	findElement(id) {
 		return document.getElementById(id);
 	}
@@ -51,6 +55,10 @@ class UI {
 
 class MockUI {
 	constructor() {
+		this._elements = [];
+	}
+
+	clear() {
 		this._elements = [];
 	}
 

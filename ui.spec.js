@@ -12,6 +12,21 @@ import { UI, MockUI } from "./ui.js";
 			ui = new cls();
 		});
 
+		afterEach(() => {
+			ui.clear();
+		});
+
+		describe("clear()", () => {
+			it("Should clear all child elements from the container", () => {
+				ui.createElement("div", "someId", "someText");
+
+				ui.clear();
+
+				const e = ui.findElement("someId");
+				assert.equal(undefined, e);
+			});
+		});
+
 		describe("createElement()", () => {
 			it("Should create an element with the correct attributes", () => {
 				ui.createElement("div", "hi", "hi");
