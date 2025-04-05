@@ -1,6 +1,5 @@
 const assert = chai.assert;
-import UI from "./ui.js";
-import MockUI from "./mockUI.js";
+import { UI, MockUI } from "./ui.js";
 
 [
 	{name: "UI", cls: UI},
