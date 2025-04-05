@@ -24,9 +24,12 @@ class Calculation {
 	}
 
 	calculate() {
-		return this._operands
-			.map((operand) => Number(operand))
-			.reduce((a, b) => this._operation.perform(a, b))
+		let result = "";
+		let operands = this._operands.map((operand) => Number(operand))
+		if (operands.length === 2 && this._operation !== "") {
+			result = String(this._operation.perform(...operands));
+		}
+		return result;
 	}
 
 	addOperand(operand) {

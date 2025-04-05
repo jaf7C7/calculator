@@ -310,6 +310,14 @@ describe("Calculator (Mocked UI)", () => {
 
 				assert.equal("2", display.textContent);
 			});
+
+			it("Should not update the display without a calculation", () => {
+				const equals = ui.findElement("equals");
+
+				equals.click();
+
+				assert.equal("", display.textContent);
+			});
 		});
 
 		describe("Del button", () => {
