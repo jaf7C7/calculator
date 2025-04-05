@@ -1,12 +1,6 @@
 import { assert } from "chai";
-import { Builder, Browser, By, Key } from "selenium-webdriver";
-import chrome from "selenium-webdriver/chrome.js"; // XXX: Breaks without '.js' extension
-
 import MockUI from "./mockUI.js";
 import createApp from "./createApp.js";
-
-const url = "http://localhost:8080";
-const options = new chrome.Options().addArguments("--headless=new");
 
 describe("Calculator (Mocked UI)", () => {
 	let ui;
