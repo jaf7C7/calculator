@@ -16,6 +16,10 @@ class Calculation {
 		this._operation = "";
 	}
 
+	isEmpty() {
+		return this._operands.length === 0 && this._operation === "";
+	}
+
 	selectOperator(operation) {
 		if (this._operation !== "" && this._operands.length > 1) {
 			this._operands = [String(this.calculate())];
@@ -73,10 +77,12 @@ class Calculator {
 	}
 
 	calculate() {
-		this._addOperand(this.currentOperand);
-		const result = this.calculation.calculate();
-		this.display(format(result));
-		this.calculation = new Calculation();
+		if (!this.calculation.isEmpty()) {
+			this._addOperand(this.currentOperand);
+			const result = this.calculation.calculate();
+			this.display(format(result));
+			this.calculation = new Calculation();
+		}
 	}
 
 	clear() {

@@ -24,6 +24,7 @@
 - [x] ~~Add `chromedriver` as an `npm` dependency (run `npm info chromedriver`)~~
 - [x] ~~Make tests faster?~~
 - [ ] **Repeated `=` presses should not change result of calculation.**
+- [ ] Rewrite UI tests for [mocha in the browser](https://mochajs.org/#running-mocha-in-the-browser)
 - [ ] Add tests for stated limitations:
   - [ ] `0.9999999999999999` -> `1`
   - [ ] `9,999,999,999,999,999` -> `10,000,000,000,000,000`

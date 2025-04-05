@@ -318,6 +318,20 @@ describe("Calculator (Mocked UI)", () => {
 
 				assert.equal("", display.textContent);
 			});
+
+			it("Should not clear the display without a new calculation", () => {
+				const equals = ui.findElement("equals");
+				const one = ui.findElement("one");
+				const plus = ui.findElement("plus");
+
+				one.click();
+				plus.click();
+				one.click();
+				equals.click();
+				equals.click();
+
+				assert.equal("2", display.textContent);
+			});
 		});
 
 		describe("Del button", () => {
