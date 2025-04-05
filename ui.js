@@ -3,6 +3,10 @@ class UI {
 		this._element = document.getElementById("calculator");
 	}
 
+	findElement(id) {
+		return document.getElementById(id);
+	}
+
 	createElement(tagName, id = null, textContent = null) {
 		const element = document.createElement(tagName);
 		if (id !== null) {
@@ -36,6 +40,12 @@ class UI {
 				function_();
 			}
 		});
+	}
+
+	pressKey(key) {
+		const {value, ctrlKey} = key;
+		const event = new KeyboardEvent("keydown", {key: value, ctrlKey});
+		document.body.dispatchEvent(event);
 	}
 }
 

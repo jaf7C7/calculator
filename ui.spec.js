@@ -1,93 +1,63 @@
-import { assert } from "chai";
-import { Builder, Browser, By, Key } from "selenium-webdriver";
-import chrome from "selenium-webdriver/chrome.js";
-
-const url = "http://localhost:8080/ui.spec.html";
-const options = new chrome.Options().addArguments("--headless=new");
+const assert = chai.assert;
+import UI from "./ui.js";
 
 describe("UI", () => {
-	let driver;
-	let executeScript;
+	let ui;
 
-	beforeEach(async () => {
-		driver = await new Builder()
-			.forBrowser(Browser.CHROME)
-			.setChromeOptions(options)
-			.build();
-
-		executeScript = async (script) => {
-			await driver.executeScript(`
-				let UI;
-				await import("./ui.js").then((m) => UI = m.default);
-				const ui = new UI();
-				${script}
-			`);
-		};
-
-		await driver.get(url);
-	});
-
-	afterEach(async () => {
-		await driver.quit();
+	beforeEach(() => {
+		ui = new UI();
 	});
 
 	describe("createElement()", () => {
-		it("Should create an element with the correct attributes", async () => {
-			await executeScript("ui.createElement('div', 'hi', 'hi');\n");
+		it("Should create an element with the correct attributes", () => {
+			ui.createElement("div", "hi", "hi");
 
-			const e = await driver.findElement(By.id("hi"));
-			const textContent = await e.getAttribute("textContent");
-
-			assert.equal("hi", textContent);
+			const e = ui.findElement("hi");
+			assert.equal("hi", e.textContent);
 		});
 	});
 
 	describe("createDisplay()", () => {
-		it("Should return a function to update a display element", async () => {
-			await executeScript(`
-				const display = ui.createDisplay();
-				display("Hello.");
-			`);
+		it("Should return a function to update a display element", () => {
+			const displayFunction = ui.createDisplay();
 
-			const display = await driver.findElement(By.id("display"));
-			const displayed = await display.getAttribute("textContent");
+			displayFunction("Hello.");
 
-			assert.equal("Hello.", displayed)
+			const displayElement = ui.findElement("display");
+			assert.equal("Hello.", displayElement.textContent)
 		});
 	});
 
 	describe("createButton()", () => {
-		beforeEach(async () => {
-			await executeScript(`
-				ui.createButton("button", "😀", () => {
-					document.title = "Hello.";
-				}, [{value: "x", ctrlKey: false}]);
-			`);
+		let x
+
+		beforeEach(() => {
+			x = 0;
+			ui.createButton("button", "😀", () => {
+				x = 1;
+			}, [{value: "x", ctrlKey: false}]);
 		});
 
-		it("Should create a button with the correct attributes", async () => {
-			const btn = await driver.findElement(By.id("button"));
-			const textContent = await btn.getAttribute("textContent");
+		it("Should create a button with the correct attributes", () => {
+			const btn = ui.findElement("button");
 
-			assert.equal("😀", textContent);
+			assert.equal("😀", btn.textContent);
 		});
 
-		it("Should create a button with the correct onClick callback", async () => {
-			const btn = await driver.findElement(By.id("button"));
+		it("Should create a button with the correct onClick callback", () => {
+			const btn = ui.findElement("button");
 
-			await btn.click();
+			btn.click();
 
-			const title = await driver.getTitle();
-			assert.equal(title, "Hello.");
+			assert.equal(1, x);
 		});
 
-		it("Should create a button with the correct keybinding", async () => {
-			const btn = await driver.findElement(By.id("button"));
+		it("Should create a button with the correct keybinding", () => {
+			const btn = ui.findElement("button");
 
-			await driver.actions().sendKeys("x").perform();
+			ui.pressKey({value: "x", ctrlKey: false});
 
-			const title = await driver.getTitle();
-			assert.equal(title, "Hello.");
+			assert.equal(1, x);
 		});
 	});
 });
