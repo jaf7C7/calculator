@@ -5,8 +5,10 @@ multiplication and division.
 
 ## Try it out
 
-Clone the repository and run `npm install` from the project root. When the
-dependencies have finished installing, Run `npm start` and visit
+The project is hosted live [here](https://jaf7C7.github.io/calculator).
+
+To run it locally, clone the repository and run `npm install` from the project
+root. When the dependencies have finished installing, Run `npm start` and visit
 <http://localhost:8080>.
 
 To run the user interface tests, visit <http://localhost:8080/ui-tests>.
