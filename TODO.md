@@ -25,6 +25,8 @@
 - [x] ~~Make tests faster?~~
 - [x] ~~Repeated `=` presses should not change result of calculation.~~
 - [x] ~~Rewrite UI tests for [mocha in the browser](https://mochajs.org/#running-mocha-in-the-browser)~~
+- [ ] Improve decimal precision to at least 8 decimal places
+- [ ] Fix bug: `0.0001` is immediately evaluated as `0`, but `0.001` is ok
 - [ ] **Add tests for stated limitations:**
   - [ ] `0.9999999999999999` -> `1`
   - [ ] `9,999,999,999,999,999` -> `10,000,000,000,000,000`

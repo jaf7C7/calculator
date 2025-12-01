@@ -25,6 +25,7 @@ To run all the other tests, run `npm test` from the project root.
 
 ## Limitations
 
+* Decimal precision is very poor (only 4 decimal places), so `0.9999` immediately becomes `1` etc.
 * Numbers are stored internally as
   [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
   and so results are limited to a precision of approximately 15 to 17 decimal
@@ -33,3 +34,7 @@ To run all the other tests, run `npm test` from the project root.
 * Numbers larger than `Number.MAX_VALUE`, or smaller than `Number.MIN_VALUE`
   are rounded to `infinity` and `0` respectively.
 * The app has only been testing in Chrome.
+
+## Known bugs
+
+* pressing e.g. `.001` displays as `0` until `1` is pressed
