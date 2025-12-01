@@ -3,6 +3,8 @@
 A very simple calculator which can perform addition, subtraction,
 multiplication and division.
 
+Read about this project on [DeepWiki](https://deepwiki.com/jaf7C7/calculator).
+
 ## Try it out
 
 The project is hosted live [here](https://jaf7C7.github.io/calculator).
